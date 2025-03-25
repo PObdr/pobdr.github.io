@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Schůze vlastníků</title>
+ <!--   <link href="assets/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/all.min.css" rel="stylesheet">
+    <script src="assets/xlsx.full.min.js"></script>
+    <script src="assets/jspdf.umd.min.js"></script>
+ -->
+    <link href="styles.css" rel="stylesheet">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js "></script>
+    
+</head>
+<body class="bg-light">
+    <div class="container mt-4">
+        <h1 class="mb-4"><i class="fas fa-users"></i> Schůze vlastníků</h1>
+        
+        <div class="mb-3">
+            <button class="btn btn-info" id="nactiSchuziBtn"><i class="fas fa-history"></i> Načíst schůzi</button>
+            <input type="file" id="nactiSchuziFile" accept=".json" hidden>
+            <button class="btn btn-success" id="ulozSchuziBtn"><i class="fas fa-save"></i> Uložit schůzi</button>
+            <input type="file" id="excelFile" accept=".xlsx" hidden>
+            <label for="excelFile" class="btn btn-primary"><i class="fas fa-file-excel"></i> Nahrát vlastníky</label>
+            <button class="btn btn-secondary" onclick="view.toggleDochazka()"><i class="fas fa-eye"></i> Přepnout docházku</button>
+            <button class="btn btn-info" onclick="view.toggleCasovaOsa()"><i class="fas fa-chart-line"></i> Přepout časovou osu</button>
+        </div>
+
+        <div id="dochazkaList">
+            <h2><i class="fas fa-clipboard-list"></i> Docházka</h2>
+            <table id="vlastniciTabulka" class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Č.j.</th>
+                        <th>Vlastník</th>
+                        <th>Podíl</th>
+                        <th>Přítomnost</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+
+        <div id="casovaOsaSection" class="mt-4 d-none">
+            <h3><i class="fas fa-history"></i> Časová osa docházky</h3>
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Čas</th>
+                        <th>Počet přítomných</th>
+                        <th>Podíl</th>
+                    </tr>
+                </thead>
+                <tbody id="casovaOsaBody"></tbody>
+            </table>
+        </div>
+
+        <h2 class="mt-4"><i class="fas fa-vote-yea"></i> Hlasování</h2>
+        <button class="btn btn-primary" id="zahajHlasovaniBtn"><i class="fas fa-plus"></i> Nové hlasování</button>
+        
+        <div id="hlasovaniForm" class="d-none">
+    <h3>Hlasování</h3>
+    <div class="mb-3">
+        <label for="hlasovaniOtazka" class="form-label">Otázka:</label>
+        <input type="text" class="form-control" id="hlasovaniOtazka">
+    </div>
+    <table id="hlasovaniTabulka" class="table">
+                <thead>
+                    <tr>
+                        <th>Č.j.</th>
+                        <th>Vlastník</th>
+                        <th>Podíl</th>
+                        <th>Hlas</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <button class="btn btn-success" id="ulozHlasovaniBtn"><i class="fas fa-save"></i> Uložit hlasování</button>
+        </div>
+
+        <div id="dashboard" class="mt-4">
+            <h2><i class="fas fa-tachometer-alt"></i> Přehled</h2>
+            <p>Celkový podíl přítomných: <span id="podilPritomnych" class="badge bg-primary badge-lg">0% (0.0000)</span></p>
+            <h3>Historie hlasování</h3>
+            <table id="prehledHlasovani" class="table table-striped">
+    <thead>
+        <tr>
+            <th>Čas vytvoření</th>
+            <th>Otázka</th>
+            <th>Výsledek</th>
+            <th>Akce</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+
+        </div>
+    </div>
+
+    <script src="assets/bootstrap.bundle.min.js"></script>
+    <script src="model.js"></script>
+    <script src="view.js"></script>
+    <script src="controller.js"></script>
+</body>
+</html>
