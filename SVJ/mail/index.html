@@ -15,16 +15,7 @@
             <label for="xlsxFile" class="form-label"><i class="fas fa-file-excel"></i> Nahrát XLSX soubor:</label>
             <input type="file" class="form-control" id="xlsxFile" accept=".xlsx">
         </div>
-        <div class="mb-3">
-            <label for="formatInput" class="form-label"><i class="fas fa-list-ol"></i> Formát čísla jednotky:</label>
-            <input type="text" class="form-control" id="formatInput" placeholder="Např. {prefix}/{vchod}/{patro}/0/{byt} nebo {cislo}">
-            <small class="form-text text-muted">Použijte {prefix}, {vchod}, {patro}, {byt}, {cislo} jako zástupné symboly.</small>
-        </div>
-        <div class="mb-3">
-            <label for="bytyNaPatro" class="form-label"><i class="fas fa-door-closed"></i> Počet bytů na patro:</label>
-            <input type="number" class="form-control" id="bytyNaPatro" placeholder="Např. 7">
-            <small class="form-text text-muted">Zadejte pro sekvenční číslování (např. 1-77).</small>
-        </div>
+        <button id="uploadButton" class="btn btn-primary mb-3"><i class="fas fa-upload"></i> Nahrát a zobrazit e-maily</button>
         <div id="filterContainer" class="row mb-3" style="display: none;">
             <!-- Dynamicky generované filtry budou zde -->
         </div>
@@ -42,6 +33,10 @@
             <tbody id="ownersTable">
             </tbody>
         </table>
+        <div id="emailsContainer" class="mb-3" style="display: none;">
+            <label for="emailsInput" class="form-label"><i class="fas fa-envelope"></i> E-maily:</label>
+            <textarea id="emailsInput" class="form-control" rows="5"></textarea>
+        </div>
     </div>
     <script>
         let owners = [];
@@ -49,20 +44,27 @@
         let filters = {};
         let bytyNaPatro = 0;
 
-        document.getElementById('xlsxFile').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                const data = new Uint8Array(e.target.result);
-                const workbook = XLSX.read(data, {type: 'array'});
-                const firstSheetName = workbook.SheetNames[0];
-                const worksheet = workbook.Sheets[firstSheetName];
-                owners = XLSX.utils.sheet_to_json(worksheet, {header: ['jednotka', 'jmeno', 'email']});
-                owners.shift(); // Remove header row
-                detectFormat();
-                updateTable();
-            };
-            reader.readAsArrayBuffer(file);
+        document.getElementById('uploadButton').addEventListener('click', function() {
+            const fileInput = document.getElementById('xlsxFile');
+            if (fileInput.files.length > 0) {
+                const file = fileInput.files[0];
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, {type: 'array'});
+                    const firstSheetName = workbook.SheetNames[0];
+                    const worksheet = workbook.Sheets[firstSheetName];
+                    owners = XLSX.utils.sheet_to_json(worksheet, {header: ['jednotka', 'jmeno', 'email']});
+                    owners.shift(); // Remove header row
+                    detectFormat();
+                    updateTable();
+                    showEmails();
+                    generateFilters();
+                };
+                reader.readAsArrayBuffer(file);
+            } else {
+                alert('Prosím, vyberte soubor.');
+            }
         });
 
         function detectFormat() {
@@ -83,24 +85,9 @@
                     // Attempt to detect bytyNaPatro
                     const maxUnit = Math.max(...owners.map(owner => parseInt(owner.jednotka)));
                     bytyNaPatro = Math.ceil(Math.sqrt(maxUnit));
-                    document.getElementById('bytyNaPatro').value = bytyNaPatro;
                 }
-                document.getElementById('formatInput').value = format;
-                generateFilters();
             }
         }
-
-        document.getElementById('formatInput').addEventListener('change', function(e) {
-            format = e.target.value;
-            generateFilters();
-            updateTable();
-        });
-
-        document.getElementById('bytyNaPatro').addEventListener('change', function(e) {
-            bytyNaPatro = parseInt(e.target.value);
-            generateFilters();
-            updateTable();
-        });
 
         function generateFilters() {
             const filterContainer = document.getElementById('filterContainer');
@@ -214,19 +201,26 @@
                 row.insertCell(3).textContent = owner.jmeno;
                 row.insertCell(4).textContent = owner.email;
             });
+            showEmails();
         }
 
-        document.getElementById('copyEmails').addEventListener('click', function() {
+        function showEmails() {
+            const emailsInput = document.getElementById('emailsInput');
+            const emailsContainer = document.getElementById('emailsContainer');
             const filteredOwners = owners.filter(owner => {
                 const unitParts = parseUnitNumber(owner.jednotka);
                 return Object.entries(filters).every(([key, value]) => !value || unitParts[key] == value);
             });
-
             const formattedEmails = filteredOwners.map(owner => 
                 `${owner.jmeno} <${owner.email}>`
             ).join('; ');
+            emailsInput.value = formattedEmails;
+            emailsContainer.style.display = 'block';
+        }
 
-            navigator.clipboard.writeText(formattedEmails).then(() => {
+        document.getElementById('copyEmails').addEventListener('click', function() {
+            const emailsInput = document.getElementById('emailsInput');
+            navigator.clipboard.writeText(emailsInput.value).then(() => {
                 alert('E-maily zkopírovány do schránky');
             });
         });
