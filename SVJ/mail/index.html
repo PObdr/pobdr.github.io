@@ -68,26 +68,28 @@
         });
 
         function detectFormat() {
-            if (owners.length > 0) {
-                const sampleUnit = owners[0].jednotka;
-                if (sampleUnit.includes('/')) {
-                    const parts = sampleUnit.split('/');
-                    format = parts.map((part, index) => {
-                        if (index === 0) return '{prefix}';
-                        if (index === parts.length - 1) return '{byt}';
-                        if (index === parts.length - 2 && part === '0') return '0';
-                        if (index === 1) return '{vchod}';
-                        if (index === 2) return '{patro}';
-                        return part;
-                    }).join('/');
-                } else {
-                    format = '{cislo}';
-                    // Attempt to detect bytyNaPatro
-                    const maxUnit = Math.max(...owners.map(owner => parseInt(owner.jednotka)));
-                    bytyNaPatro = Math.ceil(Math.sqrt(maxUnit));
-                }
-            }
+    if (owners.length > 0) {
+        const sampleUnit = owners[0].jednotka;
+        if (typeof sampleUnit === 'string' && sampleUnit.includes('/')) {
+            const parts = sampleUnit.split('/');
+            format = parts.map((part, index) => {
+                if (index === 0) return '{prefix}';
+                if (index === parts.length - 1) return '{byt}';
+                if (index === parts.length - 2 && part === '0') return '0';
+                if (index === 1) return '{vchod}';
+                if (index === 2) return '{patro}';
+                return part;
+            }).join('/');
+        } else {
+            format = '{cislo}';
+            // Attempt to detect bytyNaPatro
+            const maxUnit = Math.max(...owners.map(owner => parseInt(owner.jednotka)));
+            bytyNaPatro = Math.ceil(Math.sqrt(maxUnit));
         }
+        generateFilters();
+        updateTable();
+    }
+}
 
         function generateFilters() {
             const filterContainer = document.getElementById('filterContainer');
