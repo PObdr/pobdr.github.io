@@ -1,0 +1,162 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  background: linear-gradient(135deg, #e8f0ff 0%, #f9f9fb 100%);
+  min-height: 100vh;
+  color: #223;
+}
+#main-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.3fr;
+  grid-template-rows: auto 1fr;
+  grid-gap: 28px 28px;
+  max-width: 1400px;
+  margin: 32px auto;
+  padding: 0 16px;
+  align-items: flex-start;
+  grid-template-areas:
+    "map panel"
+    "departures departures";
+}
+#map {
+  grid-area: map;
+  min-width: 320px;
+  min-height: 300px;
+  height: 450px;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(60,80,120,0.12);
+}
+#panel { grid-area: panel; display: flex; flex-direction: column; gap: 20px; }
+#departures-panel { grid-area: departures; margin-top: 0; }
+.subpanel {
+  margin-bottom: 10px;
+  background: rgba(255,255,255,0.92);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(60,80,120,0.12);
+  padding: 12px 18px 14px 18px;
+}
+#info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  background: none;
+  box-shadow: none;
+  padding: 0;
+  margin-bottom: 0;
+}
+#current-time {
+  font-size: 1.4em;
+  font-weight: 700;
+  color: #2979ff;
+  letter-spacing: 0.03em;
+}
+#current-weather {
+  font-size: 1.4em;
+  color: #2b3a55;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.temp-value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: #2979ff;
+  margin-right: 0;
+  vertical-align: middle;
+}
+.max-label { color: #c62828; }
+.minmax-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 8px;
+  font-size: 0.95em;
+}
+.minmax-col {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  background: #e8f0ff;
+  border-radius: 8px;
+  padding: 6px 12px;
+  justify-content: center;
+}
+.minmax-col .temp-value {
+  font-size: 1.6rem;
+  margin-bottom: 0;
+}
+.minmax-col .minmax-time {
+  font-size: 0.85em;
+  color: #7b8fa7;
+  margin-top: 0;
+  margin-left: 7px;
+  white-space: nowrap;
+}
+.hodiny, .odjezdy-list { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+.hodina, .linka { background: #e8f0ff; border-radius: 8px; padding: 8px 13px; font-size: 1.08rem; box-shadow: 0 1px 4px rgba(41,121,255,0.07); display: flex; align-items: center; gap: 6px; min-width: 85px; }
+.loading {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.6em;
+  height: 1.6em;
+  font-size: 1.3em;
+  transform-origin: 50% 50%;
+  animation: rotate 1s linear infinite;
+  vertical-align: middle;
+  backface-visibility: hidden;
+}
+@keyframes rotate { 100% { transform: rotate(360deg);} }
+.spinner-svg { display: block; }
+.error { color: #c62828; margin-top: 8px; font-size: 1.1em; }
+.zastavka-group { margin-bottom: 20px; background: #f8f9ff; padding: 12px; border-radius: 8px; }
+.zastavka-nazev { margin: 0 0 8px 0; color: #2b3a55; font-weight: 600; font-size: 1.1em; }
+.zastavka-nazev small { color: #7b8fa7; font-weight: normal; }
+.linka { min-width: 180px; display: flex; align-items: center; gap: 10px; background: #e8f0ff; border-radius: 8px; padding: 8px 13px; font-size: 1.08rem; box-shadow: 0 1px 4px rgba(41,121,255,0.07); margin-bottom: 4px; }
+.linka-info { display: flex; align-items: center; gap: 6px; flex: 1 1 auto; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; font-style: normal; }
+.linka-info > span, .linka-info > b { font-style: normal; }
+.linka-cas { margin-left: auto; white-space: nowrap; }
+.skrtnute { color: #2979ff; position: relative; display: inline-block; margin-right: 2px; font-weight: bold; padding-right: 2px; }
+.skrtnute-text { position: relative; z-index: 1; }
+.skrtnute-text::after { content: ''; position: absolute; left: 0; right: 0; top: 55%; height: 2px; background: #c62828; z-index: 2; }
+.supzpozdeni { color: #c62828; font-size: 0.8em; vertical-align: super; margin-left: 1px; font-weight: normal; }
+.novycas { color: #c62828; font-weight: bold; margin-left: 8px; }
+.bez-zpozdeni { color: #2979ff; font-weight: bold; }
+#temperature-chart { width: 100%; height: 250px !important; margin-bottom: 10px; }
+.prumery { font-size: 0.9rem; margin-top: 10px; color: #666; }
+.prumer-label { margin-right: 10px; }
+.teplotni-predpoved { margin-top: 15px; }
+
+/* Noční linka */
+.linka-night {
+  background: #111 !important;
+  color: #fff !important;
+  border-radius: 6px;
+  padding: 3px 3px;
+  font-weight: bold;
+  letter-spacing: 0.03em;
+  font-size: .8em;
+  display: inline-block;
+  margin-right: 4px;
+}
+
+@media (max-width: 1200px) {
+  #main-grid {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    grid-template-areas:
+      "map"
+      "panel"
+      "departures";
+  }
+  #map { height: 250px; }
+}
+@media (max-width: 700px) {
+  #panel { padding: 0; }
+  .subpanel { padding: 8px 2px; }
+  h2 { font-size: 1.1rem; }
+  .temp-value { font-size: 1.1rem; }
+}
