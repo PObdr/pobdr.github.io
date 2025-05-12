@@ -305,7 +305,6 @@ ${isAirConditioned}`;
     cas = `<span class="linka-cas bez-zpozdeni">${predictedStr}</span>`;
   }
 
-  // Tooltip na celý řádek
   return `<div class="linka" title="${tooltip.replace(/"/g, '&quot;')}">${info}${cas}</div>`;
 }
 
@@ -315,9 +314,9 @@ function getWeatherIcon(code) {
   if ([1,2,3].includes(code)) return "🌤️";
   if ([45,48].includes(code)) return "🌫️";
   if ([51,53,55].includes(code)) return "🌦️";
-  if ([56,57].includes(code)) return "🌦️❄️"; // freezing drizzle
+  if ([56,57].includes(code)) return "🌦️❄️";
   if ([61,63,65].includes(code)) return "🌧️";
-  if ([66,67].includes(code)) return "🌧️❄️"; // freezing rain
+  if ([66,67].includes(code)) return "🌧️❄️";
   if ([71,73,75].includes(code)) return "🌨️";
   if (code === 77) return "❄️";
   if ([80,81,82].includes(code)) return "🌦️";
@@ -348,7 +347,9 @@ async function loadAllStops() {
           stop_name: f.properties.stop_name,
           stop_lat: f.geometry.coordinates[1],
           stop_lon: f.geometry.coordinates[0],
-          location_type: f.properties.location_type
+          location_type: f.properties.location_type,
+          zone_id: f.properties.zone_id ?? null,
+          platform_code: f.properties.platform_code ?? null
         }));
         allStops.push(...stopsBatch);
         if (stopsBatch.length < limit) {
@@ -366,10 +367,23 @@ async function loadAllStops() {
   return allStops;
 }
 
+
+// === Filtrace "divných" zastávek ===
+function isNormalStop(stop) {
+  if (stop.location_type !== 0) return false;
+  if (stop.zone_id == null && stop.platform_code == null) return false;
+  const name = stop.stop_name || "";
+  // Navíc stále filtrujeme tři číslice za sebou a "="
+  if (/\d{3}/.test(name) || /=/.test(name)) return false;
+  return true;
+}
+
+
+
 function groupStopsByName(lat, lon, stops, limit = 5) {
   const groups = {};
   for (const stop of stops) {
-    if (stop.location_type !== 0) continue;
+    if (!isNormalStop(stop)) continue;
     const dist = getDistanceMeters(lat, lon, stop.stop_lat, stop.stop_lon);
     if (dist > 2000) continue;
     if (!groups[stop.stop_name]) {
