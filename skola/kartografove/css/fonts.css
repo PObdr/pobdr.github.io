@@ -1,3 +1,2 @@
 @font-face{font-family:'Whisky1670';src:url('../assets/font/Whisky-1670.woff2') format('woff2'),url('../assets/font/Whisky-1670.woff') format('woff'),url('../assets/font/Whisky-1670.ttf') format('truetype');font-weight:400;font-style:normal;font-display:swap}
-html,body,body *,body *::before,body *::after{font-family:'Whisky1670',Georgia,serif!important}
-.focus-area.deck-stage>.draw-panel>.player-info,.game-end-banner h2{font-weight:400}
+html,body,body *,body *::before,body *::after{font-family:'Whisky1670',Georgia,serif!important;font-weight:400!important;font-synthesis:none!important;text-transform:none!important;font-variant:normal!important}
