@@ -1,14 +1,6 @@
-// DEMO ONLY: identifiers, times and scoring labels are placeholders.
-export const catalog = {
-  demo: true,
-  scoring: Array.from({length:4},(_,g)=>Array.from({length:4},(_,n)=>({id:`score-${g}-${n}`,type:'scoring',group:g,name:`Testovací typ ${g+1}, karta ${n+1}`,front:null}))).flat(),
-  exploration: Array.from({length:13},(_,n)=>({id:`explore-${n}`,type:'exploration',name:`Testovací průzkum ${n+1}`,time:n%2+1,front:null,effect:null})),
-  ambush: Array.from({length:8},(_,n)=>({id:`ambush-${n}`,type:'ambush',name:`Testovací přepadení ${n+1}`,time:0,front:null,effect:null}))
-};
-export const seasons = [
-  {name:'Jaro',limit:8,front:null,scoringSlots:null},
-  {name:'Léto',limit:8,front:null,scoringSlots:null},
-  {name:'Podzim',limit:7,front:null,scoringSlots:null},
-  {name:'Zima',limit:6,front:null,scoringSlots:null}
-];
-// scoringSlots must be verified and filled before real play.
+const path=name=>`./assets/cards/${name}.png`;
+const exploration=[['Hospodářství',2],['Říčka v polích',2],['Les zapomnění',1],['Městečko',1],['Zřícená pevnost',0],['Zřícený chrám',0],['Zemědělská půda',1],['Veletok',1],['Víska ve větvích',2],['Ovocný sad',2],['Rybářská osada',2],['Bažiny',2],['Trhliny v prostoru',0]];
+const ambush=[['Rojení hmyzáků','P'],['Invaze mozkožroutů','L'],['Řádění zlobrů','L'],['Přepadení krysodlaky','P'],['Nájezd gobrů','P'],['Útok goblinů','L'],['Vpád gnolů','L'],['Vpád koboldů','P']];
+export const catalog={demo:false,scoring:Array.from({length:4},(_,g)=>Array.from({length:4},(_,n)=>({id:`bodovani-${g+1}-${n+1}`,type:'scoring',group:g+1,name:`Bodovací karta ${g+1}–${n+1}`,front:path(`bodovani-${g+1}-${n+1}`),back:path(`bodovani-zadek-${g+1}`)}))).flat(),exploration:exploration.map(([name,time],i)=>({id:`pruzkum-${i+1}`,type:'exploration',name,time,front:path(`pruzkum-${i+1}`),back:path('pruzkum-zadek'),effect:i===4||i===5?'ruins':null})),ambush:ambush.map(([name,direction],i)=>({id:`prepadeni-${i+1}`,type:'ambush',name,direction,time:0,front:path(`prepadeni-${i+1}`),edition:i<4?'promo':'base'}))};
+export const seasons=[['Jaro','jaro',8,['A','B']],['Léto','leto',8,['B','C']],['Podzim','podzim',7,['C','D']],['Zima','zima',6,['D','A']]].map(([name,file,limit,scoringSlots])=>({name,limit,scoringSlots,front:path(`rocniobdobi-${file}`),back:path('rocniobdobi-zadek')}));
+export const edicts=Object.fromEntries(['A','B','C','D'].map(slot=>[slot,{name:`Výnos ${slot}`,front:path(`vynos-${slot.toLowerCase()}`)}]));

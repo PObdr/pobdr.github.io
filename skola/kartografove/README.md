@@ -1,27 +1,11 @@
-# Kartografové — třídní MVC prototyp
+# Kartografové — třídní MVC aplikace
 
-Statická aplikace s ES moduly. Všechny změny jsou omezeny na tuto složku.
+Katalog používá nahrané PNG v assets/cards a údaje potvrzené uživatelem: 13 průzkumů včetně dvou zřícenin, 8 přepadení (první čtyři promo) s časem 0, 16 bodovacích karet ve čtyřech skupinách, období a výnosy. Bodovací názvy jsou dočasné; skutečná zadání jsou na obrázcích. Dovednosti a průzkum 14–17 nejsou zařazeny.
 
-## Důležité
-Tato verze používá výhradně testovací karty a umělé časové hodnoty. Není připravena pro skutečnou partii. Skutečné skeny nejsou součástí tohoto commitu. Dvojice bodovaných výnosů a zvláštní pravidla ruin nejsou implementovány ani odhadnuty.
+Layout: výnosy, bodování a překrývající se průzkum; poměr 63:89. Období vlevo, ovládání vpravo. Neaktivní bodování ztlumené, kliknutí nebo Enter/mezerník otevře detail. Escape/tlačítko/kliknutí mimo zavře. Odkryté karty odhalují 20 % levé části předchozích, poslední je celá; pás má horizontální posouvání. Na úzké obrazovce je ovládání dole.
 
-## Architektura
-- js/data.js: katalog a konfigurace období.
-- js/GameModel.js: pravidla a serializovatelný stav bez DOM.
-- js/GameView.js: vykreslení pomocí DOM a textContent.
-- js/GameController.js: akce, historie, localStorage, fullscreen.
-- js/app.js: sestavení aplikace.
+Limity 8/8/7/6, bodování AB/BC/CD/DA. Ruiny se odkrývají spolu s následující kartou na jeden povel; přes přepadení efekt zůstává, běžný průzkum ho spotřebuje a upozornění zůstane během kreslení. Krok zpět obnovuje celý stav. Odkryté přepadení se vyřadí, neodkryté zůstává; každé období přidá jedno nové. Po zimě konec.
 
-## Implementovaný průběh
-Na začátku hry jedna bodovací karta z každé ze čtyř testovacích skupin, náhodně přiřazená k A–D. Osm přepadení tvoří zamíchanou zásobu. Každé období obnoví 13 průzkumných karet, zachová neodkrytá přepadení, přidá jedno nové a zamíchá celý balíček. Odkrytá přepadení se trvale vyřazují. Limity jsou 8/8/7/6. Po dosažení limitu karta zůstává viditelná; učitel potvrzuje bodování a další období. Po zimě hra končí. Krok zpět obnovuje přesný stav včetně pořadí balíčků. Stav se ukládá po akcích.
+Původní GameModel a GameController zůstávají; RuinsGameModel rozšiřuje model. Ukládání zůstává v localStorage. Stará demo uložená hra není kompatibilní s novými ID a musí být nahrazena novou hrou.
 
-## Ruční kontrola prototypu
-1. Spustit novou hru: 14 karet a čas 0/8.
-2. Otáčet až do dosažení limitu: poslední karta musí zůstat viditelná.
-3. Přejít k bodování a do léta: čas 0/8 a obnovený balíček.
-4. Pokud přepadení nebylo odkryto, další období má o jedno přepadení více; pokud bylo odkryto, nesmí se vrátit.
-5. Krok zpět a opětovný krok mají zachovat přesné losování.
-6. Obnovit stránku: pokračovat ve stejném stavu.
-7. Dokončit zimu: nepřipravovat další balíček.
-
-Automatizované testy a test v reálném prohlížeči zatím nebyly provedeny. Pro lokální spuštění použijte HTTP server, nikoli file://.
+Kontrola v reálném prohlížeči a automatizované testy zatím neprovedeny. Zkontrolujte Full HD layout, načtení všech obrázků, zoom, překryv, ruiny/přepadení, přechody a ukládání. Lokálně použijte HTTP server.

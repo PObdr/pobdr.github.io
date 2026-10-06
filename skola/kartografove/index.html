@@ -1,13 +1,1 @@
-<!doctype html>
-<html lang="cs">
-<head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Kartografové — třídní promítání</title>
-<link rel="stylesheet" href="./css/app.css">
-</head>
-<body>
-<header><h1>Kartografové</h1><span class="notice">PROTOTYP · testovací karty, nikoli skutečná hra</span></header>
-<main id="app"></main>
-<footer><button id="action" type="button">Nová hra</button><button id="undo" type="button" disabled>Zpět</button><button id="fullscreen" type="button">Celá obrazovka</button><button id="restart" type="button">Nová hra</button><p id="message" role="status" aria-live="polite"></p></footer>
-<script type="module" src="./js/app.js"></script>
-</body></html>
+<!doctype html><html lang="cs"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Kartografové</title><link rel="stylesheet" href="./css/app.css"></head><body><header>Kartografové</header><div class="workspace"><main id="app"></main><aside><button id="action">Nová hra</button><button id="undo" disabled>Zpět</button><button id="fullscreen">Celá obrazovka</button><div id="notice" role="status"></div><p id="message" role="status" aria-live="polite"></p><button id="restart">Nová hra</button></aside></div><dialog id="zoom" aria-label="Detail karty"><button id="close" autofocus>Zavřít ×</button><div id="detail"></div></dialog><script type="module" src="./js/app.js"></script></body></html>
