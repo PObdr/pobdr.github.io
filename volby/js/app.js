@@ -1,0 +1,10 @@
+import {election} from './config.js';
+import {fetchResults,resultsUrl} from './api/elections.js';
+import {parseMunicipal} from './parsers/municipal.js';
+import {state,initialCode,saveLocation,setData} from './state.js';
+import {renderResults,renderMajority} from './views/results.js';
+const $=id=>document.getElementById(id);$('code').value=initialCode();
+function source(){try{$('source').href=resultsUrl($('code').value.trim());$('source').hidden=false;}catch{$('source').hidden=true;}}
+function render(){renderResults(state,(id,checked)=>{if(checked)state.selected.add(id);else state.selected.delete(id);renderMajority(state);},id=>{state.scopeId=id;state.selected.clear();render();});}
+async function load(){if(state.busy)return;const code=$('code').value.trim();if(!/^\d{6}$/.test(code)){$('status').textContent='Zadej šestimístný kód zastupitelstva.';return;}state.busy=true;$('load').disabled=true;$('code').disabled=true;const same=state.data?.code===code;if(!same)$('dashboard').hidden=true;$('status').textContent='Načítám výsledky…';try{const response=await fetchResults(code),data={...parseMunicipal(response.xml,code),source:response.source,loadedAt:response.loadedAt};setData(data);saveLocation(code);render();$('dashboard').hidden=false;$('status').textContent='Načteno přímo z ČSÚ. '+(data.complete?'Zastupitelstvo je označené jako spočtené.':'Výsledek není označený jako spočtený.');}catch(error){$('status').textContent='Načítání selhalo: '+error.message+(same?' Zobrazené údaje jsou z posledního úspěšného načtení, nikoli aktuálně ověřené.':'');}finally{state.busy=false;$('load').disabled=false;$('code').disabled=false;source();}}
+$('form').onsubmit=e=>{e.preventDefault();load();};$('code').oninput=source;window.addEventListener('hashchange',()=>{$('code').value=initialCode();source();load();});setInterval(()=>{if($('auto').checked&&!document.hidden)load();},election.refreshMs);source();load();

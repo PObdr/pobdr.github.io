@@ -1,0 +1,3 @@
+import {election} from '../config.js';
+export function resultsUrl(code){if(!/^\d{6}$/.test(code))throw Error('Kód zastupitelstva musí mít šest číslic.');return election.base+'zastup/vysledky_obec_'+code+'.xml';}
+export async function fetchResults(code){const source=resultsUrl(code),controller=new AbortController(),timer=setTimeout(()=>controller.abort(),election.timeoutMs);try{const response=await fetch(source,{credentials:'omit',signal:controller.signal});if(!response.ok)throw Error('HTTP '+response.status);return {xml:await response.text(),source,loadedAt:new Date()};}finally{clearTimeout(timer);}}
