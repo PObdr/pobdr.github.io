@@ -1,4 +1,4 @@
-const DATASETS={kv2026:'https://volby.gov.cz/appdata/kv2026/20261009/odata/okrsky/',se2026k1:'https://volby.gov.cz/appdata/senat/20261009/okrsky/K1/',se2026k2:'https://volby.gov.cz/appdata/senat/20261009/okrsky/K2/'};
+const DATASETS={kv2026:'https://volby.gov.cz/appdata/kv2026/20261009/odata/okrsky/',se2026k1:'https://volby.gov.cz/appdata/senat/20261009/odata/okrsky/K1/',se2026k2:'https://volby.gov.cz/appdata/senat/20261009/odata/okrsky/K2/'};
 const jobs=new Map(),pending=new Map();
 self.addEventListener('install',()=>self.skipWaiting());self.addEventListener('activate',e=>e.waitUntil(self.clients.claim()));
 const cacheName=id=>'volby-precinct-v1-'+id;
