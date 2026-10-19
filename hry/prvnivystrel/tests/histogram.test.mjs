@@ -1,0 +1,10 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {orderedEdges,collectSamples,selectSamples,binsFor,duration} from '../js/histogram-model.js';
+const stations=new Map([[23,[23,'A',50,14,null,null,null,24]],[24,[24,'B',50,14,null,null,null,23]]]),edges=orderedEdges(stations),teams=[{id:1,name:'Četa',events:[{time:0,id:23,z:true},{time:60,id:23,z:false},{time:210,id:24,z:false}]}];
+test('First leg is marked initial and assigned to target column',()=>{const s=collectSamples(teams,edges);assert.equal(s[0].initial,true);assert.equal(s[0].edge,1);assert.equal(s[0].seconds,60)});
+test('Default excludes initial legs',()=>{const s=selectSamples(collectSamples(teams,edges));assert.equal(s.length,1);assert.equal(s[0].seconds,150)});
+test('With-start and start-only are distinct',()=>{const s=collectSamples(teams,edges);assert.equal(selectSamples(s,{mode:'with-start'}).length,2);assert.equal(selectSamples(s,{mode:'start-only'}).length,1)});
+test('Roster and accent-insensitive filtering work',()=>{const s=collectSamples(teams,edges);assert.equal(selectSamples(s,{query:'ceta'}).length,1);assert.equal(selectSamples(s,{excluded:[1]}).length,0)});
+test('Bin boundaries and max value count once',()=>{const s=[0,150,7200,7201].map(seconds=>({seconds})),b=binsFor(s,2.5,120);assert.equal(b.bins[0].samples.length,1);assert.equal(b.bins[1].samples.length,1);assert.equal(b.bins.at(-1).samples.length,1);assert.equal(b.outside,1)});
+test('Invalid ranges do not allocate unbounded bins',()=>assert.throws(()=>binsFor([],0,120)));
+test('No fabricated route bridges across missing stations',()=>{const t=[{id:1,name:'A',events:[{time:0,id:23,z:false},{time:60,id:23,z:false}]}];assert.equal(collectSamples(t,edges).length,0)});
+test('Duration retains seconds',()=>{assert.equal(duration(150),'2:30');assert.equal(duration(7392),'2:03:12')});
