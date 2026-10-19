@@ -1,9 +1,10 @@
+export function stripSharedEnding(value){return String(value??'').split(/Gratulujeme\s*[-–—]\s*prošli jste celou trasu!/i,1)[0].trimEnd()}
 export async function loadStories(url=new URL('../data/2026/stations.json',import.meta.url)){
  const response=await fetch(url,{cache:'no-cache',signal:AbortSignal.timeout(15000)});if(!response.ok)throw Error('Příběhy nelze načíst ('+response.status+').');
  const data=await response.json();if(data.year!==2026||!Array.isArray(data.stations))throw Error('Neplatná data příběhů.');
- const byId=new Map();for(const s of data.stations){if(!Number.isInteger(s.id)||byId.has(s.id))throw Error('Neplatné ID příběhu.');if(typeof s.photo!=='string'||/[\/]/.test(s.photo)||!/[.](jpg|jpeg|png|webp)$/i.test(s.photo))throw Error('Neplatný název fotografie.');byId.set(s.id,s)}return byId;
+ const byId=new Map();for(const s of data.stations){if(!Number.isInteger(s.id)||byId.has(s.id))throw Error('Neplatné ID příběhu.');if(typeof s.photo!=='string'||/[\/]/.test(s.photo)||!/[.](jpg|jpeg|png|webp)$/i.test(s.photo))throw Error('Neplatný název fotografie.');byId.set(s.id,{...s,end:stripSharedEnding(s.end)})}return byId;
 }
-export function storySections(story,zero){return (zero?[['intro','Úvodní text']]:[['progress','Navazující text'],['end','Závěrečný text']]).filter(([key])=>Boolean(story[key]))}
+export function storySections(story,zero){return (zero?[['intro','Úvodní text']]:[['progress','Navazující text'],['end','Závěrečný text']]).filter(([key])=>Boolean(key==='end'?stripSharedEnding(story[key]):story[key]))}
 export function nextDestination(stations,id,zero){const p=stations.get(id);return p?(zero?p:stations.get(p[7]))||null:null}
 const element=(tag,text,className)=>{const el=document.createElement(tag);if(text!=null)el.textContent=text;if(className)el.className=className;return el};
 export class StationDetails{
@@ -21,9 +22,7 @@ export class StationDetails{
   try{if(!this.cache)this.cache=loadStories().catch(error=>{this.cache=null;throw error});const stories=await this.cache;if(request!==this.request)return;const s=stories.get(id);content.replaceChildren();if(!s){content.append(element('p','Pro toto stanoviště není příběh k dispozici.'));return}
    if(s.title)content.append(element('h3',s.title));
    const photo=element('figure',null,'station-photo'),url=new URL('../data/2026/foto/'+encodeURIComponent(s.photo),import.meta.url).href,link=element('a'),img=element('img'),caption=element('figcaption',zero?'Fotografie cílového stanoviště, kam se mělo z nultého místa vyrazit. Kliknutím otevřeš plnou velikost.':'Kliknutím na fotografii otevřeš plnou velikost.');link.href=url;link.target='_blank';link.rel='noopener noreferrer';link.setAttribute('aria-label','Otevřít fotografii stanoviště '+s.name+' v plné velikosti');img.alt='Fotografie stanoviště '+s.name;img.loading='lazy';img.decoding='async';img.addEventListener('error',()=>{link.hidden=true;caption.textContent='Fotografii se nepodařilo načíst.'});img.src=url;link.append(img);photo.append(link,caption);content.append(photo);
-   let first=true;for(const [key,label] of storySections(s,zero)){const details=element('details'),summary=element('summary',label),text=element('p',s[key],'station-story');details.open=first;first=false;details.append(summary,text);
-    if(key==='end'&&s[key].includes('Perón'))details.append(element('p','Kam po zakončení trasy: Radegastovna Perón, Stroupežnického 525/20, Anděl.','station-finish'));
-    content.append(details)}
+   let first=true;for(const [key,label] of storySections(s,zero)){const details=element('details'),summary=element('summary',label),text=element('p',key==='end'?stripSharedEnding(s[key]):s[key],'station-story');details.open=first;first=false;details.append(summary,text);content.append(details)}
   }catch(error){if(request===this.request)content.replaceChildren(element('p',error.message,'station-error'))}
  }
 }
