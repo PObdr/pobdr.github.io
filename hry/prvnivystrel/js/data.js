@@ -1,14 +1,34 @@
+async function inflate(packed){
+ const bytes=Uint8Array.from(atob(packed),c=>c.charCodeAt(0));
+ return new Uint8Array(await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).arrayBuffer());
+}
+export async function attachGps(raw,gps){
+ if(gps.encoding!=='gzip-varint-delta-v1'||gps.precision!==100000||gps.origin?.[0]!==50||gps.origin?.[1]!==14||!Array.isArray(gps.teamIds))throw Error('Neplatný formát GPS.');
+ const bytes=await inflate(gps.payload);let cursor=0,total=0;
+ const read=()=>{let n=0,m=1;for(let i=0;i<5;i++){if(cursor>=bytes.length)throw Error('Neúplná GPS data.');const b=bytes[cursor++];n+=(b&127)*m;if(b<128)return n;m*=128}throw Error('Poškozené GPS číslo.')};
+ const signed=()=>{const n=read();return n%2?-(n+1)/2:n/2};
+ const byId=new Map(raw.t.map(t=>[t[0],t])),seen=new Set();
+ for(const id of gps.teamIds){const team=byId.get(id);if(!team||seen.has(id))throw Error('Neshoda týmů v GPS datech.');seen.add(id);const count=read();if(count>100000)throw Error('Neplatný počet GPS bodů.');let time=0,lat=0,lon=0;team[5]=[];
+  for(let i=0;i<count;i++){time+=signed();lat+=signed();lon+=signed();const a=50+lat/100000,b=14+lon/100000;if(time<0||time>=86400||a<=49.9||a>=50.25||b<=14.1||b>=14.8)throw Error('GPS bod mimo povolený rozsah.');team[5].push([time,a,b,'GPS']);total++}
+ }
+ if(cursor!==bytes.length||total!==gps.pointCount||seen.size!==raw.t.length)throw Error('GPS data nejsou kompletní.');return raw;
+}
 export async function load(){
- const get=async u=>{const r=await fetch(u,{cache:'no-cache',signal:AbortSignal.timeout(20000)});if(!r.ok)throw Error(`Načítání dat: ${r.status}`);return r};
- const [source,packed]=await Promise.all(['source','suspicious'].map(async n=>(await get(new URL('../data/2026/'+n+'.json',import.meta.url))).json()));
- let audit=packed;if(packed.encoding==='gzip-base64'){const bytes=Uint8Array.from(atob(packed.payload),c=>c.charCodeAt(0));audit=await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).json()}
- let raw=source.dataset;if(!raw){let text;try{text=await(await get(source.url)).text()}catch(error){const j=await(await get(`https://api.github.com/repos/PObdr/pobdr.github.io/contents/hry/prvnivystrel/index.html?ref=${source.archiveCommit}`)).json();text=new TextDecoder().decode(Uint8Array.from(atob(j.content.replace(/\s/g,'')),c=>c.charCodeAt(0)))}const node=new DOMParser().parseFromString(text,'text/html').getElementById('dataset');if(!node)throw Error('Chybí archivní dataset.');raw=JSON.parse(node.textContent)}
- if(!Array.isArray(raw.p)||!Array.isArray(raw.t)||!Array.isArray(audit.rows)||audit.rows.length!==audit.counts.suspectEvents)throw Error('Neplatná struktura dat.');return {raw,audit};
+ const base=new URL('../data/2026/',import.meta.url);
+ const get=async name=>{const r=await fetch(new URL(name,base),{cache:'no-cache',signal:AbortSignal.timeout(20000)});if(!r.ok)throw Error(`Načítání ${name}: ${r.status}`);return r.json()};
+ const [source,packed]=await Promise.all([get('source.json'),get('suspicious.json')]);
+ let audit=packed;if(packed.encoding==='gzip-base64')audit=JSON.parse(new TextDecoder().decode(await inflate(packed.payload)));
+ const raw=source.dataset;
+ if(!Array.isArray(raw?.p)||!Array.isArray(raw?.t)||!Array.isArray(audit.rows)||audit.rows.length!==audit.counts.suspectEvents)throw Error('Neplatná struktura místních dat.');
+ if(source.gpsFile){if(source.gpsFile!=='gps.json')throw Error('Neplatná cesta GPS souboru.');await attachGps(raw,await get(source.gpsFile))}
+ if(source.counts&&(raw.p.length!==source.counts.stations||raw.t.length!==source.counts.teams))throw Error('Nesouhlasí počty místních dat.');
+ return {raw,audit};
 }
 export function prepare(raw,audit){
  const stations=new Map(raw.p.map(p=>[p[0],p])),key=(id,t,la,lo)=>[id,t,Math.round(la*1e5),Math.round(lo*1e5)].join(':'),blocked=new Set(audit.rows.map(r=>key(r[1],r[2],r[3]/1e5,r[4]/1e5)));
- const teams=raw.t.map((t,i)=>{let time=0;const events=t[4]?t[4].split('.').map(s=>{const ch=s.slice(-1),id=ch.toLowerCase().charCodeAt(0)-97+23,z=ch!==ch.toLowerCase(),p=stations.get(id);time+=parseInt(s.slice(0,-1),36);return {time,id,z,lat:p[z?4:2],lon:p[z?5:3]}}):[];
- const points=(t[5]||[]).filter(p=>p[3]!=='GPS'||!blocked.has(key(t[0],p[0],p[1],p[2]))).map(p=>({time:p[0],lat:p[1],lon:p[2],kind:p[3]}));for(const e of events)if(!points.some(p=>p.time===e.time))points.push({...e,kind:'stanoviště'});
+ const teams=raw.t.map((t,i)=>{let time=0;const events=t[4]?t[4].split('.').map(s=>{const ch=s.slice(-1),id=ch.toLowerCase().charCodeAt(0)-97+23,z=ch!==ch.toLowerCase(),p=stations.get(id);if(!p)throw Error('Neznámé stanoviště.');time+=parseInt(s.slice(0,-1),36);return {time,id,z,lat:p[z?4:2],lon:p[z?5:3]}}):[];
+ const points=(t[5]||[]).filter(p=>p[3]!=='GPS'||!blocked.has(key(t[0],p[0],p[1],p[2]))).map(p=>({time:p[0],lat:p[1],lon:p[2],kind:p[3]}));
+ for(const e of events)if(!points.some(p=>p.time===e.time)&&Number.isFinite(e.lat)&&Number.isFinite(e.lon))points.push({...e,kind:'stanoviště'});
  const unique=new Map();for(const p of points.sort((a,b)=>a.time-b.time))if(!unique.has(p.time)||p.kind==='GPS')unique.set(p.time,p);
  return {id:t[0],name:t[1],start:t[2],events,points:[...unique.values()],color:`hsl(${i*137.508%360} 70% 38%)`};});return {stations,teams};
 }
