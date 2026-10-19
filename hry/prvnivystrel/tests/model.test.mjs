@@ -1,0 +1,6 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {prepare} from '../js/data.js';import {position} from '../js/movement.js';import {encounters} from '../js/encounters.js';import {fold} from '../js/utils.js';
+const raw={p:[[23,'Místo',50,14,50.1,14.1,'Start',24]],t:[[1,'Tým','09:00',23,'aa',[[10,50,14,'GPS',3],[20,50.01,14.01,'GPS',3]]]]},audit={rows:[[7,1,10,5000000,1400000,3,8,1,23]]};
+test('Suspicious GPS excluded, success preserved',()=>{const t=prepare(raw,audit).teams[0];assert.equal(t.events.length,1);assert.equal(t.points[0].kind,'stanoviště');assert.equal(t.points[0].time,10)});
+test('No position outside observations',()=>{const t=prepare(raw,audit).teams[0];assert.equal(position(t,9),null);assert.equal(position(t,21),null);assert.equal(position(t,15).estimated,true)});
+test('Same-time model crossing is found',()=>{const p=(time,x,y)=>({time,lat:50+y/111195,lon:14+x/71350});const a={name:'A',points:[p(0,-100,0),p(100,100,0)]},b={name:'B',points:[p(0,0,-100),p(100,0,100)]};assert.equal(encounters([a,b],10).length,1);b.points=b.points.map(p=>({...p,time:p.time+200}));assert.equal(encounters([a,b],10).length,0)});
+test('Czech search ignores accents',()=>assert.equal(fold('Čertovka'),'certovka'));
