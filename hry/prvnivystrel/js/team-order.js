@@ -1,4 +1,5 @@
-export const ORDER_OPTIONS=[['name','Název týmu (A–Z)'],['start','Zaznamenaný start'],['scheduled','Plánovaný start'],['rank','Umístění (oficiální)'],['progress','Počet stanovišť'],['duration','Celkový čas (oficiální)']];
+export const DEFAULT_TEAM_ORDER='name';
+export const ORDER_OPTIONS=[['name','Název týmu (A–Z)'],['rank','Umístění'],['start','Start'],['scheduled','Plánovaný start'],['progress','Počet stanovišť']];
 export function plannedSeconds(value){const m=/^([01]\d|2[0-3]):([0-5]\d)$/.exec(value||'');return m?+m[1]*3600+(+m[2])*60:null}
 export function teamStats(team){const events=[...(team.events||[])].sort((a,b)=>a.time-b.time);return {start:events.find(e=>e.z)?.time??null,scheduled:plannedSeconds(team.start),progress:new Set(events.filter(e=>!e.z).map(e=>e.id)).size}}
 export function readOfficialResults(data,teams){
