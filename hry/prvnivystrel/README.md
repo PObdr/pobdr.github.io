@@ -1,14 +1,14 @@
 # První výstřel 2026
 Statický web bez buildu, backendu a importu Excelu. Změny pouze commity do hry/prvnivystrel/.
 
-## Místní data
-- data/2026/source.json obsahuje stanoviště, nultá místa, týmy, plánované starty a časy všech 992 úspěšných událostí.
-- data/2026/gps.json obsahuje 2109 GPS bodů z původního Excelu s deklarovanou přesností do 100 m. Souřadnice jsou zaokrouhlené na 5 desetinných míst. Přesnost konkrétní GPS se v tomto toku neukládá; audit ji má zvlášť.
-- data/2026/suspicious.json zůstává beze změny: 243 kandidátů ke kontrole, nikoliv potvrzených chyb.
-Data se již nestahují z historického HTML, raw.githubusercontent.com ani GitHub Contents API. Leaflet a mapové dlaždice vyžadují internet.
+## Model pohybu — confirmed-stations
+Animace, trasy i výpočet možných blízkostí používají pouze úspěšná potvrzení stanovišť a nultých míst. Vždy se bere známá souřadnice stanoviště/nultého místa, nikoli GPS připojená k pokusu. GPS mezibody neovlivňují pohyb ani tehdy, když prošly rychlostním filtrem a nejsou v auditu. To odstraňuje falešné odbočky typu Janus 6296 severně od Dvoreckého mostu. Žádná oblast Prahy není plošně zakázána a žádné stanoviště není odstraněno.
 
-GPS tok je gzip-base64, po rozbalení obsahuje pro každý tým v teamIds počet bodů jako unsigned varint, potom pro každý bod tři ZigZag-varint rozdíly: čas v sekundách logu, zeměpisná šířka a délka vůči předchozímu bodu. Počáteční hodnoty jsou nula; souřadnice jsou v jednotkách 1e-5 stupně s počátkem [50,14]. Dekodér je v js/data.js a kontroluje úplnost, počty a rozsah.
+Zůstává zachováno všech 992 úspěšných událostí u 88 týmů (83 se záznamy). Čas potvrzení není přesný příchod/odchod. Mezi potvrzeními je přímková interpolace, ne rekonstrukce ulic, MHD či pobytu. Model může procházet i místy, kterými tým skutečně nešel; možné blízkosti proto nejsou důkaz setkání. Před prvním a po posledním potvrzení polohu neznáme a tým nezobrazujeme. Posun +2 h je nepotvrzený předpoklad.
 
-Podezřelé GPS nevstupují do pohybu ani setkání. Zobrazení červených značek je výchozně vypnuté; přepínač nemění výpočty. Úspěšná potvrzení bez použitelné GPS se doplňují na známé souřadnice stanovišť nebo odlišných nultých míst. Čas potvrzení není přesný příchod nebo odchod. Časový posun +2 h není potvrzené pásmo exportu. Pohyb mezi body a blízkosti jsou modelové odhady.
+## Data
+source.json obsahuje stanoviště, nultá místa, týmy, plánované starty a časy úspěšných událostí. gps.json zachovává 2109 GPS bodů s původním limitem přesnosti do 100 m a zaokrouhlením na 5 desetinných míst. GPS se stále dekódují do raw.t, ale prepare z nich NEVYTVÁŘÍ animační body. suspicious.json zůstává beze změny: 243 kandidátů, nikoli potvrzených chyb. Zapnutí červených auditních značek nemění výpočty.
 
-Lokálně používejte HTTP server, ne file://. npm test nepotřebuje instalaci závislostí. Po aktualizaci obnovte stránku včetně cache. Původní archivní fallback je úmyslně odstraněn, chyba místních dat se neskrývá vzdáleným zdrojem.
+GPS tok je gzip-base64 s unsigned varint počtem bodů pro každý tým v teamIds; pro každý bod následují tři ZigZag-varint rozdíly času a souřadnic vůči předchozímu bodu. Počáteční hodnoty nula, souřadnice v 1e-5 stupně s počátkem [50,14]. Dekodér kontroluje úplnost a rozsah. Původní data se nemažou.
+
+Data jsou místní, bez historického HTML a GitHub API. Internet je potřeba pro Leaflet a OSM. Lokálně používat HTTP server, ne file://. npm test nevyžaduje npm install. Po aktualizaci provést úplné obnovení stránky včetně cache. Testy kontrolují potvrzení bez GPS, ignorování neoznačených GPS odboček, nultá místa a stejný model pro setkání.

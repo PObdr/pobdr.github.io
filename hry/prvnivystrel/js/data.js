@@ -25,10 +25,11 @@ export async function load(){
  return {raw,audit};
 }
 export function prepare(raw,audit){
- const stations=new Map(raw.p.map(p=>[p[0],p])),key=(id,t,la,lo)=>[id,t,Math.round(la*1e5),Math.round(lo*1e5)].join(':'),blocked=new Set(audit.rows.map(r=>key(r[1],r[2],r[3]/1e5,r[4]/1e5)));
- const teams=raw.t.map((t,i)=>{let time=0;const events=t[4]?t[4].split('.').map(s=>{const ch=s.slice(-1),id=ch.toLowerCase().charCodeAt(0)-97+23,z=ch!==ch.toLowerCase(),p=stations.get(id);if(!p)throw Error('Neznámé stanoviště.');time+=parseInt(s.slice(0,-1),36);return {time,id,z,lat:p[z?4:2],lon:p[z?5:3]}}):[];
- const points=(t[5]||[]).filter(p=>p[3]!=='GPS'||!blocked.has(key(t[0],p[0],p[1],p[2]))).map(p=>({time:p[0],lat:p[1],lon:p[2],kind:p[3]}));
- for(const e of events)if(!points.some(p=>p.time===e.time)&&Number.isFinite(e.lat)&&Number.isFinite(e.lon))points.push({...e,kind:'stanoviště'});
- const unique=new Map();for(const p of points.sort((a,b)=>a.time-b.time))if(!unique.has(p.time)||p.kind==='GPS')unique.set(p.time,p);
- return {id:t[0],name:t[1],start:t[2],events,points:[...unique.values()],color:`hsl(${i*137.508%360} 70% 38%)`};});return {stations,teams};
+ const stations=new Map(raw.p.map(p=>[p[0],p]));
+ const teams=raw.t.map((t,i)=>{let time=0;
+  const events=t[4]?t[4].split('.').map(s=>{const ch=s.slice(-1),id=ch.toLowerCase().charCodeAt(0)-97+23,z=ch!==ch.toLowerCase(),p=stations.get(id);if(!p)throw Error('Neznámé stanoviště.');time+=parseInt(s.slice(0,-1),36);return {time,id,z,lat:p[z?4:2],lon:p[z?5:3]}}):[];
+  // Movement and encounters share only confirmed station anchors. GPS stays in raw data.
+  const unique=new Map();for(const e of events)if(Number.isFinite(e.lat)&&Number.isFinite(e.lon))unique.set(e.time,{...e,kind:'stanoviště'});
+  return {id:t[0],name:t[1],start:t[2],events,points:[...unique.values()].sort((a,b)=>a.time-b.time),color:`hsl(${i*137.508%360} 70% 38%)`};
+ });return {stations,teams,model:'confirmed-stations'};
 }
