@@ -1,0 +1,12 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {teamStats,makeRanks,sortTeams,plannedSeconds} from '../js/team-order.js';
+const team=(id,name,start,duration=100,progress=12)=>({id,name,start:'09:00',events:[...(start===null?[]:[{time:start,z:true,id:23}]),...Array.from({length:progress},(_,i)=>({time:(start??0)+duration*(i+1)/progress,z:false,id:23+i}))]});
+test('Actual start uses zero confirmation, not schedule',()=>{const s=teamStats(team(1,'A',30000));assert.equal(s.start,30000);assert.equal(s.scheduled,32400)});
+test('Missing start remains unknown',()=>assert.equal(teamStats(team(1,'A',null)).duration,null));
+test('Duplicate station confirmations do not complete a route',()=>{const t=team(1,'A',0,100,11);t.events.push({...t.events.at(-1),time:110});assert.equal(teamStats(t).finish,null)});
+test('Ranks use elapsed time, not wall-clock finish',()=>{const a=team(1,'A',0,200),b=team(2,'B',1000,100);assert.equal(makeRanks([a,b]).get(2),1)});
+test('Equal elapsed times share rank',()=>{const a=team(1,'A',0,100),b=team(2,'B',1000,100),c=team(3,'C',0,200);const ranks=makeRanks([a,b,c]);assert.equal(ranks.get(1),1);assert.equal(ranks.get(2),1);assert.equal(ranks.get(3),3)});
+test('Unfinished teams stay behind finishers in rank sort',()=>{const a=team(1,'A',0,100,11),b=team(2,'B',0,200);assert.equal(sortTeams([a,b],'rank')[0].id,2)});
+test('Sorting never mutates the source array',()=>{const t=[team(2,'Z',1),team(1,'A',0)];sortTeams(t,'name');assert.equal(t[0].id,2)});
+test('Unknown starts sort last',()=>{const t=[team(1,'A',null),team(2,'B',100)];assert.equal(sortTeams(t,'start')[1].id,1)});
+test('Progress means distinct confirmed stations',()=>assert.equal(teamStats(team(1,'A',0,100,7)).progress,7));
+test('Invalid scheduled start stays unknown',()=>{assert.equal(plannedSeconds('24:00'),null);assert.equal(plannedSeconds('09:20'),33600)});
