@@ -4,7 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="theme-color" content="#f7f6f2">
-  <meta name="description" content="Kdo má dnes svátek a jsou dnes obchody otevřené? Přehled českých svátků a nejbližšího omezení prodeje.">
+  <meta
+    name="description"
+    content="Kdo má dnes svátek a jsou dnes obchody otevřené? Přehled českých svátků a nejbližšího omezení prodeje."
+  >
   <title>Je otevřeno? · Svátky</title>
 
   <style>
@@ -29,7 +32,9 @@
       flex-direction: column;
       background: var(--background);
       color: var(--text);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family:
+        system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
     }
 
     header {
@@ -79,6 +84,7 @@
     }
 
     #next {
+      max-width: 900px;
       margin: 0;
       font-size: clamp(18px, 3vw, 25px);
       line-height: 1.6;
@@ -209,15 +215,17 @@
     nejsou zohledněna. Časové pásmo: Praha.
     <br>
     Pravidla:
-    <a href="https://www.zakonyprolidi.cz/cs/2016-223"
-       target="_blank" rel="noopener noreferrer">
-      zákon č. 223/2016 Sb.
-    </a>
+    <a
+      href="https://www.zakonyprolidi.cz/cs/2016-223"
+      target="_blank"
+      rel="noopener noreferrer"
+    >zákon č. 223/2016 Sb.</a>
     · Jmeniny:
-    <a href="https://svatkyapi.cz/"
-       target="_blank" rel="noopener noreferrer">
-      Svátky API
-    </a>
+    <a
+      href="https://svatkyapi.cz/"
+      target="_blank"
+      rel="noopener noreferrer"
+    >Svátky API</a>
   </footer>
 
   <noscript>
@@ -255,6 +263,7 @@
 
     function setText(id, text) {
       const element = $(id);
+
       if (element.textContent !== text) {
         element.textContent = text;
       }
@@ -262,7 +271,8 @@
 
     function getPragueNow() {
       const parts = Object.fromEntries(
-        pragueFormatter.formatToParts(new Date())
+        pragueFormatter
+          .formatToParts(new Date())
           .map(part => [part.type, part.value])
       );
 
@@ -283,7 +293,11 @@
     }
 
     function shortDate(date) {
-      return `${date.getUTCDate()}. ${date.getUTCMonth() + 1}. ${date.getUTCFullYear()}`;
+      return (
+        `${date.getUTCDate()}. ` +
+        `${date.getUTCMonth() + 1}. ` +
+        `${date.getUTCFullYear()}`
+      );
     }
 
     function dayDistance(from, to) {
@@ -294,7 +308,32 @@
       if (days === 0) return "dnes";
       if (days === 1) return "zítra";
       if (days === 2) return "pozítří";
-      return `za ${days} ${days <= 4 ? "dny" : "dní"}`;
+
+      if (days < 7) {
+        return `za ${days} ${days <= 4 ? "dny" : "dní"}`;
+      }
+
+      if (days === 7) return "za týden";
+
+      if (days < 30) {
+        const weeks = Math.round(days / 7);
+        const approximate = days % 7 === 0 ? "" : "přibližně ";
+
+        if (weeks === 1) return `${approximate}za týden`;
+        if (weeks === 2) return `${approximate}za dva týdny`;
+        if (weeks === 3) return `${approximate}za tři týdny`;
+
+        return `${approximate}za čtyři týdny`;
+      }
+
+      const months = Math.round(days / 30);
+
+      if (months === 1) return "přibližně za měsíc";
+      if (months === 2) return "přibližně za dva měsíce";
+      if (months === 3) return "přibližně za tři měsíce";
+      if (months === 4) return "přibližně za čtyři měsíce";
+
+      return `přibližně za ${months} měsíců`;
     }
 
     function shiftDate(date, days) {
@@ -324,25 +363,44 @@
     }
 
     function getHolidays(year) {
+      // closedFrom: null = bez zákazu, 0 = celý den, 12 = od poledne.
       const fixed = [
-        [1, 1, "Nový rok a Den obnovy samostatného českého státu", 0],
+        [
+          1, 1,
+          "Nový rok a Den obnovy samostatného českého státu",
+          0
+        ],
         [5, 1, "Svátek práce", null],
         [5, 8, "Den vítězství", 0],
-        [7, 5, "Den slovanských věrozvěstů Cyrila a Metoděje", null],
+        [
+          7, 5,
+          "Den slovanských věrozvěstů Cyrila a Metoděje",
+          null
+        ],
         [7, 6, "Den upálení mistra Jana Husa", null],
         [9, 28, "Den české státnosti", 0],
-        [10, 28, "Den vzniku samostatného československého státu", 0],
-        [11, 17, "Den boje za svobodu a demokracii a Mezinárodní den studentstva", null],
+        [
+          10, 28,
+          "Den vzniku samostatného československého státu",
+          0
+        ],
+        [
+          11, 17,
+          "Den boje za svobodu a demokracii a Mezinárodní den studentstva",
+          null
+        ],
         [12, 24, "Štědrý den", 12],
         [12, 25, "1. svátek vánoční", 0],
         [12, 26, "2. svátek vánoční", 0]
       ];
 
-      const holidays = fixed.map(([month, day, name, closedFrom]) => ({
-        date: new Date(Date.UTC(year, month - 1, day)),
-        name,
-        closedFrom
-      }));
+      const holidays = fixed.map(
+        ([month, day, name, closedFrom]) => ({
+          date: new Date(Date.UTC(year, month - 1, day)),
+          name,
+          closedFrom
+        })
+      );
 
       const easter = easterSunday(year);
 
@@ -381,12 +439,15 @@
         try {
           name = localStorage.getItem(cacheKey);
         } catch {
-          // Stránka funguje i bez místního úložiště.
+          // Místní úložiště nemusí být dostupné.
         }
 
         if (!name) {
           const controller = new AbortController();
-          const timeout = setTimeout(() => controller.abort(), 10000);
+          const timeout = setTimeout(
+            () => controller.abort(),
+            10000
+          );
 
           try {
             const response = await fetch(
@@ -452,12 +513,14 @@
 
       if (afternoonClosure) {
         message =
-          "Zítra nakoupíte jen dopoledne. Naplánujte si nákup včas.";
+          "Zítra nakoupíte jen dopoledne. " +
+          "Naplánujte si nákup včas.";
       } else if (closedToday) {
         message = "Zákaz prodeje pokračuje i zítra.";
       } else {
         message =
-          "Nezapomeňte si nakoupit ještě dnes v běžné otevírací době.";
+          "Nezapomeňte si nakoupit ještě dnes " +
+          "v běžné otevírací době.";
       }
 
       setText(
@@ -494,7 +557,9 @@
       } else if (distance === 2) {
         title = "Pozítří je svátek, obchody mohou mít otevřeno.";
       } else {
-        title = `Za ${distance} dny je svátek, obchody mohou mít otevřeno.`;
+        title =
+          `Za ${distance} dny je svátek, ` +
+          "obchody mohou mít otevřeno.";
       }
 
       setText("info-title", title);
@@ -511,6 +576,7 @@
 
     function render() {
       const now = getPragueNow();
+
       const holidays = [
         ...getHolidays(now.year),
         ...getHolidays(now.year + 1)
@@ -527,7 +593,12 @@
       );
 
       setText("date", dateFormatter.format(now.date));
-      setText("status", closedToday ? "Je zavřeno." : "Je otevřeno.");
+
+      setText(
+        "status",
+        closedToday ? "Je zavřeno." : "Je otevřeno."
+      );
+
       document.body.classList.toggle("closed", closedToday);
 
       const nextClosure = holidays.find(holiday => {
@@ -537,13 +608,19 @@
 
         return (
           distance > 0 ||
-          (distance === 0 && now.hour < holiday.closedFrom)
+          (
+            distance === 0 &&
+            now.hour < holiday.closedFrom
+          )
         );
       });
 
       if (nextClosure) {
         const distance = dayDistance(now.date, nextClosure.date);
-        const time = nextClosure.closedFrom === 12 ? " od 12:00" : "";
+
+        const time = nextClosure.closedFrom === 12
+          ? " od 12:00"
+          : "";
 
         setText(
           "next",
@@ -574,7 +651,9 @@
     setInterval(render, 30000);
 
     document.addEventListener("visibilitychange", () => {
-      if (!document.hidden) render();
+      if (!document.hidden) {
+        render();
+      }
     });
 
     window.addEventListener("pageshow", render);
