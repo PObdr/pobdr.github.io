@@ -1,15 +1,13 @@
-# Víceleté rozhraní — datový základ
+# Víceleté rozhraní
 
-První krok na pracovní větvi. Index ani zobrazení mapy a histogramu se tímto commitem ještě nemění. Stávající stránky a main zůstávají nedotčené.
+Pracovní větev hry/prvnivystrel-multiyear. Main se nemění.
 
-Registr: data/years.json. Nejvyšší rok je výchozí; explicitní ?year=2025&view=histogram má přednost. Neznámý rok nebo view vyvolá chybu. Společné rozhraní a zachování stavu budou následovat.
+Index přímo otevře nejnovější rok z data/years.json; vpravo nahoře je výběr roku a archivu. Parametry ?year=2025&view=histogram určují přímý vstup. Zpět/vpřed v prohlížeči funguje přes historii URL. Staré adresy se v tomto kroku nepřesměrovávají.
 
-Další ročník: přidat data/<rok>/source.json a záznam do years.json s format edition-v1. Bez úprav JavaScriptu; seznam ročníků je explicitní datový registr, nikoli skenování adresářů. Konfigurace obsahuje datum, offsetSeconds a případně výsledky, příběhy, audit či histogram. timeLimitSeconds je metadata, ne automatické vyřazování událostí.
+Mapa i histogram používají jeden datový model a společné ročníkově nezávislé komponenty. Obsah je oddělen do stejně původních rámců edition-view.html kvůli izolaci DOM a stylů. Nejde o obalení starých ročníkových stránek. Data jednoho ročníku se načtou jednou; rámy a jejich nastavení zůstávají po přepnutí zachované. Skrytí mapy pozastaví přehrávání a zavře dialog. Při návratu se mapa přizpůsobí velikosti bez ztráty pohledu. Chyby načítání nejsou tiše nahrazovány jiným rokem; lze je opakovat tlačítkem.
 
-Kanonický source.json: schemaVersion:1, year, stations a teams. Stanoviště: id, name, lat, lon, nextId, volitelně zero:{lat,lon,name} a photo (název souboru v foto/). nextId musí tvořit úplný okruh. Tým: id, name, scheduledStart, initialStationId, terminatedEarly, events. Událost: time (celé nezáporné sekundy od počátku herního dne před zobrazovacím posunem), stationId, zero, manual. Bez nultého místa použít zero:null. Jeden ročník může mít libovolné ID a počet stanovišť.
+Další rok: data/<rok>/source.json ve formátu edition-v1 a záznam v data/years.json. Formát zdroje: schemaVersion:1, year, stations a teams. Stanoviště má id, name, lat, lon, nextId a případně zero:{lat,lon,name}, photo (název souboru v foto/). Tým má id, name, scheduledStart, initialStationId, terminatedEarly, events. Událost má time (sekundy před zobrazovacím posunem), stationId, zero, manual. nextId tvoří úplný okruh. Počet stanovišť, jejich ID, rok a datum nejsou natvrdo v zobrazovacích komponentách. Adaptéry čtou staré formáty 2025 a 2026 bez přepisování dat.
 
-Adaptéry positions-v1 a dataset-v1 načítají dnešní data beze změny. Pohyb používá pouze potvrzená stanoviště, ne GPS mezibody. Oficiální výsledky jsou oddělené; chybějící výsledek je null, nikdy dopočítané pořadí. Oficiální nula nevytváří start ani polohu. Alias histogramu nemění název týmu v mapě. Audit a příběhy patří konkrétnímu roku.
+Volitelné soubory registru: officialResults, stories, audit, histogramConfig. Výsledky se neodvozují; nuly nevytvářejí start ani polohu. Histogram zachovává aliasy a výjimky ročníku, nikoli změny jmen v mapě. GPS audit nemění pohyb. timeLimitSeconds je metadata, ne filtr událostí. Dosavadní časový posun 2026 +7200 s zůstává nepotvrzeným předpokladem s poznámkou, 2025 má nulový posun.
 
-2026 zachovává +7200 s jako dosavadní nepotvrzený předpoklad, 2025 nulový posun. Historické kódování 2026 neobsahuje příznak ručního uznání; jeho absence není důkaz automatického příchodu.
-
-Ověřeno: sedm testů node --test tests/editions.test.mjs a kontrola adaptérů nad daty z Excelů (2025: 1176 příchodů, 2026: 992). Uživatelské rozhraní zatím není převedeno ani otestováno v prohlížeči.
+Ověřeno: syntaxe nových modulů; testy cache, opakování chyb a zachování stavu; simulované DOM kontroly mapy, oficiálních nul, escapování, fotek, příběhů a pozastavení. Dřívější kontrola adaptérů nad Excelem: 1176 a 992 potvrzení. Kompletní test ve skutečném prohlížeči nebyl proveden. Před sloučením ověřit obě mapy, histogramy, fotky, audit, CSV, historii a rychlé přepínání.
