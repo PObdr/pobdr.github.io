@@ -1,3 +1,4 @@
+import {applyOfficial2025} from './results-2025.js';
 export function decode2025(raw){
  if(raw.schema!==1||raw.year!==2025||raw.positions.length!==15||raw.teams.length!==84)throw Error('Neplatný dataset 2025.');
  const stations=new Map(raw.positions.map(p=>[p[0],p])),seen=new Set();let id=5;
@@ -10,4 +11,4 @@ export function decode2025(raw){
  const ranked=teams.filter(t=>t.elapsed!==null).sort((a,b)=>b.progress-a.progress||a.elapsed-b.elapsed||a.id-b.id);ranked.forEach((t,i)=>{const p=ranked[i-1];t.rank=p&&p.progress===t.progress&&p.elapsed===t.elapsed?p.rank:i+1});
  return {stations,teams};
 }
-export async function load2025(){const r=await fetch(new URL('../data/2025/source.json',import.meta.url),{cache:'no-cache'});if(!r.ok)throw Error('Data 2025: '+r.status);return decode2025(await r.json())}
+export async function load2025(){const get=async name=>{const r=await fetch(new URL('../data/2025/'+name,import.meta.url),{cache:'no-cache'});if(!r.ok)throw Error(name+': '+r.status);return r.json()},[raw,official]=await Promise.all([get('source.json'),get('official-results.json')]);return applyOfficial2025(decode2025(raw),official)}
