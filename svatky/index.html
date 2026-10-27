@@ -1,26 +1,583 @@
-<!doctype html>
-<html lang="cs"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#f7f6f2"><title>Je otevřeno? · Svátky</title>
-<style>
-*{box-sizing:border-box}body{margin:0;background:#f7f6f2;color:#20332b;font-family:system-ui,sans-serif;min-height:100svh;display:flex;flex-direction:column}header{text-align:center;padding:clamp(30px,6vh,70px) 20px 20px}#date{font-size:clamp(20px,3vw,28px);font-weight:600}#names{color:#627067;font-size:18px;margin-top:12px}main{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:30px 20px 60px}.label{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#627067}h1{font-size:clamp(52px,11vw,132px);line-height:1.05;letter-spacing:-.065em;margin:24px 0;color:#26704c}body.closed h1{color:#ad453d}#next{font-size:clamp(18px,3vw,25px);line-height:1.6;margin:0}#reason{color:#627067;min-height:1.5em;margin:12px 0 0}#warning{width:min(100%,760px);margin:28px 0 0;padding:22px 24px;border:2px solid #b66c06;border-radius:16px;background:#fff0cd;color:#653800;text-align:left;box-shadow:0 8px 24px #79470010}#warning[hidden]{display:none}#warning-title{display:block;font-size:clamp(23px,4vw,32px);font-weight:800;line-height:1.2}#warning-text{font-size:17px;line-height:1.6;margin:10px 0 0}footer{max-width:780px;align-self:center;padding:20px 24px 30px;text-align:center;color:#70756f;font-size:12px;line-height:1.7}a{color:inherit}noscript{padding:30px;text-align:center}
-</style>
-<header><div id="date"></div><div id="names" aria-live="polite">Načítám jmeniny…</div></header>
-<main><div class="label">Obchody s prodejní plochou nad 200 m²</div><div aria-live="polite"><h1 id="status">Zjišťuji…</h1><p id="next"></p><p id="reason"></p></div><aside id="warning" role="alert" aria-atomic="true" hidden><span id="warning-title"></span><p id="warning-text"></p></aside></main>
-<footer>Údaj vyjadřuje zákonný zákaz prodeje, nikoli skutečnou otevírací dobu konkrétní prodejny. Výjimku mají například lékárny, čerpací stanice a vybrané prodejny na nádražích, letištích a ve zdravotnických zařízeních. Časové pásmo: Praha.<br>Pravidla: <a href="https://www.zakonyprolidi.cz/cs/2016-223">zákon č. 223/2016 Sb.</a> · Jmeniny: <a href="https://svatkyapi.cz/">Svátky API</a></footer><noscript>Pro zobrazení aktuálních informací zapněte JavaScript.</noscript>
-<script>
-const $=id=>document.getElementById(id),fmt=new Intl.DateTimeFormat('cs-CZ',{timeZone:'Europe/Prague',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',hourCycle:'h23'});
-const iso=d=>d.toISOString().slice(0,10),short=d=>`${d.getUTCDate()}. ${d.getUTCMonth()+1}. ${d.getUTCFullYear()}`;
-function easter(y){const a=y%19,b=Math.floor(y/100),c=y%100,d=Math.floor(b/4),e=b%4,f=Math.floor((b+8)/25),g=Math.floor((b-f+1)/3),h=(19*a+b-d-g+15)%30,i=Math.floor(c/4),k=c%4,l=(32+2*e+2*i-h-k)%7,m=Math.floor((a+11*h+22*l)/451),n=h+l-7*m+114;return new Date(Date.UTC(y,Math.floor(n/31)-1,n%31+2))}
-function holidays(y){return [[1,1,'Nový rok'],[5,8,'Den vítězství'],[9,28,'Den české státnosti'],[10,28,'Den vzniku samostatného československého státu'],[12,24,'Štědrý den',12],[12,25,'1. svátek vánoční'],[12,26,'2. svátek vánoční']].map(([m,d,name,hour=0])=>({date:new Date(Date.UTC(y,m-1,d)),name,hour})).concat([{date:easter(y),name:'Velikonoční pondělí',hour:0}]).sort((a,b)=>a.date-b.date)}
-let loaded='',loading='';
-function parts(){return Object.fromEntries(fmt.formatToParts(new Date()).map(p=>[p.type,p.value]))}
-function currentKey(){const p=parts();return `${p.year}-${p.month}-${p.day}`}
-async function names(key){if(loaded===key||loading===key)return;loading=key;$('names').textContent='Načítám jmeniny…';try{let name;try{name=localStorage.getItem('jmeniny:'+key.slice(5))}catch{}if(!name){const r=await fetch('https://svatkyapi.cz/api/day/'+key,{signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error(r.status);const data=await r.json();name=data.name;if(typeof name!=='string'||!name.trim())throw Error('Chybí jméno');try{localStorage.setItem('jmeniny:'+key.slice(5),name)}catch{}}if(currentKey()===key){$('names').textContent='Dnes má svátek '+name+'.';loaded=key}}catch{if(currentKey()===key)$('names').textContent='Jmeniny se nepodařilo načíst.'}finally{loading=''}}
-function setText(id,text){if($(id).textContent!==text)$(id).textContent=text}
-function render(){const p=parts(),today=new Date(Date.UTC(+p.year,+p.month-1,+p.day)),key=iso(today),hour=+p.hour,list=[...holidays(+p.year),...holidays(+p.year+1)],current=list.find(h=>iso(h.date)===key),closed=!!current&&hour>=current.hour;
-setText('date',new Intl.DateTimeFormat('cs-CZ',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'UTC'}).format(today));document.body.classList.toggle('closed',closed);setText('status',closed?'Je zavřeno.':'Je otevřeno.');
-const next=list.find(h=>h.date>today||(h.date.getTime()===today.getTime()&&hour<h.hour)),days=Math.round((next.date-today)/86400000),relative=days===0?'dnes':days===1?'zítra':days===2?'pozítří':`za ${days} ${days<=4?'dny':'dní'}`;
-setText('next',`Příště bude zavřeno ${relative}, ${short(next.date)}${next.hour?' od 12:00':''}.`);setText('reason',closed?current.name:current?.hour?'Dnes lze prodávat pouze do 12:00.':'');
-const tomorrow=list.find(h=>Math.round((h.date-today)/86400000)===1);
-if(tomorrow){setText('warning-title',tomorrow.hour?'Pozor, zítra od 12:00 zavřeno!':'Pozor, zítra bude zavřeno!');setText('warning-text',`${short(tomorrow.date)} – ${tomorrow.name}. ${tomorrow.hour?'Zítra nakoupíte jen dopoledne. Naplánujte si nákup včas.':closed?'Zákaz prodeje pokračuje i zítra.':'Nezapomeňte si nakoupit ještě dnes v běžné otevírací době.'}`);$('warning').hidden=false}else{$('warning').hidden=true}names(key)}
-render();setInterval(render,30000);document.addEventListener('visibilitychange',()=>{if(!document.hidden)render()});
-</script></html>
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f6f2">
+  <meta name="description" content="Kdo má dnes svátek a jsou dnes obchody otevřené? Přehled českých svátků a nejbližšího omezení prodeje.">
+  <title>Je otevřeno? · Svátky</title>
+
+  <style>
+    :root {
+      color-scheme: light;
+      --background: #f7f6f2;
+      --text: #20332b;
+      --muted: #627067;
+      --open: #26704c;
+      --closed: #ad453d;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      background: var(--background);
+      color: var(--text);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    header {
+      padding: clamp(30px, 6vh, 70px) 20px 20px;
+      text-align: center;
+    }
+
+    #date {
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 600;
+    }
+
+    #names {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 30px 20px 60px;
+      text-align: center;
+    }
+
+    .label {
+      color: var(--muted);
+      font-size: 12px;
+      letter-spacing: .14em;
+      line-height: 1.8;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 24px 0;
+      color: var(--open);
+      font-size: clamp(50px, 11vw, 132px);
+      line-height: 1.05;
+      letter-spacing: -.065em;
+    }
+
+    body.closed h1 {
+      color: var(--closed);
+    }
+
+    #next {
+      margin: 0;
+      font-size: clamp(18px, 3vw, 25px);
+      line-height: 1.6;
+      text-wrap: balance;
+    }
+
+    #reason {
+      min-height: 1.5em;
+      margin: 12px 0 0;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .notices {
+      display: grid;
+      gap: 16px;
+      width: min(100%, 760px);
+      margin-top: 28px;
+    }
+
+    .notice {
+      padding: 22px 24px;
+      border: 2px solid;
+      border-radius: 16px;
+      text-align: left;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    .notice h2 {
+      margin: 0;
+      font-size: clamp(23px, 4vw, 32px);
+      font-weight: 800;
+      line-height: 1.25;
+      letter-spacing: -.025em;
+    }
+
+    .notice p {
+      margin: 10px 0 0;
+      font-size: 17px;
+      line-height: 1.6;
+    }
+
+    .notice-warning {
+      border-color: #b66c06;
+      background: #fff0cd;
+      color: #653800;
+      box-shadow: 0 8px 24px #79470010;
+    }
+
+    .notice-info {
+      border-color: #5684b6;
+      background: #eaf3ff;
+      color: #204a75;
+    }
+
+    footer {
+      align-self: center;
+      max-width: 800px;
+      padding: 20px 24px 30px;
+      color: #70756f;
+      font-size: 12px;
+      line-height: 1.8;
+      text-align: center;
+    }
+
+    footer a {
+      color: inherit;
+      text-underline-offset: 3px;
+    }
+
+    noscript {
+      padding: 24px;
+      text-align: center;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div id="date"></div>
+    <div id="names" aria-live="polite">Načítám jmeniny…</div>
+  </header>
+
+  <main>
+    <div class="label">
+      Obchody s prodejní plochou nad 200 m²
+    </div>
+
+    <div aria-live="polite" aria-atomic="true">
+      <h1 id="status">Zjišťuji…</h1>
+      <p id="next"></p>
+      <p id="reason"></p>
+    </div>
+
+    <div class="notices">
+      <aside
+        id="warning"
+        class="notice notice-warning"
+        role="alert"
+        aria-atomic="true"
+        hidden
+      >
+        <h2 id="warning-title"></h2>
+        <p id="warning-text"></p>
+      </aside>
+
+      <aside
+        id="info"
+        class="notice notice-info"
+        role="status"
+        aria-atomic="true"
+        hidden
+      >
+        <h2 id="info-title"></h2>
+        <p id="info-text"></p>
+      </aside>
+    </div>
+  </main>
+
+  <footer>
+    Údaj vyjadřuje zákonné omezení prodeje o svátcích, nikoli skutečnou
+    otevírací dobu konkrétní prodejny. Výjimku mají například lékárny,
+    čerpací stanice a vybrané prodejny na nádražích, letištích
+    a ve zdravotnických zařízeních. Mimořádná zákonná opatření
+    nejsou zohledněna. Časové pásmo: Praha.
+    <br>
+    Pravidla:
+    <a href="https://www.zakonyprolidi.cz/cs/2016-223"
+       target="_blank" rel="noopener noreferrer">
+      zákon č. 223/2016 Sb.
+    </a>
+    · Jmeniny:
+    <a href="https://svatkyapi.cz/"
+       target="_blank" rel="noopener noreferrer">
+      Svátky API
+    </a>
+  </footer>
+
+  <noscript>
+    Pro zobrazení aktuálního data, jmenin a informací o obchodech
+    zapněte JavaScript.
+  </noscript>
+
+  <script>
+    "use strict";
+
+    const $ = id => document.getElementById(id);
+    const DAY = 24 * 60 * 60 * 1000;
+    const INFO_DAYS_AHEAD = 3;
+
+    const pragueFormatter = new Intl.DateTimeFormat("cs-CZ", {
+      timeZone: "Europe/Prague",
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      hourCycle: "h23"
+    });
+
+    const dateFormatter = new Intl.DateTimeFormat("cs-CZ", {
+      timeZone: "UTC",
+      weekday: "long",
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    });
+
+    let loadedNamesKey = "";
+    let loadingNamesKey = "";
+    let namesRetryAfter = 0;
+
+    function setText(id, text) {
+      const element = $(id);
+      if (element.textContent !== text) {
+        element.textContent = text;
+      }
+    }
+
+    function getPragueNow() {
+      const parts = Object.fromEntries(
+        pragueFormatter.formatToParts(new Date())
+          .map(part => [part.type, part.value])
+      );
+
+      return {
+        year: Number(parts.year),
+        hour: Number(parts.hour),
+        date: new Date(Date.UTC(
+          Number(parts.year),
+          Number(parts.month) - 1,
+          Number(parts.day)
+        )),
+        key: `${parts.year}-${parts.month}-${parts.day}`
+      };
+    }
+
+    function dateKey(date) {
+      return date.toISOString().slice(0, 10);
+    }
+
+    function shortDate(date) {
+      return `${date.getUTCDate()}. ${date.getUTCMonth() + 1}. ${date.getUTCFullYear()}`;
+    }
+
+    function dayDistance(from, to) {
+      return Math.round((to.getTime() - from.getTime()) / DAY);
+    }
+
+    function relativeDay(days) {
+      if (days === 0) return "dnes";
+      if (days === 1) return "zítra";
+      if (days === 2) return "pozítří";
+      return `za ${days} ${days <= 4 ? "dny" : "dní"}`;
+    }
+
+    function shiftDate(date, days) {
+      return new Date(date.getTime() + days * DAY);
+    }
+
+    function easterSunday(year) {
+      const a = year % 19;
+      const b = Math.floor(year / 100);
+      const c = year % 100;
+      const d = Math.floor(b / 4);
+      const e = b % 4;
+      const f = Math.floor((b + 8) / 25);
+      const g = Math.floor((b - f + 1) / 3);
+      const h = (19 * a + b - d - g + 15) % 30;
+      const i = Math.floor(c / 4);
+      const k = c % 4;
+      const l = (32 + 2 * e + 2 * i - h - k) % 7;
+      const m = Math.floor((a + 11 * h + 22 * l) / 451);
+      const n = h + l - 7 * m + 114;
+
+      return new Date(Date.UTC(
+        year,
+        Math.floor(n / 31) - 1,
+        n % 31 + 1
+      ));
+    }
+
+    function getHolidays(year) {
+      const fixed = [
+        [1, 1, "Nový rok a Den obnovy samostatného českého státu", 0],
+        [5, 1, "Svátek práce", null],
+        [5, 8, "Den vítězství", 0],
+        [7, 5, "Den slovanských věrozvěstů Cyrila a Metoděje", null],
+        [7, 6, "Den upálení mistra Jana Husa", null],
+        [9, 28, "Den české státnosti", 0],
+        [10, 28, "Den vzniku samostatného československého státu", 0],
+        [11, 17, "Den boje za svobodu a demokracii a Mezinárodní den studentstva", null],
+        [12, 24, "Štědrý den", 12],
+        [12, 25, "1. svátek vánoční", 0],
+        [12, 26, "2. svátek vánoční", 0]
+      ];
+
+      const holidays = fixed.map(([month, day, name, closedFrom]) => ({
+        date: new Date(Date.UTC(year, month - 1, day)),
+        name,
+        closedFrom
+      }));
+
+      const easter = easterSunday(year);
+
+      holidays.push(
+        {
+          date: shiftDate(easter, -2),
+          name: "Velký pátek",
+          closedFrom: null
+        },
+        {
+          date: shiftDate(easter, 1),
+          name: "Velikonoční pondělí",
+          closedFrom: 0
+        }
+      );
+
+      return holidays.sort((a, b) => a.date - b.date);
+    }
+
+    async function loadNameday(key) {
+      if (
+        loadedNamesKey === key ||
+        loadingNamesKey ||
+        Date.now() < namesRetryAfter
+      ) {
+        return;
+      }
+
+      loadingNamesKey = key;
+      setText("names", "Načítám jmeniny…");
+
+      try {
+        let name = null;
+        const cacheKey = `jmeniny:${key}`;
+
+        try {
+          name = localStorage.getItem(cacheKey);
+        } catch {
+          // Stránka funguje i bez místního úložiště.
+        }
+
+        if (!name) {
+          const controller = new AbortController();
+          const timeout = setTimeout(() => controller.abort(), 10000);
+
+          try {
+            const response = await fetch(
+              `https://svatkyapi.cz/api/day/${key}`,
+              { signal: controller.signal }
+            );
+
+            if (!response.ok) {
+              throw new Error(`HTTP ${response.status}`);
+            }
+
+            const data = await response.json();
+            name = data.name;
+
+            if (typeof name !== "string" || !name.trim()) {
+              throw new Error("Odpověď neobsahuje jmeniny.");
+            }
+
+            name = name.trim();
+          } finally {
+            clearTimeout(timeout);
+          }
+
+          try {
+            localStorage.setItem(cacheKey, name);
+          } catch {
+            // Uložení do mezipaměti není nutné.
+          }
+        }
+
+        if (getPragueNow().key === key) {
+          setText("names", `Dnes má svátek ${name}.`);
+          loadedNamesKey = key;
+          namesRetryAfter = 0;
+        }
+      } catch {
+        if (getPragueNow().key === key) {
+          setText("names", "Jmeniny se nepodařilo načíst.");
+        }
+
+        namesRetryAfter = Date.now() + 60000;
+      } finally {
+        loadingNamesKey = "";
+      }
+    }
+
+    function renderWarning(tomorrow, closedToday) {
+      if (!tomorrow || tomorrow.closedFrom === null) {
+        $("warning").hidden = true;
+        return;
+      }
+
+      const afternoonClosure = tomorrow.closedFrom === 12;
+
+      setText(
+        "warning-title",
+        afternoonClosure
+          ? "Pozor, zítra od 12:00 zavřeno!"
+          : "Pozor, zítra bude zavřeno!"
+      );
+
+      let message;
+
+      if (afternoonClosure) {
+        message =
+          "Zítra nakoupíte jen dopoledne. Naplánujte si nákup včas.";
+      } else if (closedToday) {
+        message = "Zákaz prodeje pokračuje i zítra.";
+      } else {
+        message =
+          "Nezapomeňte si nakoupit ještě dnes v běžné otevírací době.";
+      }
+
+      setText(
+        "warning-text",
+        `${shortDate(tomorrow.date)} – ${tomorrow.name}. ${message}`
+      );
+
+      $("warning").hidden = false;
+    }
+
+    function renderOpenHolidayInfo(holidays, today) {
+      const holiday = holidays.find(item => {
+        const distance = dayDistance(today, item.date);
+
+        return (
+          item.closedFrom === null &&
+          distance >= 0 &&
+          distance <= INFO_DAYS_AHEAD
+        );
+      });
+
+      if (!holiday) {
+        $("info").hidden = true;
+        return;
+      }
+
+      const distance = dayDistance(today, holiday.date);
+      let title;
+
+      if (distance === 0) {
+        title = "Dnes je svátek, obchody mohou mít otevřeno.";
+      } else if (distance === 1) {
+        title = "Zítra je svátek, obchody mohou mít otevřeno.";
+      } else if (distance === 2) {
+        title = "Pozítří je svátek, obchody mohou mít otevřeno.";
+      } else {
+        title = `Za ${distance} dny je svátek, obchody mohou mít otevřeno.`;
+      }
+
+      setText("info-title", title);
+
+      setText(
+        "info-text",
+        `${shortDate(holiday.date)} – ${holiday.name}. ` +
+        "Zákaz prodeje se na tento svátek nevztahuje. " +
+        "Platí otevírací doba konkrétní prodejny."
+      );
+
+      $("info").hidden = false;
+    }
+
+    function render() {
+      const now = getPragueNow();
+      const holidays = [
+        ...getHolidays(now.year),
+        ...getHolidays(now.year + 1)
+      ];
+
+      const current = holidays.find(
+        holiday => dateKey(holiday.date) === now.key
+      );
+
+      const closedToday = Boolean(
+        current &&
+        current.closedFrom !== null &&
+        now.hour >= current.closedFrom
+      );
+
+      setText("date", dateFormatter.format(now.date));
+      setText("status", closedToday ? "Je zavřeno." : "Je otevřeno.");
+      document.body.classList.toggle("closed", closedToday);
+
+      const nextClosure = holidays.find(holiday => {
+        if (holiday.closedFrom === null) return false;
+
+        const distance = dayDistance(now.date, holiday.date);
+
+        return (
+          distance > 0 ||
+          (distance === 0 && now.hour < holiday.closedFrom)
+        );
+      });
+
+      if (nextClosure) {
+        const distance = dayDistance(now.date, nextClosure.date);
+        const time = nextClosure.closedFrom === 12 ? " od 12:00" : "";
+
+        setText(
+          "next",
+          `Příště bude zavřeno ${relativeDay(distance)}, ` +
+          `${shortDate(nextClosure.date)}${time}.`
+        );
+      }
+
+      if (closedToday) {
+        setText("reason", current.name);
+      } else if (current && current.closedFrom === 12) {
+        setText("reason", "Dnes lze prodávat pouze do 12:00.");
+      } else {
+        setText("reason", "");
+      }
+
+      const tomorrow = holidays.find(
+        holiday => dayDistance(now.date, holiday.date) === 1
+      );
+
+      renderWarning(tomorrow, closedToday);
+      renderOpenHolidayInfo(holidays, now.date);
+      loadNameday(now.key);
+    }
+
+    render();
+
+    setInterval(render, 30000);
+
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden) render();
+    });
+
+    window.addEventListener("pageshow", render);
+  </script>
+</body>
+</html>
