@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "editions": [
+    {
+      "year": 2026,
+      "date": "2026-10-17",
+      "format": "dataset-v1",
+      "source": "source.json",
+      "officialResults": "official-results.json",
+      "requireAllResults": false,
+      "stories": "stations.json",
+      "audit": "suspicious.json",
+      "histogramConfig": "histogram-config.json",
+      "offsetSeconds": 7200,
+      "routeStart": 23,
+      "stationCount": 12,
+      "eventStationIds": [23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34]
+    },
+    {
+      "year": 2025,
+      "date": "2025-10-18",
+      "format": "positions-v1",
+      "source": "source.json",
+      "officialResults": "official-results.json",
+      "requireAllResults": true,
+      "offsetSeconds": 0,
+      "clockNote": "Časy jsou z Excelu bez převodu pásma.",
+      "routeStart": 5,
+      "stationCount": 15,
+      "timeLimitSeconds": 30000
+    }
+  ]
+}
