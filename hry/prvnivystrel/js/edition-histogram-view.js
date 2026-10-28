@@ -3,7 +3,40 @@ import {orderedEdges, collectSamples, binsFor, duration} from './histogram-model
 import {$, matches, csv} from './edition-view-utils.js';
 
 export function mountHistogram(m) {
-  document.body.innerHTML = `<main class="hist-layout"><div class="row"><label>Tým <input id="filter" type="search" placeholder="Název nebo číslo"></label><label>Interval <select id="bin"><option>1</option><option selected>2.5</option><option>5</option><option>10</option></select> min</label><label>Úseky <select id="mode"><option value="normal">Mezi stanovišti</option><option value="with-start">Včetně startovních</option><option value="start-only">Jen z nultých míst</option></select></label><label><input id="outsiders" type="checkbox"> Všechny týmy</label><button id="csv">CSV</button></div><p id="status" role="status"></p><div id="plot" class="plot"></div><section id="selection" aria-label="Detail sloupce"></section><p><small>Časy mezi potvrzeními zahrnují čekání a řešení úkolů.</small></p></main><div id="tooltip" role="tooltip" hidden></div>`;
+  document.body.innerHTML = `
+    <main class="hist-layout">
+      <div class="row">
+        <label>
+          Tým <input id="filter" type="search" placeholder="Název nebo číslo">
+        </label>
+        <label>
+          Interval
+          <select id="bin">
+            <option>1</option>
+            <option selected>2.5</option>
+            <option>5</option>
+            <option>10</option>
+          </select>
+          min
+        </label>
+        <label>
+          Úseky
+          <select id="mode">
+            <option value="normal">Mezi stanovišti</option>
+            <option value="with-start">Včetně startovních</option>
+            <option value="start-only">Jen z nultých míst</option>
+          </select>
+        </label>
+        <label><input id="outsiders" type="checkbox"> Všechny týmy</label>
+        <button id="csv">CSV</button>
+      </div>
+      <p id="status" role="status"></p>
+      <div id="plot" class="plot"></div>
+      <section id="selection" aria-label="Detail sloupce"></section>
+      <p><small>Časy mezi potvrzeními zahrnují čekání a řešení úkolů.</small></p>
+    </main>
+    <div id="tooltip" role="tooltip" hidden></div>
+  `;
 
   const compat = new Map([...m.stations].map(([id, s]) => [
     id, [id, s.name, s.lat, s.lon, s.zero?.lat ?? null, s.zero?.lon ?? null, '', s.nextId]
@@ -16,10 +49,26 @@ export function mountHistogram(m) {
   function show(target, pinned = false, event = null) {
     const i = +target.dataset.edge, b = groups[i].bins[+target.dataset.bin],
       title = label(i) + ' · ' + b.from + '–' + b.to + ' min',
-      body = '<table><thead><tr><th>Tým</th><th>Čas</th><th>Typ</th></tr></thead><tbody>' +
-        b.samples.slice().sort((a, b) => a.seconds - b.seconds).map(s =>
-          `<tr><td>${esc(s.teamName)} #${s.teamId}</td><td>${duration(s.seconds)}</td><td>${s.initial ? 'z nultého místa' : 'mezi stanovišti'}</td></tr>`
-        ).join('') + '</tbody></table>';
+      body = `
+        <table>
+          <thead>
+            <tr>
+              <th>Tým</th>
+              <th>Čas</th>
+              <th>Typ</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${b.samples.slice().sort((a, b) => a.seconds - b.seconds).map(s => `
+              <tr>
+                <td>${esc(s.teamName)} #${s.teamId}</td>
+                <td>${duration(s.seconds)}</td>
+                <td>${s.initial ? 'z nultého místa' : 'mezi stanovišti'}</td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      `;
 
     if (pinned) {
       $('selection').innerHTML = '<h2>' + esc(title) + '</h2>' + body;
@@ -48,31 +97,86 @@ export function mountHistogram(m) {
       outside = groups.reduce((n, g) => n + g.outside, 0),
       left = 190, plot = 950, row = 55, top = 25,
       height = top + row * edges.length + 60, x = v => left + v / max * plot;
-    let svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 ${height}" role="img" aria-label="Histogram přesunů ${m.edition.year}"><title>Histogram přesunů ${m.edition.year}</title><rect width="1200" height="${height}" fill="white"/>`;
+    let svg = `
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 1200 ${height}"
+        role="img"
+        aria-label="Histogram přesunů ${m.edition.year}"
+      >
+        <title>Histogram přesunů ${m.edition.year}</title>
+        <rect width="1200" height="${height}" fill="white"/>
+    `;
 
     for (let n = 0; n <= max; n += 10) {
-      svg += `<line x1="${x(n)}" x2="${x(n)}" y1="${top}" y2="${height - 45}" stroke="#e4e9f1"/><text x="${x(n)}" y="${height - 25}" text-anchor="middle" font-size="12">${n}</text>`;
+      svg += `
+        <line
+          x1="${x(n)}" x2="${x(n)}"
+          y1="${top}" y2="${height - 45}"
+          stroke="#e4e9f1"
+        />
+        <text
+          x="${x(n)}" y="${height - 25}"
+          text-anchor="middle" font-size="12"
+        >${n}</text>
+      `;
     }
 
     edges.forEach((e, i) => {
       const base = top + (i + 1) * row,
         all = filtered.filter(s => s.edge === i).map(s => s.seconds).sort((a, b) => a - b),
         median = all.length ? (all[Math.floor((all.length - 1) / 2)] + all[Math.floor(all.length / 2)]) / 2 : null;
-      svg += `<line x1="${left}" x2="${left + plot}" y1="${base}" y2="${base}" stroke="#ccd6e4"/><text x="${left - 12}" y="${base - 31}" text-anchor="end" font-size="11">${esc(mode === 'start-only' ? 'Nulté místo' : e.fromName)}</text><text x="${left - 12}" y="${base - 16}" text-anchor="end" font-size="11">→ ${esc(e.toName)}</text><text x="${left - 12}" y="${base - 2}" text-anchor="end" font-size="10">n=${all.length}${median === null ? '' : ' · medián ' + duration(median)}</text>`;
+      svg += `
+        <line
+          x1="${left}" x2="${left + plot}"
+          y1="${base}" y2="${base}"
+          stroke="#ccd6e4"
+        />
+        <text
+          x="${left - 12}" y="${base - 31}"
+          text-anchor="end" font-size="11"
+        >${esc(mode === 'start-only' ? 'Nulté místo' : e.fromName)}</text>
+        <text
+          x="${left - 12}" y="${base - 16}"
+          text-anchor="end" font-size="11"
+        >→ ${esc(e.toName)}</text>
+        <text
+          x="${left - 12}" y="${base - 2}"
+          text-anchor="end" font-size="10"
+        >n=${all.length}${median === null ? '' : ' · medián ' + duration(median)}</text>
+      `;
 
       groups[i].bins.forEach((b, j) => {
         const n = b.samples.length;
         if (!n) return;
         const h = n / (peak + 1) * (row - 6);
-        svg += `<rect data-edge="${i}" data-bin="${j}" tabindex="0" role="button" aria-label="${esc(label(i))}, ${b.from}–${b.to} minut, ${n} týmů" x="${x(b.from)}" y="${base - h}" width="${(x(b.to) - x(b.from)) * .8}" height="${h}" fill="hsl(${i * 137.5 % 360} 60% 40%)"/>`;
+        svg += `
+          <rect
+            data-edge="${i}" data-bin="${j}"
+            tabindex="0" role="button"
+            aria-label="${esc(label(i))}, ${b.from}–${b.to} minut, ${n} týmů"
+            x="${x(b.from)}" y="${base - h}"
+            width="${(x(b.to) - x(b.from)) * .8}" height="${h}"
+            fill="hsl(${i * 137.5 % 360} 60% 40%)"
+          />
+        `;
       });
     });
 
-    $('plot').innerHTML = svg + `<text x="${left + plot / 2}" y="${height - 5}" text-anchor="middle" font-size="13">čas [min]</text></svg>`;
+    $('plot').innerHTML = svg + `
+        <text
+          x="${left + plot / 2}" y="${height - 5}"
+          text-anchor="middle" font-size="13"
+        >čas [min]</text>
+      </svg>
+    `;
     $('status').textContent = `${roster.length} týmů · ${filtered.length} úseků · ${filtered.length - outside} v grafu · ${outside} mimo rozsah`;
     $('csv').disabled = !filtered.length;
     $('tooltip').hidden = true;
-    $('selection').innerHTML = '<h2>Detail sloupce</h2><p>Vyber sloupec histogramu.</p>';
+    $('selection').innerHTML = `
+      <h2>Detail sloupce</h2>
+      <p>Vyber sloupec histogramu.</p>
+    `;
   }
 
   for (const id of ['bin', 'mode', 'outsiders']) $(id).onchange = render;
