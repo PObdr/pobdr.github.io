@@ -14,7 +14,7 @@ export function mountTeamComparison(model) {
   ]));
   const edges = orderedEdges(stations, model.route[0]);
   const samples = collectSamples(model.teams, edges);
-  let ids = roster.filter(t => samples.some(s => s.teamId === t.id)).slice(0, 2).map(t => t.id);
+  let ids = [];
   const colors = new Map();
   const color = id => {
     if (!colors.has(id)) colors.set(id, palette.find(c => !ids.some(other => other !== id && colors.get(other) === c)) || palette[0]);
