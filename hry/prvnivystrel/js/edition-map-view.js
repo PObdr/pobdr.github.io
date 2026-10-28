@@ -7,7 +7,96 @@ import {stripSharedEnding, storySections} from './stations.js?v=3';
 import {$, matches, csv} from './edition-view-utils.js';
 
 export function mountMap(m) {
-  document.body.innerHTML = `<main class="map-layout"><aside><input id="search" type="search" placeholder="Název nebo číslo týmu" aria-label="Hledat tým"><p id="status" role="status"></p><label>Řadit <select id="order"><option value="name">Název</option><option value="rank">Oficiální pořadí</option><option value="start">Start</option><option value="scheduled">Plánovaný start</option><option value="progress">Počet stanovišť</option></select></label><div class="row"><button id="all">Vybrat nalezené</button><button id="none">Žádný</button><label><input id="names" type="checkbox"> Jména</label><label><input id="trails" type="checkbox" checked> Trasy</label><button id="fit">Celá mapa</button></div><details><summary>Nastavení času</summary><label>Posun <select id="offset"></select></label><p id="clock-note"></p><p>Polohy mezi potvrzeními a možná setkání jsou odhady.</p></details><details id="audit-box"><summary id="audit-title"></summary><label><input id="suspects" type="checkbox"> Zobrazit podezřelé body</label><input id="audit-search" type="search" placeholder="Tým, ID, důvod…" aria-label="Hledat v auditu"><div id="audit"></div></details><details><summary>Možné blízkosti</summary><label>Do <select id="radius"><option>25</option><option selected>50</option><option>100</option><option>200</option></select> m</label><button id="scan">Najít v celé hře</button><button id="csv" disabled>CSV</button><p id="near"></p><div id="hits"></div></details><details id="detail-box"><summary>Detail týmu</summary><div id="detail"></div></details><div id="teams"></div></aside><div id="map"></div></main><footer class="timeline"><div class="row"><button id="play">▶ Přehrát</button><button id="back">−5 min</button><button id="next">+5 min</button><output id="clock"></output><input id="time" type="time" step="1" aria-label="Čas"><label>Rychlost <select id="speed"><option>1</option><option>10</option><option>30</option><option selected>60</option><option>120</option><option>300</option><option>600</option><option>1200</option></select>×</label></div><input id="slider" type="range" step="1" aria-label="Časová osa"><small id="range"></small></footer>`;
+  document.body.innerHTML = `
+    <main class="map-layout">
+      <aside>
+        <input
+          id="search" type="search" placeholder="Název nebo číslo týmu"
+          aria-label="Hledat tým"
+        >
+        <p id="status" role="status"></p>
+        <label>
+          Řadit
+          <select id="order">
+            <option value="name">Název</option>
+            <option value="rank">Oficiální pořadí</option>
+            <option value="start">Start</option>
+            <option value="scheduled">Plánovaný start</option>
+            <option value="progress">Počet stanovišť</option>
+          </select>
+        </label>
+        <div class="row">
+          <button id="all">Vybrat nalezené</button>
+          <button id="none">Žádný</button>
+          <label><input id="names" type="checkbox"> Jména</label>
+          <label><input id="trails" type="checkbox" checked> Trasy</label>
+          <button id="fit">Celá mapa</button>
+        </div>
+        <details>
+          <summary>Nastavení času</summary>
+          <label>Posun <select id="offset"></select></label>
+          <p id="clock-note"></p>
+          <p>Polohy mezi potvrzeními a možná setkání jsou odhady.</p>
+        </details>
+        <details id="audit-box">
+          <summary id="audit-title"></summary>
+          <label><input id="suspects" type="checkbox"> Zobrazit podezřelé body</label>
+          <input
+            id="audit-search" type="search" placeholder="Tým, ID, důvod…"
+            aria-label="Hledat v auditu"
+          >
+          <div id="audit"></div>
+        </details>
+        <details>
+          <summary>Možné blízkosti</summary>
+          <label>
+            Do
+            <select id="radius">
+              <option>25</option>
+              <option selected>50</option>
+              <option>100</option>
+              <option>200</option>
+            </select>
+            m
+          </label>
+          <button id="scan">Najít v celé hře</button>
+          <button id="csv" disabled>CSV</button>
+          <p id="near"></p>
+          <div id="hits"></div>
+        </details>
+        <details id="detail-box">
+          <summary>Detail týmu</summary>
+          <div id="detail"></div>
+        </details>
+        <div id="teams"></div>
+      </aside>
+      <div id="map"></div>
+    </main>
+    <footer class="timeline">
+      <div class="row">
+        <button id="play">▶ Přehrát</button>
+        <button id="back">−5 min</button>
+        <button id="next">+5 min</button>
+        <output id="clock"></output>
+        <input id="time" type="time" step="1" aria-label="Čas">
+        <label>
+          Rychlost
+          <select id="speed">
+            <option>1</option>
+            <option>10</option>
+            <option>30</option>
+            <option selected>60</option>
+            <option>120</option>
+            <option>300</option>
+            <option>600</option>
+            <option>1200</option>
+          </select>×
+        </label>
+      </div>
+      <input id="slider" type="range" step="1" aria-label="Časová osa">
+      <small id="range"></small>
+    </footer>
+  `;
 
   const teams = m.teams, byId = new Map(teams.map(t => [t.id, t])), stations = m.stations,
     selected = new Set(teams.filter(t => t.points.length).map(t => t.id)),
@@ -24,7 +113,39 @@ export function mountMap(m) {
     const s = stations.get(id), story = m.stories.get(id), next = stations.get(zero ? id : s.nextId),
       p = zero ? s.zero : s, d = map.details.dialog,
       url = s.photo ? new URL(encodeURIComponent(s.photo), m.photoBaseURL).href : null;
-    d.innerHTML = `<article class="station-card"><header class="station-header"><h2 id="station-heading">${zero ? 'Nulté místo · ' : ''}${esc(s.name)}</h2><button id="close">Zavřít ×</button></header><p>${esc(zero ? s.zero?.name || '' : s.name)} · ${p.lat.toFixed(6)}, ${p.lon.toFixed(6)}</p><p>${zero ? 'Kam dál z nultého místa' : 'Další stanoviště'}: <button id="dest">${esc(next.name)}</button></p>${story?.title ? '<h3>' + esc(story.title) + '</h3>' : ''}${url ? `<figure><a href="${esc(url)}" target="_blank" rel="noopener noreferrer"><img class="station-photo-image" style="max-width:100%;max-height:60vh" src="${esc(url)}" alt="Fotografie stanoviště ${esc(s.name)}" loading="lazy"></a><figcaption>${zero ? 'Fotografie cílového stanoviště. ' : ''}Kliknutím otevřeš plnou velikost.</figcaption></figure>` : ''}${story ? storySections(story, zero).map(([key, label], i) => `<details ${i === 0 ? 'open' : ''}><summary>${label}</summary><p class="station-story">${esc(key === 'end' ? stripSharedEnding(story[key]) : story[key])}</p></details>`).join('') : ''}</article>`;
+    d.innerHTML = `
+      <article class="station-card">
+        <header class="station-header">
+          <h2 id="station-heading">${zero ? 'Nulté místo · ' : ''}${esc(s.name)}</h2>
+          <button id="close">Zavřít ×</button>
+        </header>
+        <p>${esc(zero ? s.zero?.name || '' : s.name)} · ${p.lat.toFixed(6)}, ${p.lon.toFixed(6)}</p>
+        <p>
+          ${zero ? 'Kam dál z nultého místa' : 'Další stanoviště'}:
+          <button id="dest">${esc(next.name)}</button>
+        </p>
+        ${story?.title ? '<h3>' + esc(story.title) + '</h3>' : ''}
+        ${url ? `
+          <figure>
+            <a href="${esc(url)}" target="_blank" rel="noopener noreferrer">
+              <img
+                class="station-photo-image"
+                style="max-width:100%;max-height:60vh"
+                src="${esc(url)}" alt="Fotografie stanoviště ${esc(s.name)}"
+                loading="lazy"
+              >
+            </a>
+            <figcaption>${zero ? 'Fotografie cílového stanoviště. ' : ''}Kliknutím otevřeš plnou velikost.</figcaption>
+          </figure>
+        ` : ''}
+        ${story ? storySections(story, zero).map(([key, label], i) => `
+          <details ${i === 0 ? 'open' : ''}>
+            <summary>${label}</summary>
+            <p class="station-story">${esc(key === 'end' ? stripSharedEnding(story[key]) : story[key])}</p>
+          </details>
+        `).join('') : ''}
+      </article>
+    `;
     $('close').onclick = () => map.details.close();
     $('dest').onclick = () => map.details.open(next.id, false);
     const image = d.querySelector('img');
@@ -52,14 +173,20 @@ export function mountMap(m) {
   const chosen = () => teams.filter(t => selected.has(t.id)),
     reason = r => Object.entries(m.audit.reasons)
       .filter(([bit]) => r[6] & Number(bit)).map(([, text]) => text).join('; '),
-    auditLabel = r => `${esc(byId.get(r[1])?.name)} · ID ${r[0]} · ${fmt(r[2] + offset)}<br>${esc(reason(r))}<br>GPS ${r[3] / 1e5}, ${r[4] / 1e5} · přesnost ${r[5] ?? '—'} m${r[7] ? ' · úspěšná událost zachována' : ''}`;
+    auditLabel = r => `
+      ${esc(byId.get(r[1])?.name)} · ID ${r[0]} · ${fmt(r[2] + offset)}<br>
+      ${esc(reason(r))}<br>
+      GPS ${r[3] / 1e5}, ${r[4] / 1e5} · přesnost ${r[5] ?? '—'} m${r[7] ? ' · úspěšná událost zachována' : ''}
+    `;
 
   function audit() {
     map.suspicious(m.audit.rows.filter(r => selected.has(r[1])), $('suspects').checked, auditLabel);
     const q = fold($('audit-search').value);
     $('audit').innerHTML = m.audit.rows
       .filter(r => fold(r[0] + ' ' + byId.get(r[1])?.name + ' ' + reason(r)).includes(q))
-      .map(r => `<button class="event" data-audit="${r[0]}">${auditLabel(r)}</button>`).join('');
+      .map(r => `
+        <button class="event" data-audit="${r[0]}">${auditLabel(r)}</button>
+      `).join('');
   }
 
   function invalidate() {
@@ -76,7 +203,19 @@ export function mountMap(m) {
 
   function list() {
     const rows = sortTeams(teams.filter(t => matches(t, $('search').value)), $('order').value);
-    $('teams').innerHTML = rows.map(t => `<div class="team"><input id="team-${t.id}" type="checkbox" data-id="${t.id}" ${selected.has(t.id) ? 'checked' : ''}><label for="team-${t.id}" style="color:${t.color}">${esc(t.name)} <span class="team-id">#${t.id}</span><small>Start ${t.startTime === null ? '—' : fmt(t.startTime + offset)} · ${t.progress}/${stations.size} · ${t.result ? t.result.rank + '. místo' : 'mimo výsledky'}</small></label><button data-focus="${t.id}" aria-label="Detail ${esc(t.name)}">↗</button></div>`).join('');
+    $('teams').innerHTML = rows.map(t => `
+      <div class="team">
+        <input
+          id="team-${t.id}" type="checkbox" data-id="${t.id}"
+          ${selected.has(t.id) ? 'checked' : ''}
+        >
+        <label for="team-${t.id}" style="color:${t.color}">
+          ${esc(t.name)} <span class="team-id">#${t.id}</span>
+          <small>Start ${t.startTime === null ? '—' : fmt(t.startTime + offset)} · ${t.progress}/${stations.size} · ${t.result ? t.result.rank + '. místo' : 'mimo výsledky'}</small>
+        </label>
+        <button data-focus="${t.id}" aria-label="Detail ${esc(t.name)}">↗</button>
+      </div>
+    `).join('');
     $('status').textContent = `${selected.size}/${teams.length} týmů`;
     for (const x of $('teams').querySelectorAll('[data-id]')) {
       x.onchange = () => {
@@ -95,8 +234,19 @@ export function mountMap(m) {
     $('detail-box').open = true;
     const delay = t.startTime === null || !Number.isFinite(planned(t))
       ? null : t.startTime + offset - planned(t);
-    $('detail').innerHTML = `<h3>${esc(t.name)} #${t.id}</h3><p>Start ${t.startTime === null ? '—' : fmt(t.startTime + offset)} · plán ${esc(t.scheduledStart || '—')}${delay === null ? '' : '<br>Odchylka ' + (delay < 0 ? '−' : '+') + fmt(Math.abs(delay))}<br>Potvrzeno ${t.progress}/${stations.size}<br>Oficiální pořadí: ${t.result?.rank ?? 'mimo výsledky'}<br>Oficiální čas: ${esc(t.result?.time ?? '—')}${t.terminatedEarly ? ' · odstoupil' : ''}</p>` +
-      t.events.map(e => `<button class="event" data-jump="${e.time}">${fmt(e.time + offset)} · ${e.z ? 'nulté místo: ' : ''}${esc(e.z ? stations.get(e.id).zero?.name || stations.get(e.id).name : stations.get(e.id).name)}${e.manual ? ' · ručně uznáno' : ''}</button>`).join('');
+    $('detail').innerHTML = `
+      <h3>${esc(t.name)} #${t.id}</h3>
+      <p>
+        Start ${t.startTime === null ? '—' : fmt(t.startTime + offset)} · plán ${esc(t.scheduledStart || '—')}${delay === null ? '' : '<br>Odchylka ' + (delay < 0 ? '−' : '+') + fmt(Math.abs(delay))}<br>
+        Potvrzeno ${t.progress}/${stations.size}<br>
+        Oficiální pořadí: ${t.result?.rank ?? 'mimo výsledky'}<br>
+        Oficiální čas: ${esc(t.result?.time ?? '—')}${t.terminatedEarly ? ' · odstoupil' : ''}
+      </p>
+    ` + t.events.map(e => `
+      <button class="event" data-jump="${e.time}">
+        ${fmt(e.time + offset)} · ${e.z ? 'nulté místo: ' : ''}${esc(e.z ? stations.get(e.id).zero?.name || stations.get(e.id).name : stations.get(e.id).name)}${e.manual ? ' · ručně uznáno' : ''}
+      </button>
+    `).join('');
   }
 
   function focus(t) {
@@ -208,7 +358,12 @@ export function mountMap(m) {
       try {
         hits = encounters(chosen(), +$('radius').value);
         $('hits').innerHTML = `<p>${hits.length} možných setkání (odhad).</p>` +
-          hits.slice(0, 250).map(h => `<button class="event" data-jump="${h.start}">${fmt(h.start + offset)}–${fmt(h.end + offset)} · ${esc(h.a)} × ${esc(h.b)} · ${Math.round(h.d)} m<br>Mezera mezi body až ${Math.round(h.gap / 60)} min</button>`).join('');
+          hits.slice(0, 250).map(h => `
+            <button class="event" data-jump="${h.start}">
+              ${fmt(h.start + offset)}–${fmt(h.end + offset)} · ${esc(h.a)} × ${esc(h.b)} · ${Math.round(h.d)} m<br>
+              Mezera mezi body až ${Math.round(h.gap / 60)} min
+            </button>
+          `).join('');
         $('csv').disabled = !hits.length;
       } catch (e) {
         $('hits').textContent = e.message;
