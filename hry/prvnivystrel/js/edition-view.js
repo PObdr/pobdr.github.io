@@ -33,6 +33,8 @@ async function main() {
   } else {
     const {mountHistogram} = await import('./edition-histogram-view.js');
     mountHistogram(model);
+    const {mountSectionLoads} = await import('./section-load-view.js');
+    mountSectionLoads(model);
   }
 
   notify(model.edition.year, mode);
