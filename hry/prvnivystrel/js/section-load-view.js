@@ -85,8 +85,52 @@ export function mountSectionLoads(model) {
       .section-load .sl-highlight {
         background: #fef3c7;
       }
-      .section-load input[type="range"] {
-        width: 100%;
+      .section-load .sl-time-axis {
+        min-width: 600px;
+      }
+      .section-load .sl-time-control {
+        margin: 0 4%;
+      }
+      .section-load .sl-time-control input[type="range"] {
+        appearance: none;
+        -webkit-appearance: none;
+        box-sizing: border-box;
+        display: block;
+        width: calc(100% + 16px);
+        height: 24px;
+        margin: 0 0 0 -8px;
+        padding: 0;
+        border: 0;
+        background: transparent;
+        direction: ltr;
+        cursor: pointer;
+      }
+      .section-load #sl-time::-webkit-slider-runnable-track {
+        height: 6px;
+        border-radius: 3px;
+        background: #cbd5e1;
+      }
+      .section-load #sl-time::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 16px;
+        height: 16px;
+        margin-top: -5px;
+        border: 0;
+        border-radius: 50%;
+        background: #2563eb;
+      }
+      .section-load #sl-time::-moz-range-track {
+        height: 6px;
+        border: 0;
+        border-radius: 3px;
+        background: #cbd5e1;
+      }
+      .section-load #sl-time::-moz-range-thumb {
+        width: 16px;
+        height: 16px;
+        border: 0;
+        border-radius: 50%;
+        background: #2563eb;
       }
     </style>
     <h2 id="sl-heading">Náročnost a vytížení úseků</h2>
@@ -208,24 +252,28 @@ export function mountSectionLoads(model) {
       <p>Intervaly nejvyššího souběhu: ${peaks || 'žádné (pouze nulové délky průchodů)'}</p>
       <p>Klikni na část grafu, začátek pruhu týmu nebo použij posuvník.</p>
       <div class="sl-scroll">
-        <svg viewBox="0 0 1000 190" role="group" aria-label="Počet současně aktivních týmů">
-          <line x1="40" x2="960" y1="150" y2="150" stroke="#64748b"/>
-          <text x="5" y="155">0</text>
-          <text x="5" y="30">${selected.peakCount}</text>
-          <polyline points="${points}" fill="none" stroke="#2563eb" stroke-width="3"/>
-          ${selected.timeline.map(s => `
-            <rect
-              x="${x(s.from)}" y="20" width="${x(s.to) - x(s.from)}" height="135"
-              fill="transparent" tabindex="0" role="button" data-time="${s.from}"
-              aria-label="${clock(s.from)} až ${clock(s.to)}: ${s.count} týmů"
-            ><title>${clock(s.from)}–${clock(s.to)}: ${s.count} týmů</title></rect>
-          `).join('')}
-          <text x="40" y="180">${clock(first)}</text>
-          <text x="960" y="180" text-anchor="end">${clock(last)}</text>
-        </svg>
+        <div class="sl-time-axis">
+          <svg viewBox="0 0 1000 190" role="group" aria-label="Počet současně aktivních týmů">
+            <line x1="40" x2="960" y1="150" y2="150" stroke="#64748b"/>
+            <text x="5" y="155">0</text>
+            <text x="5" y="30">${selected.peakCount}</text>
+            <polyline points="${points}" fill="none" stroke="#2563eb" stroke-width="3"/>
+            ${selected.timeline.map(s => `
+              <rect
+                x="${x(s.from)}" y="20" width="${x(s.to) - x(s.from)}" height="135"
+                fill="transparent" tabindex="0" role="button" data-time="${s.from}"
+                aria-label="${clock(s.from)} až ${clock(s.to)}: ${s.count} týmů"
+              ><title>${clock(s.from)}–${clock(s.to)}: ${s.count} týmů</title></rect>
+            `).join('')}
+            <text x="40" y="180">${clock(first)}</text>
+            <text x="960" y="180" text-anchor="end">${clock(last)}</text>
+          </svg>
+          <div class="sl-time-control">
+            <label for="sl-time">Čas pro výpis aktivních týmů</label>
+            <input id="sl-time" type="range" min="${first}" max="${last}" step="1">
+          </div>
+        </div>
       </div>
-      <label for="sl-time">Čas pro výpis aktivních týmů</label>
-      <input id="sl-time" type="range" min="${first}" max="${last}" step="1">
       <p id="sl-now" role="status" aria-live="polite"></p>
       <ul id="sl-active"></ul>
       <h4>Časové pruhy dokončených průchodů</h4>
