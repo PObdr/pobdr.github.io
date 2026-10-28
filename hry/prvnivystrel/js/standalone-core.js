@@ -23,10 +23,14 @@ function replaceOne(code, before, after) {
 
 export function rewriteModule(code, path, known) {
   if (path === 'js/edition-shell.js') {
-    code = replaceOne(code, 'frame.src=url.href;', 'frame.srcdoc=globalThis.__pvFrame(year,view);');
     code = replaceOne(
       code,
-      "history[push?'pushState':'replaceState'](null,'',url);",
+      /\bframe\s*\.\s*src\s*=\s*url\s*\.\s*href\s*;/g,
+      'frame.srcdoc=globalThis.__pvFrame(year,view);'
+    );
+    code = replaceOne(
+      code,
+      /\bhistory\s*\[\s*push\s*\?\s*'pushState'\s*:\s*'replaceState'\s*\]\s*\(\s*null\s*,\s*''\s*,\s*url\s*\)\s*;/g,
       "try{history[push?'pushState':'replaceState'](null,'',url)}catch{}"
     );
   }
@@ -38,7 +42,7 @@ export function rewriteModule(code, path, known) {
   if (path === 'js/edition-map-view.js') {
     code = replaceOne(
       code,
-      'new URL(encodeURIComponent(s.photo),m.photoBaseURL).href',
+      /\bnew\s+URL\s*\(\s*encodeURIComponent\s*\(\s*s\s*\.\s*photo\s*\)\s*,\s*m\s*\.\s*photoBaseURL\s*\)\s*\.\s*href\b/g,
       'globalThis.__pvPhoto(s.photo)'
     );
   }
