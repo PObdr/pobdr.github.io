@@ -1,1 +1,23 @@
-export function position(team,time){const a=team.points;if(!a.length||time<a[0].time||time>a.at(-1).time)return null;let lo=0,hi=a.length-1;while(lo<hi){const m=Math.ceil((lo+hi)/2);if(a[m].time<=time)lo=m;else hi=m-1}const p=a[lo],q=a[Math.min(lo+1,a.length-1)],f=q.time===p.time?0:(time-p.time)/(q.time-p.time);return {lat:p.lat+(q.lat-p.lat)*f,lon:p.lon+(q.lon-p.lon)*f,estimated:time!==p.time,kind:p.kind,gap:q.time-p.time}}
+export function position(team, time) {
+  const a = team.points;
+  if (!a.length || time < a[0].time || time > a.at(-1).time) return null;
+
+  let lo = 0, hi = a.length - 1;
+  while (lo < hi) {
+    const m = Math.ceil((lo + hi) / 2);
+    if (a[m].time <= time) lo = m;
+    else hi = m - 1;
+  }
+
+  const p = a[lo],
+    q = a[Math.min(lo + 1, a.length - 1)],
+    f = q.time === p.time ? 0 : (time - p.time) / (q.time - p.time);
+
+  return {
+    lat: p.lat + (q.lat - p.lat) * f,
+    lon: p.lon + (q.lon - p.lon) * f,
+    estimated: time !== p.time,
+    kind: p.kind,
+    gap: q.time - p.time
+  };
+}
