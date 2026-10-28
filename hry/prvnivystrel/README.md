@@ -1,14 +1,20 @@
-# První výstřel 2026
-Statický web bez buildu, backendu a importu Excelu. Změny pouze commity do hry/prvnivystrel/.
+# První výstřel — mapa a histogram
 
-## Model pohybu — confirmed-stations
-Animace, trasy i výpočet možných blízkostí používají pouze úspěšná potvrzení stanovišť a nultých míst. Vždy se bere známá souřadnice stanoviště/nultého místa, nikoli GPS připojená k pokusu. GPS mezibody neovlivňují pohyb ani tehdy, když prošly rychlostním filtrem a nejsou v auditu. To odstraňuje falešné odbočky typu Janus 6296 severně od Dvoreckého mostu. Žádná oblast Prahy není plošně zakázána a žádné stanoviště není odstraněno.
+Statická víceletá aplikace bez buildu a backendu. Hlavní vstup je index.html, exportér je export.html. Další informace o datovém formátu jsou v MULTIYEAR.md. Změny projektu jsou omezené na hry/prvnivystrel/.
 
-Zůstává zachováno všech 992 úspěšných událostí u 88 týmů (83 se záznamy). Čas potvrzení není přesný příchod/odchod. Mezi potvrzeními je přímková interpolace, ne rekonstrukce ulic, MHD či pobytu. Model může procházet i místy, kterými tým skutečně nešel; možné blízkosti proto nejsou důkaz setkání. Před prvním a po posledním potvrzení polohu neznáme a tým nezobrazujeme. Pro zobrazení roku 2026 se používá potvrzený posun +2 h; hra začínala kolem 9:00.
+## Vstupy
+- index.html otevře nejnovější ročník z data/years.json.
+- index.html?year=2025&view=map otevře mapu zvoleného roku.
+- index.html?year=2025&view=histogram otevře jeho histogram.
+- Export HTML v hlavičce otevře export.html; výsledný soubor obsahuje jeden ročník s mapou, histogramem a volitelně fotografiemi.
 
-## Data
-source.json obsahuje stanoviště, nultá místa, týmy, plánované starty a časy úspěšných událostí. gps.json zachovává 2109 GPS bodů s původním limitem přesnosti do 100 m a zaokrouhlením na 5 desetinných míst. GPS se stále dekódují do raw.t, ale prepare z nich NEVYTVÁŘÍ animační body. suspicious.json zůstává beze změny: 243 kandidátů, nikoli potvrzených chyb. Zapnutí červených auditních značek nemění výpočty.
+## Model pohybu
+Animace, trasy i možné blízkosti používají pouze úspěšná potvrzení stanovišť a nultých míst. Souřadnice jsou souřadnice stanoviště, nikoli odeslaná GPS poloha. Mezi potvrzeními je přímková interpolace, ne rekonstrukce ulic, MHD nebo skutečného pobytu. Před prvním a po posledním potvrzení polohu neznáme. Možné setkání je odhad, nikoli důkaz.
 
-GPS tok je gzip-base64 s unsigned varint počtem bodů pro každý tým v teamIds; pro každý bod následují tři ZigZag-varint rozdíly času a souřadnic vůči předchozímu bodu. Počáteční hodnoty nula, souřadnice v 1e-5 stupně s počátkem [50,14]. Dekodér kontroluje úplnost a rozsah. Původní data se nemažou.
+2025 zachovává 1176 příchodů včetně 39 ručně uznaných, 2026 992 příchodů. Potvrzené zobrazovací posuny: 2025 0 s, 2026 +7200 s. Oficiální výsledky nepřepisují polohové kotvy ani nevytvářejí start týmům bez událostí. Audit GPS nemění pohyb.
 
-Data jsou místní, bez historického HTML a GitHub API. Internet je potřeba pro Leaflet a OSM. Lokálně používat HTTP server, ne file://. npm test nevyžaduje npm install. Po aktualizaci provést úplné obnovení stránky včetně cache. Testy kontrolují potvrzení bez GPS, ignorování neoznačených GPS odboček, nultá místa a stejný model pro setkání.
+## Data a archiv
+Aktivní data určuje data/years.json. Oficiální pořadí se nikdy neodvozuje z průběhu hry. Data a fotografie obou let se při úklidu nemažou. data/2026/gps.json uchovává 2109 původních GPS bodů jako archiv; nový loader je pro animaci nenačítá. Zpětná filtrace neúspěšných pokusů jedním prahem přesnosti se neprovádí.
+
+## Provoz a testy
+Používat HTTP/HTTPS, ne file://. Internet je potřeba pro Leaflet a mapové dlaždice OSM. npm test spouští tests/*.test.mjs bez instalace závislostí. Při změně UI ověřit oba ročníky, oficiální nuly, sledování týmu, histogram, fotografie, audit, historii a export s fotografiemi i bez nich. Node testy nenahrazují úplný test ve skutečném prohlížeči.
