@@ -1,13 +1,110 @@
-import {editionsFrom,decodeEdition,applyResults} from './edition-model.js';
-const base=new URL('../data/',import.meta.url);
-async function get(url,signal){const r=await fetch(url,{cache:'no-cache',signal:signal??AbortSignal.timeout(20000)});if(!r.ok)throw Error('Načítání '+url.pathname+': '+r.status);return r.json()}
-export async function loadYears({signal}={}){const data=await get(new URL('years.json',base),signal);editionsFrom(data);return data}
-export async function loadEdition(entry,{signal}={}){
- editionsFrom({schemaVersion:1,editions:[entry]});const root=new URL(entry.year+'/',base),read=name=>get(new URL(name,root),signal),[source,official,histogram,stories,packed]=await Promise.all([read(entry.source),entry.officialResults?read(entry.officialResults):null,entry.histogramConfig?read(entry.histogramConfig):null,entry.stories?read(entry.stories):null,entry.audit?read(entry.audit):null]);
- const model=decodeEdition(entry,source);model.results=official?applyResults(model,official):new Map();
- model.histogram={maxMinutes:130,aliases:{},excludedTeamIds:[],...histogram};if(histogram?.year!=null&&histogram.year!==entry.year)throw Error('Neshoda ročníku histogramu.');
- const teamIds=new Set(model.teams.map(t=>t.id));if(!Number.isFinite(model.histogram.maxMinutes)||model.histogram.maxMinutes<=0||!Array.isArray(model.histogram.excludedTeamIds)||model.histogram.excludedTeamIds.some(id=>!teamIds.has(id))||!model.histogram.aliases||typeof model.histogram.aliases!=='object'||Array.isArray(model.histogram.aliases)||Object.entries(model.histogram.aliases).some(([id,name])=>!teamIds.has(Number(id))||typeof name!=='string'))throw Error('Neplatná konfigurace histogramu.');
- model.stories=new Map();if(stories){if(stories.year!==entry.year||!Array.isArray(stories.stations))throw Error('Neplatné příběhy stanovišť.');for(const s of stories.stations){if(!model.stations.has(s.id)||model.stories.has(s.id)||typeof s.photo!=='string'||/[\/\\?#]/.test(s.photo)||!/[.](jpe?g|png|webp)$/i.test(s.photo))throw Error('Neplatná fotografie nebo příběh.');model.stories.set(s.id,s);model.stations.get(s.id).photo=s.photo}}
- let audit=packed;if(packed?.encoding){if(packed.encoding!=='gzip-base64')throw Error('Nepodporovaný formát auditu.');const bytes=Uint8Array.from(atob(packed.payload),c=>c.charCodeAt(0));audit=await new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))).json()}
- if(audit&&(!Array.isArray(audit.rows)||audit.rows.length!==audit.counts?.suspectEvents||!audit.reasons||typeof audit.reasons!=='object'))throw Error('Neplatný audit GPS.');model.audit=audit??{rows:[],reasons:{},counts:{suspectEvents:0}};model.photoBaseURL=new URL('foto/',root).href;return model;
+import {editionsFrom, decodeEdition, applyResults} from './edition-model.js';
+
+const base = new URL('../data/', import.meta.url);
+
+async function get(url, signal) {
+  const r = await fetch(url, {
+    cache: 'no-cache',
+    signal: signal ?? AbortSignal.timeout(20000)
+  });
+  if (!r.ok) throw Error('Načítání ' + url.pathname + ': ' + r.status);
+  return r.json();
+}
+
+export async function loadYears({signal} = {}) {
+  const data = await get(new URL('years.json', base), signal);
+  editionsFrom(data);
+  return data;
+}
+
+export async function loadEdition(entry, {signal} = {}) {
+  editionsFrom({schemaVersion: 1, editions: [entry]});
+
+  const root = new URL(entry.year + '/', base),
+    read = name => get(new URL(name, root), signal),
+    [source, official, histogram, stories, packed] = await Promise.all([
+      read(entry.source),
+      entry.officialResults ? read(entry.officialResults) : null,
+      entry.histogramConfig ? read(entry.histogramConfig) : null,
+      entry.stories ? read(entry.stories) : null,
+      entry.audit ? read(entry.audit) : null
+    ]);
+
+  const model = decodeEdition(entry, source);
+  model.results = official ? applyResults(model, official) : new Map();
+  model.histogram = {
+    maxMinutes: 130,
+    aliases: {},
+    excludedTeamIds: [],
+    ...histogram
+  };
+
+  if (histogram?.year != null && histogram.year !== entry.year) {
+    throw Error('Neshoda ročníku histogramu.');
+  }
+
+  const teamIds = new Set(model.teams.map(t => t.id));
+  if (
+    !Number.isFinite(model.histogram.maxMinutes) ||
+    model.histogram.maxMinutes <= 0 ||
+    !Array.isArray(model.histogram.excludedTeamIds) ||
+    model.histogram.excludedTeamIds.some(id => !teamIds.has(id)) ||
+    !model.histogram.aliases ||
+    typeof model.histogram.aliases !== 'object' ||
+    Array.isArray(model.histogram.aliases) ||
+    Object.entries(model.histogram.aliases).some(([id, name]) =>
+      !teamIds.has(Number(id)) || typeof name !== 'string'
+    )
+  ) {
+    throw Error('Neplatná konfigurace histogramu.');
+  }
+
+  model.stories = new Map();
+  if (stories) {
+    if (stories.year !== entry.year || !Array.isArray(stories.stations)) {
+      throw Error('Neplatné příběhy stanovišť.');
+    }
+
+    for (const s of stories.stations) {
+      if (
+        !model.stations.has(s.id) ||
+        model.stories.has(s.id) ||
+        typeof s.photo !== 'string' ||
+        /[\/\\?#]/.test(s.photo) ||
+        !/[.](jpe?g|png|webp)$/i.test(s.photo)
+      ) {
+        throw Error('Neplatná fotografie nebo příběh.');
+      }
+
+      model.stories.set(s.id, s);
+      model.stations.get(s.id).photo = s.photo;
+    }
+  }
+
+  let audit = packed;
+  if (packed?.encoding) {
+    if (packed.encoding !== 'gzip-base64') {
+      throw Error('Nepodporovaný formát auditu.');
+    }
+
+    const bytes = Uint8Array.from(atob(packed.payload), c => c.charCodeAt(0));
+    audit = await new Response(
+      new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'))
+    ).json();
+  }
+
+  if (
+    audit && (
+      !Array.isArray(audit.rows) ||
+      audit.rows.length !== audit.counts?.suspectEvents ||
+      !audit.reasons ||
+      typeof audit.reasons !== 'object'
+    )
+  ) {
+    throw Error('Neplatný audit GPS.');
+  }
+
+  model.audit = audit ?? {rows: [], reasons: {}, counts: {suspectEvents: 0}};
+  model.photoBaseURL = new URL('foto/', root).href;
+  return model;
 }
