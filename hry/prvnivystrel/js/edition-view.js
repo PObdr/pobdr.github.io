@@ -1,5 +1,5 @@
 import {loadYears, loadEdition} from './edition-loader.js';
-import {selection} from './edition-model.js';
+import {selection, viewTitles} from './edition-view-selection.js';
 import {$} from './edition-view-utils.js';
 
 function notify(year, view, error = null) {
@@ -11,7 +11,7 @@ function notify(year, view, error = null) {
 async function main() {
   const params = new URLSearchParams(location.search),
     mode = params.get('view') || 'map';
-  if (!['map', 'histogram'].includes(mode)) throw Error('Neznámé zobrazení.');
+  if (!Object.hasOwn(viewTitles, mode)) throw Error('Neznámé zobrazení.');
 
   let model;
   if (
@@ -25,16 +25,19 @@ async function main() {
     model = await loadEdition(s.edition);
   }
 
-  document.title = (mode === 'map' ? 'Mapa' : 'Histogram') + ' · ' + model.edition.year;
+  document.title = viewTitles[mode] + ' · ' + model.edition.year;
 
   if (mode === 'map') {
     const {mountMap} = await import('./edition-map-view.js');
     mountMap(model);
-  } else {
+  } else if (mode === 'histogram') {
     const {mountHistogram} = await import('./edition-histogram-view.js');
     mountHistogram(model);
     const {mountSectionLoads} = await import('./section-load-view.js');
     mountSectionLoads(model);
+  } else {
+    const {mountTeamComparison} = await import('./team-comparison-view.js');
+    mountTeamComparison(model);
   }
 
   notify(model.edition.year, mode);

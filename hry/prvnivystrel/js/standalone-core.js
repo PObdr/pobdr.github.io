@@ -135,7 +135,7 @@ function bootstrap() {
   }
 
   globalThis.__pvFrame = (year, view) => {
-    if (year !== pack.year || !['map', 'histogram'].includes(view)) {
+    if (year !== pack.year || !['map', 'histogram', 'comparison'].includes(view)) {
       throw Error('Ročník není součástí exportu.');
     }
     const code = '(' + install.toString() + ')(' + JSON.stringify('js/edition-view.js') + ',' +

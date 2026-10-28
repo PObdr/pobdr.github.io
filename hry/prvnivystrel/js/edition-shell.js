@@ -1,5 +1,6 @@
 import {loadYears, loadEdition} from './edition-loader.js';
-import {selection, editionsFrom} from './edition-model.js';
+import {editionsFrom} from './edition-model.js';
+import {selection, viewTitles} from './edition-view-selection.js';
 import {modelCache, ViewCache} from './edition-session.js';
 
 const $ = id => document.getElementById(id);
@@ -21,7 +22,7 @@ async function main() {
       url = new URL('edition-view.html', location.href);
     url.search = new URLSearchParams({year, view});
     frame.src = url.href;
-    frame.title = (view === 'map' ? 'Mapa' : 'Histogram') + ' · ' + year;
+    frame.title = viewTitles[view] + ' · ' + year;
     frame.hidden = true;
     frame.addEventListener('load', () => {
       if (frame.hidden) {
