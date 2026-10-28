@@ -30,13 +30,13 @@ export function rewriteModule(code, path, known) {
     );
     code = replaceOne(
       code,
-      /\bhistory\s*\[\s*push\s*\?\s*'pushState'\s*:\s*'replaceState'\s*\]\s*\(\s*null\s*,\s*''\s*,\s*url\s*\)\s*;/g,
+      /\bhistory\s*\[\s*push\s*\?\s*(?:'pushState'|"pushState")\s*:\s*(?:'replaceState'|"replaceState")\s*\]\s*\(\s*null\s*,\s*(?:''|"")\s*,\s*url\s*\)\s*;/g,
       "try{history[push?'pushState':'replaceState'](null,'',url)}catch{}"
     );
   }
 
   if (path === 'js/edition-view.js') {
-    code = code.replace(/\blocation\.search\b/g, '(globalThis.__pvSearch??location.search)');
+    code = code.replace(/\blocation\s*\.\s*search\b/g, '(globalThis.__pvSearch??location.search)');
   }
 
   if (path === 'js/edition-map-view.js') {
@@ -48,7 +48,7 @@ export function rewriteModule(code, path, known) {
   }
 
   return code
-    .replace(/\bimport\.meta\.url\b/g, JSON.stringify(new URL(path, ROOT).href))
+    .replace(/\bimport\s*\.\s*meta\s*\.\s*url\b/g, JSON.stringify(new URL(path, ROOT).href))
     .replace(pattern(), (all, q, ref) => {
       const p = resolveModule(ref, path);
       if (!known.has(p)) throw Error('Chybí modul ' + p);
