@@ -3,57 +3,50 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DIO – povrchové objekty</title>
+    <title>DIO – sjednocený povrchový podklad</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <style>
       * {
         box-sizing: border-box;
       }
-
       body {
         margin: 0;
-        font: 16px/1.5 system-ui, sans-serif;
-        color: #192735;
+        font: 15px/1.5 system-ui, sans-serif;
       }
-
       header, aside {
         padding: 16px;
       }
-
       main {
         display: grid;
-        grid-template-columns: 360px 1fr;
+        grid-template-columns: 370px 1fr;
       }
-
       #map {
-        height: 85vh;
+        height: 90vh;
         min-height: 420px;
       }
-
       button, select {
-        padding: 8px;
         font: inherit;
-        margin: 4px;
+        padding: 7px;
+        margin: 3px;
       }
-
       label {
         display: block;
       }
-
-      #layers {
-        max-height: 45vh;
+      #layers, #detail {
+        max-height: 32vh;
         overflow: auto;
-        font-size: 13px;
+        overflow-wrap: anywhere;
       }
-
+      pre {
+        white-space: pre-wrap;
+        font-size: 11px;
+      }
       #status {
         white-space: pre-line;
       }
-
       .note {
-        font-size: 13px;
+        font-size: 12px;
       }
-
       @media (max-width: 760px) {
         main {
           grid-template-columns: 1fr;
@@ -63,13 +56,13 @@
   </head>
   <body>
     <header>
-      <h1>DIO – povrchové objekty a vrstvené SVG</h1>
-      <p>Vyber dva rohy výřezu do 550 × 550 m. Jednotlivé kategorie lze vypínat v mapě i později v SVG.</p>
+      <h1>DIO – sjednocený povrchový podklad</h1>
+      <p>Vyber dva rohy výřezu 5–550 m. Kliknutím na objekt zobrazíš atributy a zdroje.</p>
     </header>
     <main>
       <aside>
         <button id="select" type="button">Vybrat výřez</button>
-        <button id="load" type="button" disabled>Načíst vše</button>
+        <button id="load" type="button" disabled>Načíst podklady</button>
         <label>Měřítko
           <select id="scale">
             <option value="200">1 : 200</option>
@@ -77,12 +70,23 @@
             <option value="1000">1 : 1 000</option>
           </select>
         </label>
-        <button id="export" type="button" disabled>Stáhnout SVG se všemi vrstvami</button>
+        <label>Režim
+          <select id="mode">
+            <option value="merged">Sjednocený podklad</option>
+            <option value="raw">Původní zdroje</option>
+          </select>
+        </label>
+        <label><input id="control" type="checkbox" checked> Přibalit skryté zdrojové vrstvy do SVG</label>
+        <button id="export" type="button" disabled>SVG</button>
+        <button id="json" type="button" disabled>Pracovní JSON</button>
+        <label>Načíst pracovní JSON <input id="import" type="file" accept=".json"></label>
         <p id="status" role="status" aria-live="polite">Vyber výřez.</p>
+        <h2>Vrstvy</h2>
         <div id="layers"></div>
-        <p class="note">Vypnuté vrstvy se exportují jako skryté, nikoli odstraněné. IPR se člení podle kódu objektu, OSM podle druhu. Překryvy mezi zdroji se záměrně neslučují.</p>
-        <p class="note">Pracovní, neověřený podklad. Nejde o úplný pasport značek ani všech povrchových objektů. Body jsou schematické symboly, nikoli zaměřené rozměry. OSM osy nejsou obruby. Ověř polohu, aktuálnost a značení v terénu.</p>
-        <p class="note">IPR Praha – technická mapa (plochy, polohopisné body a linie); © přispěvatelé OpenStreetMap, ODbL. Licence dat ověř u poskytovatelů. Místní přibližná metrická projekce, nikoli geodetický výstup. OSM relace/multipolygony se v této verzi nenačítají.</p>
+        <h2>Detail objektu</h2>
+        <div id="detail">Klikni na objekt v mapě.</div>
+        <p class="note">Pracovní podklad, nikoli ověřený projekt DIO ani úplný pasport značek. Symboly neudávají skutečné rozměry. Koruna se kreslí v metrech jen při známém průměru. Neznámé, pomocné a podzemní kategorie jsou výchozím nastavením skryté.</p>
+        <p class="note">IPR Praha, MHMP, TSK – technická mapa, SMZ a parkování; © přispěvatelé OpenStreetMap, ODbL. Podmínky dat ověř u poskytovatelů. Místní přibližná projekce, nikoli geodetický výstup. OSM relace se nenačítají. <a href="./README.md">Pravidla a omezení</a></p>
       </aside>
       <div id="map" aria-label="Mapa výběru"></div>
     </main>
