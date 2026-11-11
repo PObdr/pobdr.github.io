@@ -1,4 +1,5 @@
 import { classify, frame } from './model.js';
+import { loadLamps } from './lamps.js';
 
 const root = 'https://gs-pub.praha.eu/arcgis/rest/services';
 const definitions = [
@@ -69,6 +70,11 @@ export async function load(bbox, progress = () => {}) {
   const { project, width, height } = frame(bbox);
   const raw = [];
   const errors = [];
+  let successes = 0;
+  const lamps = loadLamps(bbox, progress).then((features) => {
+    raw.push(...features);
+    successes += 1;
+  }).catch((error) => errors.push(`THMP: ${error.message}`));
   function add(source, identity, attrs, geometry) {
     normalizeGeometry(geometry, project).forEach((f, i) => {
       if (f.kind === 'point' && (f.coords[0] < 0 || f.coords[1] < 0 || f.coords[0] > width || f.coords[1] > height)) return;
@@ -76,8 +82,6 @@ export async function load(bbox, progress = () => {}) {
       raw.push({ ...f, id: `${source}:${identity}:${i}`, source, category, attrs });
     });
   }
-  let successes = 0;
-  // Three workers bound load on public services; failures remain visible and do not cancel other sources.
   const queue = [...definitions];
   await Promise.all(Array.from({ length: 3 }, async () => {
     while (queue.length) {
@@ -113,6 +117,7 @@ export async function load(bbox, progress = () => {}) {
   } catch (error) {
     errors.push(`OSM: ${error.message}`);
   }
+  await lamps;
   if (!successes) throw new Error(errors.join('\n'));
   return { version: 2, bbox, raw, errors, date: new Date().toISOString(), decisions: {}, visibility: {} };
 }

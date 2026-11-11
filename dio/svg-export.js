@@ -42,7 +42,11 @@ export function exportSvg(data, result, options = {}) {
     const title = escapeXml(JSON.stringify({ id: f.id, category: f.category, reason: f.reason, sources: originals.map((o) => ({ id: o.id, source: o.source, attributes: o.attrs })) }));
     let drawing;
     if (f.kind === 'point') {
-      drawing = `<g transform="translate(${f.coords.join(' ')})" fill="white">${symbol(f.category, size)}</g>`;
+      if (f.category === 'Čísla lamp' || f.category === 'Neurčené / čísla zařízení') {
+        drawing = `<text x="${f.coords[0] + size * 1.4}" y="${f.coords[1] - size}" font-size="${scale / 1000 * 2}" fill="#172554" stroke="none">${escapeXml(f.attrs.lamp_number)}</text>`;
+      } else {
+        drawing = `<g transform="translate(${f.coords.join(' ')})" fill="white">${symbol(f.category, size)}</g>`;
+      }
     } else {
       const d = f.coords.filter((p) => p.length >= 2).map((p) => `M ${p.map((v) => v.join(',')).join(' L ')}${f.kind === 'area' ? ' Z' : ''}`).join(' ');
       const vegetation = /Strom|Keř|Tráv|Záhon|zeleň|Živý/.test(f.category);
@@ -81,7 +85,7 @@ ${g.content.join('\n')}
 ${content}
   <g id="legend" inkscape:groupmode="layer" inkscape:label="Rám a zdroje">
     <rect width="${width}" height="${height}" fill="none" stroke="black" stroke-width="0.15"/>
-    ${options.preview ? '' : `<text x="1" y="${height + 4}" font-size="${Math.min(2, width / 170)}">PRACOVNÍ PODKLAD – OVĚŘIT | 1:${scale} | IPR Praha, MHMP, TSK; © OSM contributors, ODbL | ${data.date.slice(0, 10)}${data.errors.length ? ' | NEÚPLNÁ DATA' : ''}</text><path d="M 1 ${height + 8} h ${Math.min(10, width / 3)}" stroke="black"/><text x="1" y="${height + 12}" font-size="1.6">${Math.min(10, width / 3).toFixed(1)} m</text>`}
+    ${options.preview ? '' : `<text x="1" y="${height + 4}" font-size="${Math.min(2, width / 170)}">PRACOVNÍ PODKLAD – OVĚŘIT | 1:${scale} | IPR Praha, MHMP, TSK, THMP; © OSM contributors, ODbL | ${data.date.slice(0, 10)}${data.errors.length ? ' | NEÚPLNÁ DATA' : ''}</text><path d="M 1 ${height + 8} h ${Math.min(10, width / 3)}" stroke="black"/><text x="1" y="${height + 12}" font-size="1.6">${Math.min(10, width / 3).toFixed(1)} m</text>`}
   </g>
 </svg>`;
 }
