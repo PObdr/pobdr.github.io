@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="cs">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DIO – vektorový podklad</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font: 16px/1.5 system-ui, sans-serif;
+        color: #192735;
+        background: #f5f7fa;
+      }
+      header, aside {
+        padding: 16px;
+      }
+      h1 {
+        margin: 0 0 8px;
+        font-size: 24px;
+      }
+      p {
+        margin: 8px 0;
+      }
+      main {
+        display: grid;
+        grid-template-columns: 320px 1fr;
+      }
+      #map {
+        height: 75vh;
+        min-height: 420px;
+      }
+      button, select, input {
+        font: inherit;
+        padding: 8px;
+        margin: 4px 0;
+        max-width: 100%;
+      }
+      button {
+        cursor: pointer;
+      }
+      label {
+        display: block;
+        margin: 8px 0;
+      }
+      #status {
+        white-space: pre-line;
+      }
+      .note {
+        font-size: 13px;
+        color: #475569;
+      }
+      @media (max-width: 720px) {
+        main {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>DIO – příprava vektorového podkladu</h1>
+      <p>Vyber dva protilehlé rohy výřezu, načti data a stáhni editovatelné SVG.</p>
+    </header>
+    <main>
+      <aside>
+        <button id="select" type="button">Vybrat nový výřez</button>
+        <button id="load" type="button" disabled>Načíst podklady</button>
+        <label>Měřítko exportu
+          <select id="scale">
+            <option value="200">1 : 200</option>
+            <option value="500" selected>1 : 500</option>
+            <option value="1000">1 : 1 000</option>
+          </select>
+        </label>
+        <label><input id="surfaces" type="checkbox" checked> Plochy technické mapy IPR</label>
+        <label><input id="buildings" type="checkbox" checked> Budovy OSM</label>
+        <label><input id="roads" type="checkbox" checked> Osy komunikací OSM</label>
+        <label><input id="signs" type="checkbox" checked> Zaznamenané značky OSM</label>
+        <button id="export" type="button" disabled>Stáhnout SVG</button>
+        <p id="status" role="status" aria-live="polite">Zvol výřez nejvýše přibližně 500 × 500 m.</p>
+        <p class="note">Pracovní podklad, nikoli hotový ani ověřený projekt DIO. OSM není úplný pasport značení. Chybějící značka neznamená, že v terénu není. Ověř aktuálnost, umístění, orientaci i dodatkové tabulky na místě.</p>
+        <p class="note">Plochy IPR jsou dostupné pro Prahu. Šedé čáry OSM jsou osy cest, nikoli zaměřené obruby. Export používá místní přibližnou metrickou projekci; není geodetickým výstupem.</p>
+        <p class="note">Zdroje: IPR Praha – technická mapa; © přispěvatelé OpenStreetMap, ODbL. Podmínky dalšího použití jednotlivých dat ověř u poskytovatelů.</p>
+      </aside>
+      <div id="map" aria-label="Mapa pro výběr území"></div>
+    </main>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script type="module">
+      const $ = (id) => document.getElementById(id);
+      const map = L.map('map').setView([50.0755, 14.4378], 17);
+      L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+      }).addTo(map);
+
+      let selecting = false;
+      let firstCorner = null;
+      let bounds = null;
+      let rectangle = null;
+      let preview = null;
+      let dataset = null;
+
+      function status(text) {
+        $('status').textContent = text;
+      }
+
+      function dimensions(box) {
+        const latitude = box.getCenter().lat * Math.PI / 180;
+        const x = 6371008.8 * Math.cos(latitude) * Math.PI / 180;
+        const y = 6371008.8 * Math.PI / 180;
+        return {
+          width: (box.getEast() - box.getWest()) * x,
+          height: (box.getNorth() - box.getSouth()) * y,
+          project: ([longitude, lat]) => [
+            (longitude - box.getWest()) * x,
+            (box.getNorth() - lat) * y
+          ]
+        };
+      }
+
+      $('select').onclick = () => {
+        selecting = true;
+        firstCorner = null;
+        dataset = null;
+        $('export').disabled = true;
+        $('load').disabled = true;
+        if (preview) map.removeLayer(preview);
+        if (rectangle) map.removeLayer(rectangle);
+        map.getContainer().style.cursor = 'crosshair';
+        status('Klikni na první roh, potom na protilehlý roh výřezu.');
+      };
+
+      map.on('click', ({ latlng }) => {
+        if (!selecting) return;
+        if (!firstCorner) {
+          firstCorner = latlng;
+          status('Klikni na protilehlý roh.');
+          return;
+        }
+        bounds = L.latLngBounds(firstCorner, latlng);
+        const { width, height } = dimensions(bounds);
+        selecting = false;
+        map.getContainer().style.cursor = '';
+        if (width < 5 || height < 5 || width > 550 || height > 550) {
+          bounds = null;
+          status('Výřez musí mít každou stranu mezi 5 a 550 metry. Vyber jej znovu.');
+          return;
+        }
+        rectangle = L.rectangle(bounds, { color: '#2563eb', fillOpacity: 0.03 }).addTo(map);
+        $('load').disabled = false;
+        status(`Výřez přibližně ${Math.round(width)} × ${Math.round(height)} m.`);
+      });
+
+      async function request(url, options = {}) {
+        const response = await fetch(url, {
+          ...options,
+          signal: AbortSignal.timeout(90000)
+        });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const json = await response.json();
+        if (json.error) throw new Error(json.error.message || 'Chyba služby');
+        if (json.remark) throw new Error(json.remark);
+        return json;
+      }
+
+      async function loadIpr(box) {
+        const features = [];
+        let offset = 0;
+        for (let page = 0; page < 30; page += 1) {
+          const parameters = new URLSearchParams({
+            f: 'json',
+            where: '1=1',
+            geometry: [box.getWest(), box.getSouth(), box.getEast(), box.getNorth()].join(','),
+            geometryType: 'esriGeometryEnvelope',
+            inSR: '4326',
+            outSR: '4326',
+            spatialRel: 'esriSpatialRelIntersects',
+            outFields: 'CTVUK_KOD,CTVUK_POPIS',
+            returnGeometry: 'true',
+            resultOffset: String(offset),
+            resultRecordCount: '1000'
+          });
+          const json = await request(`https://gs-pub.praha.eu/arcgis/rest/services/dtmp/dtmp/MapServer/15/query?${parameters}`);
+          features.push(...(json.features || []));
+          if (!json.exceededTransferLimit) return features;
+          if (!json.features?.length) throw new Error('Neúplná odpověď IPR');
+          offset += json.features.length;
+        }
+        throw new Error('Příliš mnoho prvků IPR; zmenši výřez.');
+      }
+
+      async function loadOsm(box) {
+        const bbox = [box.getSouth(), box.getWest(), box.getNorth(), box.getEast()].join(',');
+        const query = `[out:json][60];(way["building"](${bbox});way["highway"](${bbox});node["traffic_sign"](${bbox}););out body;>;out skel qt;`;
+        return request('https://overpass-api.de/api/interpreter', {
+          method: 'POST',
+          body: new URLSearchParams({ data: query })
+        });
+      }
+
+      $('load').onclick = async () => {
+        if (!bounds) return;
+        $('load').disabled = true;
+        $('select').disabled = true;
+        $('export').disabled = true;
+        dataset = null;
+        if (preview) map.removeLayer(preview);
+        status('Načítám IPR a OSM…');
+        const box = bounds;
+        try {
+          const results = await Promise.allSettled([loadIpr(box), loadOsm(box)]);
+          const errors = [];
+          if (results[0].status === 'rejected') errors.push(`IPR: ${results[0].reason.message}`);
+          if (results[1].status === 'rejected') errors.push(`OSM: ${results[1].reason.message}`);
+          if (results.every((result) => result.status === 'rejected')) {
+            throw new Error(errors.join('\n'));
+          }
+          const surfaces = results[0].status === 'fulfilled' ? results[0].value : [];
+          const elements = results[1].status === 'fulfilled' ? results[1].value.elements : [];
+          const nodes = new Map(elements.filter((item) => item.type === 'node').map((item) => [item.id, item]));
+          const ways = elements.filter((item) => item.type === 'way').map((way) => ({
+            ...way,
+            points: way.nodes.map((id) => nodes.get(id)).filter(Boolean).map((node) => [node.lon, node.lat])
+          }));
+          const signs = [...nodes.values()].filter((node) => node.tags?.traffic_sign);
+          dataset = { box, surfaces, ways, signs, errors, date: new Date().toISOString() };
+          refreshPreview();
+          $('export').disabled = false;
+          status(`IPR: ${surfaces.length} ploch. OSM: ${ways.length} cest/budov, ${signs.length} záznamů značek.\n${errors.length ? 'NEÚPLNÝ PODKLAD – ' + errors.join('\n') : 'Načteno. Značení není úplným pasportem.'}`);
+        } catch (error) {
+          status(`Načtení selhalo: ${error.message}`);
+        } finally {
+          $('load').disabled = false;
+          $('select').disabled = false;
+        }
+      };
+
+      function escapeXml(value) {
+        return String(value ?? '').replace(/[&<>"']/g, (character) => ({
+          '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;'
+        })[character]);
+      }
+
+      function createSvg() {
+        const data = dataset;
+        const { width, height, project } = dimensions(data.box);
+        const scale = Number($('scale').value);
+        const path = (points, close = false) => points.length
+          ? `M ${points.map((point) => project(point).map((number) => number.toFixed(3)).join(',')).join(' L ')}${close ? ' Z' : ''}`
+          : '';
+        const layers = [];
+        if ($('surfaces').checked) {
+          layers.push(`<g id="plochy-ipr" inkscape:groupmode="layer" inkscape:label="Plochy IPR" fill="#f1f1f1" stroke="#777" stroke-width="0.12">`);
+          for (const feature of data.surfaces) {
+            const rings = feature.geometry?.rings || [];
+            layers.push(`<path fill-rule="evenodd" d="${rings.map((ring) => path(ring, true)).join(' ')}"><title>${escapeXml(feature.attributes?.CTVUK_POPIS)}</title></path>`);
+          }
+          layers.push('</g>');
+        }
+        if ($('buildings').checked) {
+          layers.push('<g id="budovy-osm" inkscape:groupmode="layer" inkscape:label="Budovy OSM" fill="#d4d4d4" stroke="#222" stroke-width="0.2">');
+          for (const way of data.ways.filter((item) => item.tags?.building)) {
+            layers.push(`<path d="${path(way.points, true)}"><title>OSM way ${way.id}</title></path>`);
+          }
+          layers.push('</g>');
+        }
+        if ($('roads').checked) {
+          layers.push('<g id="osy-osm" inkscape:groupmode="layer" inkscape:label="Osy komunikací OSM – nikoli obruby" fill="none" stroke="#888" stroke-width="0.2" stroke-dasharray="1 1">');
+          for (const way of data.ways.filter((item) => item.tags?.highway)) {
+            layers.push(`<path d="${path(way.points)}"><title>${escapeXml(way.tags.name || way.tags.highway)}; OSM way ${way.id}</title></path>`);
+          }
+          layers.push('</g>');
+        }
+        if ($('signs').checked) {
+          layers.push('<g id="znacky-osm" inkscape:groupmode="layer" inkscape:label="Záznamy značek OSM – neověřeno" fill="#9f1239" font-family="sans-serif" font-size="1.8">');
+          for (const sign of data.signs) {
+            const [x, y] = project([sign.lon, sign.lat]);
+            layers.push(`<g transform="translate(${x.toFixed(3)} ${y.toFixed(3)})"><title>${escapeXml(JSON.stringify(sign.tags))}; OSM node ${sign.id}</title><circle r="0.7" fill="white" stroke="#9f1239" stroke-width="0.2"/><text x="1" y="0">${escapeXml(sign.tags.traffic_sign)}</text></g>`);
+          }
+          layers.push('</g>');
+        }
+        const footer = `PRACOVNÍ PODKLAD – OVĚŘIT V TERÉNU | 1:${scale} | IPR Praha; © OpenStreetMap contributors, ODbL | ${data.date.slice(0, 10)}${data.errors.length ? ' | NEÚPLNÁ DATA' : ''}`;
+        return `<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape" width="${(width * 1000 / scale).toFixed(2)}mm" height="${((height + 12) * 1000 / scale).toFixed(2)}mm" viewBox="0 0 ${width} ${height + 12}">
+  <title>Pracovní mapový podklad pro DIO</title>
+  <desc>${escapeXml(JSON.stringify({ bbox: data.box.toBBoxString(), date: data.date, errors: data.errors, projection: 'Local equirectangular approximation; not surveying', warning: 'OSM signs incomplete; field verification required' }))}</desc>
+  <defs><clipPath id="vyrez"><rect width="${width}" height="${height}"/></clipPath></defs>
+  <rect width="100%" height="100%" fill="white"/>
+  <g clip-path="url(#vyrez)">
+    ${layers.join('\n    ')}
+  </g>
+  <rect width="${width}" height="${height}" fill="none" stroke="black" stroke-width="0.15"/>
+  <g id="popis" font-family="sans-serif" fill="black">
+    <text x="2" y="${height + 4}" font-size="${Math.min(1.8, width / 140)}">${escapeXml(footer)}</text>
+    <path d="M 2 ${height + 7} h ${Math.min(10, width / 3)}" stroke="black" stroke-width="0.3"/>
+    <text x="2" y="${height + 10}" font-size="1.8">${Math.min(10, width / 3).toFixed(1)} m</text>
+  </g>
+</svg>`;
+      }
+
+      function refreshPreview() {
+        if (!dataset) return;
+        if (preview) map.removeLayer(preview);
+        const document = new DOMParser().parseFromString(createSvg(), 'image/svg+xml');
+        const svg = document.documentElement;
+        const { width, height } = dimensions(dataset.box);
+        svg.setAttribute('viewBox', `0 0 ${width} ${height}`);
+        svg.removeAttribute('width');
+        svg.removeAttribute('height');
+        preview = L.svgOverlay(svg, dataset.box, { interactive: false }).addTo(map);
+        if (rectangle) rectangle.bringToFront();
+      }
+
+      for (const id of ['surfaces', 'buildings', 'roads', 'signs', 'scale']) {
+        $(id).onchange = refreshPreview;
+      }
+
+      $('export').onclick = () => {
+        if (!dataset) return;
+        const url = URL.createObjectURL(new Blob([createSvg()], { type: 'image/svg+xml;charset=utf-8' }));
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'dio-podklad.svg';
+        link.click();
+        setTimeout(() => URL.revokeObjectURL(url), 10000);
+      };
+    </script>
+  </body>
+</html>
