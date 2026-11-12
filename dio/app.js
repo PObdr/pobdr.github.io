@@ -186,6 +186,7 @@ function adopt(value) {
   selecting = false;
   data = adopted;
   overview.adopt(data.includeOverview !== false, importedOverview);
+  overview.setProject(data);
   data.includeOverview = overview.enabled;
   data.overview = overview.snapshot();
   bbox = data.bbox;
@@ -292,7 +293,8 @@ function download(text, type, name) {
 function exportDocument() {
   const options = {
     sets: chosen, diagnostic: $('diagnostic').checked, scale: Number($('scale').value),
-    raw: $('mode').value === 'raw', controls: $('control').checked
+    raw: $('mode').value === 'raw', controls: $('control').checked,
+    overview: overview.enabled ? overview.export(data) : null
   };
   return appendOverviewPage(exportJtsk(data, options), data, options);
 }
