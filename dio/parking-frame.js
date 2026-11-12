@@ -98,12 +98,21 @@ function bayAxis(feature) {
     best.width <= 4.5 && best.length / best.width >= 1.35 ? best.axis : null;
 }
 
+function schematicSlant(frame) {
+  const oneway = String(frame.road.attrs.oneway || '').toLowerCase();
+  if (!['yes', '1', 'true', '-1'].includes(oneway)) return 1;
+  const travel = frame.direction.map((v) => v * (oneway === '-1' ? -1 : 1));
+  // Head-in schematic bays point forward from the road into either roadside.
+  // Measured single-bay geometry remains stronger evidence than this assumption.
+  return frame.side * Math.sign(dot(travel, frame.u)) || 1;
+}
+
 function evidence(feature, raw, kindOf) {
   const frame = roadFrame(feature, raw);
   if (!frame) return null;
   const orientation = feature.attrs?.orientation;
   if (['parallel', 'perpendicular', 'diagonal'].includes(orientation)) {
-    return { orientation, slant: orientation === 'diagonal' ? 1 : 0, rank: 2, id: feature.id, source: 'explicit-orientation' };
+    return { orientation, slant: orientation === 'diagonal' ? schematicSlant(frame) : 0, rank: 2, id: feature.id, source: 'explicit-orientation' };
   }
   if (kindOf(feature) === 'regular' && feature.source === 'TSK úseky stání' && feature.coords.length === 1) {
     const ring = feature.coords[0];
@@ -121,7 +130,7 @@ function evidence(feature, raw, kindOf) {
       count < 2 ? (depth >= 4 ? 'diagonal' : null) :
       depth >= 4 ? (per >= 3.4 ? 'diagonal' : 'perpendicular') :
       per >= 4.8 ? 'parallel' : per >= 3.4 ? 'diagonal' : 'perpendicular';
-    return type ? { orientation: type, slant: type === 'diagonal' ? 1 : 0,
+    return type ? { orientation: type, slant: type === 'diagonal' ? schematicSlant(frame) : 0,
       rank: 0, id: feature.id, source: 'inferred-from-TSK-geometry-and-count' } : null;
   }
 
