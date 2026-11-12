@@ -2,6 +2,7 @@ import { exportJtsk } from './jtsk-export.js';
 import { toWgs, northAngle } from './jtsk.js';
 import { rose } from './rose.js';
 import { northUpSelection } from './north-up.js';
+import { addStreetNames } from './street-names.js';
 import {
   validateSelection, selectionMatrix, selectionToEN, selectionNorthAngles
 } from './selection.js';
@@ -10,7 +11,7 @@ const NS = 'http://www.w3.org/2000/svg';
 
 export function exportSelection(data, options = {}) {
   const source = exportJtsk(data, options);
-  if (!data.selection) return source;
+  if (!data.selection) return addStreetNames(source, data, options);
   const selected = validateSelection(data.selection);
   if (options.preview) return source;
   const center = toWgs(...selectionToEN(selected, [selected.width / 2, selected.height / 2]));
@@ -115,5 +116,6 @@ export function exportSelection(data, options = {}) {
   note.setAttribute('y', height + 19);
   note.setAttribute('font-size', Math.min(scale / 1000 * 2.2, width / 120));
   note.textContent = `EPSG:5514; natočený výřez; S = zeměpisný, Ns = síťový sever. Převod není geodetické zaměření.`;
-  return '<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(root);
+  const rotated = '<?xml version="1.0" encoding="UTF-8"?>\n' + new XMLSerializer().serializeToString(root);
+  return addStreetNames(rotated, data, options);
 }
