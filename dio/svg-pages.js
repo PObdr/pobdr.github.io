@@ -71,11 +71,11 @@ export function arrangeSvgPages(source) {
     ['x', 'y', 'width', 'height'].forEach((key, i) => page.setAttribute(key, box[i]));
     named.append(page);
   }
-  const width = second[0] + second[2];
-  const height = Math.max(first[3], second[3]);
-  root.setAttribute('viewBox', `0 0 ${width} ${height}`);
-  root.setAttribute('width', `${width * mmPerUnit}mm`);
-  root.setAttribute('height', `${height * mmPerUnit}mm`);
+  // Inkscape derives its first page from the root viewport, not the page list.
+  // Keep the overview outside this viewport; it has its own page definition.
+  root.setAttribute('viewBox', first.join(' '));
+  root.setAttribute('width', `${first[2] * mmPerUnit}mm`);
+  root.setAttribute('height', `${first[3] * mmPerUnit}mm`);
   const metadata = root.querySelector('metadata');
   if (metadata) metadata.textContent = JSON.stringify({ ...JSON.parse(metadata.textContent),
     pageLayout: { gapMm: 30, mmPerUnit, pages: [first, second] }
