@@ -1,3 +1,4 @@
+import { arrangeSvgPages, keepPrintPage } from './svg-pages.js';
 import {
   PROVIDER, planOverview, renderOverview, drawOverview
 } from './overview-osm.js';
@@ -271,8 +272,8 @@ export function appendOverviewPage(source, data, options = {}) {
       primaryPageViewBox: box
     } }, null, 2);
   }
-  return '<?xml version="1.0" encoding="UTF-8"?>\n' +
-    new XMLSerializer().serializeToString(root);
+  return arrangeSvgPages('<?xml version="1.0" encoding="UTF-8"?>\n' +
+    new XMLSerializer().serializeToString(root));
 }
 
 export async function printExport(source, scale) {
@@ -320,6 +321,7 @@ export async function printExport(source, scale) {
       const section = doc.createElement('section');
       section.className = `p${i}`;
       const copy = doc.importNode(svg, true);
+      keepPrintPage(copy, i + 1);
       copy.setAttribute('viewBox', box.join(' '));
       copy.setAttribute('width', `${box[2] * 1000 / scale}mm`);
       copy.setAttribute('height', `${box[3] * 1000 / scale}mm`);

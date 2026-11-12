@@ -1,3 +1,5 @@
+import { createPaperControl } from './paper-control.js';
+import { fitDetailPage, validatePrintSettings } from './paper.js';
 import { createInterface } from './interface.js';
 import { createOverviewControl, validateOverview, appendOverviewPage, printExport } from './overview.js';
 import { frame, reconcile, visibleByDefault } from './model.js';
@@ -5,7 +7,7 @@ import { load } from './sources.js';
 import { exportSelection as exportJtsk } from './selection-export.js';
 import { createSelectionControl } from './selection-control.js';
 import { validateSelection, selectionBbox } from './selection.js';
-import { projectDataset } from './jtsk.js';
+import { projectDataset, jtskFrame } from './jtsk.js';
 import { createMap, gridOverlay, gridSelection } from './jtsk-map.js';
 import { SETS, PRESETS, selectedSets, selectedFeatures, setOf } from './sets.js';
 
@@ -41,7 +43,20 @@ pdfButton.id = 'overview-print';
 pdfButton.textContent = 'Tisk / PDF';
 pdfButton.disabled = true;
 $('export').after(pdfButton);
-const ready = () => data && chosen.every((id) => data.coverage?.[id]) && overview.ready();
+const ready = () => data && chosen.every((id) => data.coverage?.[id]) && overview.ready() && paper.ready();
+const paper = createPaperControl({
+  dimensions() {
+    if (selection) return selection;
+    return bbox ? jtskFrame(bbox) : null;
+  },
+  changed() {
+    if (data) {
+      data.printSettings = paper.snapshot();
+      render();
+    }
+    setControls();
+  }
+});
 
 function save() {
   if (!data) return;
@@ -54,6 +69,7 @@ function save() {
 }
 
 function setControls() {
+  paper.refresh();
   $('sets').replaceChildren();
   const names = { loaded: 'OK', partial: 'Část', failed: 'Chyba' };
   for (const set of SETS) {
@@ -133,6 +149,7 @@ function adopt(value) {
     throw new Error('Neplatná volba přehledové situace');
   }
   const importedOverview = validateOverview(value.overview, false);
+  const importedPrint = validatePrintSettings(value.printSettings);
   const dimensions = frame(value.bbox);
   if (value.selection) {
     validateSelection(value.selection);
@@ -164,6 +181,7 @@ function adopt(value) {
   data.overview = overview.snapshot();
   bbox = data.bbox;
   selection = data.selection;
+  paper.adopt(importedPrint);
   if (rectangle) map.removeLayer(rectangle);
   rectangle = gridSelection(bbox, selection).addTo(map);
   data.coverage ||= Object.fromEntries([...new Set(data.raw.map(setOf))].filter((id) => id !== 'control').map((id) => [id, 'partial']));
@@ -221,6 +239,7 @@ const picker = createSelectionControl(map, {
     $('load').disabled = false;
     $('summary').textContent = `${value.width.toFixed(1)} × ${value.height.toFixed(1)} m`;
     ui.selectionReady();
+    paper.refresh();
   }
 });
 $('select').onclick = () => picker.start();
@@ -236,6 +255,7 @@ $('load').onclick = async () => {
     status('Převádím geometrii do EPSG:5514…');
     await new Promise((resolve) => setTimeout(resolve, 0));
     const next = projectDataset(loaded);
+    next.printSettings = paper.snapshot();
     next.includeOverview = overview.enabled;
     next.overview = overview.snapshot();
     if (selection) next.selection = structuredClone(selection);
@@ -270,12 +290,15 @@ function download(text, type, name) {
   setTimeout(() => URL.revokeObjectURL(url), 10000);
 }
 function exportDocument() {
+  const layout = paper.resolve();
+  if (!layout.fits) throw new Error('Výkres se na vybraný papír nevejde');
   const options = {
-    sets: chosen, diagnostic: $('diagnostic').checked, scale: Number($('scale').value),
+    sets: chosen, diagnostic: $('diagnostic').checked, scale: layout.scale,
     raw: $('mode').value === 'raw', controls: $('control').checked,
     overview: overview.enabled ? overview.export(data) : null
   };
-  return appendOverviewPage(exportJtsk(data, options), data, options);
+  const detail = fitDetailPage(exportJtsk(data, options), layout);
+  return appendOverviewPage(detail, data, options);
 }
 $('export').onclick = () => {
   if (!ready()) return;
