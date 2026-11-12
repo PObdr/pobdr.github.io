@@ -5,6 +5,7 @@ import { rose } from './rose.js';
 import { crossingDrawing } from './crossings.js';
 import { selectedFeatures } from './sets.js';
 import { parkingDrawing } from './parking.js';
+import { applyCrossingMask } from './crossing-mask.js';
 
 const NS = 'http://www.w3.org/2000/svg';
 const INK = 'http://www.inkscape.org/namespaces/inkscape';
@@ -62,8 +63,10 @@ export function exportJtsk(data, options = {}) {
     if (fragment.querySelector('parsererror')) throw new Error('Neplatné značení přechodu');
     const title = object.querySelector(':scope > title');
     const path = doc.importNode(fragment.documentElement.firstElementChild, true);
+    path.setAttribute('data-crossing', 'true');
     object.replaceChildren(...(title ? [title, path] : [path]));
   }
+  applyCrossingMask(doc, raw, f);
   root.setAttribute('viewBox', `0 0 ${f.width} ${total}`);
   root.setAttribute('width', `${f.width * 1000 / scale}mm`);
   root.setAttribute('height', `${total * 1000 / scale}mm`);

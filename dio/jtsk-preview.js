@@ -2,6 +2,7 @@ import { createPreviewProjection, projectPath } from './preview-projection.js';
 
 import { jtskFrame } from './jtsk.js';
 import { selectionBoundary } from './selection.js';
+import { projectCrossingMasks } from './crossing-mask.js';
 
 const NS = 'http://www.w3.org/2000/svg';
 
@@ -37,6 +38,7 @@ export function projectPreview(svg, bbox, selection) {
       throw new Error('Neznámý objekt náhledu');
     }
   }
+  projectCrossingMasks(svg, p, projectPath);
   for (const circle of [...svg.querySelectorAll('circle[cx][cy]')]) {
     const g = svg.ownerDocument.createElementNS(NS, 'g');
     g.setAttribute('transform', `matrix(${p.matrix(Number(circle.getAttribute('cx')), Number(circle.getAttribute('cy'))).join(' ')})`);
