@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <title>DIOGEN – sud</title>
+  <rect width="64" height="64" rx="16" fill="#136d65"/>
+  <g fill="none" stroke="#ffffff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 19 15 C 12 26 12 40 19 50 C 27 55 37 55 45 50 C 52 40 52 26 45 15"/>
+    <ellipse cx="32" cy="15" rx="13" ry="5"/>
+    <path d="M 15 26 C 26 30 38 30 49 26"/>
+    <path d="M 15 40 C 26 44 38 44 49 40"/>
+    <path d="M 26 21 C 23 30 23 42 26 50"/>
+    <path d="M 38 21 C 41 30 41 42 38 50"/>
+  </g>
+</svg>

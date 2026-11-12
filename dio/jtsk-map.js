@@ -1,8 +1,6 @@
-import { fromWgs, toWgs, jtskFrame } from './jtsk.js';
+import { toWgs, jtskFrame } from './jtsk.js';
 import { selectionBoundary } from './selection.js';
-import { rose } from './rose.js';
 import { projectPreview } from './jtsk-preview.js';
-import { gridAngleOnMap } from './preview-projection.js';
 
 export function createMap(id) {
   const map = L.map(id, {
@@ -13,38 +11,8 @@ export function createMap(id) {
     maxNativeZoom: 19, maxZoom: 22,
     attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
-  const compass = L.control({ position: 'topright' });
-  let container;
-  function updateCompass() {
-    if (!container) return;
-    const center = map.getCenter();
-    const gridAngle = gridAngleOnMap(center.lng, center.lat);
-    container.innerHTML = `<svg width="120" height="112" viewBox="-60 -56 120 112" role="img" aria-label="Růžice: S zeměpisný sever, Ns sever sítě S-JTSK">${rose(0, 44, gridAngle)}</svg><div>S: zeměpisný; Ns: síť 5514</div>`;
-  }
-  compass.onAdd = () => {
-    container = L.DomUtil.create('div', 'leaflet-control');
-    container.style.cssText = 'background:white;padding:6px;font:11px sans-serif;text-align:center';
-    L.DomEvent.disableClickPropagation(container);
-    updateCompass();
-    return container;
-  };
-  compass.addTo(map);
-  map.on('moveend', updateCompass);
-  const coordinates = L.control({ position: 'bottomleft' });
-  let readout;
-  coordinates.onAdd = () => {
-    readout = L.DomUtil.create('div', 'leaflet-control');
-    readout.style.cssText = 'background:white;padding:5px;font:12px monospace';
-    readout.textContent = 'Náhled OSM; pracovní souřadnice EPSG:5514';
-    return readout;
-  };
-  map.on('mousemove', ({ latlng }) => {
-    const [east, north] = fromWgs(latlng.lng, latlng.lat);
-    readout.textContent = `5514: E ${east.toFixed(2)}; N ${north.toFixed(2)} m`;
-  });
-  coordinates.addTo(map);
   background.on('tileerror', () => {
-    readout.textContent = 'Podklad OSM se nenačetl; pracovní geometrie zůstává v EPSG:5514.';
+    map.fire('dio:basemaperror');
   });
   L.control.scale({ imperial: false }).addTo(map);
   return map;

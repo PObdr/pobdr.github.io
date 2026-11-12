@@ -3,111 +3,109 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>DIO – tematické podklady</title>
+    <meta name="theme-color" content="#136d65">
+    <meta name="application-name" content="DIOGEN">
+    <title>DIOGEN – generátor DIO</title>
+    <link rel="icon" type="image/svg+xml" href="./diogen.svg">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-    <style>
-      body {
-        margin: 0;
-        font: 15px/1.5 system-ui, sans-serif;
-      }
-      header, aside {
-        padding: 16px;
-      }
-      main {
-        display: grid;
-        grid-template-columns: 390px 1fr;
-      }
-      #map {
-        height: 90vh;
-        min-height: 420px;
-      }
-      button, select, input {
-        font: inherit;
-        max-width: 100%;
-      }
-      button, select {
-        padding: 7px;
-        margin: 4px 0;
-      }
-      label {
-        display: block;
-        margin: 6px 0;
-      }
-      small {
-        display: block;
-        color: #475569;
-      }
-      #status, pre {
-        white-space: pre-wrap;
-        overflow-wrap: anywhere;
-        font-size: 12px;
-      }
-      #status, #layers, #detail {
-        max-height: 30vh;
-        overflow: auto;
-      }
-      details {
-        margin: 12px 0;
-      }
-      @media (max-width: 760px) {
-        main {
-          grid-template-columns: 1fr;
-        }
-      }
-    </style>
+    <link rel="stylesheet" href="./interface.css">
   </head>
   <body>
-    <header>
-      <h1>DIO – tematické podklady</h1>
-      <p>Vyber výřez, zvol sady a načti podklad. SVG stáhne jen vybrané sady ve vnořených vrstvách.</p>
+    <header class="app-header">
+      <a class="brand" href="./" aria-label="DIOGEN – generátor DIO">
+        <img src="./diogen.svg" width="36" height="36" alt="">
+        DIOGEN<span>Generátor DIO</span>
+      </a>
+      <span class="header-tag">Pracovní situace</span>
     </header>
     <main>
-      <aside>
-        <button id="select" type="button">Vybrat výřez</button>
-        <label>Rozsah podkladu
+      <aside aria-label="Nastavení podkladu">
+        <section class="panel">
+          <h2><span class="step">1</span> Výřez</h2>
+          <button id="select" class="button-secondary" type="button">Vybrat výřez</button>
+          <p id="summary" role="status" aria-live="polite">Označ místo v mapě.</p>
+        </section>
+        <section class="panel">
+          <h2><span class="step">2</span> Podklad</h2>
+          <label for="preset" class="field-label">Rozsah</label>
           <select id="preset">
             <option value="dio">Pro DIO</option>
-            <option value="extended">Rozšířený – všechny povrchové sady</option>
+            <option value="extended">Rozšířený</option>
             <option value="custom">Vlastní výběr</option>
           </select>
-        </label>
-        <div id="sets"></div>
-        <button id="load" type="button" disabled>Načíst vybrané sady</button>
-        <label>Měřítko
+          <details class="settings-details">
+            <summary>Datové sady a přehled</summary>
+            <div id="sets"></div>
+          </details>
+          <div id="overview-slot"></div>
+          <button id="load" class="button-primary" type="button" disabled>Načíst podklady</button>
+        </section>
+        <section id="load-activity" class="activity" data-state="idle" aria-busy="false">
+          <div class="activity-heading">
+            <span class="activity-indicator" aria-hidden="true"></span>
+            <div>
+              <h2 id="loading-title" role="status" aria-live="polite">Vyber místo</h2>
+              <p id="loading-subtitle"></p>
+            </div>
+          </div>
+          <progress id="loading-progress" aria-label="Dokončené zdroje" hidden></progress>
+          <details id="source-details" hidden>
+            <summary><span id="source-count"></span></summary>
+            <ul id="source-list"></ul>
+            <details class="technical-log">
+              <summary>Technický záznam</summary>
+              <pre id="status"></pre>
+            </details>
+          </details>
+          <details id="load-issues" hidden>
+            <summary>Podrobnosti</summary>
+            <ul id="issue-list"></ul>
+          </details>
+        </section>
+        <section class="panel export-panel">
+          <h2><span class="step">3</span> Export</h2>
+          <label for="scale" class="field-label">Měřítko detailu</label>
           <select id="scale">
             <option value="200">1 : 200</option>
             <option value="500" selected>1 : 500</option>
             <option value="1000">1 : 1 000</option>
           </select>
-        </label>
-        <button id="export" type="button" disabled>Stáhnout SVG</button>
-        <p id="summary" role="status" aria-live="polite">Vyber výřez.</p>
-        <details>
-          <summary>Podrobnosti načítání</summary>
-          <pre id="status"></pre>
+          <div class="export-actions">
+            <button id="export" class="button-primary" type="button" disabled>Stáhnout SVG</button>
+          </div>
+        </section>
+        <details class="panel settings-details">
+          <summary>Vrstvy</summary>
+          <div id="layers"></div>
         </details>
-        <details>
-          <summary>Pokročilé vrstvy a pracovní projekt</summary>
-          <label>Režim
+        <details class="panel settings-details">
+          <summary>Pracovní projekt</summary>
+          <button id="json" class="button-secondary" type="button" disabled>Uložit JSON</button>
+          <label class="file-field">Načíst JSON
+            <input id="import" type="file" accept=".json">
+          </label>
+          <details class="settings-details">
+            <summary>Pokročilé nastavení</summary>
+            <label for="mode" class="field-label">Režim podkladu</label>
             <select id="mode">
-              <option value="merged">Sjednocený podklad</option>
+              <option value="merged">Sjednocený</option>
               <option value="raw">Původní zdroje</option>
             </select>
-          </label>
-          <label><input id="diagnostic" type="checkbox"> Kontrolní kresba (donačte se tlačítkem Načíst)</label>
-          <label><input id="control" type="checkbox"> Kontrolní SVG: přibalit skryté původní vrstvy vybraných sad</label>
-          <div id="layers"></div>
-          <button id="json" type="button" disabled>Uložit pracovní JSON</button>
-          <label>Načíst pracovní JSON <input id="import" type="file" accept=".json"></label>
+            <label><input id="diagnostic" type="checkbox"> Kontrolní kresba</label>
+            <label><input id="control" type="checkbox"> Přibalit zdrojové vrstvy</label>
+          </details>
         </details>
-        <details>
-          <summary>Detail objektu – klikni v mapě</summary>
-          <div id="detail"></div>
+        <details class="data-notes">
+          <summary>Zdroje a omezení</summary>
+          <p>Pracovní podklad EPSG:5514. Ověřit v terénu; nejde o geodetické zaměření.</p>
+          <p>IPR Praha, MHMP, TSK, THMP; © přispěvatelé OpenStreetMap, ODbL.</p>
+          <a href="./SETS.md">Pravidla sad</a> · <a href="./README.md">Omezení dat</a>
         </details>
-        <small>Pracovní podklad, ověřit v terénu. Nejde o úplný pasport značek ani geodetický výstup. Výstup stále používá místní přibližnou projekci, nikoli S-JTSK.</small>
-        <small>IPR Praha, MHMP, TSK, THMP; © přispěvatelé OpenStreetMap, ODbL. <a href="./SETS.md">Pravidla sad</a> · <a href="./README.md">Omezení dat</a></small>
       </aside>
-      <div id="map" aria-label="Mapa výběru"></div>
+      <section class="map-stage" aria-label="Mapa">
+        <div id="map" aria-label="Mapa výběru"></div>
+        <p id="map-notice" role="status" hidden>Mapový podklad není dostupný.</p>
+      </section>
     </main>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script type="module" src="./app.js"></script>

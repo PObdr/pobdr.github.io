@@ -1,3 +1,4 @@
+import { createInterface } from './interface.js';
 import { createOverviewControl, validateOverview, appendOverviewPage, printExport } from './overview.js';
 import { frame, reconcile, visibleByDefault } from './model.js';
 import { load } from './sources.js';
@@ -9,9 +10,9 @@ import { createMap, gridOverlay, gridSelection } from './jtsk-map.js';
 import { SETS, PRESETS, selectedSets, selectedFeatures, setOf } from './sets.js';
 
 const $ = (id) => document.getElementById(id);
+const ui = createInterface();
 const map = createMap('map');
-const notice = document.querySelector('aside > small');
-notice.textContent = 'Pracovní podklad v S-JTSK (EPSG:5514), převod EPSG:1623 s přibližnou přesností 1 m. Ověřit v terénu; nejde o geodetické zaměření ani úplný pasport značek.';
+map.on('dio:basemaperror', () => ui.mapError());
 let data;
 let result;
 let bbox;
@@ -22,7 +23,10 @@ let rectangle;
 let overlay;
 let chosen = [...PRESETS.dio];
 let storageKey;
-const status = (text) => { $('status').textContent = text; };
+const status = (text) => {
+  $('status').textContent = text;
+  ui.progress(text);
+};
 const overview = createOverviewControl(() => {
   if (!overview.enabled) $('preset').value = 'custom';
   if (data) {
@@ -51,7 +55,7 @@ function save() {
 
 function setControls() {
   $('sets').replaceChildren();
-  const names = { loaded: 'Načteno', partial: 'Načteno částečně', failed: 'Načtení selhalo' };
+  const names = { loaded: 'OK', partial: 'Část', failed: 'Chyba' };
   for (const set of SETS) {
     const label = document.createElement('label');
     const input = document.createElement('input');
@@ -59,11 +63,14 @@ function setControls() {
     input.checked = chosen.includes(set.id);
     input.disabled = busy || set.id === 'base';
     const state = data?.coverage?.[set.id];
-    const text = busy && input.checked ? 'Načítání / ověřování' : state ? `${names[state]}${input.checked ? '' : ' – skryto'}` : 'Nenačteno';
-    label.append(input, ` ${set.label} — ${text}`);
-    const small = document.createElement('small');
-    small.textContent = set.description;
-    label.append(small);
+    label.className = 'set-option';
+    label.title = set.description;
+    const caption = document.createElement('span');
+    caption.textContent = set.label;
+    const badge = document.createElement('span');
+    badge.className = `set-state ${state || 'waiting'}`;
+    badge.textContent = busy && input.checked ? 'Načítání' : names[state] || '';
+    label.append(input, caption, badge);
     input.onchange = () => {
       chosen = selectedSets(input.checked ? [...chosen, set.id] : chosen.filter((id) => id !== set.id));
       $('preset').value = 'custom';
@@ -71,8 +78,8 @@ function setControls() {
     };
     $('sets').append(label);
   }
-  overview.mount($('sets'), busy);
-  $('load').textContent = data ? 'Donačíst / opakovat neúspěšné zdroje' : 'Načíst vybrané sady';
+  overview.mount($('overview-slot'), busy);
+  $('load').textContent = busy ? 'Načítám podklady' : data ? 'Obnovit podklady' : 'Načíst podklady';
   $('export').disabled = busy || !ready();
   pdfButton.disabled = busy || !ready();
 }
@@ -87,13 +94,7 @@ function render() {
   if (doc.querySelector('parsererror')) throw new Error('Neplatné SVG');
   const svg = doc.documentElement;
   overlay = gridOverlay(svg, bbox, data.selection).addTo(map);
-  svg.addEventListener('click', (event) => {
-    const object = event.target.closest('[data-object]');
-    if (object && !selecting) {
-      L.DomEvent.stopPropagation(event);
-      detail(object.getAttribute('data-object'));
-    }
-  });
+
 }
 
 function refresh() {
@@ -122,36 +123,8 @@ function refresh() {
   render();
   const missing = chosen.filter((id) => !data.coverage[id]);
   const incomplete = chosen.filter((id) => data.coverage[id] !== 'loaded');
-  $('summary').textContent = missing.length ? 'Nově vybrané sady je nutné donačíst.' : `${raw.length} zdrojových prvků v EPSG:5514. ${incomplete.length ? 'Podklad je částečný; viz podrobnosti.' : 'Vybrané sady připravené.'}`;
+  $('summary').textContent = missing.length ? 'Změněné sady je potřeba načíst.' : incomplete.length ? 'Částečný podklad' : 'Podklad připraven';
   save();
-}
-
-function detail(id) {
-  const f = result.output.find((o) => o.id === id);
-  if (!f) return;
-  $('detail').replaceChildren();
-  const pre = document.createElement('pre');
-  pre.textContent = JSON.stringify({ category: f.category, reason: f.reason, sources: f.members.map((member) => data.raw.find((o) => o.id === member)) }, null, 2);
-  $('detail').append(pre);
-  function button(text, key, value) {
-    const b = document.createElement('button');
-    b.textContent = text;
-    b.onclick = () => {
-      data.decisions[key] = value;
-      save();
-      refresh();
-      detail(id);
-    };
-    $('detail').append(b);
-  }
-  for (const c of result.candidates.filter((c) => f.members.includes(c.a) || f.members.includes(c.b))) {
-    const note = document.createElement('p');
-    note.textContent = `${c.a} ↔ ${c.b}: ${c.distance.toFixed(2)} m${c.conflict ? ' – rozpor druhu' : ''}`;
-    $('detail').append(note);
-    button('Sloučit', c.key, 'merge');
-    button('Rozdělit / neslučovat', c.key, 'separate');
-  }
-  if (f.suppressed && f.kind === 'line') button('Obnovit kresbu', `rail|${id}`, 'separate');
 }
 
 function adopt(value) {
@@ -210,6 +183,7 @@ function adopt(value) {
   $('load').disabled = false;
   $('json').disabled = false;
   refresh();
+  if (!busy) ui.complete(data);
   map.fitBounds(gridSelection(bbox, selection).getBounds());
 }
 
@@ -219,24 +193,25 @@ $('preset').onchange = () => {
   if (PRESETS[$('preset').value]) chosen = [...PRESETS[$('preset').value]];
   refresh();
 };
-$('select').textContent = 'Vybrat výřez třemi body';
+$('select').textContent = 'Vybrat výřez';
 const picker = createSelectionControl(map, {
   message: (text) => { $('summary').textContent = text; },
   onStart() {
     selecting = true;
+    ui.selecting();
     selection = null;
     bbox = null;
     data = null;
     overview.reset();
     for (const id of ['load', 'export', 'json']) $(id).disabled = true;
     $('layers').replaceChildren();
-    $('detail').replaceChildren();
     if (overlay) map.removeLayer(overlay);
     if (rectangle) map.removeLayer(rectangle);
     setControls();
   },
   onCancel() {
     selecting = false;
+    ui.cancelSelection();
   },
   onComplete(value, bounds) {
     selecting = false;
@@ -244,16 +219,18 @@ const picker = createSelectionControl(map, {
     bbox = bounds;
     rectangle = gridSelection(bbox, selection).addTo(map);
     $('load').disabled = false;
-    $('summary').textContent = `${value.width.toFixed(1)} × ${value.height.toFixed(1)} m; natočený obdélník v S-JTSK.`;
+    $('summary').textContent = `${value.width.toFixed(1)} × ${value.height.toFixed(1)} m`;
+    ui.selectionReady();
   }
 });
 $('select').onclick = () => picker.start();
 $('load').onclick = async () => {
   if (!bbox || busy) return;
   busy = true;
+  ui.begin();
   for (const id of ['load', 'select', 'export', 'json', 'import', 'preset', 'diagnostic']) $(id).disabled = true;
   setControls();
-  $('summary').textContent = 'Načítám vybrané sady; původní výsledek zůstává zobrazen.';
+  $('summary').textContent = 'Načítám podklady';
   try {
     const loaded = await load(bbox, status, { sets: chosen, diagnostic: $('diagnostic').checked });
     status('Převádím geometrii do EPSG:5514…');
@@ -270,8 +247,10 @@ $('load').onclick = async () => {
     }
     adopt(next);
     status('Geometrie připravena v EPSG:5514. Chyby zdrojů: ' + (data.errors.join('; ') || 'žádné'));
+    ui.complete(data);
   } catch (error) {
-    $('summary').textContent = `Načtení selhalo: ${error.message}`;
+    $('summary').textContent = 'Načtení selhalo';
+    ui.fail(error.message);
   } finally {
     busy = false;
     for (const id of ['load', 'select', 'import', 'preset', 'diagnostic']) $(id).disabled = false;
@@ -303,7 +282,8 @@ $('export').onclick = () => {
   try {
     download(exportDocument(), 'image/svg+xml;charset=utf-8', 'dio-s-jtsk.svg');
   } catch (error) {
-    $('summary').textContent = error.message;
+    $('summary').textContent = 'Operace se nezdařila';
+    ui.fail(error.message);
   }
 };
 pdfButton.onclick = async () => {
@@ -311,7 +291,8 @@ pdfButton.onclick = async () => {
   try {
     await printExport(exportDocument(), Number($('scale').value));
   } catch (error) {
-    $('summary').textContent = error.message;
+    $('summary').textContent = 'Operace se nezdařila';
+    ui.fail(error.message);
   }
 };
 $('json').onclick = () => {
@@ -324,7 +305,8 @@ $('import').onchange = async (event) => {
     if (file.size > 50000000) throw new Error('Soubor přesahuje 50 MB');
     adopt(JSON.parse(await file.text()));
   } catch (error) {
-    $('summary').textContent = error.message;
+    $('summary').textContent = 'Operace se nezdařila';
+    ui.fail(error.message);
   }
 };
 setControls();
