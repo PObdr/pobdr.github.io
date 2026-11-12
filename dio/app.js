@@ -1,3 +1,4 @@
+import { createOverviewControl, validateOverview, appendOverviewPage, printExport } from './overview.js';
 import { frame, reconcile, visibleByDefault } from './model.js';
 import { load } from './sources.js';
 import { exportSelection as exportJtsk } from './selection-export.js';
@@ -22,7 +23,21 @@ let overlay;
 let chosen = [...PRESETS.dio];
 let storageKey;
 const status = (text) => { $('status').textContent = text; };
-const ready = () => data && chosen.every((id) => data.coverage?.[id]);
+const overview = createOverviewControl(() => {
+  if (!overview.enabled) $('preset').value = 'custom';
+  if (data) {
+    data.includeOverview = overview.enabled;
+    data.overview = overview.snapshot();
+  }
+  setControls();
+});
+const pdfButton = document.createElement('button');
+pdfButton.type = 'button';
+pdfButton.id = 'overview-print';
+pdfButton.textContent = 'Tisk / PDF';
+pdfButton.disabled = true;
+$('export').after(pdfButton);
+const ready = () => data && chosen.every((id) => data.coverage?.[id]) && overview.ready();
 
 function save() {
   if (!data) return;
@@ -56,8 +71,10 @@ function setControls() {
     };
     $('sets').append(label);
   }
+  overview.mount($('sets'), busy);
   $('load').textContent = data ? 'Donačíst / opakovat neúspěšné zdroje' : 'Načíst vybrané sady';
   $('export').disabled = busy || !ready();
+  pdfButton.disabled = busy || !ready();
 }
 
 function render() {
@@ -139,6 +156,10 @@ function detail(id) {
 
 function adopt(value) {
   if (![2, 3].includes(value.version) || !Array.isArray(value.raw) || value.raw.length > 100000 || !Array.isArray(value.bbox) || value.bbox.length !== 4 || !value.bbox.every(Number.isFinite)) throw new Error('Neplatný pracovní JSON');
+  if (value.includeOverview !== undefined && typeof value.includeOverview !== 'boolean') {
+    throw new Error('Neplatná volba přehledové situace');
+  }
+  const importedOverview = validateOverview(value.overview, false);
   const dimensions = frame(value.bbox);
   if (value.selection) {
     validateSelection(value.selection);
@@ -164,6 +185,9 @@ function adopt(value) {
   picker.cancel();
   selecting = false;
   data = adopted;
+  overview.adopt(data.includeOverview !== false, importedOverview);
+  data.includeOverview = overview.enabled;
+  data.overview = overview.snapshot();
   bbox = data.bbox;
   selection = data.selection;
   if (rectangle) map.removeLayer(rectangle);
@@ -189,6 +213,8 @@ function adopt(value) {
 }
 
 $('preset').onchange = () => {
+  overview.preset($('preset').value);
+  if (data) data.includeOverview = overview.enabled;
   if (PRESETS[$('preset').value]) chosen = [...PRESETS[$('preset').value]];
   refresh();
 };
@@ -200,6 +226,7 @@ const picker = createSelectionControl(map, {
     selection = null;
     bbox = null;
     data = null;
+    overview.reset();
     for (const id of ['load', 'export', 'json']) $(id).disabled = true;
     $('layers').replaceChildren();
     $('detail').replaceChildren();
@@ -231,6 +258,8 @@ $('load').onclick = async () => {
     status('Převádím geometrii do EPSG:5514…');
     await new Promise((resolve) => setTimeout(resolve, 0));
     const next = projectDataset(loaded);
+    next.includeOverview = overview.enabled;
+    next.overview = overview.snapshot();
     if (selection) next.selection = structuredClone(selection);
     if (data) {
       next.raw = [...new Map([...data.raw, ...next.raw].map((f) => [f.id, f])).values()];
@@ -260,12 +289,28 @@ function download(text, type, name) {
   link.click();
   setTimeout(() => URL.revokeObjectURL(url), 10000);
 }
-$('export').onclick = () => {
-  if (!ready()) return;
-  download(exportJtsk(data, {
+function exportDocument() {
+  const options = {
     sets: chosen, diagnostic: $('diagnostic').checked, scale: Number($('scale').value),
     raw: $('mode').value === 'raw', controls: $('control').checked
-  }), 'image/svg+xml;charset=utf-8', 'dio-s-jtsk.svg');
+  };
+  return appendOverviewPage(exportJtsk(data, options), data, options);
+}
+$('export').onclick = () => {
+  if (!ready()) return;
+  try {
+    download(exportDocument(), 'image/svg+xml;charset=utf-8', 'dio-s-jtsk.svg');
+  } catch (error) {
+    $('summary').textContent = error.message;
+  }
+};
+pdfButton.onclick = async () => {
+  if (!ready()) return;
+  try {
+    await printExport(exportDocument(), Number($('scale').value));
+  } catch (error) {
+    $('summary').textContent = error.message;
+  }
 };
 $('json').onclick = () => {
   if (data) download(JSON.stringify(data, null, 2), 'application/json', 'dio-pracovni-jtsk.json');
