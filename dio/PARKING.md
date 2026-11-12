@@ -1,32 +1,36 @@
 # Parkování v mapě a SVG
 
-Kreslení provádí parking.js v metrických pracovních souřadnicích EPSG:5514.
-Stejnou geometrii používá mapový náhled i export. Zdrojové prvky a jejich
-identifikátory zůstávají zachované; inference se zapisuje do title objektu SVG
-jako parkingRendering. Původní zdrojový režim a kontrolní podvrstvy se nemění.
+parking.js kreslí v pracovním EPSG:5514; parking-frame.js určuje návaznost pásu,
+orientaci a lokální bázi symbolu. Pracovní data se nemění. Stejná geometrie se
+použije v mapě a po transformaci i v natočeném exportu.
 
-## První verze
+## Návaznost a přednost údajů
 
-- TSK stání: zdrojový obrys a schematické dělení, pokud je dostupná blízká osa
-  ulice OSM a platný zdrojový počet PS_ZPS. Žádný počet se nedopočítává z normové šířky.
-- OSM plocha: explicitní orientation a capacity, pokud jsou přítomné.
-- TSK ZTP a OSM plochy vyhrazené celé pro disabled: modrý obrys a vektorový
-  symbol vozíku, pokud se dovnitř vejde. Neurčuje přesné rozmístění jednotlivých míst.
-- Částečná capacity:disabled neoznačí celou plochu za ZTP.
-- Zásobování, speciální stání a zákaz: obrys bez běžných boxů.
-- Dělicí čáry běžného stání se ořezávají mimo vyhrazené plochy a zákazy.
-- Překryté části OSM se nekreslí přes přednostní TSK; nekryté části zůstávají.
+Navazující plochy musí ležet do 1,5 m od sebe na stejné straně stejné ulice,
+s téměř souběžnou osou. Pokud oba záznamy mají ZPS_ID, musí se shodovat.
+Samotné ID ani blízkost přes vozovku nestačí. Jde o konzervativní prostorovou
+heuristiku, nikoli o úplnou topologickou analýzu křižovatek.
 
-## Omezení
+Explicitní orientation má přednost před geometrií jednotlivého ZTP a ta před
+odhadem běžného pásu z hloubky a PS_ZPS. Geometrie může určit i sklon šikmých čar.
+Blok dvou sdružených míst neslouží jako rozměr jednoho auta. Při konfliktu
+stejně silných vodítek se sdílená orientace neurčí a dělení ani symbol se nevymýšlí.
 
-Orientace TSK se odhaduje heuristikou z projektu Profily ulic, Bára Soukupová,
-MIT; viz PROJECTION-LICENSE.txt. Využívá průměrnou hloubku plochy a délku na místo.
-Jde o odhad, ne zaměřené dopravní značení. Šikmé dělení používá schematických 45°
-a odhadnutou stranovost. Dělení je přerušované i u explicitní orientace, protože
-polohy jednotlivých čar nejsou zdrojem doložené. U složitých vícedílných ploch,
-chybějící osy ulice, nulového či neplatného počtu zůstane jen obrys.
-ZPS a OSM nemají vždy totožné hranice; mimo společný překryv mohou zůstat oba obrysy.
+## Symbol vozíku
 
-Test: node --experimental-default-type=module dio/parking.test.mjs.
-Jednotkové testy doplňuje kontrola DOM exportu v Chromium s testovacími závislostmi.
-Celý živý řetězec s Leafletem a vzdálenými službami musí být ověřen po nasazení.
+U šikmého/kolmého stání míří spodek symbolu k nejbližší ose vozovky; osa symbolu
+odpovídá podélné ose auta. U podélného stání míří horní strana po směru jízdy.
+oneway=yes i -1 se respektují; u běžné obousměrné ulice se směr předpokládá podle
+pravostranného provozu a strany obrubníku. Neznámý směr ani nejasná orientace
+se nezobrazují jako spolehlivý údaj. Symbol bez určené báze se vynechá.
+
+Obrysy, ořez vyhrazených míst, přednost TSK před překrytou kresbou OSM a zdrojový
+režim zůstávají zachované. Dělicí čáry jsou schematické a přerušované, nikoli
+zaměřené dopravní značení. Inference, anchorId, konflikt a iconBasis jsou v title
+objektu SVG jako parkingRendering; klikací panel aplikace se tímto nemění.
+
+Odvození orientace navazuje na Profily ulic, Bára Soukupová, MIT;
+viz PROJECTION-LICENSE.txt. Bez vhodné osy nebo zdrojového počtu zůstává obrys.
+Testy: node --experimental-default-type=module dio/parking.test.mjs a
+node --experimental-default-type=module dio/parking-frame.test.mjs.
+Živý mapový řetězec a nasazení je třeba ověřit samostatně.
