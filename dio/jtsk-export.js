@@ -4,9 +4,17 @@ import { jtskFrame, northAngle } from './jtsk.js';
 import { rose } from './rose.js';
 import { crossingDrawing } from './crossings.js';
 import { selectedFeatures } from './sets.js';
+import { parkingDrawing } from './parking.js';
 
 const NS = 'http://www.w3.org/2000/svg';
 const INK = 'http://www.inkscape.org/namespaces/inkscape';
+
+function originalLayer(node) {
+  for (let parent = node.parentElement; parent; parent = parent.parentElement) {
+    if (parent.getAttributeNS(INK, 'label') === 'Kontrola – původní zdroje') return true;
+  }
+  return false;
+}
 
 export function exportJtsk(data, options = {}) {
   if (data.crs !== 'EPSG:5514' || data.version !== 3) throw new Error('Export vyžaduje projekt S-JTSK');
@@ -24,6 +32,24 @@ export function exportJtsk(data, options = {}) {
   for (const object of [...root.querySelectorAll('[data-object]')]) {
     const feature = byId.get(object.getAttribute('data-object'));
     if (!feature) continue;
+    const parking = options.raw || originalLayer(object) ? null : parkingDrawing(feature, raw);
+    if (parking) {
+      if (!parking.d) {
+        object.remove();
+        continue;
+      }
+      const path = doc.createElementNS(NS, 'path');
+      path.setAttribute('d', parking.d);
+      path.setAttribute('fill', 'none');
+      path.setAttribute('stroke', parking.color);
+      path.setAttribute('stroke-width', '0.12');
+      if (parking.dashed) path.setAttribute('stroke-dasharray', '0.65 0.35');
+      const title = object.querySelector(':scope > title') || doc.createElementNS(NS, 'title');
+      const provenance = title.textContent ? JSON.parse(title.textContent) : {};
+      title.textContent = JSON.stringify({ ...provenance, parkingRendering: JSON.parse(parking.description) });
+      object.replaceChildren(title, path);
+      continue;
+    }
     const drawing = crossingDrawing(feature, raw);
     if (drawing === null) continue;
     if (!drawing) {
