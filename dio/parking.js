@@ -76,6 +76,58 @@ export function parkingOrientation(depth, length, count) {
   return perStall >= 4.8 ? 'parallel' : perStall >= 3.4 ? 'diagonal' : 'perpendicular';
 }
 
+export function parkingSideDividers(rings, axis, count) {
+  if (rings.length !== 1 || !Number.isInteger(count) || count < 2 || count > 200) return null;
+  const points = [];
+  const distance = (a, b) => Math.hypot(...sub(a, b));
+  for (const p of rings[0]) {
+    if (!points.length || distance(p, points[points.length - 1]) > 0.02) points.push(p);
+  }
+  if (points.length > 1 && distance(points[0], points[points.length - 1]) <= 0.02) points.pop();
+  let changed = true;
+  while (changed && points.length > 4) {
+    changed = false;
+    for (let i = 0; i < points.length; i += 1) {
+      const a = points[(i + points.length - 1) % points.length];
+      const b = points[i];
+      const c = points[(i + 1) % points.length];
+      const edge = sub(c, a);
+      const t = dot(sub(b, a), edge) / dot(edge, edge);
+      if (t > 0 && t < 1 && Math.abs(cross(sub(b, a), edge)) / Math.hypot(...edge) <= 0.02) {
+        points.splice(i, 1);
+        changed = true;
+        break;
+      }
+    }
+  }
+  if (points.length !== 4) return null;
+  const turns = points.map((p, i) => cross(sub(points[(i + 1) % 4], p),
+    sub(points[(i + 2) % 4], points[(i + 1) % 4])));
+  if (!turns.every((v) => v > EPS) && !turns.every((v) => v < -EPS)) return null;
+  const normal = [-axis[1], axis[0]];
+  const candidates = [];
+  for (let i = 0; i < 2; i += 1) {
+    const edges = [[points[i], points[(i + 1) % 4]],
+      [points[(i + 2) % 4], points[(i + 3) % 4]]]
+      .map(([a, b]) => dot(sub(b, a), axis) >= 0 ? [a, b] : [b, a]);
+    const lengths = edges.map(([a, b]) => distance(a, b));
+    if (!edges.every(([a, b], j) => dot(sub(b, a), axis) / lengths[j] >= 0.95)) continue;
+    const sides = [sub(edges[1][0], edges[0][0]), sub(edges[1][1], edges[0][1])];
+    if (Math.min(...lengths) < 2 * Math.max(...sides.map((d) => Math.hypot(...d)))) continue;
+    const across = sides.map((d) => dot(d, normal));
+    const slants = sides.map((d, j) => dot(d, axis) / across[j]);
+    if (across.some((v) => Math.abs(v) < 1) || across[0] * across[1] <= 0 ||
+        slants.some((v) => Math.abs(v) < 0.15 || Math.abs(v) > 2) || slants[0] * slants[1] <= 0 ||
+        dot(sides[0], sides[1]) / (Math.hypot(...sides[0]) * Math.hypot(...sides[1])) < Math.cos(Math.PI / 9) ||
+        lengths.some((n) => n / count < 1.8 || n / count > 12)) continue;
+    const at = ([a, b], t) => a.map((v, j) => v + t * (b[j] - v));
+    const segments = Array.from({ length: count - 1 }, (_, j) =>
+      edges.map((edge) => at(edge, (j + 1) / count)));
+    candidates.push({ segments, slants });
+  }
+  return candidates.length === 1 ? candidates[0] : null;
+}
+
 function wheelchair(center, radius, basis) {
   const paths = [];
   const project = ([x, y]) => [
@@ -135,6 +187,7 @@ export function parkingDrawing(feature, raw) {
   const slant = orientation === 'diagonal' ? frame.slant : 0;
   const attrs = feature.attrs || {};
   const count = Number(feature.source.startsWith('TSK') ? attrs.PS_ZPS : attrs.capacity);
+  let sideDivision = null;
   if (axis && orientation && kind === 'regular' && rings.length === 1) {
     const normal = [-axis[1], axis[0]];
     const local = points.map((p) => [dot(sub(p, center), axis), dot(sub(p, center), normal)]);
@@ -148,10 +201,17 @@ export function parkingDrawing(feature, raw) {
         spacing >= 1.8 && spacing <= 12 && length > EPS) {
       const position = (x, y) => [center[0] + axis[0] * x + normal[0] * y,
         center[1] + axis[1] * x + normal[1] * y];
-      for (let i = 1; i < count; i += 1) {
-        const x = left + spacing * i;
-        segments.push(...clipped(position(x + slant * bottom, bottom - 1e-6),
-          position(x + slant * top, top + 1e-6), rings, excluded));
+      if (orientation === 'diagonal' && frame.slantSource !== 'single-reserved-bay-geometry') {
+        sideDivision = parkingSideDividers(rings, axis, count);
+      }
+      if (sideDivision) {
+        for (const [a, b] of sideDivision.segments) segments.push(...clipped(a, b, rings, excluded));
+      } else {
+        for (let i = 1; i < count; i += 1) {
+          const x = left + spacing * i;
+          segments.push(...clipped(position(x + slant * bottom, bottom - 1e-6),
+            position(x + slant * top, top + 1e-6), rings, excluded));
+        }
       }
     }
   }
@@ -180,7 +240,10 @@ export function parkingDrawing(feature, raw) {
     color: kind === 'disabled' ? '#1d4ed8' : kind === 'forbidden' ? '#b45309' : '#475569',
     dashed: kind === 'regular' && Boolean(orientation),
     description: JSON.stringify({
-      kind, orientation, slant, orientationSource: frame?.orientationSource || 'unknown',
+      kind, orientation, slant: sideDivision ? null : slant,
+      sideSlants: sideDivision?.slants,
+      divisionSource: sideDivision ? 'strip-side-edges' : frame?.slantSource || 'unknown',
+      orientationSource: frame?.orientationSource || 'unknown',
       anchorId: frame?.anchorId, conflict: frame?.conflict || false,
       iconDrawn, iconBasis: iconDrawn ? basis : null,
       travelSource: orientation === 'parallel' ? frame?.travelSource : undefined,

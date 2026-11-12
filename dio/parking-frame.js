@@ -170,7 +170,7 @@ export function parkingFrame(feature, raw, kindOf) {
     const geometry = hints.filter((h) => h.source === 'single-reserved-bay-geometry' &&
       h.orientation === 'diagonal');
     if (geometry.length && geometry.every((h) => Math.abs(h.slant - geometry[0].slant) <= 0.4)) {
-      hint = { ...hint, slant: geometry[0].slant };
+      hint = { ...hint, slant: geometry[0].slant, slantSource: geometry[0].source };
     }
   }
   const n = [-frame.u[1], frame.u[0]];
@@ -195,7 +195,8 @@ export function parkingFrame(feature, raw, kindOf) {
   ]);
   if (vehicle && toRoad && dot(vehicle, toRoad) < 0) vehicle = vehicle.map((v) => -v);
   return { ...frame, toRoad, travel, travelSource, orientation, slant, vehicle,
-    orientationSource: hint?.source, anchorId: hint?.id, conflict };
+    orientationSource: hint?.source, slantSource: hint?.slantSource || hint?.source,
+    anchorId: hint?.id, conflict };
 }
 
 export function iconBasis(frame, orientation, slant = 0) {
