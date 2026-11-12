@@ -1,6 +1,7 @@
 import { exportJtsk } from './jtsk-export.js';
 import { toWgs, northAngle } from './jtsk.js';
 import { rose } from './rose.js';
+import { northUpSelection } from './north-up.js';
 import {
   validateSelection, selectionMatrix, selectionToEN, selectionNorthAngles
 } from './selection.js';
@@ -10,8 +11,11 @@ const NS = 'http://www.w3.org/2000/svg';
 export function exportSelection(data, options = {}) {
   const source = exportJtsk(data, options);
   if (!data.selection) return source;
-  const selection = validateSelection(data.selection);
+  const selected = validateSelection(data.selection);
   if (options.preview) return source;
+  const center = toWgs(...selectionToEN(selected, [selected.width / 2, selected.height / 2]));
+  const trueBearing = northAngle(...center);
+  const selection = northUpSelection(selected, trueBearing);
   const { width, height } = selection;
   const scale = options.scale || 500;
   const doc = new DOMParser().parseFromString(source, 'image/svg+xml');
@@ -30,6 +34,9 @@ export function exportSelection(data, options = {}) {
   metadata.textContent = JSON.stringify({
     ...previous,
     selection,
+    sourceSelection: selected,
+    orientationPolicy: 'true-north-upper-half; horizontal-right',
+    exportHalfTurn: selection !== selected,
     svgToEN: 'EN=selection.origin+x*selection.axisX+y*selection.axisY',
     svgToENCoefficients: inverse,
     sourceOriginEN: data.origin,
@@ -85,8 +92,7 @@ export function exportSelection(data, options = {}) {
   const orientation = doc.querySelector('#jtsk-orientation');
   const compass = orientation.querySelector('#jtsk-compass');
   const size = Math.min(scale / 1000 * 8, width / 5, height / 5);
-  const center = toWgs(...selectionToEN(selection, [width / 2, height / 2]));
-  const angles = selectionNorthAngles(selection, northAngle(...center));
+  const angles = selectionNorthAngles(selection, trueBearing);
   const fragment = new DOMParser().parseFromString(
     `<svg xmlns="${NS}"><g transform="translate(${width - size * 1.8} ${size * 1.8})">${rose(angles.true, size, angles.grid)}</g></svg>`,
     'image/svg+xml'
