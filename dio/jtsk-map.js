@@ -1,4 +1,5 @@
 import { fromWgs, toWgs, jtskFrame } from './jtsk.js';
+import { selectionBoundary } from './selection.js';
 import { rose } from './rose.js';
 import { projectPreview } from './jtsk-preview.js';
 import { gridAngleOnMap } from './preview-projection.js';
@@ -49,7 +50,13 @@ export function createMap(id) {
   return map;
 }
 
-export function gridSelection(bbox) {
+export function gridSelection(bbox, selection) {
+  if (selection) {
+    return L.polygon(selectionBoundary(selection, 16).map((p) => {
+      const [lon, lat] = toWgs(...p);
+      return [lat, lon];
+    }), { fill: false, interactive: false });
+  }
   const f = jtskFrame(bbox);
   const corners = [[f.left, f.top], [f.right, f.top], [f.right, f.bottom], [f.left, f.bottom]];
   return L.polygon(corners.map((p) => {
@@ -58,8 +65,8 @@ export function gridSelection(bbox) {
   }), { fill: false, interactive: false });
 }
 
-export function gridOverlay(svg, bbox) {
-  const preview = projectPreview(svg, bbox);
+export function gridOverlay(svg, bbox, selection) {
+  const preview = projectPreview(svg, bbox, selection);
   const Overlay = L.Layer.extend({
     onAdd(map) {
       this.map = map;

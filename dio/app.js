@@ -1,6 +1,8 @@
 import { frame, reconcile, visibleByDefault } from './model.js';
 import { load } from './sources.js';
-import { exportJtsk } from './jtsk-export.js';
+import { exportSelection as exportJtsk } from './selection-export.js';
+import { createSelectionControl } from './selection-control.js';
+import { validateSelection, selectionBbox } from './selection.js';
 import { projectDataset } from './jtsk.js';
 import { createMap, gridOverlay, gridSelection } from './jtsk-map.js';
 import { SETS, PRESETS, selectedSets, selectedFeatures, setOf } from './sets.js';
@@ -12,7 +14,7 @@ notice.textContent = 'Pracovní podklad v S-JTSK (EPSG:5514), převod EPSG:1623 
 let data;
 let result;
 let bbox;
-let first;
+let selection;
 let selecting = false;
 let busy = false;
 let rectangle;
@@ -67,7 +69,7 @@ function render() {
   }), 'image/svg+xml');
   if (doc.querySelector('parsererror')) throw new Error('Neplatné SVG');
   const svg = doc.documentElement;
-  overlay = gridOverlay(svg, bbox).addTo(map);
+  overlay = gridOverlay(svg, bbox, data.selection).addTo(map);
   svg.addEventListener('click', (event) => {
     const object = event.target.closest('[data-object]');
     if (object && !selecting) {
@@ -138,7 +140,19 @@ function detail(id) {
 function adopt(value) {
   if (![2, 3].includes(value.version) || !Array.isArray(value.raw) || value.raw.length > 100000 || !Array.isArray(value.bbox) || value.bbox.length !== 4 || !value.bbox.every(Number.isFinite)) throw new Error('Neplatný pracovní JSON');
   const dimensions = frame(value.bbox);
-  if (Math.min(dimensions.width, dimensions.height) < 5 || Math.max(dimensions.width, dimensions.height) > 551) throw new Error('Neplatný výřez');
+  if (value.selection) {
+    validateSelection(value.selection);
+    if (value.version !== 3 || value.crs !== 'EPSG:5514') {
+      throw new Error('Natočený výřez vyžaduje projekt EPSG:5514');
+    }
+    const expected = selectionBbox(value.selection);
+    if (expected.some((v, i) => Math.abs(v - value.bbox[i]) > 1e-8)) {
+      throw new Error('Nesouhlasí datová obálka natočeného výřezu');
+    }
+  } else if (Math.min(dimensions.width, dimensions.height) < 5 ||
+      Math.max(dimensions.width, dimensions.height) > 551) {
+    throw new Error('Neplatný výřez');
+  }
   const ids = new Set();
   for (const f of value.raw) {
     if (typeof f.id !== 'string' || ids.has(f.id) || typeof f.source !== 'string' || typeof f.category !== 'string' || !f.attrs || !['point', 'line', 'area'].includes(f.kind) || !Array.isArray(f.coords)) throw new Error('Neplatný objekt');
@@ -146,8 +160,14 @@ function adopt(value) {
     if (!coords.every((p) => Array.isArray(p) && p.length === 2 && p.every(Number.isFinite))) throw new Error('Neplatné souřadnice');
     ids.add(f.id);
   }
-  data = projectDataset(value);
+  const adopted = projectDataset(value);
+  picker.cancel();
+  selecting = false;
+  data = adopted;
   bbox = data.bbox;
+  selection = data.selection;
+  if (rectangle) map.removeLayer(rectangle);
+  rectangle = gridSelection(bbox, selection).addTo(map);
   data.coverage ||= Object.fromEntries([...new Set(data.raw.map(setOf))].filter((id) => id !== 'control').map((id) => [id, 'partial']));
   chosen = selectedSets(data.selectedSets || chosen);
   let hash = 2166136261;
@@ -165,46 +185,41 @@ function adopt(value) {
   $('load').disabled = false;
   $('json').disabled = false;
   refresh();
-  map.fitBounds(gridSelection(bbox).getBounds());
+  map.fitBounds(gridSelection(bbox, selection).getBounds());
 }
 
 $('preset').onchange = () => {
   if (PRESETS[$('preset').value]) chosen = [...PRESETS[$('preset').value]];
   refresh();
 };
-$('select').onclick = () => {
-  selecting = true;
-  first = null;
-  bbox = null;
-  data = null;
-  for (const id of ['load', 'export', 'json']) $(id).disabled = true;
-  $('layers').replaceChildren();
-  $('detail').replaceChildren();
-  if (overlay) map.removeLayer(overlay);
-  if (rectangle) map.removeLayer(rectangle);
-  setControls();
-  $('summary').textContent = 'Klikni na dva protilehlé rohy.';
-};
-map.on('click', ({ latlng }) => {
-  if (!selecting) return;
-  if (!first) {
-    first = latlng;
-    $('summary').textContent = 'Klikni na druhý roh.';
-    return;
+$('select').textContent = 'Vybrat výřez třemi body';
+const picker = createSelectionControl(map, {
+  message: (text) => { $('summary').textContent = text; },
+  onStart() {
+    selecting = true;
+    selection = null;
+    bbox = null;
+    data = null;
+    for (const id of ['load', 'export', 'json']) $(id).disabled = true;
+    $('layers').replaceChildren();
+    $('detail').replaceChildren();
+    if (overlay) map.removeLayer(overlay);
+    if (rectangle) map.removeLayer(rectangle);
+    setControls();
+  },
+  onCancel() {
+    selecting = false;
+  },
+  onComplete(value, bounds) {
+    selecting = false;
+    selection = value;
+    bbox = bounds;
+    rectangle = gridSelection(bbox, selection).addTo(map);
+    $('load').disabled = false;
+    $('summary').textContent = `${value.width.toFixed(1)} × ${value.height.toFixed(1)} m; natočený obdélník v S-JTSK.`;
   }
-  const box = L.latLngBounds(first, latlng);
-  const proposed = [box.getWest(), box.getSouth(), box.getEast(), box.getNorth()];
-  const { width, height } = frame(proposed);
-  selecting = false;
-  if (Math.min(width, height) < 5 || Math.max(width, height) > 550) {
-    $('summary').textContent = 'Strany musí mít 5–550 m; vyber znovu.';
-    return;
-  }
-  bbox = proposed;
-  rectangle = gridSelection(proposed).addTo(map);
-  $('load').disabled = false;
-  $('summary').textContent = `${width.toFixed(0)} × ${height.toFixed(0)} m; výstupní rám zarovnaný na síť S-JTSK.`;
 });
+$('select').onclick = () => picker.start();
 $('load').onclick = async () => {
   if (!bbox || busy) return;
   busy = true;
@@ -216,6 +231,7 @@ $('load').onclick = async () => {
     status('Převádím geometrii do EPSG:5514…');
     await new Promise((resolve) => setTimeout(resolve, 0));
     const next = projectDataset(loaded);
+    if (selection) next.selection = structuredClone(selection);
     if (data) {
       next.raw = [...new Map([...data.raw, ...next.raw].map((f) => [f.id, f])).values()];
       next.coverage = { ...data.coverage, ...next.coverage };

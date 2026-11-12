@@ -1,8 +1,11 @@
 import { createPreviewProjection, projectPath } from './preview-projection.js';
 
+import { jtskFrame } from './jtsk.js';
+import { selectionBoundary } from './selection.js';
+
 const NS = 'http://www.w3.org/2000/svg';
 
-export function projectPreview(svg, bbox) {
+export function projectPreview(svg, bbox, selection) {
   if (JSON.parse(svg.querySelector('metadata').textContent).projection !== 'EPSG:5514') throw new Error('Náhled vyžaduje nepřevedenou kresbu S-JTSK');
   const p = createPreviewProjection(bbox);
   const m = p.matrix(p.gridWidth / 2, p.gridHeight / 2);
@@ -44,7 +47,10 @@ export function projectPreview(svg, bbox) {
   }
   const clip = svg.querySelector('#clip');
   const polygon = svg.ownerDocument.createElementNS(NS, 'polygon');
-  polygon.setAttribute('points', p.boundary.map((v) => v.join(',')).join(' '));
+  const grid = jtskFrame(bbox);
+  const boundary = selection ? selectionBoundary(selection, 16).map(([e, n]) =>
+    p.point([e - grid.left, grid.top - n])) : p.boundary;
+  polygon.setAttribute('points', boundary.map((v) => v.join(',')).join(' '));
   clip.replaceChildren(polygon);
   svg.setAttribute('viewBox', `0 0 ${p.width} ${p.height}`);
   const metadata = svg.querySelector('metadata');
