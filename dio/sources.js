@@ -1,21 +1,24 @@
 import { classify, frame } from './model.js';
 import { loadLamps } from './lamps.js';
+import { selectedSets, selectedFeatures } from './sets.js';
 
 const root = 'https://gs-pub.praha.eu/arcgis/rest/services';
 const definitions = [
-  ['IPR plochy', 'dtmp/dtmp/MapServer/15'],
-  ['IPR linie', 'dtmp/dtmp/MapServer/10'],
-  ['IPR body', 'dtmp/dtmp/MapServer/9'],
-  ['SMZ body', 'opk/smz_vegetacni_prvky/MapServer/0'],
-  ['SMZ linie', 'opk/smz_vegetacni_prvky/MapServer/1'],
-  ['SMZ plochy', 'opk/smz_vegetacni_prvky/MapServer/2'],
-  ['TSK úseky stání', 'dop/zony_placeneho_stani/MapServer/3'],
-  ['TSK ZTP 5', 'dop/zony_placeneho_stani/MapServer/5'],
-  ['TSK ZTP 6', 'dop/zony_placeneho_stani/MapServer/6'],
-  ['TSK zásobování', 'dop/zony_placeneho_stani/MapServer/7'],
-  ['TSK speciální stání', 'dop/zony_placeneho_stani/MapServer/8'],
-  ['TSK úseky zákazu stání', 'dop/zony_placeneho_stani/MapServer/9']
+  ['IPR plochy', 'dtmp/dtmp/MapServer/15', ['base', 'vegetation']],
+  ['IPR linie', 'dtmp/dtmp/MapServer/10', ['transport', 'equipment', 'terrain', 'control']],
+  ['IPR body', 'dtmp/dtmp/MapServer/9', ['equipment', 'vegetation', 'transport', 'control']],
+  ['SMZ body', 'opk/smz_vegetacni_prvky/MapServer/0', ['vegetation']],
+  ['SMZ linie', 'opk/smz_vegetacni_prvky/MapServer/1', ['vegetation']],
+  ['SMZ plochy', 'opk/smz_vegetacni_prvky/MapServer/2', ['vegetation']],
+  ['TSK úseky stání', 'dop/zony_placeneho_stani/MapServer/3', ['transport']],
+  ['TSK ZTP 5', 'dop/zony_placeneho_stani/MapServer/5', ['transport']],
+  ['TSK ZTP 6', 'dop/zony_placeneho_stani/MapServer/6', ['transport']],
+  ['TSK zásobování', 'dop/zony_placeneho_stani/MapServer/7', ['transport']],
+  ['TSK speciální stání', 'dop/zony_placeneho_stani/MapServer/8', ['transport']],
+  ['TSK úseky zákazu stání', 'dop/zony_placeneho_stani/MapServer/9', ['transport']]
 ];
+let cachedBox = '';
+const cache = new Map();
 
 async function request(url, options = {}) {
   const response = await fetch(url, { ...options, signal: AbortSignal.timeout(90000) });
@@ -25,13 +28,15 @@ async function request(url, options = {}) {
   return json;
 }
 
-async function arcgis(path, bbox) {
+async function arcgis(path, bbox, progress) {
   const url = `${root}/${path}`;
+  progress('metadata');
   const meta = await request(`${url}?f=json`);
   const oid = meta.objectIdField || meta.fields?.find((f) => f.type === 'esriFieldTypeOID')?.name;
-  if (!oid) throw new Error('Chybí OBJECTID pro stránkování');
+  if (!oid) throw new Error('Chybí identifikátor pro stránkování');
   const features = [];
   for (let page = 0; page < 50; page += 1) {
+    progress(`stránka ${page + 1}, zatím ${features.length} objektů`);
     const params = new URLSearchParams({
       f: 'json', where: '1=1', geometry: bbox.join(','),
       geometryType: 'esriGeometryEnvelope', spatialRel: 'esriSpatialRelIntersects',
@@ -42,9 +47,9 @@ async function arcgis(path, bbox) {
     const result = await request(`${url}/query?${params}`);
     features.push(...(result.features || []));
     if (!result.exceededTransferLimit) return { features, oid };
-    if (!result.features?.length) throw new Error('Prázdná stránka neúplné odpovědi');
+    if (!result.features?.length) throw new Error('Neúplná odpověď');
   }
-  throw new Error('Příliš mnoho objektů; zmenši výřez');
+  throw new Error('Zmenši výřez: příliš mnoho objektů');
 }
 
 export function normalizeGeometry(g, project) {
@@ -60,64 +65,84 @@ async function osm(bbox) {
   const [w, s, e, n] = bbox;
   const keys = 'building|highway|traffic_sign|natural|barrier|amenity|public_transport|railway|man_made|emergency|power|leisure|landuse|waterway|tourism|historic|advertising|entrance';
   const q = `[out:json][timeout:60];(node[~"^(${keys})$"~"."](${s},${w},${n},${e});way[~"^(${keys})$"~"."](${s},${w},${n},${e}););out body geom;`;
-  const json = await request('https://overpass-api.de/api/interpreter', {
+  return (await request('https://overpass-api.de/api/interpreter', {
     method: 'POST', body: new URLSearchParams({ data: q })
-  });
-  return json.elements || [];
+  })).elements || [];
 }
 
-export async function load(bbox, progress = () => {}) {
+export async function load(bbox, progress = () => {}, options = {}) {
+  const selected = selectedSets(options.sets);
+  const wanted = new Set([...selected, ...(options.diagnostic ? ['control'] : [])]);
+  const boxKey = bbox.join(',');
+  if (boxKey !== cachedBox) {
+    cache.clear();
+    cachedBox = boxKey;
+  }
   const { project, width, height } = frame(bbox);
+  function normalize(source, identity, attrs, geometry) {
+    return normalizeGeometry(geometry, project).filter((f) => f.kind !== 'point' || (f.coords[0] >= 0 && f.coords[1] >= 0 && f.coords[0] <= width && f.coords[1] <= height)).map((f, i) => ({
+      ...f, id: `${source}:${identity}:${i}`, source, category: classify(source, attrs, f.kind), attrs
+    }));
+  }
+  const jobs = definitions.filter((d) => d[2].some((s) => wanted.has(s))).map(([name, path, sets]) => ({
+    name, sets,
+    run: async (notify) => {
+      const result = await arcgis(path, bbox, notify);
+      return result.features.flatMap((f) => normalize(name, f.attributes.ID_CENTRAL || f.attributes[result.oid], f.attributes, f.geometry));
+    }
+  }));
+  jobs.push({ name: 'OSM', sets: selected, run: async () => (await osm(bbox)).flatMap((item) => {
+    const a = item.tags || {};
+    let geometry;
+    if (item.type === 'node') geometry = { x: item.lon, y: item.lat };
+    else {
+      const path = (item.geometry || []).map((p) => [p.lon, p.lat]);
+      const closed = item.nodes?.length > 3 && item.nodes[0] === item.nodes.at(-1);
+      const area = closed && a.area !== 'no' && (a.area === 'yes' || a.building || a.landuse || a.leisure || a.amenity === 'parking' || a.natural === 'water');
+      geometry = area ? { rings: [path] } : { paths: [path] };
+    }
+    return normalize('OSM', `${item.type}/${item.id}`, { ...a, osm_id: `${item.type}/${item.id}` }, geometry);
+  }) });
+  if (wanted.has('equipment')) jobs.push({ name: 'THMP', sets: ['equipment'], run: (notify) => loadLamps(bbox, notify) });
   const raw = [];
   const errors = [];
-  let successes = 0;
-  const lamps = loadLamps(bbox, progress).then((features) => {
-    raw.push(...features);
-    successes += 1;
-  }).catch((error) => errors.push(`THMP: ${error.message}`));
-  function add(source, identity, attrs, geometry) {
-    normalizeGeometry(geometry, project).forEach((f, i) => {
-      if (f.kind === 'point' && (f.coords[0] < 0 || f.coords[1] < 0 || f.coords[0] > width || f.coords[1] > height)) return;
-      const category = classify(source, attrs, f.kind);
-      raw.push({ ...f, id: `${source}:${identity}:${i}`, source, category, attrs });
-    });
-  }
-  const queue = [...definitions];
+  const states = {};
+  const notify = (job, text) => {
+    states[job.name] = text;
+    progress(Object.entries(states).map(([name, state]) => `${name}: ${state}`).join('\n'));
+  };
+  for (const job of jobs) states[job.name] = 'čeká';
+  const queue = [...jobs];
+  const failed = new Set();
+  let success = 0;
   await Promise.all(Array.from({ length: 3 }, async () => {
     while (queue.length) {
-      const [source, path] = queue.shift();
-      progress(source);
+      const job = queue.shift();
       try {
-        const result = await arcgis(path, bbox);
-        for (const f of result.features) {
-          const a = f.attributes || {};
-          add(source, a.ID_CENTRAL || a[result.oid], a, f.geometry);
+        let features = cache.get(job.name);
+        if (!features) {
+          notify(job, 'načítám');
+          features = await job.run((text) => notify(job, text));
+          cache.set(job.name, features);
         }
-        successes += 1;
+        raw.push(...features);
+        success += 1;
+        notify(job, `načteno ${features.length} (uloženo pro tento výřez)`);
       } catch (error) {
-        errors.push(`${source}: ${error.message}`);
+        failed.add(job.name);
+        errors.push(`${job.name}: ${error.message}`);
+        notify(job, `CHYBA: ${error.message}`);
       }
     }
   }));
-  try {
-    progress('OSM');
-    for (const item of await osm(bbox)) {
-      const a = item.tags || {};
-      let geometry;
-      if (item.type === 'node') geometry = { x: item.lon, y: item.lat };
-      else {
-        const path = (item.geometry || []).filter((p) => Number.isFinite(p.lon) && Number.isFinite(p.lat)).map((p) => [p.lon, p.lat]);
-        const closed = item.nodes?.length > 3 && item.nodes[0] === item.nodes.at(-1);
-        const area = closed && a.area !== 'no' && (a.area === 'yes' || a.building || a.landuse || a.leisure || a.amenity === 'parking' || a.natural === 'water');
-        geometry = area ? { rings: [path] } : { paths: [path] };
-      }
-      add('OSM', `${item.type}/${item.id}`, { ...a, osm_id: `${item.type}/${item.id}` }, geometry);
-    }
-    successes += 1;
-  } catch (error) {
-    errors.push(`OSM: ${error.message}`);
-  }
-  await lamps;
-  if (!successes) throw new Error(errors.join('\n'));
-  return { version: 2, bbox, raw, errors, date: new Date().toISOString(), decisions: {}, visibility: {} };
+  if (!success) throw new Error(errors.join('\n'));
+  const coverage = Object.fromEntries(selected.map((id) => {
+    const dependencies = jobs.filter((j) => j.sets.includes(id));
+    const failures = dependencies.filter((j) => failed.has(j.name)).length;
+    return [id, failures === 0 ? 'loaded' : failures === dependencies.length ? 'failed' : 'partial'];
+  }));
+  return {
+    version: 2, bbox, raw: selectedFeatures(raw, selected, options.diagnostic), errors,
+    date: new Date().toISOString(), decisions: {}, visibility: {}, selectedSets: selected, coverage
+  };
 }

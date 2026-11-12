@@ -1,6 +1,7 @@
 import { frame, reconcile, visibleByDefault } from './model.js';
 import { load } from './sources.js';
-import { exportSvg } from './svg-export.js';
+import { exportSets } from './set-export.js';
+import { SETS, PRESETS, selectedSets, selectedFeatures, setOf } from './sets.js';
 
 const $ = (id) => document.getElementById(id);
 const map = L.map('map').setView([50.0755, 14.4378], 17);
@@ -13,24 +14,56 @@ let result;
 let bbox;
 let first;
 let selecting = false;
+let busy = false;
 let rectangle;
 let overlay;
+let chosen = [...PRESETS.dio];
 let storageKey;
 const status = (text) => { $('status').textContent = text; };
+const ready = () => data && chosen.every((id) => data.coverage?.[id]);
 
 function save() {
+  if (!data) return;
+  data.selectedSets = [...chosen];
   try {
     localStorage.setItem(storageKey, JSON.stringify({ decisions: data.decisions, visibility: data.visibility }));
   } catch {
-    status('Lokální uložení selhalo; použij pracovní JSON.');
+    $('summary').textContent = 'Lokální uložení selhalo; použij pracovní JSON.';
   }
 }
 
+function setControls() {
+  $('sets').replaceChildren();
+  const names = { loaded: 'Načteno', partial: 'Načteno částečně', failed: 'Načtení selhalo' };
+  for (const set of SETS) {
+    const label = document.createElement('label');
+    const input = document.createElement('input');
+    input.type = 'checkbox';
+    input.checked = chosen.includes(set.id);
+    input.disabled = busy || set.id === 'base';
+    const state = data?.coverage?.[set.id];
+    const text = busy && input.checked ? 'Načítání / ověřování' : state ? `${names[state]}${input.checked ? '' : ' – skryto'}` : 'Nenačteno';
+    label.append(input, ` ${set.label} — ${text}`);
+    const small = document.createElement('small');
+    small.textContent = set.description;
+    label.append(small);
+    input.onchange = () => {
+      chosen = selectedSets(input.checked ? [...chosen, set.id] : chosen.filter((id) => id !== set.id));
+      $('preset').value = 'custom';
+      refresh();
+    };
+    $('sets').append(label);
+  }
+  $('load').textContent = data ? 'Donačíst / opakovat neúspěšné zdroje' : 'Načíst vybrané sady';
+  $('export').disabled = busy || !ready();
+}
+
 function render() {
-  if (!data) return;
   if (overlay) map.removeLayer(overlay);
-  const doc = new DOMParser().parseFromString(exportSvg(data, result, {
-    preview: true, scale: Number($('scale').value), raw: $('mode').value === 'raw'
+  if (!data) return;
+  const doc = new DOMParser().parseFromString(exportSets(data, {
+    sets: chosen, diagnostic: $('diagnostic').checked, preview: true,
+    scale: Number($('scale').value), raw: $('mode').value === 'raw'
   }), 'image/svg+xml');
   if (doc.querySelector('parsererror')) throw new Error('Neplatné SVG');
   const svg = doc.documentElement;
@@ -44,12 +77,16 @@ function render() {
   });
 }
 
-function update() {
-  result = reconcile(data.raw, data.decisions);
+function refresh() {
+  setControls();
   $('layers').replaceChildren();
+  if (!data) return;
+  data.selectedSets = [...chosen];
+  const raw = selectedFeatures(data.raw, chosen, $('diagnostic').checked);
+  result = reconcile(raw, data.decisions);
   const rawMode = $('mode').value === 'raw';
   const categories = new Set(result.output.filter((f) => rawMode || !f.suppressed).map((f) => rawMode ? `${f.category} / ${f.source}` : f.category));
-  categories.add('Koruny – doložený průměr ze zdroje');
+  if (chosen.includes('vegetation')) categories.add('Koruny – doložený průměr ze zdroje');
   for (const category of [...categories].sort()) {
     const label = document.createElement('label');
     const input = document.createElement('input');
@@ -64,9 +101,10 @@ function update() {
     $('layers').append(label);
   }
   render();
-  const count = result.output.filter((f) => f.suppressed).length;
-  const pending = result.candidates.filter((c) => !c.auto && !data.decisions[c.key]).length;
-  status(`${data.raw.length} zdrojových objektů; ${count} potlačených kreseb; ${pending} kandidátů ke kontrole.\n${data.errors.length ? 'NEÚPLNÁ DATA: ' + data.errors.join('; ') : 'Ověřit v terénu.'}`);
+  const missing = chosen.filter((id) => !data.coverage[id]);
+  const incomplete = chosen.filter((id) => data.coverage[id] !== 'loaded');
+  $('summary').textContent = missing.length ? 'Nově vybrané sady je nutné donačíst.' : `${raw.length} zdrojových prvků. ${incomplete.length ? 'Podklad je částečný; viz podrobnosti.' : 'Vybrané sady připravené.'}`;
+  save();
 }
 
 function detail(id) {
@@ -82,7 +120,7 @@ function detail(id) {
     b.onclick = () => {
       data.decisions[key] = value;
       save();
-      update();
+      refresh();
       detail(id);
     };
     $('detail').append(b);
@@ -110,6 +148,8 @@ function adopt(value) {
   }
   data = value;
   bbox = data.bbox;
+  data.coverage ||= Object.fromEntries([...new Set(data.raw.map(setOf))].filter((id) => id !== 'control').map((id) => [id, 'partial']));
+  chosen = selectedSets(data.selectedSets || chosen);
   let hash = 2166136261;
   const text = JSON.stringify(data.raw);
   for (let i = 0; i < text.length; i += 1) hash = Math.imul(hash ^ text.charCodeAt(i), 16777619);
@@ -121,12 +161,17 @@ function adopt(value) {
   data.decisions = { ...stored.decisions, ...data.decisions };
   data.visibility = { ...stored.visibility, ...data.visibility };
   data.errors ||= [];
-  update();
-  $('export').disabled = false;
+  $('preset').value = 'custom';
+  $('load').disabled = false;
   $('json').disabled = false;
+  refresh();
   map.fitBounds([[bbox[1], bbox[0]], [bbox[3], bbox[2]]]);
 }
 
+$('preset').onchange = () => {
+  if (PRESETS[$('preset').value]) chosen = [...PRESETS[$('preset').value]];
+  refresh();
+};
 $('select').onclick = () => {
   selecting = true;
   first = null;
@@ -137,13 +182,14 @@ $('select').onclick = () => {
   $('detail').replaceChildren();
   if (overlay) map.removeLayer(overlay);
   if (rectangle) map.removeLayer(rectangle);
-  status('Klikni na dva protilehlé rohy.');
+  setControls();
+  $('summary').textContent = 'Klikni na dva protilehlé rohy.';
 };
 map.on('click', ({ latlng }) => {
   if (!selecting) return;
   if (!first) {
     first = latlng;
-    status('Klikni na druhý roh.');
+    $('summary').textContent = 'Klikni na druhý roh.';
     return;
   }
   const box = L.latLngBounds(first, latlng);
@@ -151,30 +197,40 @@ map.on('click', ({ latlng }) => {
   const { width, height } = frame(proposed);
   selecting = false;
   if (Math.min(width, height) < 5 || Math.max(width, height) > 550) {
-    status('Strany musí mít 5–550 m; vyber znovu.');
+    $('summary').textContent = 'Strany musí mít 5–550 m; vyber znovu.';
     return;
   }
   bbox = proposed;
   rectangle = L.rectangle(box, { fill: false, interactive: false }).addTo(map);
   $('load').disabled = false;
-  status(`${width.toFixed(0)} × ${height.toFixed(0)} m`);
+  $('summary').textContent = `${width.toFixed(0)} × ${height.toFixed(0)} m`;
 });
 $('load').onclick = async () => {
-  if (!bbox) return;
-  for (const id of ['load', 'select', 'export', 'json', 'import']) $(id).disabled = true;
-  data = null;
-  if (overlay) map.removeLayer(overlay);
-  $('layers').replaceChildren();
-  $('detail').replaceChildren();
+  if (!bbox || busy) return;
+  busy = true;
+  for (const id of ['load', 'select', 'export', 'json', 'import', 'preset', 'diagnostic']) $(id).disabled = true;
+  setControls();
+  $('summary').textContent = 'Načítám vybrané sady; původní výsledek zůstává zobrazen.';
   try {
-    adopt(await load(bbox, (source) => status(`Načítám ${source}…`)));
+    const next = await load(bbox, status, { sets: chosen, diagnostic: $('diagnostic').checked });
+    if (data) {
+      next.raw = [...new Map([...data.raw, ...next.raw].map((f) => [f.id, f])).values()];
+      next.coverage = { ...data.coverage, ...next.coverage };
+      next.decisions = data.decisions;
+      next.visibility = data.visibility;
+    }
+    adopt(next);
   } catch (error) {
-    status(error.message);
+    $('summary').textContent = `Načtení selhalo: ${error.message}`;
   } finally {
-    for (const id of ['load', 'select', 'import']) $(id).disabled = false;
+    busy = false;
+    for (const id of ['load', 'select', 'import', 'preset', 'diagnostic']) $(id).disabled = false;
+    $('json').disabled = !data;
+    setControls();
   }
 };
-$('mode').onchange = () => { if (data) update(); };
+$('mode').onchange = refresh;
+$('diagnostic').onchange = refresh;
 $('scale').onchange = render;
 function download(text, type, name) {
   const url = URL.createObjectURL(new Blob([text], { type }));
@@ -185,7 +241,11 @@ function download(text, type, name) {
   setTimeout(() => URL.revokeObjectURL(url), 10000);
 }
 $('export').onclick = () => {
-  if (data) download(exportSvg(data, result, { scale: Number($('scale').value), raw: $('mode').value === 'raw', controls: $('control').checked }), 'image/svg+xml;charset=utf-8', 'dio-povrch-vrstvy.svg');
+  if (!ready()) return;
+  download(exportSets(data, {
+    sets: chosen, diagnostic: $('diagnostic').checked, scale: Number($('scale').value),
+    raw: $('mode').value === 'raw', controls: $('control').checked
+  }), 'image/svg+xml;charset=utf-8', 'dio-vybrane-sady.svg');
 };
 $('json').onclick = () => {
   if (data) download(JSON.stringify(data, null, 2), 'application/json', 'dio-pracovni.json');
@@ -197,6 +257,7 @@ $('import').onchange = async (event) => {
     if (file.size > 50000000) throw new Error('Soubor přesahuje 50 MB');
     adopt(JSON.parse(await file.text()));
   } catch (error) {
-    status(error.message);
+    $('summary').textContent = error.message;
   }
 };
+setControls();
