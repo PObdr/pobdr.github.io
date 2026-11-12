@@ -2,6 +2,8 @@ import { frame } from './model.js';
 import { exportSets } from './set-export.js';
 import { jtskFrame, northAngle } from './jtsk.js';
 import { rose } from './rose.js';
+import { crossingDrawing } from './crossings.js';
+import { selectedFeatures } from './sets.js';
 
 const NS = 'http://www.w3.org/2000/svg';
 const INK = 'http://www.inkscape.org/namespaces/inkscape';
@@ -17,6 +19,25 @@ export function exportJtsk(data, options = {}) {
   const doc = new DOMParser().parseFromString(exportSets(data, options), 'image/svg+xml');
   if (doc.querySelector('parsererror')) throw new Error('Neplatný SVG podklad');
   const root = doc.documentElement;
+  const raw = selectedFeatures(data.raw, options.sets || data.selectedSets, options.diagnostic);
+  const byId = new Map(raw.map((feature) => [feature.id, feature]));
+  for (const object of [...root.querySelectorAll('[data-object]')]) {
+    const feature = byId.get(object.getAttribute('data-object'));
+    if (!feature) continue;
+    const drawing = crossingDrawing(feature, raw);
+    if (drawing === null) continue;
+    if (!drawing) {
+      object.remove();
+      continue;
+    }
+    const fragment = new DOMParser().parseFromString(
+      `<svg xmlns="${NS}">${drawing}</svg>`, 'image/svg+xml'
+    );
+    if (fragment.querySelector('parsererror')) throw new Error('Neplatné značení přechodu');
+    const title = object.querySelector(':scope > title');
+    const path = doc.importNode(fragment.documentElement.firstElementChild, true);
+    object.replaceChildren(...(title ? [title, path] : [path]));
+  }
   root.setAttribute('viewBox', `0 0 ${f.width} ${total}`);
   root.setAttribute('width', `${f.width * 1000 / scale}mm`);
   root.setAttribute('height', `${total * 1000 / scale}mm`);

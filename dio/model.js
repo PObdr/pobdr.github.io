@@ -1,3 +1,5 @@
+import { markedCrossing } from './crossings.js';
+
 export function frame(bbox) {
   const [west, south, east, north] = bbox;
   const y = 6371008.8 * Math.PI / 180;
@@ -40,6 +42,7 @@ export function classify(source, a, kind) {
     return (kind === 'point' ? points : lines).get(code) || `Neurčené / ${a.CTMTP_POPIS || code}`;
   }
   if (a.location === 'underground' || (a.tunnel && a.tunnel !== 'no')) return 'Zakryté a podzemní / OSM';
+  if (source === 'OSM' && markedCrossing(a)) return 'Přechody OSM – doložené značení';
   if (a.traffic_sign) return 'Značky OSM – neověřené';
   if (a.natural === 'tree') return 'Stromy';
   if (a.natural === 'tree_row') return 'Stromořadí';
@@ -60,7 +63,7 @@ export function classify(source, a, kind) {
   return `Ostatní OSM / ${a.amenity || a.natural || a.man_made || a.railway || 'objekty'}`;
 }
 
-export const visibleByDefault = (category) => !/^(Zakryté|Pomocná|Neurčené|Ostatní OSM)/.test(category);
+export const visibleByDefault = (category) => !/^(Zakryté|Pomocná|Neurčené|Ostatní OSM|Komunikace OSM \/)/.test(category);
 export const distance = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1]);
 
 export function segmentDistance(p, a, b) {
