@@ -1,6 +1,7 @@
 import { frame } from './model.js';
 import { exportSets } from './set-export.js';
-import { jtskFrame, northAngle, rose } from './jtsk.js';
+import { jtskFrame, northAngle } from './jtsk.js';
+import { rose } from './rose.js';
 
 const NS = 'http://www.w3.org/2000/svg';
 const INK = 'http://www.inkscape.org/namespaces/inkscape';
@@ -72,7 +73,7 @@ export function exportJtsk(data, options = {}) {
     text.setAttribute('x', '1');
     text.setAttribute('y', f.height + 19);
     text.setAttribute('font-size', Math.min(scale / 1000 * 2.2, f.width / 120));
-    text.textContent = `EPSG:5514; počátek E ${f.left.toFixed(3)}, N ${f.top.toFixed(3)} m; N = zeměpisný, Ns = síťový sever. Převod není geodetické zaměření.`;
+    text.textContent = `EPSG:5514; počátek E ${f.left.toFixed(3)}, N ${f.top.toFixed(3)} m; S = zeměpisný, Ns = síťový sever. Převod není geodetické zaměření.`;
     orientation.append(text);
   }
   root.append(orientation);

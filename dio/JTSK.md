@@ -1,15 +1,19 @@
-# S-JTSK – pracovní geometrie
+# S-JTSK – pracovní geometrie a náhled OSM
 
-Mapa, výsledné geometrie, vzdálenosti slučování a SVG používají EPSG:5514 (Krovak East North), metry. Růžice rozlišuje zeměpisný sever N a sever souřadnicové sítě Ns. Směr N se počítá v centru pohledu/výřezu, není zaměňován s magnetickým severem. Mapový podklad je ČÚZK ZTM WMS v EPSG:5514 (vrstva 0, WMS 1.1.1). Běžné OSM dlaždice v EPSG:3857 se v tomto režimu nepoužívají.
+Pracovní geometrie, vzdálenosti slučování a export SVG používají EPSG:5514 (Krovak East North), metry. Orientační mapa používá OSM v EPSG:3857. OSM není součástí exportovaného SVG. Podklad ČÚZK ZTM už není výchozím náhledem.
 
-Dosavadní datové adaptéry a jejich cache zůstávají ve starém místním formátu. Na hranici aplikace se souřadnice matematicky vrátí do WGS84 a jednou převedou pomocí EPSG:1623 do EPSG:5514. Nejde o získání nativního zaměření ze všech zdrojů: existující převody přes WGS84 zůstávají, zvláště u lamp. Pravidla třídění se nemění. Čistě nativní výdej 5514 bez mezikroku WGS84 je případná další optimalizace.
+Růžice v rose.js přebírá vektorové cesty hvězdice, vnitřního kruhu a obrysové nápisy S/JTSK z uživatelem dodaného 1711-Albertov_zabor_DIO_2026.svg, nikoli okolní výkres. Původní orientace není závazná. S označuje zeměpisný sever, přidaný modrý Ns sever sítě 5514. JTSK je popisek souřadnicového systému, nikoli druhá severka. V OSM míří S nahoru a Ns se dopočítává; v exportu míří Ns nahoru a dopočítává se S. Rozdíl se vyhodnocuje v centru pohledu/výřezu; nejde o magnetický sever.
 
-Výsledná data mají version:3, crs:EPSG:5514 a origin:[E levé hrany,N horní hrany]. Lokální SVG souřadnice jsou E-originE, originN-N. Obálka se tvoří ze vzorků hran původního výběru a je zarovnaná na síť; může být větší než původní zeměpisný obdélník. Mapový SVG překryv je ukotvený v projektovaných rozích, nikoli roztažený mezi rohy zeměpisné obálky. Při animovaném zoomu se dočasně skryje.
+Dosavadní datové adaptéry a jejich cache zůstávají ve starém místním formátu. Na hranici aplikace se souřadnice matematicky vrátí do WGS84 a jednou převedou pomocí EPSG:1623 do EPSG:5514. Existující převody přes WGS84 zůstávají, zvláště u lamp. Pravidla třídění se nemění. Nejde o získání nativního zaměření ze všech zdrojů.
 
-Staré projekty version:2 se při importu převedou, nové projekty se nepřevádějí opakovaně. Změna počátku neoznačeného projektu je odmítnuta. SVG obsahuje CRS, počátek, obálku, jednotky a převodní vztah v metadatech, kontrolní křížky a růžici v samostatných podvrstvách. Běžné SVG se tím nestává univerzálním georeferencovaným GIS formátem.
+Výsledná data mají version:3, crs:EPSG:5514 a origin:[E levé hrany,N horní hrany]. Lokální SVG souřadnice jsou E-originE, originN-N. Exportní obálka je zarovnaná na síť S-JTSK; může být větší než původní zeměpisný obdélník.
 
-Převod EPSG:1623 má deklarovanou přesnost 1 m. Numerická shoda s PROJ nebo přesný round-trip není geodetická přesnost. Podklad není zaměření, neřeší výšky ani magnetickou deklinaci. Existující chybné polohy ani neúplné pasporty projekce neopraví. Zobrazení mimo ČR je omezené.
+Pro náhled se přepočítává pouze dočasná kopie SVG DOM. Každý vrchol čáry/plochy a kotva symbolu se převádí přes WGS84 do Web Mercatoru. Malé symboly, text a koruny používají lokální Jacobian pro velikost a natočení; ořezová hranice má vzorkované hrany. Nejde o roztažení celého SVG mezi dva rohy. Náhled mění jen zobrazovací DOM, nikoli data, rozhodnutí slučování, projektový JSON nebo finální export. Při animovaném zoomu se překryv dočasně skryje. Neočekávaná struktura zdrojového SVG vyvolá chybu místo tichého chybného převodu.
 
-Implementace projekce adaptuje sjtsk.js z projektu Profily ulic, Bára Soukupová; MIT oznámení je v PROJECTION-LICENSE.txt. Přebraný kód je rozšířený a přeformátovaný v novém souboru, existující zdroj se neminifikuje.
+Staré projekty version:2 se při importu převedou, nové se nepřevádějí opakovaně. SVG obsahuje CRS, počátek, obálku, jednotky a převodní vztah v metadatech, kontrolní křížky a růžici v samostatných podvrstvách. Běžné SVG se tím nestává univerzálním georeferencovaným GIS formátem.
 
-Test: node --experimental-default-type=module dio/jtsk.test.mjs. Živé WMS a chování Leafletu je nutné navíc ověřit v prohlížeči.
+Převod EPSG:1623 má deklarovanou přesnost 1 m. Numerická shoda s PROJ nebo přesný round-trip není geodetická přesnost. Podklad není zaměření, neřeší výšky ani magnetickou deklinaci. Existující chybné polohy ani neúplné pasporty projekce neopraví.
+
+Implementace projekce adaptuje sjtsk.js z projektu Profily ulic, Bára Soukupová; MIT oznámení je v PROJECTION-LICENSE.txt.
+
+Testy: node --experimental-default-type=module dio/jtsk.test.mjs a node --experimental-default-type=module dio/preview.test.mjs. Dostupnost živých OSM dlaždic je nezávislá na geometrii a musí se ověřovat v prohlížeči.

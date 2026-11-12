@@ -1,35 +1,24 @@
-import { fromWgs, toWgs, jtskFrame, northAngle, rose } from './jtsk.js';
+import { fromWgs, toWgs, jtskFrame } from './jtsk.js';
+import { rose } from './rose.js';
+import { projectPreview } from './jtsk-preview.js';
+import { gridAngleOnMap } from './preview-projection.js';
 
 export function createMap(id) {
-  const world = 40075016.68557849;
-  const projection = {
-    project: (p) => L.point(...fromWgs(p.lng, p.lat)),
-    unproject: (p) => {
-      const [lon, lat] = toWgs(p.x, p.y);
-      return L.latLng(lat, lon);
-    }
-  };
-  const crs = L.extend({}, L.CRS, {
-    code: 'EPSG:5514', projection,
-    transformation: new L.Transformation(1 / world, 0, -1 / world, 0),
-    infinite: true,
-    distance: (a, b) => projection.project(a).distanceTo(projection.project(b))
-  });
   const map = L.map(id, {
-    crs, minZoom: 10, maxZoom: 22,
+    minZoom: 10, maxZoom: 22,
     maxBounds: [[48, 11.8], [51.2, 18.9]]
   }).setView([50.0755, 14.4378], 17);
-  const background = L.tileLayer.wms('https://ags.cuzk.gov.cz/arcgis1/services/ZTM/MapServer/WMSServer', {
-    layers: '0', format: 'image/png', version: '1.1.1', crs,
-    transparent: false, attribution: '© ČÚZK – ZTM; EPSG:5514'
+  const background = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    maxNativeZoom: 19, maxZoom: 22,
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
   const compass = L.control({ position: 'topright' });
   let container;
   function updateCompass() {
     if (!container) return;
     const center = map.getCenter();
-    const angle = northAngle(center.lng, center.lat);
-    container.innerHTML = `<svg width="120" height="112" viewBox="-60 -56 120 112" role="img" aria-label="Růžice: N zeměpisný sever, Ns sever sítě S-JTSK">${rose(angle, 26)}</svg><div>N: zeměpisný; Ns: síť 5514</div>`;
+    const gridAngle = gridAngleOnMap(center.lng, center.lat);
+    container.innerHTML = `<svg width="120" height="112" viewBox="-60 -56 120 112" role="img" aria-label="Růžice: S zeměpisný sever, Ns sever sítě S-JTSK">${rose(0, 44, gridAngle)}</svg><div>S: zeměpisný; Ns: síť 5514</div>`;
   }
   compass.onAdd = () => {
     container = L.DomUtil.create('div', 'leaflet-control');
@@ -45,7 +34,7 @@ export function createMap(id) {
   coordinates.onAdd = () => {
     readout = L.DomUtil.create('div', 'leaflet-control');
     readout.style.cssText = 'background:white;padding:5px;font:12px monospace';
-    readout.textContent = 'EPSG:5514 – souřadnice E, N v metrech';
+    readout.textContent = 'Náhled OSM; pracovní souřadnice EPSG:5514';
     return readout;
   };
   map.on('mousemove', ({ latlng }) => {
@@ -54,7 +43,7 @@ export function createMap(id) {
   });
   coordinates.addTo(map);
   background.on('tileerror', () => {
-    readout.textContent = 'Podklad ČÚZK se nenačetl; vektorová geometrie zůstává v EPSG:5514.';
+    readout.textContent = 'Podklad OSM se nenačetl; pracovní geometrie zůstává v EPSG:5514.';
   });
   L.control.scale({ imperial: false }).addTo(map);
   return map;
@@ -70,7 +59,7 @@ export function gridSelection(bbox) {
 }
 
 export function gridOverlay(svg, bbox) {
-  const frame = jtskFrame(bbox);
+  const preview = projectPreview(svg, bbox);
   const Overlay = L.Layer.extend({
     onAdd(map) {
       this.map = map;
@@ -85,13 +74,12 @@ export function gridOverlay(svg, bbox) {
       svg.remove();
     },
     update() {
-      const [lon, lat] = toWgs(frame.left, frame.top);
-      const [lon2, lat2] = toWgs(frame.right, frame.bottom);
-      const a = this.map.project([lat, lon]).subtract(this.map.getPixelOrigin());
-      const b = this.map.project([lat2, lon2]).subtract(this.map.getPixelOrigin());
-      L.DomUtil.setPosition(svg, a);
-      svg.style.width = `${b.x - a.x}px`;
-      svg.style.height = `${b.y - a.y}px`;
+      const origin = L.CRS.EPSG3857.unproject(L.point(preview.left, preview.top));
+      const position = this.map.project(origin).subtract(this.map.getPixelOrigin());
+      const pixelsPerMetre = this.map.options.crs.scale(this.map.getZoom()) / (2 * Math.PI * 6378137);
+      L.DomUtil.setPosition(svg, position);
+      svg.style.width = `${preview.width * pixelsPerMetre}px`;
+      svg.style.height = `${preview.height * pixelsPerMetre}px`;
     }
   });
   return new Overlay();
