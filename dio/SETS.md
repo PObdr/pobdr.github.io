@@ -8,4 +8,4 @@ Vypnutí sady neodstraňuje již načtená data z pracovního JSON. Běžné SVG
 
 SVG je seskupeno do skutečných vnořených vrstev Inkscape. Wrapper set-export.js využívá smluvený formát vrstev generovaný svg-export.js a při neznámém názvu vrstvy selže místo tichého zahození dat. Test: node --experimental-default-type=module dio/sets.test.mjs.
 
-Tento commit nezavádí S-JTSK, severku ani nové názvy ulic. Základní sada proto zatím neobsahuje samostatné textové popisy ulic. Souřadnice, zdrojové symboly a dosavadní pravidla slučování se nemění.
+Pracovní mapa a finální export nyní používají S-JTSK a růžici; viz JTSK.md. Nízkoúrovňový svg-export.js je pomocný renderer, finální export provádí jtsk-export.js. Samostatné názvy ulic ve vektorovém SVG dosud nejsou zavedené.

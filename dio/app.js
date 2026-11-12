@@ -1,14 +1,14 @@
 import { frame, reconcile, visibleByDefault } from './model.js';
 import { load } from './sources.js';
-import { exportSets } from './set-export.js';
+import { exportJtsk } from './jtsk-export.js';
+import { projectDataset } from './jtsk.js';
+import { createMap, gridOverlay, gridSelection } from './jtsk-map.js';
 import { SETS, PRESETS, selectedSets, selectedFeatures, setOf } from './sets.js';
 
 const $ = (id) => document.getElementById(id);
-const map = L.map('map').setView([50.0755, 14.4378], 17);
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  maxZoom: 19,
-  attribution: '© OpenStreetMap contributors'
-}).addTo(map);
+const map = createMap('map');
+const notice = document.querySelector('aside > small');
+notice.textContent = 'Pracovní podklad v S-JTSK (EPSG:5514), převod EPSG:1623 s přibližnou přesností 1 m. Ověřit v terénu; nejde o geodetické zaměření ani úplný pasport značek.';
 let data;
 let result;
 let bbox;
@@ -61,13 +61,13 @@ function setControls() {
 function render() {
   if (overlay) map.removeLayer(overlay);
   if (!data) return;
-  const doc = new DOMParser().parseFromString(exportSets(data, {
+  const doc = new DOMParser().parseFromString(exportJtsk(data, {
     sets: chosen, diagnostic: $('diagnostic').checked, preview: true,
     scale: Number($('scale').value), raw: $('mode').value === 'raw'
   }), 'image/svg+xml');
   if (doc.querySelector('parsererror')) throw new Error('Neplatné SVG');
   const svg = doc.documentElement;
-  overlay = L.svgOverlay(svg, [[bbox[1], bbox[0]], [bbox[3], bbox[2]]], { interactive: true }).addTo(map);
+  overlay = gridOverlay(svg, bbox).addTo(map);
   svg.addEventListener('click', (event) => {
     const object = event.target.closest('[data-object]');
     if (object && !selecting) {
@@ -103,7 +103,7 @@ function refresh() {
   render();
   const missing = chosen.filter((id) => !data.coverage[id]);
   const incomplete = chosen.filter((id) => data.coverage[id] !== 'loaded');
-  $('summary').textContent = missing.length ? 'Nově vybrané sady je nutné donačíst.' : `${raw.length} zdrojových prvků. ${incomplete.length ? 'Podklad je částečný; viz podrobnosti.' : 'Vybrané sady připravené.'}`;
+  $('summary').textContent = missing.length ? 'Nově vybrané sady je nutné donačíst.' : `${raw.length} zdrojových prvků v EPSG:5514. ${incomplete.length ? 'Podklad je částečný; viz podrobnosti.' : 'Vybrané sady připravené.'}`;
   save();
 }
 
@@ -136,7 +136,7 @@ function detail(id) {
 }
 
 function adopt(value) {
-  if (value.version !== 2 || !Array.isArray(value.raw) || value.raw.length > 100000 || !Array.isArray(value.bbox) || value.bbox.length !== 4 || !value.bbox.every(Number.isFinite)) throw new Error('Neplatný pracovní JSON');
+  if (![2, 3].includes(value.version) || !Array.isArray(value.raw) || value.raw.length > 100000 || !Array.isArray(value.bbox) || value.bbox.length !== 4 || !value.bbox.every(Number.isFinite)) throw new Error('Neplatný pracovní JSON');
   const dimensions = frame(value.bbox);
   if (Math.min(dimensions.width, dimensions.height) < 5 || Math.max(dimensions.width, dimensions.height) > 551) throw new Error('Neplatný výřez');
   const ids = new Set();
@@ -146,14 +146,14 @@ function adopt(value) {
     if (!coords.every((p) => Array.isArray(p) && p.length === 2 && p.every(Number.isFinite))) throw new Error('Neplatné souřadnice');
     ids.add(f.id);
   }
-  data = value;
+  data = projectDataset(value);
   bbox = data.bbox;
   data.coverage ||= Object.fromEntries([...new Set(data.raw.map(setOf))].filter((id) => id !== 'control').map((id) => [id, 'partial']));
   chosen = selectedSets(data.selectedSets || chosen);
   let hash = 2166136261;
   const text = JSON.stringify(data.raw);
   for (let i = 0; i < text.length; i += 1) hash = Math.imul(hash ^ text.charCodeAt(i), 16777619);
-  storageKey = `dio-v2-${hash >>> 0}`;
+  storageKey = `dio-v3-${hash >>> 0}`;
   let stored = {};
   try {
     stored = JSON.parse(localStorage.getItem(storageKey) || '{}');
@@ -165,7 +165,7 @@ function adopt(value) {
   $('load').disabled = false;
   $('json').disabled = false;
   refresh();
-  map.fitBounds([[bbox[1], bbox[0]], [bbox[3], bbox[2]]]);
+  map.fitBounds(gridSelection(bbox).getBounds());
 }
 
 $('preset').onchange = () => {
@@ -201,9 +201,9 @@ map.on('click', ({ latlng }) => {
     return;
   }
   bbox = proposed;
-  rectangle = L.rectangle(box, { fill: false, interactive: false }).addTo(map);
+  rectangle = gridSelection(proposed).addTo(map);
   $('load').disabled = false;
-  $('summary').textContent = `${width.toFixed(0)} × ${height.toFixed(0)} m`;
+  $('summary').textContent = `${width.toFixed(0)} × ${height.toFixed(0)} m; výstupní rám zarovnaný na síť S-JTSK.`;
 });
 $('load').onclick = async () => {
   if (!bbox || busy) return;
@@ -212,7 +212,10 @@ $('load').onclick = async () => {
   setControls();
   $('summary').textContent = 'Načítám vybrané sady; původní výsledek zůstává zobrazen.';
   try {
-    const next = await load(bbox, status, { sets: chosen, diagnostic: $('diagnostic').checked });
+    const loaded = await load(bbox, status, { sets: chosen, diagnostic: $('diagnostic').checked });
+    status('Převádím geometrii do EPSG:5514…');
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    const next = projectDataset(loaded);
     if (data) {
       next.raw = [...new Map([...data.raw, ...next.raw].map((f) => [f.id, f])).values()];
       next.coverage = { ...data.coverage, ...next.coverage };
@@ -220,6 +223,7 @@ $('load').onclick = async () => {
       next.visibility = data.visibility;
     }
     adopt(next);
+    status('Geometrie připravena v EPSG:5514. Chyby zdrojů: ' + (data.errors.join('; ') || 'žádné'));
   } catch (error) {
     $('summary').textContent = `Načtení selhalo: ${error.message}`;
   } finally {
@@ -242,13 +246,13 @@ function download(text, type, name) {
 }
 $('export').onclick = () => {
   if (!ready()) return;
-  download(exportSets(data, {
+  download(exportJtsk(data, {
     sets: chosen, diagnostic: $('diagnostic').checked, scale: Number($('scale').value),
     raw: $('mode').value === 'raw', controls: $('control').checked
-  }), 'image/svg+xml;charset=utf-8', 'dio-vybrane-sady.svg');
+  }), 'image/svg+xml;charset=utf-8', 'dio-s-jtsk.svg');
 };
 $('json').onclick = () => {
-  if (data) download(JSON.stringify(data, null, 2), 'application/json', 'dio-pracovni.json');
+  if (data) download(JSON.stringify(data, null, 2), 'application/json', 'dio-pracovni-jtsk.json');
 };
 $('import').onchange = async (event) => {
   try {
