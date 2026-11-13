@@ -1,0 +1,221 @@
+{
+  "load": {
+    "originalDxfSha256": "88e7059ad8fe07f76ef5a2dd4e27fc26b8da65b09059436273c9d0a5ce956b80",
+    "loadMode": "strict",
+    "fixes": []
+  },
+  "views": [
+    {
+      "layout": "Model",
+      "kind": "technical",
+      "reviewStatus": "unreviewed",
+      "colourProfile": "source",
+      "colourAudit": [],
+      "svg": "preview/2ed35e1311093e54-8b5763a7-0-technical.svg",
+      "status": "candidate",
+      "entities": {
+        "LWPOLYLINE": 7,
+        "DIMENSION": 2
+      }
+    },
+    {
+      "layout": "E 15",
+      "kind": "sign-geometry",
+      "reviewStatus": "unreviewed",
+      "colourProfile": "cz-vl61-direct-aci249-black-v1",
+      "colourAudit": [
+        {
+          "sourceHandle": "845E",
+          "layer": "Značka",
+          "aci": 7,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "845F",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "8460",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "8461",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "8462",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "8463",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "svg": "preview/2ed35e1311093e54-8b5763a7-1-sign-geometry.svg",
+      "status": "candidate",
+      "entities": {
+        "LWPOLYLINE": 4,
+        "HATCH": 2
+      }
+    },
+    {
+      "layout": "E 15",
+      "kind": "sign-filled",
+      "reviewStatus": "unreviewed",
+      "colourProfile": "cz-vl61-direct-aci249-black-v1",
+      "colourAudit": [
+        {
+          "sourceHandle": "845F",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "8462",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "svg": "preview/2ed35e1311093e54-8b5763a7-2-sign-filled.svg",
+      "status": "candidate",
+      "entities": {
+        "HATCH": 2
+      }
+    },
+    {
+      "layout": "Model",
+      "kind": "sign-geometry",
+      "reviewStatus": "unreviewed",
+      "colourProfile": "cz-vl61-direct-aci249-black-v1",
+      "colourAudit": [
+        {
+          "sourceHandle": "83DC",
+          "layer": "Značka",
+          "aci": 6,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "761F",
+          "layer": "Značka",
+          "aci": 6,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "7F82",
+          "layer": "Značka",
+          "aci": 5,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "83CB",
+          "layer": "Značka",
+          "aci": 5,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "761E",
+          "layer": "Značka",
+          "aci": 6,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "7F83",
+          "layer": "Značka",
+          "aci": 5,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "7F84",
+          "layer": "Značka",
+          "aci": 5,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        }
+      ],
+      "svg": "preview/2ed35e1311093e54-8b5763a7-3-sign-geometry.svg",
+      "status": "candidate",
+      "entities": {
+        "LWPOLYLINE": 7
+      }
+    }
+  ],
+  "unitsCode": 4,
+  "ezdxf": "1.4.3",
+  "fontResolutionVerified": false,
+  "multipleSignsSeparated": false,
+  "fontStyles": [
+    {
+      "name": "Standard",
+      "font": "romand.shx"
+    }
+  ],
+  "warning": "Layer/layout candidates only. INSERT contents, colours, fonts, multiple depictions and legal meaning require review."
+}

@@ -1,0 +1,5778 @@
+{
+  "load": {
+    "originalDxfSha256": "0dc56d139161a1cee37fd98b830536eb730185d4b4db564c9628336aaf14e967",
+    "loadMode": "strict",
+    "fixes": []
+  },
+  "views": [
+    {
+      "layout": "Model",
+      "kind": "technical",
+      "reviewStatus": "unreviewed",
+      "colourProfile": "source",
+      "colourAudit": [],
+      "svg": "preview/a5f40519d0c82497-08e9f13f-0-technical.svg",
+      "status": "candidate",
+      "entities": {
+        "LWPOLYLINE": 20,
+        "DIMENSION": 3
+      }
+    },
+    {
+      "layout": "IJ 4d",
+      "kind": "sign-geometry",
+      "reviewStatus": "unreviewed",
+      "colourProfile": "cz-vl61-direct-aci249-black-v1",
+      "colourAudit": [
+        {
+          "sourceHandle": "AA10",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEDA",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEDB",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEDC",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEDD",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEDE",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEDF",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEE0",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEE1",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEE2",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEE3",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEE4",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEE5",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEE6",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEE7",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEE8",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEE9",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEEA",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEEB",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEEC",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEED",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEEE",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEEF",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEF0",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEF1",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEF2",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEF3",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEF4",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEF5",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEF6",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEF7",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEF8",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEF9",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEFA",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEFB",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEFC",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEFD",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEFE",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEFF",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF00",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF01",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF02",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF03",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF04",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF05",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF06",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF07",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF08",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF09",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF0A",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF0B",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF0C",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF0D",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF0E",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF0F",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF10",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF11",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF12",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF13",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF14",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF15",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF16",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF17",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF18",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF19",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF1A",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF1B",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF1C",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF1D",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AA12",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE96",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE97",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE98",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE99",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE9A",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE9B",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE9C",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE9D",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE9E",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE9F",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEA0",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEA1",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEA2",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEA3",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEA4",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEA5",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEA6",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEA7",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEA8",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEA9",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEAA",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEAB",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEAC",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEAD",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEAE",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEAF",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEB0",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEB1",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEB2",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEB3",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEB4",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEB5",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEB6",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEB7",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEB8",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEB9",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEBA",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEBB",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEBC",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEBD",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEBE",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEBF",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEC0",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEC1",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEC2",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEC3",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEC4",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEC5",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEC6",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEC7",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEC8",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AEC9",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AECA",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AECB",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AECC",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AECD",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AECE",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AECF",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AED0",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AED1",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AED2",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AED3",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AED4",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AED5",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AED6",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AED7",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AED8",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AED9",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE52",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE53",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE54",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE55",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE56",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE57",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE58",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE59",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE5A",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE5B",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE5C",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE5D",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE5E",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE5F",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE60",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE61",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE62",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE63",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE64",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE65",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE66",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE67",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE68",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE69",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE6A",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE6B",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE6C",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE6D",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE6E",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE6F",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE70",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE71",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE72",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE73",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE74",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE75",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE76",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE77",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE78",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE79",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE7A",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE7B",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE7C",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE7D",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE7E",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE7F",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE80",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE81",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE82",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE83",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE84",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE85",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE86",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE87",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE88",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE89",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE8A",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE8B",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE8C",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE8D",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE8E",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE8F",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE90",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE91",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE92",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE93",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE94",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE95",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE0E",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE0F",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE10",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE11",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE12",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE13",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE14",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE15",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE16",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE17",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE18",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE19",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE1A",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE1B",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE1C",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE1D",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE1E",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE1F",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE20",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE21",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE22",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE23",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE24",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE25",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE26",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE27",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE28",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE29",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE2A",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE2B",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE2C",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE2D",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE2E",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE2F",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE30",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE31",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE32",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE33",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE34",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE35",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE36",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE37",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE38",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE39",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE3A",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE3B",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE3C",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE3D",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE3E",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE3F",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE40",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE41",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE42",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE43",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE44",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE45",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE46",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE47",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE48",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE49",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE4A",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE4B",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE4C",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE4D",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE4E",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE4F",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE50",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AE51",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "ACEC",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADA8",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADA9",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADAA",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADAB",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADAC",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADAD",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADAE",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADAF",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADB0",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADB1",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADB2",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADB3",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADB4",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADB5",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADB6",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADB7",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADB8",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADB9",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADBA",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADBB",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADBC",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADBD",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADBE",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADBF",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADC0",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADC1",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADC2",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADC3",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADC4",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADC5",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADC6",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADC7",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADC8",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADC9",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADCA",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADCB",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADCC",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADCD",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADCE",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADCF",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADD0",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADD1",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADD2",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADD3",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADD4",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADD5",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADD6",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADD7",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADD8",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADD9",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADDA",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADDB",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADDC",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADDD",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADDE",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADDF",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADE0",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADE1",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADE2",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADE3",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADE4",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADE5",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADE6",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADE7",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADE8",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADE9",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADEA",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADEB",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADEC",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADED",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADEE",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADEF",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADF0",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADF1",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADF2",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADF3",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADF4",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADF5",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADF6",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADF7",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADF8",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADF9",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADFA",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADFB",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADFC",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADFD",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADFE",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADFF",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AE00",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AE01",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AE02",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AE03",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AE04",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AE05",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AE06",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AE07",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AE08",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AE09",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AE0A",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AE0B",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AE0C",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AE0D",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD96",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD97",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD98",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD99",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD9A",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD9B",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD9C",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD9D",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD9E",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD9F",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADA0",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADA1",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADA2",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADA3",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADA4",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADA5",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADA6",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ADA7",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD84",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD85",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD86",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD87",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD88",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD89",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD8A",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD8B",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD8C",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD8D",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD8E",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD8F",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD90",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD91",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD92",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD93",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD94",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD95",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD72",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD73",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD74",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD75",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD76",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD77",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD78",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD79",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD7A",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD7B",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD7C",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD7D",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD7E",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD7F",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD80",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD81",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD82",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD83",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD44",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD45",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD46",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD47",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD48",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD49",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD4A",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD4B",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD4C",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD4D",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD4E",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD4F",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD50",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD51",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD52",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD53",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD54",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD55",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD56",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD57",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD58",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD59",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD5A",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD5B",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD5C",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD5D",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD5E",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD5F",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD60",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD61",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD62",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD63",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD64",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD65",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD66",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD67",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD68",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD69",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD6A",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD6B",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD6C",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD6D",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD6E",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD6F",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD70",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD71",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD16",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD17",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD18",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD19",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD1A",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD1B",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD1C",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD1D",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD1E",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD1F",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD20",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD21",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD22",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD23",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD24",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD25",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD26",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD27",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD28",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD29",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD2A",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD2B",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD2C",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD2D",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD2E",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD2F",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD30",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD31",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD32",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD33",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD34",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD35",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD36",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD37",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD38",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD39",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD3A",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD3B",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD3C",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD3D",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD3E",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD3F",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD40",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD41",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD42",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD43",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD12",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD13",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD14",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD15",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD0E",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD0F",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD10",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD11",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD0A",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD0B",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD0C",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD0D",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD06",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD07",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD08",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD09",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD02",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD03",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD04",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD05",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ACFE",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ACFF",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD00",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AD01",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ACFA",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ACFB",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ACFC",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "ACFD",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "svg": "preview/a5f40519d0c82497-08e9f13f-1-sign-geometry.svg",
+      "status": "candidate",
+      "entities": {
+        "HATCH": 3,
+        "LINE": 494,
+        "ARC": 54
+      }
+    },
+    {
+      "layout": "IJ 4d",
+      "kind": "sign-filled",
+      "reviewStatus": "unreviewed",
+      "colourProfile": "cz-vl61-direct-aci249-black-v1",
+      "colourAudit": [
+        {
+          "sourceHandle": "AA10",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AA12",
+          "layer": "Značka",
+          "aci": 170,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "ACEC",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "svg": "preview/a5f40519d0c82497-08e9f13f-2-sign-filled.svg",
+      "status": "candidate",
+      "entities": {
+        "HATCH": 3
+      }
+    },
+    {
+      "layout": "Model",
+      "kind": "sign-geometry",
+      "reviewStatus": "unreviewed",
+      "colourProfile": "cz-vl61-direct-aci249-black-v1",
+      "colourAudit": [
+        {
+          "sourceHandle": "922F",
+          "layer": "Značka",
+          "aci": 5,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "9230",
+          "layer": "Značka",
+          "aci": 5,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF7C",
+          "layer": "Značka",
+          "aci": 6,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF7D",
+          "layer": "Značka",
+          "aci": 5,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF7E",
+          "layer": "Značka",
+          "aci": 5,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF7F",
+          "layer": "Značka",
+          "aci": 5,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF80",
+          "layer": "Značka",
+          "aci": 5,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF81",
+          "layer": "Značka",
+          "aci": 5,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF82",
+          "layer": "Značka",
+          "aci": 5,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF83",
+          "layer": "Značka",
+          "aci": 5,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF84",
+          "layer": "Značka",
+          "aci": 5,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF85",
+          "layer": "Značka",
+          "aci": 5,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF86",
+          "layer": "Značka",
+          "aci": 5,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF87",
+          "layer": "Značka",
+          "aci": 5,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF88",
+          "layer": "Značka",
+          "aci": 5,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AF89",
+          "layer": "Značka",
+          "aci": 5,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "761F",
+          "layer": "Značka",
+          "aci": 6,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "922E",
+          "layer": "Značka",
+          "aci": 5,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "A6F0",
+          "layer": "Značka",
+          "aci": 6,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "A81F",
+          "layer": "Značka",
+          "aci": 5,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        }
+      ],
+      "svg": "preview/a5f40519d0c82497-08e9f13f-3-sign-geometry.svg",
+      "status": "candidate",
+      "entities": {
+        "LWPOLYLINE": 20
+      }
+    }
+  ],
+  "unitsCode": 4,
+  "ezdxf": "1.4.3",
+  "fontResolutionVerified": false,
+  "multipleSignsSeparated": false,
+  "fontStyles": [
+    {
+      "name": "Standard",
+      "font": "romand.shx"
+    }
+  ],
+  "warning": "Layer/layout candidates only. INSERT contents, colours, fonts, multiple depictions and legal meaning require review."
+}

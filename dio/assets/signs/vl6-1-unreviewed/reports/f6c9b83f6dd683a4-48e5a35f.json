@@ -1,0 +1,543 @@
+{
+  "load": {
+    "originalDxfSha256": "a429a91b4b97b6905056c8924ea6e2b809749bb966e97b2ef9beb2731a2e74d5",
+    "loadMode": "strict",
+    "fixes": []
+  },
+  "views": [
+    {
+      "layout": "Model",
+      "kind": "technical",
+      "reviewStatus": "unreviewed",
+      "colourProfile": "source",
+      "colourAudit": [],
+      "svg": "preview/f6c9b83f6dd683a4-48e5a35f-0-technical.svg",
+      "status": "candidate",
+      "entities": {
+        "LWPOLYLINE": 26,
+        "LINE": 3,
+        "DIMENSION": 3
+      }
+    },
+    {
+      "layout": "IZ 4d",
+      "kind": "sign-geometry",
+      "reviewStatus": "unreviewed",
+      "colourProfile": "cz-vl61-direct-aci249-black-v1",
+      "colourAudit": [
+        {
+          "sourceHandle": "AB42",
+          "layer": "Značka",
+          "aci": 7,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AB43",
+          "layer": "Značka",
+          "aci": 10,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AB44",
+          "layer": "Značka",
+          "aci": 10,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AB45",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AB46",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AB47",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AB48",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AB49",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AB4A",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AB4B",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AB4C",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AB4D",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AB4E",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AB4F",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AB50",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AB51",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AB52",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AB53",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AB54",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AB55",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "svg": "preview/f6c9b83f6dd683a4-48e5a35f-1-sign-geometry.svg",
+      "status": "candidate",
+      "entities": {
+        "LWPOLYLINE": 17,
+        "HATCH": 3
+      }
+    },
+    {
+      "layout": "IZ 4d",
+      "kind": "sign-filled",
+      "reviewStatus": "unreviewed",
+      "colourProfile": "cz-vl61-direct-aci249-black-v1",
+      "colourAudit": [
+        {
+          "sourceHandle": "AB43",
+          "layer": "Značka",
+          "aci": 10,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "AB45",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        },
+        {
+          "sourceHandle": "AB48",
+          "layer": "Značka",
+          "aci": 249,
+          "trueColor": null,
+          "applied": true,
+          "targetRgb": [
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "svg": "preview/f6c9b83f6dd683a4-48e5a35f-2-sign-filled.svg",
+      "status": "candidate",
+      "entities": {
+        "HATCH": 3
+      }
+    },
+    {
+      "layout": "Model",
+      "kind": "sign-geometry",
+      "reviewStatus": "unreviewed",
+      "colourProfile": "cz-vl61-direct-aci249-black-v1",
+      "colourAudit": [
+        {
+          "sourceHandle": "ABA8",
+          "layer": "Značka",
+          "aci": 6,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "ABA9",
+          "layer": "Značka",
+          "aci": 6,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "ABAA",
+          "layer": "Značka",
+          "aci": 6,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "ABAD",
+          "layer": "Značka",
+          "aci": 6,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "ABB0",
+          "layer": "Značka",
+          "aci": 3,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "ABB1",
+          "layer": "Značka",
+          "aci": 3,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "ABB2",
+          "layer": "Značka",
+          "aci": 3,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "ABB9",
+          "layer": "Značka",
+          "aci": 1,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "ABBA",
+          "layer": "Značka",
+          "aci": 1,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "ABBB",
+          "layer": "Značka",
+          "aci": 1,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "ABBC",
+          "layer": "Značka",
+          "aci": 1,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "ABBD",
+          "layer": "Značka",
+          "aci": 1,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "B094",
+          "layer": "Značka",
+          "aci": 6,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "B095",
+          "layer": "Značka",
+          "aci": 3,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "B096",
+          "layer": "Značka",
+          "aci": 3,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "B097",
+          "layer": "Značka",
+          "aci": 3,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "B098",
+          "layer": "Značka",
+          "aci": 3,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "B099",
+          "layer": "Značka",
+          "aci": 3,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "B09A",
+          "layer": "Značka",
+          "aci": 3,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "B09B",
+          "layer": "Značka",
+          "aci": 3,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "B09C",
+          "layer": "Značka",
+          "aci": 3,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "B09D",
+          "layer": "Značka",
+          "aci": 3,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "B09E",
+          "layer": "Značka",
+          "aci": 3,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "B0A0",
+          "layer": "Značka",
+          "aci": 3,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "B0A1",
+          "layer": "Značka",
+          "aci": 3,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        },
+        {
+          "sourceHandle": "B0A2",
+          "layer": "Značka",
+          "aci": 3,
+          "trueColor": null,
+          "applied": false,
+          "targetRgb": null
+        }
+      ],
+      "svg": "preview/f6c9b83f6dd683a4-48e5a35f-3-sign-geometry.svg",
+      "status": "candidate",
+      "entities": {
+        "LWPOLYLINE": 25,
+        "LINE": 1
+      }
+    }
+  ],
+  "unitsCode": 4,
+  "ezdxf": "1.4.3",
+  "fontResolutionVerified": false,
+  "multipleSignsSeparated": false,
+  "fontStyles": [
+    {
+      "name": "Standard",
+      "font": "romand.shx"
+    }
+  ],
+  "warning": "Layer/layout candidates only. INSERT contents, colours, fonts, multiple depictions and legal meaning require review."
+}

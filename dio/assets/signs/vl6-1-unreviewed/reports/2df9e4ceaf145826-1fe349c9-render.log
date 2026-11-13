@@ -1,0 +1,56 @@
+Traceback (most recent call last):
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/ezdxf/lldxf/tagger.py", line 116, in ascii_tags_loader
+    group_code = int(code)
+                 ^^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'itika nezohledňuje.{\\H1.64815x; }\\PDetail viz list č. IS 1b.{\\H1.61728x; }\\PE ... 1/7 h, h ... výška písma{\\H1.81805x; }\n'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/work/pobdr.github.io/pobdr.github.io/tools/dio-signs-import/cad_review.py", line 60, in read_document
+    return ezdxf.readfile(path), audit
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/ezdxf/filemanagement.py", line 154, in readfile
+    doc = read(fp)
+          ^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/ezdxf/filemanagement.py", line 95, in read
+    return Drawing.read(stream)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/ezdxf/document.py", line 350, in read
+    return cls.load(tag_loader)
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/ezdxf/document.py", line 365, in load
+    doc._load(tag_loader)
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/ezdxf/document.py", line 378, in _load
+    sections = loader.load_dxf_structure(tagger)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/ezdxf/lldxf/loader.py", line 91, in load_dxf_structure
+    for entity in group_tags(tagger):
+                  ^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/ezdxf/lldxf/tags.py", line 321, in group_tags
+    for tag in tags:
+               ^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/ezdxf/lldxf/tagger.py", line 290, in tag_compiler
+    x = next(tags)
+        ^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/ezdxf/lldxf/tagger.py", line 118, in ascii_tags_loader
+    raise DXFStructureError(f'Invalid group code "{code}" at line {line}.')
+ezdxf.lldxf.const.DXFStructureError: Invalid group code "itika nezohledňuje.{\H1.64815x; }\PDetail viz list č. IS 1b.{\H1.61728x; }\PE ... 1/7 h, h ... výška písma{\H1.81805x; }
+" at line 56961.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/runner/work/pobdr.github.io/pobdr.github.io/tools/dio-signs-import/cad_review.py", line 277, in <module>
+    main()
+  File "/home/runner/work/pobdr.github.io/pobdr.github.io/tools/dio-signs-import/cad_review.py", line 271, in main
+    render_job(args.dxf, args.output, args.key)
+  File "/home/runner/work/pobdr.github.io/pobdr.github.io/tools/dio-signs-import/cad_review.py", line 100, in render_job
+    doc, audit = read_document(path)
+                 ^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/pobdr.github.io/pobdr.github.io/tools/dio-signs-import/cad_review.py", line 62, in read_document
+    corrected, fixes = repair_mtext(original)
+                       ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/pobdr.github.io/pobdr.github.io/tools/dio-signs-import/cad_review.py", line 38, in repair_mtext
+    raise ValueError(f'Unrecognised text continuation at physical line {end + 1}')
+ValueError: Unrecognised text continuation at physical line 64924

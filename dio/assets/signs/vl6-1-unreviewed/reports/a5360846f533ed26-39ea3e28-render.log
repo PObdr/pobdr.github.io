@@ -1,0 +1,25 @@
+Found non-unique entity handle #676, data validation is required.
+Found non-unique entity handle #681, data validation is required.
+Found non-unique entity handle #682, data validation is required.
+Found non-unique entity handle #683, data validation is required.
+Found non-unique entity handle #66E, data validation is required.
+Found non-unique entity handle #6CF, data validation is required.
+Found non-unique entity handle #6D0, data validation is required.
+Found non-unique entity handle #CC1, data validation is required.
+Traceback (most recent call last):
+  File "/home/runner/work/pobdr.github.io/pobdr.github.io/tools/dio-signs-import/cad_review.py", line 277, in <module>
+    main()
+  File "/home/runner/work/pobdr.github.io/pobdr.github.io/tools/dio-signs-import/cad_review.py", line 271, in main
+    render_job(args.dxf, args.output, args.key)
+  File "/home/runner/work/pobdr.github.io/pobdr.github.io/tools/dio-signs-import/cad_review.py", line 107, in render_job
+    selected = sign_entities(entities, filled)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/runner/work/pobdr.github.io/pobdr.github.io/tools/dio-signs-import/cad_review.py", line 79, in sign_entities
+    return [e for e in entities if sign_layer(e) and e.dxftype() not in excluded and
+                                   ^^^^^^^^^^^^^
+  File "/home/runner/work/pobdr.github.io/pobdr.github.io/tools/dio-signs-import/cad_review.py", line 75, in sign_layer
+    name = unicodedata.normalize('NFKD', entity.dxf.get('layer', '0'))
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/ezdxf/entities/dxfns.py", line 223, in get
+    raise const.DXFAttributeError(
+ezdxf.lldxf.const.DXFAttributeError: Invalid DXF attribute "layer" for entity XRECORD

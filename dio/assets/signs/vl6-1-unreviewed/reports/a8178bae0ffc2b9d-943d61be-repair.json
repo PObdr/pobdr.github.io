@@ -1,0 +1,17 @@
+{
+  "originalDxfSha256": "35555231eca59d3bcae3bda47413d8fede48dd2f3c26d8a3f50f16aadc233c5c",
+  "loadMode": "mtext-repaired",
+  "fixes": [
+    {
+      "physicalLine": 27963,
+      "segmentBytes": [
+        255,
+        51
+      ],
+      "joinedTextSha256": "4db0740369207395fe87bccaaf01f7733f01b79b8e1e58b232258efecc41dc2a",
+      "characters": 277
+    }
+  ],
+  "repairedDxf": "a8178bae0ffc2b9d-943d61be-mtext-fixed.dxf",
+  "repairedDxfSha256": "dbe77fcc407e2fa1eb1a731c444a72c03fa4e92a78c5196044f13327170c1a19"
+}

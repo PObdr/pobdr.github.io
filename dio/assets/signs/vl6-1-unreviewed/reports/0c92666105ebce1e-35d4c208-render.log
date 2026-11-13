@@ -1,0 +1,18 @@
+Found non-unique entity handle #66E, data validation is required.
+Traceback (most recent call last):
+  File "/home/runner/work/pobdr.github.io/pobdr.github.io/tools/dio-signs-import/cad_review.py", line 277, in <module>
+    main()
+  File "/home/runner/work/pobdr.github.io/pobdr.github.io/tools/dio-signs-import/cad_review.py", line 271, in main
+    render_job(args.dxf, args.output, args.key)
+  File "/home/runner/work/pobdr.github.io/pobdr.github.io/tools/dio-signs-import/cad_review.py", line 105, in render_job
+    entities = list(space.entities_in_redraw_order()) if hasattr(space, 'entities_in_redraw_order') else list(space)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/ezdxf/layouts/base.py", line 406, in entities_in_redraw_order
+    return reorder.ascending(self.entity_space, redraw_order)  # type: ignore
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/ezdxf/reorder.py", line 31, in ascending
+    mapping = dict(mapping) if mapping else {}
+              ^^^^^^^^^^^^^
+  File "/opt/hostedtoolcache/Python/3.12.16/x64/lib/python3.12/site-packages/ezdxf/entities/dictionary.py", line 297, in __getitem__
+    raise DXFKeyError(key)
+ezdxf.lldxf.const.DXFKeyError: 0
