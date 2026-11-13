@@ -1,0 +1,35 @@
+import assert from 'node:assert/strict';
+import { reference, rewrite } from './refactor.mjs';
+
+let checks = 0;
+const equal = (actual, expected) => {
+  checks += 1;
+  assert.equal(actual, expected);
+};
+equal(reference('./model.js', 'dio/app.js', 'dio/src/app.js'), './core/model.js');
+equal(reference('./parking.js', 'dio/parking.test.mjs', 'dio/tests/unit/parking.test.mjs'), '../../src/parking/parking.js');
+equal(reference('./data/lamps/', 'dio/lamps.js', 'dio/src/data/lamps.js'), '../../data/lamps/');
+equal(reference('https://tile.openstreetmap.org/x', 'dio/app.js', 'dio/src/app.js'), 'https://tile.openstreetmap.org/x');
+equal(reference('./SETS.md#x', 'dio/index.html', 'dio/index.html'), './docs/SETS.md#x');
+equal(reference('/dio/app.js', 'dio/index.html', 'dio/index.html'), '/dio/src/app.js');
+const input = `import { x } from './model.js';
+export { y } from './sets.js';
+const z = import('./parking.js');
+const data = new URL('./data/lamps/', import.meta.url);
+fetch('./data/lamps/manifest.json');`;
+const result = rewrite(input, 'dio/app.js', 'dio/src/app.js');
+assert.match(result, /from '\.\/core\/model\.js'/);
+checks += 1;
+assert.match(result, /from '\.\/core\/sets\.js'/);
+checks += 1;
+assert.match(result, /import\('\.\/parking\/parking\.js'\)/);
+checks += 1;
+assert.match(result, /new URL\('\.\.\/data\/lamps\/'/);
+checks += 1;
+assert.match(result, /fetch\('\.\/data\/lamps\/manifest\.json'\)/);
+checks += 1;
+equal(rewrite('<script src="./app.js"></script>', 'dio/index.html', 'dio/index.html'), '<script src="./src/app.js"></script>');
+equal(rewrite('[Sady](./SETS.md)', 'dio/README.md', 'dio/README.md'), '[Sady](./docs/SETS.md)');
+equal(rewrite('a{background:url("./diogen.svg")}', 'dio/interface.css', 'dio/styles/interface.css'), 'a{background:url("../assets/diogen.svg")}');
+equal(rewrite('node dio/test.mjs', 'dio/README.md', 'dio/README.md'), 'node dio/tests/unit/test.mjs');
+console.log(JSON.stringify({ status: 'passed', checks }));

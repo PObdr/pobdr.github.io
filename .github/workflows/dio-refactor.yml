@@ -1,0 +1,63 @@
+name: DIO structure refactor
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - tools/dio-refactor/**
+      - .github/workflows/dio-refactor.yml
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: dio-structure-refactor
+  cancel-in-progress: false
+
+jobs:
+  refactor:
+    if: github.repository == 'PObdr/pobdr.github.io'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test reference rewriting
+        run: node tools/dio-refactor/refactor.test.mjs
+      - name: Install isolated browser test dependency
+        run: |
+          npm install --prefix "$RUNNER_TEMP/dio-test" --no-package-lock playwright@1.51.1
+          "$RUNNER_TEMP/dio-test/node_modules/.bin/playwright" install --with-deps chromium
+      - name: Browser baseline
+        if: hashFiles('dio/docs/REFACTOR.json') == ''
+        env:
+          DIO_TEST_DEPENDENCIES: ${{ runner.temp }}/dio-test
+        run: node tools/dio-refactor/browser-test.mjs --before
+      - name: Move files and check imports, links, font and unit tests
+        run: node tools/dio-refactor/refactor.mjs
+      - name: Browser regression
+        env:
+          DIO_TEST_DEPENDENCIES: ${{ runner.temp }}/dio-test
+        run: node tools/dio-refactor/browser-test.mjs
+      - name: Commit only validated DIO refactor
+        id: commit
+        run: |
+          if [ -n "$(git status --porcelain -- dio)" ]; then
+            git config user.name 'github-actions[bot]'
+            git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+            git add --all -- dio
+            git commit -m 'refactor(dio): organize modules, tests and documentation'
+            git push origin HEAD:main
+            echo 'changed=true' >> "$GITHUB_OUTPUT"
+          fi
+      - name: Deploy through existing lighting workflow
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run lighting-pages.yml --repo PObdr/pobdr.github.io --ref main
