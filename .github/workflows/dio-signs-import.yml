@@ -1,0 +1,81 @@
+name: DIO sign DWG audit and pilot
+
+on:
+  workflow_dispatch:
+    inputs:
+      limit:
+        description: Number of unreviewed modelspace previews
+        type: choice
+        default: '8'
+        options: ['4', '8', '12']
+  push:
+    branches: [main]
+    paths:
+      - tools/dio-signs-import/**
+      - .github/workflows/dio-signs-import.yml
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dio-signs-import
+  cancel-in-progress: false
+
+env:
+  DIO_OUT: ${{ runner.temp }}/dio-signs-output
+
+jobs:
+  audit:
+    if: github.repository == 'PObdr/pobdr.github.io'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Prepare output and Python renderer
+        run: |
+          mkdir -p "$DIO_OUT"
+          python -m pip install -r tools/dio-signs-import/requirements.txt
+          python -m pip freeze > "$DIO_OUT/python-packages.txt"
+          sha256sum dio/fonts/Bahnschrift.ttf > "$DIO_OUT/project-font.sha256"
+      - name: Test safe extraction, SVG validation and actual DXF rendering
+        run: python tools/dio-signs-import/test_import.py
+      - name: Download official package and inventory all files
+        run: python tools/dio-signs-import/import_signs.py inventory --output "$DIO_OUT"
+      - name: Build pinned open DWG reader
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential pkg-config zlib1g-dev libtool autoconf automake
+          mkdir -p "$RUNNER_TEMP/libredwg-source" "$RUNNER_TEMP/libredwg-bin"
+          curl --fail --location --retry 3 --max-time 180 \
+            https://ftp.gnu.org/gnu/libredwg/libredwg-0.13.3.tar.xz \
+            --output "$RUNNER_TEMP/libredwg.tar.xz"
+          sha256sum "$RUNNER_TEMP/libredwg.tar.xz" > "$DIO_OUT/libredwg-source.sha256"
+          tar -xf "$RUNNER_TEMP/libredwg.tar.xz" -C "$RUNNER_TEMP/libredwg-source" --strip-components=1
+          cd "$RUNNER_TEMP/libredwg-source"
+          ./configure --prefix="$RUNNER_TEMP/libredwg-bin" --disable-bindings --disable-docs --disable-shared
+          make -j2
+          make install
+          echo "$RUNNER_TEMP/libredwg-bin/bin" >> "$GITHUB_PATH"
+          "$RUNNER_TEMP/libredwg-bin/bin/dwgread" --version > "$DIO_OUT/converter-version.txt"
+      - name: Convert a small pilot to DXF and unreviewed SVG
+        env:
+          PILOT_LIMIT: ${{ inputs.limit || '8' }}
+        run: python tools/dio-signs-import/import_signs.py pilot --output "$DIO_OUT" --limit "$PILOT_LIMIT"
+      - name: Publish audit summary
+        if: always()
+        run: |
+          if [ -f "$DIO_OUT/summary.md" ]; then
+            cat "$DIO_OUT/summary.md" >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo 'Import incomplete. Inspect the diagnostic artifact; no sign models were published.' >> "$GITHUB_STEP_SUMMARY"
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dio-signs-dwg-audit-${{ github.run_id }}
+          path: ${{ env.DIO_OUT }}
+          if-no-files-found: warn
+          retention-days: 14
