@@ -6,14 +6,14 @@
     <meta name="theme-color" content="#136d65">
     <meta name="application-name" content="DIOGEN">
     <title>DIOGEN – generátor DIO</title>
-    <link rel="icon" type="image/svg+xml" href="./diogen.svg">
+    <link rel="icon" type="image/svg+xml" href="./assets/diogen.svg">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-    <link rel="stylesheet" href="./interface.css">
+    <link rel="stylesheet" href="./styles/interface.css">
   </head>
   <body>
     <header class="app-header">
       <a class="brand" href="./" aria-label="DIOGEN – generátor DIO">
-        <img src="./diogen.svg" width="36" height="36" alt="">
+        <img src="./assets/diogen.svg" width="36" height="36" alt="">
         DIOGEN<span>Generátor DIO</span>
       </a>
       <span class="header-tag">Pracovní situace</span>
@@ -99,7 +99,7 @@
           <summary>Zdroje a omezení</summary>
           <p>Pracovní podklad EPSG:5514. Ověřit v terénu; nejde o geodetické zaměření.</p>
           <p>IPR Praha, MHMP, TSK, THMP; © přispěvatelé OpenStreetMap, ODbL.</p>
-          <a href="./SETS.md">Pravidla sad</a> · <a href="./README.md">Omezení dat</a>
+          <a href="./docs/SETS.md">Pravidla sad</a> · <a href="./README.md">Omezení dat</a>
         </details>
       </aside>
       <section class="map-stage" aria-label="Mapa">
@@ -108,6 +108,6 @@
       </section>
     </main>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script type="module" src="./app.js"></script>
+    <script type="module" src="./src/app.js"></script>
   </body>
 </html>

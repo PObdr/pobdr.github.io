@@ -1,3 +1,5 @@
+# DIOGEN
+
 # DIO – povrchový podklad
 
 Vlastní implementace inspirovaná průzkumem projektu Profily ulic (Bára Soukupová, https://github.com/barasoukup/profily-ulic/). Nepřebírá kód generovaných značek ani ilustrace Streetmix.
@@ -10,4 +12,15 @@ V SVG zůstávají skryté vrstvy a volitelná původní data. Symboly jsou sche
 
 Omezení: neúplné zdroje, žádný kompletní pasport značek TSK, žádné OSM relace, místní přibližná projekce. CORS a dostupnost serverů mohou selhat. Druhy se nepřekládají automaticky mezi češtinou a latinou; rozdílné názvy mohou vyvolat konzervativní konflikt. Pracovní JSON není obecný GIS import.
 
-Offline testy: `node --experimental-default-type=module dio/test.mjs`. Neověřují živé služby ani prohlížeč.
+Offline testy: `node --experimental-default-type=module dio/tests/unit/test.mjs`. Neověřují živé služby ani prohlížeč.
+
+## Struktura
+
+- src/: aplikační moduly podle odpovědností; vstup src/app.js.
+- styles/: styly rozhraní; assets/: statické obrázky a ikona.
+- tests/unit/: Node testy; tests/browser/: testy vyžadující prohlížeč.
+- docs/: podrobnosti geometrie, zdrojů, parkování a přechodů.
+- fonts/Bahnschrift.ttf: zachovaná uživatelská kopie fontu.
+- data/lamps/: generovaná data; stávající workflow a cache se nemění.
+
+Úklid nepřidává knihovnu značek ani nezapojuje písmo do renderování.

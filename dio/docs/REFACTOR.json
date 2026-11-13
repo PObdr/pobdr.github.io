@@ -1,0 +1,196 @@
+{
+  "version": 1,
+  "sourceParent": "6eafc923366dc73d93562cdc70ce03c1de564328",
+  "moves": [
+    {
+      "before": "dio/model.js",
+      "after": "dio/src/core/model.js"
+    },
+    {
+      "before": "dio/sets.js",
+      "after": "dio/src/core/sets.js"
+    },
+    {
+      "before": "dio/sources.js",
+      "after": "dio/src/data/sources.js"
+    },
+    {
+      "before": "dio/lamps.js",
+      "after": "dio/src/data/lamps.js"
+    },
+    {
+      "before": "dio/jtsk.js",
+      "after": "dio/src/geometry/jtsk.js"
+    },
+    {
+      "before": "dio/selection.js",
+      "after": "dio/src/geometry/selection.js"
+    },
+    {
+      "before": "dio/north-up.js",
+      "after": "dio/src/geometry/north-up.js"
+    },
+    {
+      "before": "dio/preview-projection.js",
+      "after": "dio/src/geometry/preview-projection.js"
+    },
+    {
+      "before": "dio/jtsk-map.js",
+      "after": "dio/src/map/jtsk-map.js"
+    },
+    {
+      "before": "dio/jtsk-preview.js",
+      "after": "dio/src/map/jtsk-preview.js"
+    },
+    {
+      "before": "dio/selection-control.js",
+      "after": "dio/src/map/selection-control.js"
+    },
+    {
+      "before": "dio/interface.js",
+      "after": "dio/src/ui/interface.js"
+    },
+    {
+      "before": "dio/svg-export.js",
+      "after": "dio/src/export/svg-export.js"
+    },
+    {
+      "before": "dio/set-export.js",
+      "after": "dio/src/export/set-export.js"
+    },
+    {
+      "before": "dio/jtsk-export.js",
+      "after": "dio/src/export/jtsk-export.js"
+    },
+    {
+      "before": "dio/selection-export.js",
+      "after": "dio/src/export/selection-export.js"
+    },
+    {
+      "before": "dio/svg-pages.js",
+      "after": "dio/src/export/svg-pages.js"
+    },
+    {
+      "before": "dio/scale-bar.js",
+      "after": "dio/src/export/scale-bar.js"
+    },
+    {
+      "before": "dio/rose.js",
+      "after": "dio/src/export/rose.js"
+    },
+    {
+      "before": "dio/street-names.js",
+      "after": "dio/src/export/street-names.js"
+    },
+    {
+      "before": "dio/overview.js",
+      "after": "dio/src/overview/overview.js"
+    },
+    {
+      "before": "dio/overview-osm.js",
+      "after": "dio/src/overview/overview-osm.js"
+    },
+    {
+      "before": "dio/paper.js",
+      "after": "dio/src/paper/paper.js"
+    },
+    {
+      "before": "dio/paper-control.js",
+      "after": "dio/src/paper/paper-control.js"
+    },
+    {
+      "before": "dio/parking.js",
+      "after": "dio/src/parking/parking.js"
+    },
+    {
+      "before": "dio/parking-frame.js",
+      "after": "dio/src/parking/parking-frame.js"
+    },
+    {
+      "before": "dio/crossings.js",
+      "after": "dio/src/crossings/crossings.js"
+    },
+    {
+      "before": "dio/crossing-mask.js",
+      "after": "dio/src/crossings/crossing-mask.js"
+    },
+    {
+      "before": "dio/app.js",
+      "after": "dio/src/app.js"
+    },
+    {
+      "before": "dio/interface.css",
+      "after": "dio/styles/interface.css"
+    },
+    {
+      "before": "dio/diogen.svg",
+      "after": "dio/assets/diogen.svg"
+    },
+    {
+      "before": "dio/CROSSINGS.md",
+      "after": "dio/docs/CROSSINGS.md"
+    },
+    {
+      "before": "dio/JTSK.md",
+      "after": "dio/docs/JTSK.md"
+    },
+    {
+      "before": "dio/LAMPS.md",
+      "after": "dio/docs/LAMPS.md"
+    },
+    {
+      "before": "dio/PARKING.md",
+      "after": "dio/docs/PARKING.md"
+    },
+    {
+      "before": "dio/SETS.md",
+      "after": "dio/docs/SETS.md"
+    },
+    {
+      "before": "dio/crossings.test.mjs",
+      "after": "dio/tests/unit/crossings.test.mjs"
+    },
+    {
+      "before": "dio/jtsk.test.mjs",
+      "after": "dio/tests/unit/jtsk.test.mjs"
+    },
+    {
+      "before": "dio/north-up.test.mjs",
+      "after": "dio/tests/unit/north-up.test.mjs"
+    },
+    {
+      "before": "dio/parking-frame.test.mjs",
+      "after": "dio/tests/unit/parking-frame.test.mjs"
+    },
+    {
+      "before": "dio/parking.test.mjs",
+      "after": "dio/tests/unit/parking.test.mjs"
+    },
+    {
+      "before": "dio/preview.test.mjs",
+      "after": "dio/tests/unit/preview.test.mjs"
+    },
+    {
+      "before": "dio/selection.test.mjs",
+      "after": "dio/tests/unit/selection.test.mjs"
+    },
+    {
+      "before": "dio/sets.test.mjs",
+      "after": "dio/tests/unit/sets.test.mjs"
+    },
+    {
+      "before": "dio/street-names.test.mjs",
+      "after": "dio/tests/unit/street-names.test.mjs"
+    },
+    {
+      "before": "dio/test.mjs",
+      "after": "dio/tests/unit/test.mjs"
+    },
+    {
+      "before": "dio/crossing-mask.browser-test.js",
+      "after": "dio/tests/browser/crossing-mask.browser-test.js"
+    }
+  ],
+  "fontBlob": "2c121b3d2600d0f235c094699c7e825834c0b3e8",
+  "functionalChanges": false
+}
