@@ -21,15 +21,16 @@ concurrency:
   group: dio-signs-import
   cancel-in-progress: false
 
-env:
-  DIO_OUT: ${{ runner.temp }}/dio-signs-output
-
 jobs:
   audit:
     if: github.repository == 'PObdr/pobdr.github.io'
     runs-on: ubuntu-22.04
     timeout-minutes: 45
     steps:
+      - name: Initialize output directory
+        run: |
+          echo "DIO_OUT=$RUNNER_TEMP/dio-signs-output" >> "$GITHUB_ENV"
+          mkdir -p "$RUNNER_TEMP/dio-signs-output"
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
