@@ -34,7 +34,16 @@ def digest(path):
   return result.hexdigest()
 
 
-def download(path):
+def download(path, local_archive=None):
+  if local_archive is not None:
+    if not local_archive.is_file():
+      raise ValueError('Local ZIP not found: ' + str(local_archive))
+    if local_archive.stat().st_size > 256 * 1024 * 1024:
+      raise ValueError('Local ZIP exceeds 256 MiB')
+    if not zipfile.is_zipfile(local_archive):
+      raise ValueError('Local source is not a ZIP archive')
+    shutil.copyfile(local_archive, path)
+    return
   request = urllib.request.Request(SOURCE, headers={'User-Agent': 'DIOGEN-signs-audit/1.0'})
   size = 0
   with urllib.request.urlopen(request, timeout=120) as response, path.open('wb') as target:
@@ -81,9 +90,9 @@ def extract(archive, destination, budget=None, depth=0):
     extract(child, child.with_name(child.name + '.contents'), budget, depth + 1)
 
 
-def inventory(output):
+def inventory(output, local_archive=None):
   archive = output / 'source.zip'
-  download(archive)
+  download(archive, local_archive)
   extract(archive, output / 'source')
   rows = []
   for path in sorted((output / 'source').rglob('*')):
@@ -96,6 +105,8 @@ def inventory(output):
   if not any(row['dwgHeader'] for row in rows):
     raise ValueError('No DWG files found in source archive')
   save(output / 'inventory.json', {'source': SOURCE, 'sourcePage': SOURCE_PAGE,
+    'acquisition': {'mode': 'repository-file' if local_archive is not None else 'https',
+      'path': str(local_archive) if local_archive is not None else SOURCE},
     'archiveSha256': digest(archive), 'files': rows,
     'reviewStatus': 'unreviewed', 'catalogueComplete': False})
 
@@ -250,6 +261,7 @@ def main():
   parser = argparse.ArgumentParser()
   parser.add_argument('stage', choices=['inventory', 'pilot', 'render'])
   parser.add_argument('--output', type=Path)
+  parser.add_argument('--archive', type=Path)
   parser.add_argument('--limit', type=int, choices=range(1, 13), default=8)
   parser.add_argument('--dxf', type=Path)
   parser.add_argument('--svg', type=Path)
@@ -263,7 +275,7 @@ def main():
     parser.error('--output is required')
   args.output.mkdir(parents=True, exist_ok=True)
   try:
-    inventory(args.output) if args.stage == 'inventory' else pilot(args.output, args.limit)
+    inventory(args.output, args.archive) if args.stage == 'inventory' else pilot(args.output, args.limit)
   except Exception as error:
     save(args.output / ('error-' + args.stage + '.json'), {'error': str(error), 'stage': args.stage})
     raise

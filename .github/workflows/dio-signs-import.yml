@@ -13,6 +13,7 @@ on:
     paths:
       - tools/dio-signs-import/**
       - .github/workflows/dio-signs-import.yml
+      - dio/files/Otevrene_soubory_dwg_VL_6.1_vcetne_informace.zip
 
 permissions:
   contents: read
@@ -42,9 +43,12 @@ jobs:
           python -m pip freeze > "$DIO_OUT/python-packages.txt"
           sha256sum dio/fonts/Bahnschrift.ttf > "$DIO_OUT/project-font.sha256"
       - name: Test safe extraction, SVG validation and actual DXF rendering
-        run: python tools/dio-signs-import/test_import.py
-      - name: Download official package and inventory all files
-        run: python tools/dio-signs-import/import_signs.py inventory --output "$DIO_OUT"
+        run: python -m unittest discover -s tools/dio-signs-import -p 'test*.py'
+      - name: Inventory checked-out DWG ZIP
+        run: >-
+          python tools/dio-signs-import/import_signs.py inventory
+          --archive "dio/files/Otevrene_soubory_dwg_VL_6.1_vcetne_informace.zip"
+          --output "$DIO_OUT"
       - name: Build pinned open DWG reader
         run: |
           sudo apt-get update
