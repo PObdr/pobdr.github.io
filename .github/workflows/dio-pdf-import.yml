@@ -1,0 +1,79 @@
+name: DIO PDF audit and pilot
+
+on:
+  workflow_dispatch:
+    inputs:
+      source:
+        description: Source PDF in dio/files
+        type: choice
+        required: true
+        default: VL_6.1_Zmena_c._1_brezen_2025.pdf
+        options:
+          - VL_6.1_Zmena_c._1_brezen_2025.pdf
+          - VL_6.1_2019_FINAL.pdf
+          - VL_6.2_2017.pdf
+          - VL_6.3_2017.pdf
+          - VL6.3_Dodatek_c.1_unor_2026.pdf
+      mode:
+        description: Audit every page; export first eight pages or all pages
+        type: choice
+        required: true
+        default: pilot
+        options:
+          - pilot
+          - all
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dio-pdf-audit-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  audit:
+    if: github.repository == 'PObdr/pobdr.github.io'
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Initialize output path
+        run: echo "DIO_PDF_OUT=$RUNNER_TEMP/dio-pdf-output" >> "$GITHUB_ENV"
+
+      - name: Install PDF renderer
+        run: python -m pip install PyMuPDF==1.26.3
+
+      - name: Test source validation and page selection
+        run: python -m unittest discover -s tools/dio-pdf-import -p 'test*.py'
+
+      - name: Audit PDF and export page candidates
+        env:
+          PDF_SOURCE: ${{ inputs.source }}
+          PDF_MODE: ${{ inputs.mode }}
+        run: |
+          python tools/dio-pdf-import/audit_pdf.py \
+            --source "$PDF_SOURCE" \
+            --mode "$PDF_MODE" \
+            --output "$DIO_PDF_OUT"
+
+      - name: Publish audit summary
+        if: always()
+        run: |
+          if [ -f "$DIO_PDF_OUT/summary.md" ]; then
+            cat "$DIO_PDF_OUT/summary.md" >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - uses: actions/upload-artifact@v4
+        if: always() && env.DIO_PDF_OUT != ''
+        with:
+          name: dio-pdf-audit-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ env.DIO_PDF_OUT }}
+          if-no-files-found: warn
+          retention-days: 14
