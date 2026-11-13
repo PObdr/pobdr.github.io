@@ -1,13 +1,13 @@
-name: DIO sign DWG audit and pilot
+name: DIO filled sign export
 
 on:
   workflow_dispatch:
     inputs:
       limit:
-        description: Number of DWGs in the stratified review batch
+        description: Number of DWGs to process (all for the complete source set)
         type: choice
-        default: '64'
-        options: ['32', '64', '128', 'all']
+        default: 'all'
+        options: ['all', '32', '64', '128']
   push:
     branches: [main]
     paths:
@@ -35,6 +35,7 @@ jobs:
       - name: Initialize output directories
         run: |
           echo "DIO_OUT=$RUNNER_TEMP/dio-signs-output" >> "$GITHUB_ENV"
+          echo "DIO_EXPORT=$RUNNER_TEMP/dio-signs-filled" >> "$GITHUB_ENV"
           echo "DWG_PREFIX=$RUNNER_TEMP/libredwg-bin" >> "$GITHUB_ENV"
           mkdir -p "$RUNNER_TEMP/dio-signs-output"
       - uses: actions/checkout@v4
@@ -48,7 +49,7 @@ jobs:
           python -m pip install -r tools/dio-signs-import/requirements.txt
           python -m pip freeze > "$DIO_OUT/python-packages.txt"
           sha256sum dio/fonts/Bahnschrift.ttf > "$DIO_OUT/project-font.sha256"
-      - name: Test import, MTEXT repair and actual filled SVG extraction
+      - name: Test import, repair, colours and clean filled export
         run: python -m unittest discover -s tools/dio-signs-import -p 'test*.py'
       - name: Inventory checked-out DWG ZIP
         run: >-
@@ -81,24 +82,29 @@ jobs:
           "$DWG_PREFIX/bin/dwgread" --version > "$DIO_OUT/converter-version.txt"
           sha256sum "$DWG_PREFIX/bin/dwgread" > "$DIO_OUT/converter-binary.sha256"
           cp "$DWG_PREFIX/source.sha256" "$DIO_OUT/libredwg-source.sha256"
-      - name: Render larger comparison batch with two isolated workers
+      - name: Render requested source set with two isolated workers
         env:
-          PILOT_LIMIT: ${{ inputs.limit || '64' }}
+          PILOT_LIMIT: ${{ inputs.limit || 'all' }}
         run: |
           if [ "$PILOT_LIMIT" = 'all' ]; then PILOT_LIMIT=0; fi
           python tools/dio-signs-import/cad_review.py batch --output "$DIO_OUT" --limit "$PILOT_LIMIT"
-      - name: Publish audit summary
+      - name: Package only named filled SVGs and small reports
+        if: always() && env.DIO_OUT != '' && env.DIO_EXPORT != ''
+        run: >-
+          python tools/dio-signs-import/filled_export.py
+          --work "$DIO_OUT" --destination "$DIO_EXPORT"
+      - name: Publish export summary
         if: always()
         run: |
-          if [ -f "$DIO_OUT/summary.md" ]; then
-            cat "$DIO_OUT/summary.md" >> "$GITHUB_STEP_SUMMARY"
+          if [ -f "$DIO_EXPORT/summary.md" ]; then
+            cat "$DIO_EXPORT/summary.md" >> "$GITHUB_STEP_SUMMARY"
           else
-            echo 'Import incomplete; inspect artifacts. No sign models were published.' >> "$GITHUB_STEP_SUMMARY"
+            echo 'Export incomplete; no source archive was uploaded.' >> "$GITHUB_STEP_SUMMARY"
           fi
       - uses: actions/upload-artifact@v4
-        if: always()
+        if: always() && env.DIO_EXPORT != ''
         with:
-          name: dio-signs-dwg-audit-${{ github.run_id }}
-          path: ${{ env.DIO_OUT }}
+          name: dio-signs-filled-${{ github.run_id }}
+          path: ${{ env.DIO_EXPORT }}
           if-no-files-found: warn
           retention-days: 14
