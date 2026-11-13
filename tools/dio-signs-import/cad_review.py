@@ -80,6 +80,19 @@ def sign_entities(entities, filled=False):
     (allowed is None or e.dxftype() in allowed)]
 
 
+def sign_colour_copy(entity):
+  copied = entity.copy()
+  attributes = entity.dxf.all_existing_dxf_attribs()
+  applied = bool(sign_entities([entity])) and attributes.get('color', 256) == 249 and 'true_color' not in attributes
+  if applied:
+    # Dedicated VL 6.1 sign profile, not a global CAD palette replacement.
+    copied.rgb = (0, 0, 0)
+  return copied, {'sourceHandle': attributes.get('handle'),
+    'layer': attributes.get('layer', '0'), 'aci': attributes.get('color', 256),
+    'trueColor': attributes.get('true_color'), 'applied': applied,
+    'targetRgb': [0, 0, 0] if applied else None}
+
+
 def render_job(path, output, key):
   import ezdxf
   from ezdxf.addons.drawing import Frontend, RenderContext, config, layout, svg
@@ -95,13 +108,17 @@ def render_job(path, output, key):
       if selected:
         specifications.append((space, selected, 'sign-filled' if filled else 'sign-geometry'))
   for index, (space, selected, kind) in enumerate(specifications):
-    row = {'layout': space.name, 'kind': kind, 'reviewStatus': 'unreviewed'}
+    row = {'layout': space.name, 'kind': kind, 'reviewStatus': 'unreviewed',
+      'colourProfile': 'cz-vl61-direct-aci249-black-v1' if selected is not None else 'source',
+      'colourAudit': []}
     try:
       target = space
       if selected is not None:
         target = doc.layouts.new(f'_DIOGEN_REVIEW_{index}')
         for entity in selected:
-          target.add_entity(entity.copy())
+          copied, colour = sign_colour_copy(entity)
+          target.add_entity(copied)
+          row['colourAudit'].append(colour)
       backend = svg.SVGBackend()
       Frontend(RenderContext(doc), backend,
         config=config.Configuration(background_policy=config.BackgroundPolicy.WHITE)).draw_layout(target)
