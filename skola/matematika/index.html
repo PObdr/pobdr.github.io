@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="cs">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Generátor číselné osy | Matematika</title>
+  <style>
+    :root {
+      color-scheme: light;
+      font-family: system-ui, sans-serif;
+      color: #17263b;
+      background: #eef3f8;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    main {
+      max-width: 1300px;
+      margin: auto;
+      padding: 24px;
+    }
+
+    h1 {
+      margin: 0 0 8px;
+      font-size: clamp(1.7rem, 4vw, 2.4rem);
+    }
+
+    h2 {
+      font-size: 1.15rem;
+      margin: 0 0 16px;
+    }
+
+    p {
+      line-height: 1.6;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 350px minmax(0, 1fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid #d4dfea;
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    label {
+      display: block;
+      font-size: .9rem;
+      margin-bottom: 14px;
+    }
+
+    input, select, button {
+      font: inherit;
+    }
+
+    input:not([type="checkbox"]), select {
+      width: 100%;
+      margin-top: 5px;
+      padding: 9px;
+      border: 1px solid #9eafc2;
+      border-radius: 7px;
+      background: white;
+      color: #17263b;
+    }
+
+    input[type="color"] {
+      height: 42px;
+      padding: 3px;
+    }
+
+    button {
+      border: 1px solid #b8c8db;
+      border-radius: 8px;
+      background: #f0f5fc;
+      color: #163b70;
+      padding: 9px 13px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #dfebfc;
+    }
+
+    button:focus-visible, input:focus-visible, select:focus-visible {
+      outline: 3px solid #588de5;
+      outline-offset: 2px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 12px 0;
+    }
+
+    .hint, small {
+      color: #52647c;
+      font-size: .85rem;
+      line-height: 1.5;
+    }
+
+    .point {
+      border-top: 1px solid #d4dfea;
+      padding-top: 14px;
+      margin-top: 14px;
+    }
+
+    .point-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .preview {
+      overflow-x: auto;
+      background: white;
+      border-radius: 10px;
+    }
+
+    #axis {
+      width: 100%;
+      min-width: 550px;
+      display: block;
+    }
+
+    #error {
+      color: #a51c30;
+      white-space: pre-line;
+    }
+
+    #status {
+      min-height: 1.5em;
+    }
+
+    @media (max-width: 850px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      main {
+        padding: 14px;
+      }
+    }
+
+    @media print {
+      @page {
+        size: A4 landscape;
+        margin: 12mm;
+      }
+
+      body, main, .card {
+        background: white;
+        margin: 0;
+        padding: 0;
+        border: 0;
+      }
+
+      header, aside, .no-print, #error {
+        display: none !important;
+      }
+
+      .layout {
+        display: block;
+      }
+
+      .preview {
+        overflow: visible;
+      }
+
+      #axis {
+        min-width: 0;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>Generátor číselné osy</h1>
+      <p>Celá čísla, desetinná čísla i zlomky. Nastav dělení osy, přidej vlastní body a výsledek vytiskni nebo stáhni.</p>
+    </header>
+    <div class="layout">
+      <aside>
+        <section class="card" aria-labelledby="settings-heading">
+          <h2 id="settings-heading">Nastavení osy</h2>
+          <label>Nadpis pracovního listu
+            <input id="title" value="Číselná osa" maxlength="100">
+          </label>
+          <div class="grid">
+            <label>Od
+              <input id="min" value="-5" inputmode="text">
+            </label>
+            <label>Do
+              <input id="max" value="5" inputmode="text">
+            </label>
+            <label>Krok hlavních čárek
+              <input id="major" value="1" inputmode="text">
+            </label>
+            <label>Krok pomocných čárek
+              <input id="minor" value="1/2" inputmode="text">
+            </label>
+          </div>
+          <p class="hint">Zadávej například −3, 0,25, 1/4 nebo −1 1/2. Kroky se počítají od počátku dělení. Pomocný krok 0 pomocné čárky vypne.</p>
+          <label>Počátek dělení
+            <input id="origin" value="0" inputmode="text">
+          </label>
+          <label>Formát čísel
+            <select id="format">
+              <option value="decimal">Celá a desetinná čísla</option>
+              <option value="fraction">Zlomky</option>
+              <option value="mixed">Smíšená čísla</option>
+            </select>
+          </label>
+          <div class="grid">
+            <label>Desetinná místa (max.)
+              <input id="digits" type="number" min="0" max="10" value="3">
+            </label>
+            <label>Velikost písma
+              <input id="font" type="number" min="12" max="36" value="20">
+            </label>
+          </div>
+          <label><input id="labels" type="checkbox" checked> Čísla u hlavních čárek</label>
+          <label><input id="arrows" type="checkbox" checked> Šipky na koncích</label>
+          <label><input id="values" type="checkbox"> Hodnoty u vlastních bodů</label>
+          <div class="actions">
+            <button type="button" data-preset="integer">Celá čísla</button>
+            <button type="button" data-preset="decimal">Desetinná</button>
+            <button type="button" data-preset="fraction">Zlomky</button>
+          </div>
+        </section>
+        <section class="card" aria-labelledby="points-heading">
+          <h2 id="points-heading">Vlastní body</h2>
+          <p class="hint">Každý bod má vlastní hodnotu, označení a barvu. Text lze umístit nad nebo pod osu.</p>
+          <div id="points"></div>
+          <button id="add" type="button">Přidat bod</button>
+        </section>
+      </aside>
+      <section class="card" aria-labelledby="preview-heading">
+        <h2 id="preview-heading" class="no-print">Náhled</h2>
+        <p id="error" role="alert"></p>
+        <div class="preview">
+          <svg id="axis" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Číselná osa"></svg>
+        </div>
+        <div class="actions no-print">
+          <button id="print" type="button">Vytisknout / uložit PDF</button>
+          <button id="download" type="button">Stáhnout SVG</button>
+          <button id="share" type="button">Kopírovat odkaz s nastavením</button>
+        </div>
+        <p id="status" class="hint no-print" role="status"></p>
+        <p class="hint no-print">Náhled se aktualizuje při psaní. Pro pracovní list vypni čísla nebo hodnoty bodů. Při hustém dělení zvětši krok nebo zmenši písmo, aby se popisky nepřekrývaly. SVG lze vložit do dokumentu nebo dále upravit.</p>
+      </section>
+    </div>
+  </main>
+  <script>
+    'use strict';
+
+    const $ = (id) => document.getElementById(id);
+    const fields = ['title', 'min', 'max', 'major', 'minor', 'origin', 'format', 'digits', 'font', 'labels', 'arrows', 'values'];
+    const namespace = 'http://www.w3.org/2000/svg';
+    let valid = false;
+    let pointCounter = 0;
+
+    function gcd(a, b) {
+      a = Math.abs(a);
+      b = Math.abs(b);
+      while (b) {
+        [a, b] = [b, a % b];
+      }
+      return a || 1;
+    }
+
+    function rational(n, d = 1) {
+      if (!Number.isSafeInteger(n) || !Number.isSafeInteger(d) || d === 0) {
+        throw new Error('Číslo je příliš velké nebo má příliš mnoho desetinných míst. Jmenovatel nesmí být nula.');
+      }
+      const divisor = gcd(n, d) * (d < 0 ? -1 : 1);
+      return { n: n / divisor, d: d / divisor };
+    }
+
+    function parse(value) {
+      const text = String(value).trim().replaceAll('−', '-').replaceAll(',', '.');
+      const mixed = text.match(/^([+-]?)(\d+)\s+(\d+)\/(\d+)$/);
+      if (mixed) {
+        const denominator = Number(mixed[4]);
+        return rational((mixed[1] === '-' ? -1 : 1) * (Number(mixed[2]) * denominator + Number(mixed[3])), denominator);
+      }
+      const fraction = text.match(/^([+-]?\d+)\s*\/\s*([+-]?\d+)$/);
+      if (fraction) {
+        return rational(Number(fraction[1]), Number(fraction[2]));
+      }
+      if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(text)) {
+        throw new Error('Neplatné číslo: „' + text + '“. Použij číslo, zlomek nebo smíšené číslo.');
+      }
+      const decimals = (text.split('.')[1] || '').length;
+      const denominator = 10 ** decimals;
+      return rational(Math.round(Number(text) * denominator), denominator);
+    }
+
+    function number(value) {
+      return value.n / value.d;
+    }
+
+    function format(value) {
+      if ($('format').value === 'decimal') {
+        return new Intl.NumberFormat('cs-CZ', {
+          maximumFractionDigits: Number($('digits').value)
+        }).format(number(value));
+      }
+      if (value.d === 1) {
+        return String(value.n).replace('-', '−');
+      }
+      const sign = value.n < 0 ? '−' : '';
+      const numerator = Math.abs(value.n);
+      if ($('format').value === 'mixed' && numerator > value.d) {
+        return sign + Math.floor(numerator / value.d) + ' ' + (numerator % value.d) + '/' + value.d;
+      }
+      return sign + numerator + '/' + value.d;
+    }
+
+    function element(name, attributes, text) {
+      const node = document.createElementNS(namespace, name);
+      Object.entries(attributes).forEach(([key, value]) => node.setAttribute(key, value));
+      if (text !== undefined) {
+        node.textContent = text;
+      }
+      $('axis').append(node);
+      return node;
+    }
+
+    function addPoint(data = {}) {
+      const id = ++pointCounter;
+      const box = document.createElement('div');
+      box.className = 'point';
+      box.innerHTML = `
+        <div class="point-top">
+          <span>Vlastní bod</span>
+          <button type="button" class="remove" aria-label="Odstranit tento bod">Odstranit</button>
+        </div>
+        <div class="grid">
+          <label for="point-value-${id}">Hodnota
+            <input id="point-value-${id}" data-key="value" value="0">
+          </label>
+          <label for="point-label-${id}">Označení
+            <input id="point-label-${id}" data-key="label" maxlength="30">
+          </label>
+          <label for="point-color-${id}">Barva
+            <input id="point-color-${id}" data-key="color" type="color" value="#c02643">
+          </label>
+          <label for="point-position-${id}">Popisek
+            <select id="point-position-${id}" data-key="position">
+              <option value="above">Nad osou</option>
+              <option value="below">Pod osou</option>
+            </select>
+          </label>
+        </div>`;
+      box.querySelector('[data-key="label"]').value = String.fromCharCode(65 + ($('points').children.length % 26));
+      Object.entries(data).forEach(([key, value]) => {
+        const input = box.querySelector('[data-key="' + key + '"]');
+        if (input) {
+          input.value = String(value);
+        }
+      });
+      box.querySelector('.remove').addEventListener('click', () => {
+        box.remove();
+        render();
+      });
+      $('points').append(box);
+    }
+
+    function state() {
+      const data = {};
+      fields.forEach((id) => {
+        data[id] = $(id).type === 'checkbox' ? $(id).checked : $(id).value;
+      });
+      data.points = Array.from($('points').children, (box) => {
+        const point = {};
+        box.querySelectorAll('[data-key]').forEach((input) => {
+          point[input.dataset.key] = input.value;
+        });
+        return point;
+      });
+      return data;
+    }
+
+    function render() {
+      valid = false;
+      $('axis').replaceChildren();
+      $('error').textContent = '';
+      try {
+        const data = state();
+        const minimum = number(parse(data.min));
+        const maximum = number(parse(data.max));
+        const origin = parse(data.origin);
+        const major = parse(data.major);
+        const minor = parse(data.minor);
+        const font = Number(data.font);
+        const digits = Number(data.digits);
+        if (maximum <= minimum || !Number.isFinite(maximum - minimum)) {
+          throw new Error('Konec osy musí být větší než začátek.');
+        }
+        if (number(major) <= 0 || number(minor) < 0) {
+          throw new Error('Hlavní krok musí být kladný, pomocný krok kladný nebo 0.');
+        }
+        if (!Number.isInteger(font) || font < 12 || font > 36 || !Number.isInteger(digits) || digits < 0 || digits > 10) {
+          throw new Error('Velikost písma musí být 12–36 a počet desetinných míst 0–10.');
+        }
+        const points = data.points.map((point) => ({ ...point, parsed: parse(point.value) }));
+        if (points.some((point) => number(point.parsed) < minimum || number(point.parsed) > maximum)) {
+          throw new Error('Všechny vlastní body musí ležet v zadaném rozsahu osy.');
+        }
+        const width = 1200;
+        const height = 360;
+        const y = 185;
+        const x = (value) => 85 + (value - minimum) / (maximum - minimum) * 1030;
+        $('axis').setAttribute('viewBox', `0 0 ${width} ${height}`);
+        $('axis').setAttribute('aria-label', (data.title || 'Číselná osa') + ', od ' + data.min + ' do ' + data.max);
+        element('rect', { width, height, fill: 'white' });
+        element('text', { x: width / 2, y: 48, 'text-anchor': 'middle', 'font-size': 26, fill: '#17263b', 'font-family': 'sans-serif' }, data.title);
+        element('line', { x1: 55, y1: y, x2: 1145, y2: y, stroke: '#17263b', 'stroke-width': 2 });
+        if (data.arrows) {
+          element('path', { d: `M 68 ${y - 7} L 55 ${y} L 68 ${y + 7} M 1132 ${y - 7} L 1145 ${y} L 1132 ${y + 7}`, fill: 'none', stroke: '#17263b', 'stroke-width': 2 });
+        }
+        function ticks(step, main) {
+          if (step.n === 0) {
+            return;
+          }
+          const increment = number(step);
+          const first = Math.ceil((minimum - number(origin)) / increment - 1e-9);
+          const last = Math.floor((maximum - number(origin)) / increment + 1e-9);
+          if (!Number.isSafeInteger(first) || !Number.isSafeInteger(last) || last - first > 1000) {
+            throw new Error('Příliš husté dělení: nejvýše 1 001 čárek pro každý krok. Zvětši krok nebo zmenši rozsah.');
+          }
+          for (let index = first; index <= last; index++) {
+            const value = rational(origin.n * step.d + index * step.n * origin.d, origin.d * step.d);
+            const position = x(number(value));
+            element('line', { x1: position, x2: position, y1: y - (main ? 13 : 6), y2: y + (main ? 13 : 6), stroke: main ? '#17263b' : '#6a7c92', 'stroke-width': main ? 2 : 1 });
+            if (main && data.labels) {
+              element('text', { x: position, y: y + 42, 'text-anchor': 'middle', 'font-size': font, 'font-family': 'sans-serif', fill: '#17263b' }, format(value));
+            }
+          }
+        }
+        ticks(minor, false);
+        ticks(major, true);
+        points.forEach((point) => {
+          const position = x(number(point.parsed));
+          const above = point.position !== 'below';
+          const labelY = above ? y - 50 : y + 90;
+          const color = /^#[0-9a-f]{6}$/i.test(point.color) ? point.color : '#c02643';
+          element('line', { x1: position, x2: position, y1: y, y2: above ? labelY + 10 : labelY - font - 3, stroke: color, 'stroke-width': 1.5 });
+          element('circle', { cx: position, cy: y, r: 5, fill: color });
+          const label = point.label + (data.values ? (point.label ? ' = ' : '') + format(point.parsed) : '');
+          element('text', { x: position, y: labelY, 'text-anchor': 'middle', 'font-size': font, 'font-family': 'sans-serif', 'font-weight': 600, fill: color }, label);
+        });
+        valid = true;
+      } catch (error) {
+        $('axis').replaceChildren();
+        $('error').textContent = error.message;
+      }
+      $('print').disabled = !valid;
+      $('download').disabled = !valid;
+      $('share').disabled = !valid;
+    }
+
+    document.querySelector('aside').addEventListener('input', render);
+    document.querySelector('aside').addEventListener('change', render);
+    $('add').addEventListener('click', () => {
+      addPoint();
+      render();
+    });
+    $('print').addEventListener('click', () => window.print());
+    $('download').addEventListener('click', () => {
+      const source = new XMLSerializer().serializeToString($('axis'));
+      const url = URL.createObjectURL(new Blob([source], { type: 'image/svg+xml;charset=utf-8' }));
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'ciselna-osa.svg';
+      link.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    });
+    $('share').addEventListener('click', async () => {
+      const url = new URL(location.href);
+      url.hash = new URLSearchParams({ osa: JSON.stringify(state()) }).toString();
+      try {
+        await navigator.clipboard.writeText(url.href);
+        $('status').textContent = 'Odkaz s nastavením byl zkopírován.';
+      } catch {
+        $('status').textContent = 'Odkaz se nepodařilo zkopírovat. Zkopíruj jej z adresního řádku.';
+      }
+      history.replaceState(null, '', url);
+    });
+
+    document.querySelectorAll('[data-preset]').forEach((button) => {
+      button.addEventListener('click', () => {
+        const presets = {
+          integer: { min: '-5', max: '5', major: '1', minor: '1/2', format: 'decimal' },
+          decimal: { min: '-1', max: '1', major: '0,2', minor: '0,1', format: 'decimal' },
+          fraction: { min: '-2', max: '2', major: '1/2', minor: '1/4', format: 'fraction' }
+        };
+        Object.entries(presets[button.dataset.preset]).forEach(([id, value]) => {
+          $(id).value = value;
+        });
+        $('origin').value = '0';
+        $('points').replaceChildren();
+        $('status').textContent = 'Použita ukázka; vlastní body byly vymazány.';
+        render();
+      });
+    });
+
+    try {
+      const saved = new URLSearchParams(location.hash.slice(1)).get('osa');
+      if (saved) {
+        const data = JSON.parse(saved);
+        fields.forEach((id) => {
+          if (Object.hasOwn(data, id)) {
+            if ($(id).type === 'checkbox') {
+              $(id).checked = data[id] === true;
+            } else {
+              $(id).value = String(data[id]);
+            }
+          }
+        });
+        if (Array.isArray(data.points)) {
+          data.points.slice(0, 100).forEach((point) => addPoint(point));
+        }
+      } else {
+        addPoint({ value: '-2', label: 'A' });
+        addPoint({ value: '3/2', label: 'B', color: '#2563eb' });
+      }
+    } catch {
+      $('status').textContent = 'Nastavení v odkazu není platné. Zadej vlastní hodnoty.';
+    }
+    render();
+  </script>
+</body>
+</html>
