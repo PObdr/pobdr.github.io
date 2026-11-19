@@ -1,5 +1,6 @@
-import { initial, validate, clone, History, moveSign, paperUnit, metreUnit } from './model.js';
-import { element, inspectSvg, resourceData, makeSign, makeMark } from './svg.js';
+import { initial, clone, History, moveSign, paperUnit, metreUnit } from './model.js';
+import { element, inspectSvg, resourceData, makeMark } from './svg.js';
+import { install, decorate, makeSign, configureSign, insertionPhase, prepareProject, validate } from './sign-editor.js';
 
 const $ = (id) => document.getElementById(id);
 let project = initial();
@@ -84,6 +85,13 @@ async function restoreLocal() {
 }
 
 function adopt(value) {
+  prepareProject(value, () => {
+    const answer = prompt('Starý projekt: zařadit dosavadní značky jako původní, nebo nové? Zadej původní / nové.', 'nové');
+    if (answer === null) return null;
+    if (answer.trim().toLocaleLowerCase('cs') === 'původní') return 'existing';
+    if (answer.trim().toLocaleLowerCase('cs') === 'nové') return 'new';
+    throw new Error('Zadej původní nebo nové. Projekt se nezměnil.');
+  });
   if (value?.background) value.background = inspectSvg(value.background.svg);
   for (const asset of Object.values(value?.assets || {})) Object.assign(asset, inspectSvg(asset.svg));
   validate(value);
@@ -121,7 +129,8 @@ function layerContent(interactive) {
     const height = signs.reduce((total, sign) => total + sign.height + unit, 0);
     group.append(element('line', { x1: 0, y1: 0, x2: 0, y2: -height - unit * 2, stroke: '#63736b', 'stroke-width': unit * 0.7 }));
     let y = -height - unit * 2;
-    for (const sign of signs) {
+    for (const [index, sign] of signs.entries()) {
+      if (interactive) sign.group.dataset.signIndex = index;
       sign.group.setAttribute('transform', `translate(0,${y})`);
       group.append(sign.group);
       y += sign.height + unit;
@@ -153,7 +162,8 @@ function exportSvg() {
   root.append(element('metadata', {}, JSON.stringify({
     type: 'diogen-editor-export', version: 1, scale: project.scene.scale,
     reviewStatus: 'unreviewed', coordinateSpace: 'source-svg-viewBox',
-    backgroundEmbedded: Boolean(project.background), schematicMarkings: true
+    backgroundEmbedded: Boolean(project.background), schematicMarkings: true,
+    displayMode: project.scene.displayMode, signScale: project.scene.signScale
   }, null, 2)));
   root.append(element('rect', { x: bounds[0], y: bounds[1], width: bounds[2], height: bounds[3], fill: 'white' }));
   if (project.background) root.append(element('image', {
@@ -229,7 +239,7 @@ function render() {
       button(row, 'Nahradit vybranou značkou', async () => {
         const replacement = await currentSign();
         if (!project.scene.poles.includes(item)) throw new Error('Vybraný sloupek už není v projektu.');
-        change(() => { item.signs[index] = replacement; });
+        change(() => { item.signs[index] = { ...replacement, phase: sign.phase }; });
       });
       button(row, '↑', () => change(() => moveSign(item, index, -1))).setAttribute('aria-label', 'Značka výš');
       button(row, '↓', () => change(() => moveSign(item, index, 1))).setAttribute('aria-label', 'Značka níž');
@@ -262,6 +272,7 @@ function render() {
     node.setAttribute('aria-pressed', object.id === selected);
   });
   $('append-sign').disabled = !item?.signs;
+  decorate();
 }
 
 function remove() {
@@ -284,9 +295,9 @@ async function currentSign() {
       if (project !== target) throw new Error('Projekt se během načítání změnil.');
       project.assets[key] = { ...inspectSvg(source), label: asset.label, source: asset.svg, reviewStatus: 'unreviewed' };
     }
-    return { kind: 'asset', asset: key, text: '', widthMm: 9 };
+    return configureSign({ kind: 'asset', asset: key, text: '', widthMm: 9 }, project.assets[key], insertionPhase());
   }
-  return { kind: $('template').value, text: $('template').value === 'speed' ? '50' : 'MIMO\nZÁSOBOVÁNÍ', widthMm: 9 };
+  return configureSign({ kind: $('template').value, text: $('template').value === 'speed' ? '50' : 'MIMO\nZÁSOBOVÁNÍ', widthMm: 9 }, null, insertionPhase());
 }
 
 function point(event) {
@@ -466,6 +477,18 @@ window.addEventListener('keydown', safe((event) => {
     changed();
   }
 }));
+install({
+  project: () => project,
+  selection,
+  canvas,
+  change,
+  field,
+  button,
+  render,
+  currentSign,
+  notify
+});
+history.reset(project.scene);
 restoreLocal().then((value) => { $('restore').hidden = !value; }).catch(() => {
   $('save-status').textContent = 'Lokální záloha není dostupná. Používej pracovní JSON.';
 });
