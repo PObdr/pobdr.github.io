@@ -1,0 +1,42 @@
+{
+  "profile": "diogen-srgb-v1",
+  "palettePurpose": "display-srgb-not-normative-manufacturing-colour",
+  "palette": {
+    "blue": "#00539C",
+    "red": "#C41E30",
+    "green": "#00704A",
+    "yellow": "#F4C400",
+    "brown": "#70442A",
+    "orange": "#E07018",
+    "white": "#FFFFFF",
+    "black": "#000000",
+    "grey": "#808080"
+  },
+  "sourceSvgSha256": "4fb4b36f78eadf4fb3fc7a6b5500bec172137563bb87468c18400ab6ba2a8271",
+  "outputSvgSha256": "dff760170fd20e83caf9a8eea46c5139a172b551b93573483cbe5f9a12ee1240",
+  "colourChanges": [
+    {
+      "source": "#ff0000",
+      "target": "#C41E30",
+      "name": "red",
+      "occurrences": 1
+    }
+  ],
+  "unknownColours": [],
+  "background": "renderer-page-rectangle-removed",
+  "sourceViewBox": [
+    0.0,
+    0.0,
+    1000000.0,
+    1000000.0
+  ],
+  "outputViewBox": [
+    0.0,
+    0.0,
+    1000000.0,
+    1000000.0
+  ],
+  "cropMethod": "alpha-1024px-padding-2px",
+  "shapeClipping": "none-no-guessed-sign-outline",
+  "reviewStatus": "unreviewed"
+}

@@ -1,5 +1,35 @@
 [
   {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/1 Základní tvary, rozměry, lemy/U1-C2-Čtverec (500x500).dwg",
+    "layout": "U 1-C2-Čtverec (500x500)",
+    "report": "reports/U1-c2-ctverec-500x500-normalization.json",
+    "unknownColours": [
+      "#007f3f"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/1 Základní tvary, rozměry, lemy/U1-O5-Obdélník (500x300).dwg",
+    "layout": "U 1-O5-Obdélník (500x300)",
+    "report": "reports/U1-o5-obdelnik-500x300-normalization.json",
+    "unknownColours": [
+      "#007f3f"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/1 Základní tvary, rozměry, lemy/U1-OC-Obdélník (1000x200).dwg",
+    "layout": "U 1-OC-Obdélník (1000x200)",
+    "report": "reports/U1-oc-obdelnik-1000x200-normalization.json",
+    "unknownColours": [
+      "#7f0000"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
     "type": "no-filled-svg",
     "source": "source/Otevřené soubory_VL 6.1/1 Základní tvary, rozměry, lemy/U1-S1-Směrová tabule (přímo).dwg",
     "status": "extracted-unreviewed",
@@ -24,6 +54,16 @@
     "error": null
   },
   {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/2 Výstražné dopravní značky/A10-Světelné signály (900).dwg",
+    "layout": "A 10",
+    "report": "reports/A10-svetelne-signaly-900-normalization.json",
+    "unknownColours": [
+      "#007f3f"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
     "type": "no-filled-svg",
     "source": "source/Otevřené soubory_VL 6.1/2 Výstražné dopravní značky/A12a-Chodci (900).dwg",
     "status": "blocked",
@@ -42,6 +82,166 @@
     "error": "Render/load failed; inspect render log and any repair audit"
   },
   {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/4 Zákazové dopravní značky/B20b-1-(5)-Konec nejvyšší dovolené rychlosti (700).dwg",
+    "layout": "B 20b-1",
+    "report": "reports/B20b-1-5-konec-nejvyssi-dovolene-rychlosti-700-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/4 Zákazové dopravní značky/B20b-10-(100)-Konec nejvyšší dovolené rychlosti (700).dwg",
+    "layout": "B 20b-10",
+    "report": "reports/B20b-10-100-konec-nejvyssi-dovolene-rychlosti-700-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/4 Zákazové dopravní značky/B20b-11-(110)-Konec nejvyšší dovolené rychlosti (700).dwg",
+    "layout": "B 20b-11",
+    "report": "reports/B20b-11-110-konec-nejvyssi-dovolene-rychlosti-700-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/4 Zákazové dopravní značky/B20b-12-(120)-Konec nejvyšší dovolené rychlosti (700).dwg",
+    "layout": "B 20b-12",
+    "report": "reports/B20b-12-120-konec-nejvyssi-dovolene-rychlosti-700-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/4 Zákazové dopravní značky/B20b-13-(130)-Konec nejvyšší dovolené rychlosti (700).dwg",
+    "layout": "B 20b-13",
+    "report": "reports/B20b-13-130-konec-nejvyssi-dovolene-rychlosti-700-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/4 Zákazové dopravní značky/B20b-2-(20)-Konec nejvyšší dovolené rychlosti (700).dwg",
+    "layout": "B 20b-2",
+    "report": "reports/B20b-2-20-konec-nejvyssi-dovolene-rychlosti-700-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/4 Zákazové dopravní značky/B20b-3-(30)-Konec nejvyšší dovolené rychlosti (700).dwg",
+    "layout": "B 20b-3",
+    "report": "reports/B20b-3-30-konec-nejvyssi-dovolene-rychlosti-700-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/4 Zákazové dopravní značky/B20b-4-(40)-Konec nejvyšší dovolené rychlosti (700).dwg",
+    "layout": "B 20b-4",
+    "report": "reports/B20b-4-40-konec-nejvyssi-dovolene-rychlosti-700-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/4 Zákazové dopravní značky/B20b-5-(50)-Konec nejvyšší dovolené rychlosti (700).dwg",
+    "layout": "B 20b-5",
+    "report": "reports/B20b-5-50-konec-nejvyssi-dovolene-rychlosti-700-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/4 Zákazové dopravní značky/B20b-6-(60)-Konec nejvyšší dovolené rychlosti (700).dwg",
+    "layout": "B 20b-6",
+    "report": "reports/B20b-6-60-konec-nejvyssi-dovolene-rychlosti-700-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/4 Zákazové dopravní značky/B20b-7-(70)-Konec nejvyšší dovolené rychlosti (700).dwg",
+    "layout": "B 20b-7",
+    "report": "reports/B20b-7-70-konec-nejvyssi-dovolene-rychlosti-700-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/4 Zákazové dopravní značky/B20b-8-(80)-Konec nejvyšší dovolené rychlosti (700).dwg",
+    "layout": "B 20b-8",
+    "report": "reports/B20b-8-80-konec-nejvyssi-dovolene-rychlosti-700-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/4 Zákazové dopravní značky/B20b-9-(90)-Konec nejvyšší dovolené rychlosti (700).dwg",
+    "layout": "B 20b-9",
+    "report": "reports/B20b-9-90-konec-nejvyssi-dovolene-rychlosti-700-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/4 Zákazové dopravní značky/B21b-Konec zákazu předjíždění (700).dwg",
+    "layout": "B 21b",
+    "report": "reports/B21b-konec-zakazu-predjizdeni-700-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/4 Zákazové dopravní značky/B22b-Konec zákazu předjíždění pro nákl. automobily (700).dwg",
+    "layout": "B 22b",
+    "report": "reports/B22b-konec-zakazu-predjizdeni-pro-nakl-automobily-700-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/4 Zákazové dopravní značky/B23b-Konec zákazu zvukových výstraž. znamení (700).dwg",
+    "layout": "B 23b",
+    "report": "reports/B23b-konec-zakazu-zvukovych-vystraz-znameni-700-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
     "type": "no-filled-svg",
     "source": "source/Otevřené soubory_VL 6.1/4 Zákazové dopravní značky/B25-Zákaz otáčení (700).dwg",
     "status": "blocked",
@@ -52,6 +252,26 @@
     "source": "source/Otevřené soubory_VL 6.1/4 Zákazové dopravní značky/B30a-Zákaz vjezdu osobních přepravníků (700).dwg",
     "status": "extracted-unreviewed",
     "error": null
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-1 Informativní značky zónové/IZ1a-Dálnice (1000x1000).dwg",
+    "layout": "IZ 1a",
+    "report": "reports/IZ1a-dalnice-1000x1000-normalization.json",
+    "unknownColours": [
+      "#007f3f"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-1 Informativní značky zónové/IZ1b-Konec dálnice (1000x1000).dwg",
+    "layout": "IZ 1b",
+    "report": "reports/IZ1b-konec-dalnice-1000x1000-normalization.json",
+    "unknownColours": [
+      "#007f3f"
+    ],
+    "background": "renderer-page-rectangle-removed"
   },
   {
     "type": "no-filled-svg",
@@ -66,6 +286,46 @@
     "error": "Render/load failed; inspect render log and any repair audit"
   },
   {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-1 Informativní značky zónové/IZ6b-1-Konec pěší zóny (1000x1000).dwg",
+    "layout": "IZ 6b-1",
+    "report": "reports/IZ6b-1-konec-pesi-zony-1000x1000-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-1 Informativní značky zónové/IZ6b-2-Konec pěší zóny (750x750).dwg",
+    "layout": "IZ 6b-2",
+    "report": "reports/IZ6b-2-konec-pesi-zony-750x750-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-1 Informativní značky zónové/IZ6b-3-Konec pěší zóny (1000x1500).dwg",
+    "layout": "IZ 6b-3",
+    "report": "reports/IZ6b-3-konec-pesi-zony-1000x1500-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-1 Informativní značky zónové/IZ6b-4-Konec pěší zóny (750x1000).dwg",
+    "layout": "IZ 6b-4",
+    "report": "reports/IZ6b-4-konec-pesi-zony-750x1000-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
     "type": "no-filled-svg",
     "source": "source/Otevřené soubory_VL 6.1/6-1 Informativní značky zónové/IZ7a-1-Emisní zóna (1000x1500).dwg",
     "status": "extracted-unreviewed",
@@ -76,6 +336,26 @@
     "source": "source/Otevřené soubory_VL 6.1/6-1 Informativní značky zónové/IZ7a-2-Emisní zóna (750x1000).dwg",
     "status": "blocked",
     "error": "Render/load failed; inspect render log and any repair audit"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-1 Informativní značky zónové/IZ7b-1-Konec emisní zóny (1000x1500).dwg",
+    "layout": "IZ 7b-1",
+    "report": "reports/IZ7b-1-konec-emisni-zony-1000x1500-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-1 Informativní značky zónové/IZ7b-2-Konec emisní zóny (750x1000).dwg",
+    "layout": "IZ 7b-2",
+    "report": "reports/IZ7b-2-konec-emisni-zony-750x1000-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
   },
   {
     "type": "no-filled-svg",
@@ -114,6 +394,48 @@
     "error": "Render/load failed; inspect render log and any repair audit"
   },
   {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-1 Informativní značky zónové/IZ8b-1-Konec zóny s doprav. omezením (1000x1000).dwg",
+    "layout": "IZ 8b-1",
+    "report": "reports/IZ8b-1-konec-zony-s-doprav-omezenim-1000x1000-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-1 Informativní značky zónové/IZ8b-2-Konec zóny s doprav.omezením (750x750).dwg",
+    "layout": "IZ 8b-2",
+    "report": "reports/IZ8b-2-konec-zony-s-doprav-omezenim-750x750-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-1 Informativní značky zónové/IZ8b-3-Konec zóny s doprav. omezením (1000x1500).dwg",
+    "layout": "IZ 8b-3",
+    "report": "reports/IZ8b-3-konec-zony-s-doprav-omezenim-1000x1500-normalization.json",
+    "unknownColours": [
+      "#26397e",
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-1 Informativní značky zónové/IZ8b-4-Konec zóny s doprav. omezením (750x1000).dwg",
+    "layout": "IZ 8b-4",
+    "report": "reports/IZ8b-4-konec-zony-s-doprav-omezenim-750x1000-normalization.json",
+    "unknownColours": [
+      "#26397e",
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
     "type": "no-filled-svg",
     "source": "source/Otevřené soubory_VL 6.1/6-1 Informativní značky zónové/IZ9a-2-Zóna pro cyklisty (750x750).dwg",
     "status": "blocked",
@@ -130,6 +452,66 @@
     "source": "source/Otevřené soubory_VL 6.1/6-1 Informativní značky zónové/IZ9a-4-Zóna pro cyklisty (750x1000).dwg",
     "status": "blocked",
     "error": "Render/load failed; inspect render log and any repair audit"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-1 Informativní značky zónové/IZ9b-1-Konec zóny pro cyklisty (1000x1000).dwg",
+    "layout": "IZ 9b-1",
+    "report": "reports/IZ9b-1-konec-zony-pro-cyklisty-1000x1000-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-1 Informativní značky zónové/IZ9b-2-Konec zóny pro cyklisty (750x750).dwg",
+    "layout": "IZ 9b-2",
+    "report": "reports/IZ9b-2-konec-zony-pro-cyklisty-750x750-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-1 Informativní značky zónové/IZ9b-3-Konec zóny pro cyklisty (1000x1500).dwg",
+    "layout": "IZ 9b-3",
+    "report": "reports/IZ9b-3-konec-zony-pro-cyklisty-1000x1500-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-1 Informativní značky zónové/IZ9b-4-Konec zóny pro cyklisty (750x1000).dwg",
+    "layout": "IZ 9b-4",
+    "report": "reports/IZ9b-4-konec-zony-pro-cyklisty-750x1000-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-2 Informativní značky provozní/IP1-1-Okruh (500x500).dwg",
+    "layout": "IP 1-1",
+    "report": "reports/IP1-1-okruh-500x500-normalization.json",
+    "unknownColours": [
+      "#007f3f"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-2 Informativní značky provozní/IP1-2-Okruh (500x300).dwg",
+    "layout": "IP 1-2",
+    "report": "reports/IP1-2-okruh-500x300-normalization.json",
+    "unknownColours": [
+      "#007f3f"
+    ],
+    "background": "renderer-page-rectangle-removed"
   },
   {
     "type": "no-filled-svg",
@@ -240,6 +622,16 @@
     "error": "Render/load failed; inspect render log and any repair audit"
   },
   {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-2 Informativní značky provozní/IP29-Střídavé řazení (1000x1500).dwg",
+    "layout": "IP 29-1-",
+    "report": "reports/IP29-stridave-razeni-1000x1500-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
     "type": "no-filled-svg",
     "source": "source/Otevřené soubory_VL 6.1/6-3 Informativní značky směrové/IS10a-4-Návěst změny směru jízdy (1000x1500).dwg",
     "status": "blocked",
@@ -250,6 +642,16 @@
     "source": "source/Otevřené soubory_VL 6.1/6-3 Informativní značky směrové/IS10a-5-Návěst změny směru jízdy (1000x1500).dwg",
     "status": "blocked",
     "error": "Render/load failed; inspect render log and any repair audit"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-3 Informativní značky směrové/IS10c-Návěst změny sm. jízdy před přek. (1000x1500).dwg",
+    "layout": "IS 10c-1",
+    "report": "reports/IS10c-navest-zmeny-sm-jizdy-pred-prek-1000x1500-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
   },
   {
     "type": "no-filled-svg",
@@ -274,6 +676,16 @@
     "source": "source/Otevřené soubory_VL 6.1/6-3 Informativní značky směrové/IS11b-2-Sm. tabule pro vyznač. objížďky.dwg",
     "status": "blocked",
     "error": "Render/load failed; inspect render log and any repair audit"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-3 Informativní značky směrové/IS17-Číslo silnice pro mezinárodní provoz (500x300).dwg",
+    "layout": "IS 17",
+    "report": "reports/IS17-cislo-silnice-pro-mezinarodni-provoz-500x300-normalization.json",
+    "unknownColours": [
+      "#007f3f"
+    ],
+    "background": "renderer-page-rectangle-removed"
   },
   {
     "type": "no-filled-svg",
@@ -390,10 +802,40 @@
     "error": "Render/load failed; inspect render log and any repair audit"
   },
   {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-3 Informativní značky směrové/IS23-Návěst pro kult. nebo hist.cíl.dwg",
+    "layout": "IS 23-1",
+    "report": "reports/IS23-navest-pro-kult-nebo-hist-cil-normalization.json",
+    "unknownColours": [
+      "#7f0000"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-3 Informativní značky směrové/IS24a-Kultur. nebo tur.cíl (1000x200).dwg",
+    "layout": "IS 24a",
+    "report": "reports/IS24a-kultur-nebo-tur-cil-1000x200-normalization.json",
+    "unknownColours": [
+      "#7f0000"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
     "type": "no-filled-svg",
     "source": "source/Otevřené soubory_VL 6.1/6-3 Informativní značky směrové/IS24b-Směrová tabule pro kult. nebo tur.cíl.dwg",
     "status": "blocked",
     "error": "Render/load failed; inspect render log and any repair audit"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-3 Informativní značky směrové/IS24c-Komunální cíl (1000x200).dwg",
+    "layout": "IS 24c",
+    "report": "reports/IS24c-komunalni-cil-1000x200-normalization.json",
+    "unknownColours": [
+      "#7f0000"
+    ],
+    "background": "renderer-page-rectangle-removed"
   },
   {
     "type": "no-filled-svg",
@@ -472,6 +914,26 @@
     "source": "source/Otevřené soubory_VL 6.1/6-3 Informativní značky směrové/IS5-3-Směrová tabule s jiným cílem (vpravo).dwg",
     "status": "blocked",
     "error": "Render/load failed; inspect render log and any repair audit"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-3 Informativní značky směrové/IS6a-1-Označení křižovatky.dwg",
+    "layout": "IS 6a-1",
+    "report": "reports/IS6a-1-oznaceni-krizovatky-normalization.json",
+    "unknownColours": [
+      "#007f3f"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/6-3 Informativní značky směrové/IS6a-2-Označení křižovatky.dwg",
+    "layout": "IS 6a-2",
+    "report": "reports/IS6a-2-oznaceni-krizovatky-normalization.json",
+    "unknownColours": [
+      "#007f3f"
+    ],
+    "background": "renderer-page-rectangle-removed"
   },
   {
     "type": "no-filled-svg",
@@ -696,6 +1158,46 @@
     "error": null
   },
   {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/7 Dodatkové tabulky/E11a-Bez časového poplatku (1000x500).dwg",
+    "layout": "E 11a",
+    "report": "reports/E11a-bez-casoveho-poplatku-1000x500-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/7 Dodatkové tabulky/E11b-S časovým poplatkem (1000x500).dwg",
+    "layout": "E11 b",
+    "report": "reports/E11b-s-casovym-poplatkem-1000x500-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/7 Dodatkové tabulky/E11e-Bez časového poplatku a mýtného (1000x500).dwg",
+    "layout": "E 11e",
+    "report": "reports/E11e-bez-casoveho-poplatku-a-mytneho-1000x500-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/7 Dodatkové tabulky/E11f-S časovým poplatkem a mýtným (1000x500).dwg",
+    "layout": "E 11f",
+    "report": "reports/E11f-s-casovym-poplatkem-a-mytnym-1000x500-normalization.json",
+    "unknownColours": [
+      "#666666"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
     "type": "no-filled-svg",
     "source": "source/Otevřené soubory_VL 6.1/7 Dodatkové tabulky/E13-1-Text nebo symbol.dwg",
     "status": "blocked",
@@ -780,6 +1282,27 @@
     "error": "Render/load failed; inspect render log and any repair audit"
   },
   {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/8 Symboly na VLKP/V3-Symbol okruhu.dwg",
+    "layout": "V 3",
+    "report": "reports/V3-symbol-okruhu-normalization.json",
+    "unknownColours": [
+      "#007f3f",
+      "#00ff3f"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/8 Symboly na VLKP/V4-1-Subplochy.dwg",
+    "layout": "V 4-1",
+    "report": "reports/V4-1-subplochy-normalization.json",
+    "unknownColours": [
+      "#007f3f"
+    ],
+    "background": "renderer-page-rectangle-removed"
+  },
+  {
     "type": "no-filled-svg",
     "source": "source/Otevřené soubory_VL 6.1/8 Symboly na VLKP/V4-2-Subplochy.dwg",
     "status": "blocked",
@@ -796,6 +1319,16 @@
     "source": "source/Otevřené soubory_VL 6.1/8 Symboly na VLKP/V4-4-Subplochy-SMV.dwg",
     "status": "blocked",
     "error": "Render/load failed; inspect render log and any repair audit"
+  },
+  {
+    "type": "normalization-review-required",
+    "source": "source/Otevřené soubory_VL 6.1/8 Symboly na VLKP/V5-1-Symbol výjezdu.dwg",
+    "layout": "V  5-1-1",
+    "report": "reports/V5-1-symbol-vyjezdu-normalization.json",
+    "unknownColours": [
+      "#007f3f"
+    ],
+    "background": "renderer-page-rectangle-removed"
   },
   {
     "type": "no-filled-svg",
