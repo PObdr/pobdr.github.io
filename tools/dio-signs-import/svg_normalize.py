@@ -4,6 +4,8 @@ import math
 import re
 import xml.etree.ElementTree as ET
 
+from sign_face import remove_page_with_white_face
+
 
 PROFILE = 'diogen-srgb-v1'
 PALETTE = {
@@ -126,7 +128,7 @@ def normalize_svg(source, renderer_background=False):
     css = (node.text or '') if local(node) == 'style' else node.get('style', '')
     if re.search(r'@import|@font-face|\\|url\s*\(', css, re.I):
       raise ValueError('Unsupported CSS resources')
-  removed = renderer_background and remove_renderer_background(root, box)
+  removed = renderer_background and remove_page_with_white_face(root, remove_renderer_background, box)
   changes, unknown = {}, set()
 
   def colour(value):
@@ -182,6 +184,7 @@ def normalize_svg(source, renderer_background=False):
     'outputViewBox': crop or box,
     'cropMethod': 'alpha-1024px-padding-2px' if crop else 'unchanged',
     'shapeClipping': 'none-no-guessed-sign-outline',
+    'whiteFace': 'closed-source-contour-v1' if removed else 'not-proven-background-preserved',
     'reviewStatus': 'unreviewed'
   }
   return output, audit
