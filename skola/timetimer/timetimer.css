@@ -1,5 +1,6 @@
 :root {
-  font-family: Verdana, sans-serif;
+  font-family: 'Oxanium', sans-serif;
+  font-weight: 400;
   color: navy;
   background: #cbfffd;
   color-scheme: light;
@@ -21,6 +22,7 @@ main {
 
 h1 {
   margin: 0 0 1rem;
+  font-weight: 600;
 }
 
 details {
@@ -110,8 +112,7 @@ button:disabled {
 
 #time {
   margin: 0.25rem 0;
-  font-family: 'Roboto Mono', ui-monospace, Consolas, monospace;
-  font-size: clamp(1.5rem, 5vw, 4rem);
+  font-size: clamp(1.35rem, 4.5vw, 3.5rem);
   font-weight: 600;
   font-variant-numeric: tabular-nums;
   color: var(--time-color, navy);
@@ -178,7 +179,7 @@ body.presenting {
   width: 100%;
   margin: 0;
   padding: 0 3rem;
-  font-size: clamp(1.25rem, min(6vw, 10dvh), 7rem);
+  font-size: clamp(1.15rem, min(5.4vw, 9dvh), 6rem);
   line-height: 1.25;
 }
 
