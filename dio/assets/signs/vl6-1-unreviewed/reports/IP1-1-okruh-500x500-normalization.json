@@ -13,7 +13,7 @@
     "grey": "#808080"
   },
   "sourceSvgSha256": "365a04bb57d92347acc758d7b35e7e05ae27b14567affdc9db6e7bfb92c5d5b4",
-  "outputSvgSha256": "5544336ddbbbf7e029d274ccb1b45398feae6ebc026fa3b6cb14a45bff507463",
+  "outputSvgSha256": "3f4a5774811e6bcf5a3236e239bef15d010f8ada9e0381233f2906d7c68ab286",
   "colourChanges": [
     {
       "source": "#0000ff",
@@ -25,7 +25,7 @@
   "unknownColours": [
     "#007f3f"
   ],
-  "background": "renderer-page-rectangle-removed",
+  "background": "not-proven-preserved",
   "sourceViewBox": [
     0.0,
     0.0,
@@ -38,7 +38,8 @@
     1000000.0,
     293083.0
   ],
-  "cropMethod": "alpha-1024px-padding-2px",
+  "cropMethod": "unchanged",
   "shapeClipping": "none-no-guessed-sign-outline",
+  "whiteFace": "not-proven-background-preserved",
   "reviewStatus": "unreviewed"
 }
