@@ -8,6 +8,8 @@ import shutil
 import unicodedata
 import xml.etree.ElementTree as ET
 
+from svg_normalize import normalize_svg, PROFILE, PALETTE
+
 
 def write_json(path, data):
   path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
@@ -73,6 +75,9 @@ def export(work, destination):
   assets, reports = destination / 'svg', destination / 'reports'
   assets.mkdir()
   reports.mkdir()
+  originals = reports / 'source-svg'
+  originals.mkdir()
+  write_json(reports / 'palette.json', {'profile': PROFILE, 'purpose': 'display-only-not-normative', 'colours': PALETTE})
   issues, entries, used = [], [], set()
   inventory = load_report(work / 'inventory.json', issues)
   pilot = load_report(work / 'pilot.json', issues)
@@ -99,7 +104,16 @@ def export(work, destination):
         if len(views) > 1:
           stem += '--' + slug(view.get('layout', 'varianta'))[:50]
         name = unique_name(stem, used)
-        shutil.copyfile(source, assets / name)
+        normalized, audit = normalize_svg(source.read_text(encoding='utf-8'),
+          renderer_background=view.get('colourProfile') == 'cz-vl61-direct-aci249-black-v1')
+        (assets / name).write_text(normalized, encoding='utf-8')
+        shutil.copyfile(source, originals / name)
+        audit_name = name.removesuffix('.svg') + '-normalization.json'
+        write_json(reports / audit_name, audit)
+        if audit['unknownColours'] or audit['background'] == 'not-proven-preserved':
+          issues.append({'type': 'normalization-review-required', 'source': display_name(path),
+            'layout': view.get('layout'), 'report': 'reports/' + audit_name,
+            'unknownColours': audit['unknownColours'], 'background': audit['background']})
         with_filled.add(path)
         entries.append({'id': hashlib.sha256((original['sha256'] + '\0' +
           view.get('layout', '') + '\0sign-filled').encode()).hexdigest(),
@@ -108,7 +122,11 @@ def export(work, destination):
           'sourceDwgSha256': original['sha256'],
           'sourceArchiveSha256': inventory.get('archiveSha256'),
           'layout': view.get('layout'), 'kind': 'sign-filled',
-          'svgSha256': hashlib.sha256(source.read_bytes()).hexdigest(),
+          'svgSha256': hashlib.sha256((assets / name).read_bytes()).hexdigest(),
+          'sourceSvgSha256': hashlib.sha256(source.read_bytes()).hexdigest(),
+          'normalizationProfile': PROFILE, 'normalizationAudit': 'reports/' + audit_name,
+          'originalSvg': 'reports/source-svg/' + name,
+          'viewBox': audit['outputViewBox'], 'background': audit['background'],
           'unitsCode': details.get('unitsCode'),
           'loadMode': details.get('load', {}).get('loadMode'),
           'repairCount': len(details.get('load', {}).get('fixes', [])),
@@ -136,7 +154,7 @@ def export(work, destination):
     'svgCount': len(entries), 'fullSourceProcessed': complete,
     'status': 'complete-unreviewed' if complete and not issues else 'partial-unreviewed',
     'catalogueComplete': False, 'automaticPublication': False,
-    'sourceBinariesIncluded': False, 'assets': entries}
+    'sourceBinariesIncluded': False, 'normalizationProfile': PROFILE, 'assets': entries}
   write_json(destination / 'catalog.json', manifest)
   write_json(destination / 'issues.json', issues)
   summary = f'# DIOGEN: vyplněné SVG\n\nDWG ve zdroji: {len(expected)}; zpracováno: {len(processed)}; '
@@ -169,6 +187,12 @@ def export(work, destination):
         width: 260px;
         height: 200px;
         object-fit: contain;
+        background-color: #e4e8ed;
+        background-image: conic-gradient(#c4cbd3 25%, transparent 0 50%, #c4cbd3 0 75%, transparent 0);
+        background-size: 20px 20px;
+      }
+      img:hover {
+        background: #7295ad;
       }
       figcaption {
         overflow-wrap: anywhere;
@@ -177,6 +201,7 @@ def export(work, destination):
   </head>
   <body>
     <h1>Vyplněné SVG — zatím neověřené modely</h1>
+    <p>Paleta sRGB v1 slouží k zobrazení, není výrobní specifikací. Šachovnice kontroluje průhlednost; po najetí je podklad barevný.</p>
     <p><a href="catalog.json">Katalog a původ</a> · <a href="issues.json">Chyby a upozornění</a></p>
 """ + '\n'.join(cards) + '\n  </body>\n</html>\n'
   (destination / 'index.html').write_text(gallery, encoding='utf-8')
