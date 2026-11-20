@@ -110,9 +110,11 @@ button:disabled {
 
 #time {
   margin: 0.25rem 0;
+  font-family: 'Roboto Mono', ui-monospace, Consolas, monospace;
   font-size: clamp(1.5rem, 5vw, 4rem);
-  font-weight: bold;
+  font-weight: 600;
   font-variant-numeric: tabular-nums;
+  color: var(--time-color, navy);
 }
 
 #status,
@@ -139,7 +141,7 @@ svg {
 }
 
 body.finished #time {
-  color: #b00020;
+  color: #ff0000;
 }
 
 footer {

@@ -21,6 +21,10 @@
 
   function render() {
     const ratio = Math.max(0, Math.min(1, remaining / duration));
+    const urgency = Math.max(0, Math.min(1, 1 - ratio / 0.1));
+    const red = Math.round(255 * urgency);
+    const blue = Math.round(128 * (1 - urgency));
+    byId('time').style.setProperty('--time-color', `rgb(${red}, 0, ${blue})`);
     let path = '';
 
     if (ratio >= 1) {
