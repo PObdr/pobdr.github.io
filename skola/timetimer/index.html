@@ -15,41 +15,43 @@
       <details open>
         <summary>Nastavení času</summary>
         <form id="settings">
-          <label>Celé kolo (minuty)
-            <input id="duration" type="number" min="0.0166666667" max="1440" step="any" value="45" required>
-          </label>
-          <label>Už uplynulo (minuty)
-            <input id="elapsed" type="number" min="0" max="1440" step="any" value="0" required>
-          </label>
+          <fieldset>
+            <legend>Celé kolo</legend>
+            <label>Hodiny <input id="duration-hours" type="number" min="0" max="24" step="1" value="0" required></label>
+            <label>Minuty <input id="duration-minutes" type="number" min="0" max="59" step="1" value="45" required></label>
+            <label>Sekundy <input id="duration-seconds" type="number" min="0" max="59" step="1" value="0" required></label>
+          </fieldset>
+          <fieldset>
+            <legend>Už uplynulo</legend>
+            <label>Hodiny <input id="elapsed-hours" type="number" min="0" max="24" step="1" value="0" required></label>
+            <label>Minuty <input id="elapsed-minutes" type="number" min="0" max="59" step="1" value="0" required></label>
+            <label>Sekundy <input id="elapsed-seconds" type="number" min="0" max="59" step="1" value="0" required></label>
+          </fieldset>
           <button type="submit">Nastavit</button>
         </form>
-        <p class="hint">Například: celé kolo 45 minut, už uplynulo 35 minut → zbývá 10 minut. Nastavení odpočet pozastaví.</p>
         <div id="presets" class="buttons" aria-label="Předvolby délky kola"></div>
         <div id="adjustments" class="buttons" aria-label="Úpravy délky kola"></div>
-        <p class="hint">Tlačítka +/− upravují délku celého kola i zbývající čas o stejnou hodnotu; již uplynulý čas zachovají.</p>
       </details>
-      <section aria-label="Odpočet">
-        <div class="buttons controls">
-          <button id="start" type="button">Start</button>
-          <button id="pause" type="button">Pauza</button>
-          <button id="reset" type="button">Reset kola</button>
-          <label class="sound"><input id="sound" type="checkbox" checked> Zvuk na konci</label>
-        </div>
+      <div class="buttons controls">
+        <button id="start" type="button">Start</button>
+        <button id="pause" type="button">Pauza</button>
+        <button id="reset" type="button">Reset kola</button>
+        <button id="fullscreen" type="button">Celá obrazovka</button>
+        <label class="sound"><input id="sound" type="checkbox" checked> Zvuk na konci</label>
+      </div>
+      <section id="display" aria-label="Odpočet">
+        <button id="close-fullscreen" type="button" aria-label="Ukončit celou obrazovku" hidden>×</button>
         <p id="status" role="status">Připraveno</p>
-        <p id="time" role="timer" aria-live="off">45:00</p>
-        <p id="total">Z celkových 45:00</p>
+        <p id="time" role="timer" aria-live="off">0 hod, 45 min, 0 s</p>
+        <p id="total">Z celkových 0 hod, 45 min, 0 s</p>
         <div class="dial">
           <svg viewBox="0 0 200 200" aria-hidden="true" focusable="false">
-            <circle class="face" cx="100" cy="100" r="96"></circle>
             <path id="sector"></path>
-            <circle class="rim" cx="100" cy="100" r="96"></circle>
-            <path class="mark" d="M 100 4 V 14"></path>
           </svg>
         </div>
       </section>
       <footer>
         <p>Inspirace: <a href="https://www.timetimer.com/" target="_blank" rel="noopener noreferrer">Time Timer</a>. Neoficiální školní pomůcka.</p>
-        <p>Zvuk je generovaný v prohlížeči; původní nahrávka Soundsnap není součástí aplikace.</p>
       </footer>
     </main>
   </body>

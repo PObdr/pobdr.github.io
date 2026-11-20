@@ -15,7 +15,7 @@ body {
 }
 
 main {
-  width: min(100% - 2rem, 960px);
+  width: 90%;
   margin: 1.5rem auto;
 }
 
@@ -35,23 +35,37 @@ summary {
 }
 
 form,
-.buttons {
+.buttons,
+fieldset {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+}
+
+form,
+.buttons {
   margin: 0.75rem 0;
 }
 
-form label {
+fieldset {
+  min-width: 0;
+  margin: 0;
+  padding: 0.75rem;
+  border: 1px solid #79b9bc;
+  border-radius: 8px;
+}
+
+fieldset label {
   display: grid;
   gap: 0.35rem;
   text-align: left;
 }
 
 input[type="number"] {
-  width: 11rem;
+  width: 5rem;
+  max-width: 100%;
   padding: 0.65rem;
   border: 1px solid #607d8b;
   border-radius: 6px;
@@ -94,15 +108,10 @@ button:disabled {
   min-height: 44px;
 }
 
-.hint,
-footer {
-  font-size: 0.85rem;
-  line-height: 1.5;
-}
-
 #time {
   margin: 0.25rem 0;
-  font-size: clamp(3rem, 10vw, 6rem);
+  font-size: clamp(1.5rem, 5vw, 4rem);
+  font-weight: bold;
   font-variant-numeric: tabular-nums;
 }
 
@@ -112,29 +121,21 @@ footer {
 }
 
 .dial {
-  width: min(100%, 65vh, 600px);
+  width: min(100%, calc(100vh - 8rem));
+  width: min(100%, calc(100dvh - 8rem));
   margin: 1rem auto;
+  aspect-ratio: 1;
 }
 
 svg {
   display: block;
   width: 100%;
-  height: auto;
-}
-
-.face {
-  fill: white;
+  height: 100%;
 }
 
 #sector {
-  fill: #e32636;
-}
-
-.rim,
-.mark {
-  fill: none;
-  stroke: navy;
-  stroke-width: 1;
+  fill: red;
+  stroke: none;
 }
 
 body.finished #time {
@@ -143,4 +144,61 @@ body.finished #time {
 
 footer {
   margin-top: 1.5rem;
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+
+body.presenting {
+  overflow: hidden;
+}
+
+#display.presentation {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  height: 100dvh;
+  padding: 0.5rem;
+  background: #cbfffd;
+}
+
+.presentation #status,
+.presentation #total {
+  display: none;
+}
+
+.presentation #time {
+  flex: 0 0 auto;
+  width: 100%;
+  margin: 0;
+  padding: 0 3rem;
+  font-size: clamp(1.25rem, min(6vw, 10dvh), 7rem);
+  line-height: 1.25;
+}
+
+.presentation .dial {
+  flex: 1 1 0;
+  width: 100%;
+  min-height: 0;
+  margin: 0.5rem 0 0;
+  aspect-ratio: auto;
+}
+
+#close-fullscreen {
+  position: absolute;
+  top: 0.25rem;
+  right: 0.25rem;
+  z-index: 1;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: navy;
+  font-size: 2rem;
+  line-height: 1;
 }

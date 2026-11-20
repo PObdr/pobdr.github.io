@@ -2,9 +2,9 @@
   'use strict';
 
   const byId = (id) => document.getElementById(id);
-  const durationInput = byId('duration');
-  const elapsedInput = byId('elapsed');
+  const display = byId('display');
   const maximum = 24 * 60 * 60 * 1000;
+  const units = [['hours', 3600], ['minutes', 60], ['seconds', 1]];
   let duration = 45 * 60 * 1000;
   let remaining = duration;
   let deadline = null;
@@ -15,11 +15,8 @@
     const seconds = Math.ceil(milliseconds / 1000);
     const hours = Math.floor(seconds / 3600);
     const minutes = Math.floor(seconds % 3600 / 60);
-    const tail = String(seconds % 60).padStart(2, '0');
 
-    return hours > 0
-      ? `${hours}:${String(minutes).padStart(2, '0')}:${tail}`
-      : `${minutes}:${tail}`;
+    return `${hours} hod, ${minutes} min, ${seconds % 60} s`;
   }
 
   function render() {
@@ -27,12 +24,12 @@
     let path = '';
 
     if (ratio >= 1) {
-      path = 'M 100 4 A 96 96 0 1 1 100 196 A 96 96 0 1 1 100 4 Z';
+      path = 'M 100 0 A 100 100 0 1 1 100 200 A 100 100 0 1 1 100 0 Z';
     } else if (ratio > 0) {
       const angle = -Math.PI / 2 - ratio * 2 * Math.PI;
-      const x = 100 + 96 * Math.cos(angle);
-      const y = 100 + 96 * Math.sin(angle);
-      path = `M 100 100 L 100 4 A 96 96 0 ${ratio > 0.5 ? 1 : 0} 0 ${x} ${y} Z`;
+      const x = 100 + 100 * Math.cos(angle);
+      const y = 100 + 100 * Math.sin(angle);
+      path = `M 100 100 L 100 0 A 100 100 0 ${ratio > 0.5 ? 1 : 0} 0 ${x} ${y} Z`;
     }
 
     byId('sector').setAttribute('d', path);
@@ -99,9 +96,23 @@
     render();
   }
 
+  function readInputs(prefix) {
+    return units.reduce((sum, [unit, multiplier]) => {
+      return sum + Number(byId(`${prefix}-${unit}`).value) * multiplier * 1000;
+    }, 0);
+  }
+
+  function writeInputs(prefix, milliseconds) {
+    let seconds = Math.round(milliseconds / 1000);
+    for (const [unit, multiplier] of units) {
+      byId(`${prefix}-${unit}`).value = String(Math.floor(seconds / multiplier));
+      seconds %= multiplier;
+    }
+  }
+
   function syncInputs() {
-    durationInput.value = String(Number((duration / 60000).toFixed(6)));
-    elapsedInput.value = String(Number(((duration - remaining) / 60000).toFixed(6)));
+    writeInputs('duration', duration);
+    writeInputs('elapsed', duration - remaining);
   }
 
   function setRound(total, elapsed = 0) {
@@ -109,29 +120,30 @@
     duration = total;
     remaining = Math.max(0, duration - elapsed);
     finished = remaining === 0;
-    elapsedInput.setCustomValidity('');
+    byId('elapsed-seconds').setCustomValidity('');
     syncInputs();
     render();
   }
 
   byId('settings').addEventListener('submit', (event) => {
     event.preventDefault();
-    const total = Math.round(Number(durationInput.value) * 60000);
-    const elapsed = Math.round(Number(elapsedInput.value) * 60000);
+    const total = readInputs('duration');
+    const elapsed = readInputs('elapsed');
 
     if (!Number.isFinite(total) || !Number.isFinite(elapsed)
       || total < 1000 || total > maximum || elapsed < 0 || elapsed > total) {
-      elapsedInput.setCustomValidity('Celé kolo musí mít 1 sekundu až 24 hodin a uplynulý čas nesmí být delší než celé kolo.');
-      elapsedInput.reportValidity();
+      const input = byId('elapsed-seconds');
+      input.setCustomValidity('Celé kolo musí mít 1 sekundu až 24 hodin a uplynulý čas nesmí být delší než celé kolo.');
+      input.reportValidity();
       return;
     }
 
     setRound(total, elapsed);
   });
 
-  for (const input of [durationInput, elapsedInput]) {
-    input.addEventListener('input', () => elapsedInput.setCustomValidity(''));
-  }
+  byId('settings').addEventListener('input', () => {
+    byId('elapsed-seconds').setCustomValidity('');
+  });
 
   function addButton(container, label, action) {
     const button = document.createElement('button');
@@ -189,6 +201,49 @@
     deadline = null;
     syncInputs();
     render();
+  });
+
+  function setPresentation(active) {
+    display.classList.toggle('presentation', active);
+    document.body.classList.toggle('presenting', active);
+    byId('close-fullscreen').hidden = !active;
+    if (active) {
+      byId('close-fullscreen').focus();
+    } else {
+      byId('fullscreen').focus();
+    }
+  }
+
+  byId('fullscreen').addEventListener('click', async () => {
+    setPresentation(true);
+    if (display.requestFullscreen) {
+      try {
+        await display.requestFullscreen();
+      } catch {
+        // Keep the viewport-filling fallback when native fullscreen is unavailable.
+      }
+    }
+  });
+
+  async function closePresentation() {
+    if (document.fullscreenElement === display) {
+      try {
+        await document.exitFullscreen();
+      } catch {
+        return;
+      }
+    }
+    setPresentation(false);
+  }
+
+  byId('close-fullscreen').addEventListener('click', closePresentation);
+  document.addEventListener('fullscreenchange', () => {
+    setPresentation(document.fullscreenElement === display);
+  });
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && display.classList.contains('presentation')) {
+      closePresentation();
+    }
   });
 
   byId('reset').addEventListener('click', () => setRound(duration));
