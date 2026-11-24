@@ -18,6 +18,17 @@
       <h1>TimeTimer</h1>
       <details open>
         <summary>Nastavení času</summary>
+        <form id="end-settings">
+          <fieldset>
+            <legend>Odpočítávat do času</legend>
+            <label>Čas konce
+              <input id="end-time" type="time" step="1" required>
+            </label>
+            <button type="submit">Nastavit a spustit</button>
+          </fieldset>
+        </form>
+        <p>Čas, který už dnes uplynul, znamená konec zítra. Používá se místní čas zařízení. Pauza posune konec o dobu pozastavení.</p>
+        <p id="end-info" role="status"></p>
         <form id="settings">
           <fieldset>
             <legend>Celé kolo</legend>

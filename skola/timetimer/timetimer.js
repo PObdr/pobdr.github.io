@@ -39,6 +39,19 @@
     byId('sector').setAttribute('d', path);
     byId('time').textContent = formatTime(remaining);
     byId('total').textContent = `Z celkových ${formatTime(duration)}`;
+    const endInfo = deadline === null
+      ? ''
+      : `Konec ${new Date(deadline).toLocaleString('cs-CZ', {
+        day: 'numeric',
+        month: 'numeric',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      })}`;
+    if (byId('end-info').textContent !== endInfo) {
+      byId('end-info').textContent = endInfo;
+    }
     byId('status').textContent = finished
       ? 'Čas vypršel.'
       : deadline !== null ? 'Odpočet běží' : 'Připraveno / pozastaveno';
@@ -128,6 +141,33 @@
     syncInputs();
     render();
   }
+
+  function nextEndTime(value, now) {
+    const parts = value.split(':').map(Number);
+    const target = new Date(now);
+    target.setHours(parts[0], parts[1], parts[2] || 0, 0);
+    if (target.getTime() <= now.getTime()) {
+      target.setDate(target.getDate() + 1);
+    }
+    return target.getTime();
+  }
+
+  byId('end-settings').addEventListener('submit', (event) => {
+    event.preventDefault();
+    const input = byId('end-time');
+    if (!input.value || !input.checkValidity()) {
+      input.reportValidity();
+      return;
+    }
+
+    const now = new Date();
+    const target = nextEndTime(input.value, now);
+    const total = Math.ceil((target - now.getTime()) / 1000) * 1000;
+    setRound(total);
+    unlockSound();
+    deadline = target;
+    tick();
+  });
 
   byId('settings').addEventListener('submit', (event) => {
     event.preventDefault();
