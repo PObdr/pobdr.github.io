@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Vizuální odpočet do výuky s nastavením již uplynulého času.">
+    <meta name="description" content="Vizuální odpočet do výuky s nastavením délky nebo času konce.">
     <meta name="author" content="Pavel Obdržálek">
     <title>TimeTimer – časovač do výuky</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -18,32 +18,47 @@
       <h1>TimeTimer</h1>
       <details open>
         <summary>Nastavení času</summary>
-        <form id="end-settings">
-          <fieldset>
-            <legend>Odpočítávat do času</legend>
-            <label>Čas konce
-              <input id="end-time" type="time" step="1" required>
-            </label>
-            <button type="submit">Nastavit a spustit</button>
-          </fieldset>
-        </form>
-        <p>Čas, který už dnes uplynul, znamená konec zítra. Používá se místní čas zařízení. Pauza posune konec o dobu pozastavení.</p>
-        <p id="end-info" role="status"></p>
-        <form id="settings">
+        <form id="settings" novalidate>
           <fieldset>
             <legend>Celé kolo</legend>
-            <label>Hodiny <input id="duration-hours" type="number" min="0" max="24" step="1" value="0" required></label>
-            <label>Minuty <input id="duration-minutes" type="number" min="0" max="59" step="1" value="45" required></label>
-            <label>Sekundy <input id="duration-seconds" type="number" min="0" max="59" step="1" value="0" required></label>
+            <label>Hodiny
+              <input id="duration-hours" type="number" min="0" max="25" step="1" value="00" placeholder="00">
+            </label>
+            <label>Minuty
+              <input id="duration-minutes" type="number" min="0" max="59" step="1" value="45" placeholder="00">
+            </label>
+            <label>Sekundy
+              <input id="duration-seconds" type="number" min="0" max="59" step="1" value="00" placeholder="00">
+            </label>
           </fieldset>
           <fieldset>
-            <legend>Už uplynulo</legend>
-            <label>Hodiny <input id="elapsed-hours" type="number" min="0" max="24" step="1" value="0" required></label>
-            <label>Minuty <input id="elapsed-minutes" type="number" min="0" max="59" step="1" value="0" required></label>
-            <label>Sekundy <input id="elapsed-seconds" type="number" min="0" max="59" step="1" value="0" required></label>
+            <legend>Zbývající čas</legend>
+            <label>Hodiny
+              <input id="remaining-hours" type="number" min="0" max="25" step="1" value="00" placeholder="00">
+            </label>
+            <label>Minuty
+              <input id="remaining-minutes" type="number" min="0" max="59" step="1" value="45" placeholder="00">
+            </label>
+            <label>Sekundy
+              <input id="remaining-seconds" type="number" min="0" max="59" step="1" value="00" placeholder="00">
+            </label>
+            <button type="submit" name="mode" value="length">Nastavit délku</button>
           </fieldset>
-          <button type="submit">Nastavit</button>
+          <fieldset>
+            <legend>Čas konce</legend>
+            <label>Hodiny
+              <input id="end-hours" type="number" min="0" max="23" step="1" value="00" placeholder="00">
+            </label>
+            <label>Minuty
+              <input id="end-minutes" type="number" min="0" max="59" step="1" value="00" placeholder="00">
+            </label>
+            <label>Sekundy
+              <input id="end-seconds" type="number" min="0" max="59" step="1" value="00" placeholder="00">
+            </label>
+            <button type="submit" name="mode" value="end">Nastavit konec</button>
+          </fieldset>
         </form>
+        <p id="end-info" role="status"></p>
         <div id="presets" class="buttons" aria-label="Předvolby délky kola"></div>
         <div id="adjustments" class="buttons" aria-label="Úpravy délky kola"></div>
       </details>

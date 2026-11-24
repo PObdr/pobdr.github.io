@@ -3,11 +3,12 @@
 
   const byId = (id) => document.getElementById(id);
   const display = byId('display');
-  const maximum = 24 * 60 * 60 * 1000;
+  const maximum = 26 * 60 * 60 * 1000 - 1000;
   const units = [['hours', 3600], ['minutes', 60], ['seconds', 1]];
   let duration = 45 * 60 * 1000;
   let remaining = duration;
   let deadline = null;
+  let pendingEnd = null;
   let finished = false;
   let audio = null;
 
@@ -39,9 +40,10 @@
     byId('sector').setAttribute('d', path);
     byId('time').textContent = formatTime(remaining);
     byId('total').textContent = `Z celkových ${formatTime(duration)}`;
-    const endInfo = deadline === null
+    const target = deadline ?? pendingEnd;
+    const endInfo = target === null
       ? ''
-      : `Konec ${new Date(deadline).toLocaleString('cs-CZ', {
+      : `Konec ${new Date(target).toLocaleString('cs-CZ', {
         day: 'numeric',
         month: 'numeric',
         year: 'numeric',
@@ -102,91 +104,108 @@
   }
 
   function tick() {
-    if (deadline !== null) {
-      remaining = Math.max(0, deadline - Date.now());
+    const target = deadline ?? pendingEnd;
+    if (target !== null) {
+      remaining = Math.max(0, target - Date.now());
       if (remaining === 0) {
+        const wasRunning = deadline !== null;
         deadline = null;
+        pendingEnd = null;
         finished = true;
-        ring();
+        if (wasRunning) {
+          ring();
+        }
       }
     }
     render();
   }
 
+  function validateInputs(prefixes) {
+    for (const prefix of prefixes) {
+      for (const [unit] of units) {
+        const input = byId(`${prefix}-${unit}`);
+        if (input.validity.badInput) {
+          input.reportValidity();
+          return false;
+        }
+        if (input.value === '') {
+          input.value = '00';
+        }
+        if (!input.reportValidity()) {
+          return false;
+        }
+      }
+    }
+    return true;
+  }
+
   function readInputs(prefix) {
     return units.reduce((sum, [unit, multiplier]) => {
-      return sum + Number(byId(`${prefix}-${unit}`).value) * multiplier * 1000;
+      return sum + Number(byId(`${prefix}-${unit}`).value || 0) * multiplier * 1000;
     }, 0);
   }
 
   function writeInputs(prefix, milliseconds) {
-    let seconds = Math.round(milliseconds / 1000);
+    let seconds = Math.ceil(milliseconds / 1000);
     for (const [unit, multiplier] of units) {
-      byId(`${prefix}-${unit}`).value = String(Math.floor(seconds / multiplier));
+      byId(`${prefix}-${unit}`).value = String(Math.floor(seconds / multiplier)).padStart(2, '0');
       seconds %= multiplier;
     }
   }
 
   function syncInputs() {
     writeInputs('duration', duration);
-    writeInputs('elapsed', duration - remaining);
+    writeInputs('remaining', remaining);
   }
 
-  function setRound(total, elapsed = 0) {
+  function setRound(total, left = total, target = null) {
     deadline = null;
-    duration = total;
-    remaining = Math.max(0, duration - elapsed);
+    pendingEnd = target;
+    duration = Math.max(1000, total, Math.ceil(left / 1000) * 1000);
+    remaining = Math.max(0, left);
     finished = remaining === 0;
-    byId('elapsed-seconds').setCustomValidity('');
     syncInputs();
     render();
   }
 
-  function nextEndTime(value, now) {
-    const parts = value.split(':').map(Number);
+  function nextEndTime(now) {
     const target = new Date(now);
-    target.setHours(parts[0], parts[1], parts[2] || 0, 0);
+    target.setHours(
+      Number(byId('end-hours').value || 0),
+      Number(byId('end-minutes').value || 0),
+      Number(byId('end-seconds').value || 0),
+      0
+    );
     if (target.getTime() <= now.getTime()) {
       target.setDate(target.getDate() + 1);
     }
     return target.getTime();
   }
 
-  byId('end-settings').addEventListener('submit', (event) => {
-    event.preventDefault();
-    const input = byId('end-time');
-    if (!input.value || !input.checkValidity()) {
-      input.reportValidity();
-      return;
-    }
-
-    const now = new Date();
-    const target = nextEndTime(input.value, now);
-    const total = Math.ceil((target - now.getTime()) / 1000) * 1000;
-    setRound(total);
-    unlockSound();
-    deadline = target;
-    tick();
-  });
-
   byId('settings').addEventListener('submit', (event) => {
     event.preventDefault();
-    const total = readInputs('duration');
-    const elapsed = readInputs('elapsed');
-
-    if (!Number.isFinite(total) || !Number.isFinite(elapsed)
-      || total < 1000 || total > maximum || elapsed < 0 || elapsed > total) {
-      const input = byId('elapsed-seconds');
-      input.setCustomValidity('Celé kolo musí mít 1 sekundu až 24 hodin a uplynulý čas nesmí být delší než celé kolo.');
-      input.reportValidity();
+    const mode = event.submitter?.value || 'length';
+    const prefix = mode === 'end' ? 'end' : 'remaining';
+    if (!validateInputs(['duration', prefix])) {
       return;
     }
 
-    setRound(total, elapsed);
+    const total = readInputs('duration');
+    if (mode === 'end') {
+      const now = new Date();
+      const target = nextEndTime(now);
+      setRound(total, target - now.getTime(), target);
+    } else {
+      setRound(total, readInputs('remaining'));
+    }
   });
 
-  byId('settings').addEventListener('input', () => {
-    byId('elapsed-seconds').setCustomValidity('');
+  byId('settings').addEventListener('focusout', (event) => {
+    const input = event.target;
+    if (input.matches('input[type="number"]')
+      && input.value === '' && !input.validity.badInput) {
+      input.value = '00';
+    }
   });
 
   function addButton(container, label, action) {
@@ -220,7 +239,7 @@
         const running = deadline !== null;
         const elapsed = duration - remaining;
         const total = Math.max(1000, elapsed, Math.min(maximum, duration + direction * seconds * 1000));
-        setRound(total, elapsed);
+        setRound(total, total - elapsed);
         if (running && remaining > 0) {
           deadline = Date.now() + remaining;
         } else if (running && remaining === 0) {
@@ -232,17 +251,20 @@
   }
 
   byId('start').addEventListener('click', () => {
+    tick();
     if (deadline !== null || remaining <= 0) {
       return;
     }
     unlockSound();
-    deadline = Date.now() + remaining;
+    deadline = pendingEnd ?? Date.now() + remaining;
+    pendingEnd = null;
     tick();
   });
 
   byId('pause').addEventListener('click', () => {
     tick();
     deadline = null;
+    pendingEnd = null;
     syncInputs();
     render();
   });
