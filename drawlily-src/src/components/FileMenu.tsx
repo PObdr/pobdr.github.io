@@ -20,11 +20,18 @@ import {
   DropdownMenuSubContent,
   DropdownMenuSubTrigger,
 } from "#/components/ui/dropdown-menu.tsx";
-import type { Auth } from "#/lib/auth";
 
 interface Props {
-  canCreateNew: boolean;
+  /**
+   * True when the .ly source and the MIDI file can be exported. This needs
+   * the preview, but no server.
+   */
   canExport: boolean;
+
+  /**
+   * True when the PDF can be exported. The PDF is made by the server.
+   */
+  canExportPdf: boolean;
   songURL: string | null;
   onExportLy(): any;
   onExportMIDI(): any;
@@ -32,18 +39,6 @@ interface Props {
   onShowAbout(): void;
   onShowOpen(): void;
   onShowNew(): void;
-
-  // <Header /> still passes these. They are not used any more, and go away
-  // with the rest of the login code.
-  auth?: Auth | null;
-  canSave?: boolean;
-  canSaveAs?: boolean;
-  onDeleteSong?(song: string): void;
-  onLoadSong?(song: string): void;
-  onShowClone?(): void;
-  onShowPublish?(): void;
-  onSignIn?(): void;
-  onSignOut?(): void;
 }
 
 /**
@@ -52,8 +47,8 @@ interface Props {
  */
 const FileMenu: React.FC<Props> = React.memo(function FileMenu(props) {
   const {
-    canCreateNew,
     canExport,
+    canExportPdf,
     onShowAbout,
     onShowOpen,
     onExportLy,
@@ -87,7 +82,7 @@ const FileMenu: React.FC<Props> = React.memo(function FileMenu(props) {
 
   return (
     <>
-      <DropdownMenuItem onClick={onShowNew} disabled={!canCreateNew}>
+      <DropdownMenuItem onClick={onShowNew}>
         <CirclePlus size="1em" className="inline" />
         New song
       </DropdownMenuItem>
@@ -114,7 +109,7 @@ const FileMenu: React.FC<Props> = React.memo(function FileMenu(props) {
             <Code size="1em" className="inline" />
             LilyPond source
           </DropdownMenuItem>
-          <DropdownMenuItem onClick={onExportPDF} disabled={!canExport}>
+          <DropdownMenuItem onClick={onExportPDF} disabled={!canExportPdf}>
             <FileText size="1em" className="inline" />
             PDF
           </DropdownMenuItem>
