@@ -9,8 +9,10 @@ import React from "react";
 import { track } from "#/lib/analytics";
 import { decodeArrayBuffer } from "#/lib/base64Binary";
 import { renderVersionFor } from "#/lib/lilypondVersion";
+import { locationToSelection, parseTextEditLink } from "#/lib/sourceLocation";
 import type { SvgRenderer } from "#/lib/SvgRenderer";
 import { cn } from "#/lib/utils";
+import WasmRenderer from "#/lib/WasmRenderer";
 
 import type { ViewMode } from "./Header";
 import { MODE_BOTH, MODE_VIEW } from "./Header";
@@ -438,18 +440,18 @@ export default class Preview extends React.PureComponent<Props, State> {
           if (!link) {
             return;
           }
-          const pathAndLocation: string[] = link.split(".ly:");
-          if (pathAndLocation.length === 2) {
-            const [line, startColumn, endColumn] =
-              pathAndLocation[1].split(":");
-            this.props.onSelectionChanged({
-              // NOTE: we add a line on render:
-              positionColumn: parseInt(endColumn, 10) + 1,
-              positionLineNumber: parseInt(line, 10) - 1,
-              selectionStartColumn: parseInt(startColumn, 10) + 1,
-              selectionStartLineNumber: parseInt(line, 10) - 1,
-            });
+
+          const location = parseTextEditLink(link);
+          if (!location) {
+            return;
           }
+
+          // The server renderer adds a line before the code, wasm does not.
+          const lineOffset = this.props.renderer instanceof WasmRenderer ? 0 : 1;
+
+          this.props.onSelectionChanged(
+            locationToSelection(this.props.code, location, lineOffset),
+          );
         }
       });
     }
