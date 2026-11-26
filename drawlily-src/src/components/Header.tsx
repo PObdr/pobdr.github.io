@@ -30,7 +30,6 @@ import {
   TooltipTrigger,
 } from "#/components/ui/tooltip";
 import { track } from "#/lib/analytics";
-import type { Auth } from "#/lib/auth";
 import { cn } from "#/lib/utils";
 
 import logoSvg from "./logo.svg";
@@ -58,33 +57,23 @@ interface Player {
 }
 
 interface Props {
-  auth: Auth | null;
   canExport: boolean;
-  inSandbox: boolean;
+  canExportPdf: boolean;
   isDirty: boolean;
-  readOnly: boolean;
-  loggedIn: boolean;
   midi: ArrayBuffer | null;
   mode: ViewMode;
-  online: boolean;
   sandboxIsDirty: boolean;
   song: string | undefined;
   windowWidth: number;
   songURL: string | null;
   onModeChanged(mode: ViewMode): void;
-  onShowClone(): void;
   onShowMakelily(tool: string): void;
   onShowNew(): void;
   onShowOpen(): void;
   onExportLy(): any;
   onExportMIDI(): any;
   onExportPDF(): any;
-  onShowPublish(): void;
-  onDeleteSong(song: string): void;
-  onLoadSong(song: string): void;
   onShowAbout(): void;
-  onSignIn(): void;
-  onSignOut(): void;
 }
 
 interface State {
@@ -124,25 +113,16 @@ export default class Header extends React.PureComponent<Props> {
 
   render(): JSX.Element {
     const {
-      auth,
       canExport,
-      readOnly,
-      inSandbox,
+      canExportPdf,
       mode,
       midi,
-      onDeleteSong,
       onExportLy,
       onExportMIDI,
       onExportPDF,
-      onLoadSong,
       onShowAbout,
-      onShowClone,
       onShowOpen,
       onShowNew,
-      onShowPublish,
-      onSignIn,
-      onSignOut,
-      online,
       songURL,
       windowWidth,
     } = this.props;
@@ -220,23 +200,14 @@ export default class Header extends React.PureComponent<Props> {
               </DropdownMenuTrigger>
               <DropdownMenuContent className="min-w-48">
                 <FileMenu
-                  auth={auth}
-                  canCreateNew={online}
-                  canSave={online && !readOnly}
-                  canSaveAs={online && !inSandbox}
                   canExport={canExport}
-                  onDeleteSong={onDeleteSong}
+                  canExportPdf={canExportPdf}
                   onExportLy={onExportLy}
                   onExportMIDI={onExportMIDI}
                   onExportPDF={onExportPDF}
-                  onLoadSong={onLoadSong}
                   onShowAbout={onShowAbout}
-                  onShowClone={onShowClone}
                   onShowOpen={onShowOpen}
-                  onShowPublish={onShowPublish}
                   onShowNew={onShowNew}
-                  onSignIn={onSignIn}
-                  onSignOut={onSignOut}
                   songURL={songURL}
                 />
               </DropdownMenuContent>

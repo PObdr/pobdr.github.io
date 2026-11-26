@@ -18,7 +18,6 @@ import {
   TabsList,
   TabsTrigger,
 } from "#/components/ui/tabs.tsx";
-import type { Auth } from "#/lib/auth";
 import type { GitHubSongRef } from "#/lib/githubSongRef";
 import { parseGitHubSongRef, rawGitHubUrl } from "#/lib/githubSongRef";
 import type { SourceResult } from "#/lib/localSong";
@@ -34,13 +33,6 @@ import { cn } from "#/lib/utils";
 
 interface Props {
   onHide(): void;
-
-  // <App /> still passes these. They are not used any more, and go away with
-  // the rest of the login code.
-  auth?: Auth | null;
-  onSignIn?(): void;
-  onDeleteSong?(song: string): void;
-  onLoadSong?(song: string): void;
 }
 
 /**
