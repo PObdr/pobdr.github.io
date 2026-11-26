@@ -11,7 +11,7 @@ export interface WasmRendererOptions {
    * URL of the classic worker script. The worker and its sibling assets
    * (`lilypond-web.js`, `lilypond.wasm`, `lilypond.data`) must be served from
    * the same directory so the worker's `importScripts` and emscripten's
-   * `locateFile` resolve. Defaults to `/wasm/lily-worker.js`.
+   * `locateFile` resolve. Defaults to `<BASE_URL>wasm/lily-worker.js`.
    */
   workerURL?: string;
 
@@ -95,7 +95,8 @@ export default class WasmRenderer implements SvgRenderer {
   private destroyed = false;
 
   constructor(options: WasmRendererOptions = {}) {
-    this.workerURL = options.workerURL ?? "/wasm/lily-worker.js";
+    this.workerURL =
+      options.workerURL ?? `${import.meta.env.BASE_URL}wasm/lily-worker.js`;
     this.deadlineMs = options.deadlineMs ?? 60_000;
     this.onReady = options.onReady;
     this.onCrash = options.onCrash;
@@ -143,7 +144,7 @@ export default class WasmRenderer implements SvgRenderer {
     this.readyResolvers = [];
   }
 
-  // ── internal ───────────────────────────────────────────────
+  // ── internal ────────────────────────────────────────────────
 
   private spawn(): void {
     if (this.destroyed) {

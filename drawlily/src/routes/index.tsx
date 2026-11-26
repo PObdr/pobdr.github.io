@@ -28,5 +28,5 @@ export const Route = createFileRoute("/")({
 
 function HacklilyApp() {
   const search = Route.useSearch();
-  return <App {...search} {...useHacklilyAppProps(search)} variant="server" />;
+  return <App {...search} {...useHacklilyAppProps(search)} variant="wasm" />;
 }
