@@ -1,0 +1,4418 @@
+[
+  {
+    "id": "290080",
+    "lon": 14.38883364,
+    "lat": 50.07520311,
+    "type": "veřejné hodiny",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "290098",
+    "lon": 14.38009079,
+    "lat": 50.07063643,
+    "type": "veřejné hodiny",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "290109",
+    "lon": 14.3897149,
+    "lat": 50.07187165,
+    "type": "veřejné hodiny",
+    "description": "Plzeňská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "290116",
+    "lon": 14.38474378,
+    "lat": 50.07025421,
+    "type": "veřejné hodiny",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "490367",
+    "lon": 14.38984466,
+    "lat": 50.07987634,
+    "type": "připojení městského mobiliáře",
+    "description": "Vaníčkova ZM STRA",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "490371",
+    "lon": 14.38888819,
+    "lat": 50.07843557,
+    "type": "připojení městského mobiliáře",
+    "description": "Atletická *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "490372",
+    "lon": 14.38227872,
+    "lat": 50.07796208,
+    "type": "připojení městského mobiliáře",
+    "description": "Pod stadiony ZM <>",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "490380",
+    "lon": 14.38143025,
+    "lat": 50.07099898,
+    "type": "připojení městského mobiliáře",
+    "description": "Plzeňská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "490581",
+    "lon": 14.38701669,
+    "lat": 50.07149557,
+    "type": "připojení městského mobiliáře",
+    "description": "Plzeňská ZM <>",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "491229",
+    "lon": 14.38951065,
+    "lat": 50.07713528,
+    "type": "připojení městského mobiliáře",
+    "description": "Na Hřebenkách ZM <>",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "491230",
+    "lon": 14.38613742,
+    "lat": 50.07773922,
+    "type": "připojení městského mobiliáře",
+    "description": "Turistická ZM <>",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "493086",
+    "lon": 14.38968484,
+    "lat": 50.07110974,
+    "type": "připojení městského mobiliáře",
+    "description": "Vrchlického ZM <>",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "500225",
+    "lon": 14.38986558,
+    "lat": 50.07266434,
+    "type": "stožár elektrického osvětlení",
+    "description": "Holečkova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "500226",
+    "lon": 14.3890585,
+    "lat": 50.07250051,
+    "type": "stožár elektrického osvětlení",
+    "description": "Holečkova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "500227",
+    "lon": 14.38946152,
+    "lat": 50.07258025,
+    "type": "stožár elektrického osvětlení",
+    "description": "Holečkova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "500228",
+    "lon": 14.38866573,
+    "lat": 50.07242432,
+    "type": "stožár elektrického osvětlení",
+    "description": "Holečkova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "500229",
+    "lon": 14.38827213,
+    "lat": 50.07235594,
+    "type": "stožár elektrického osvětlení",
+    "description": "Holečkova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "500230",
+    "lon": 14.38785613,
+    "lat": 50.07227296,
+    "type": "stožár elektrického osvětlení",
+    "description": "Holečkova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "500231",
+    "lon": 14.38746089,
+    "lat": 50.07218919,
+    "type": "stožár elektrického osvětlení",
+    "description": "Holečkova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "500232",
+    "lon": 14.38705348,
+    "lat": 50.07209907,
+    "type": "stožár elektrického osvětlení",
+    "description": "Holečkova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "500233",
+    "lon": 14.38668096,
+    "lat": 50.07200806,
+    "type": "stožár elektrického osvětlení",
+    "description": "Holečkova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "500234",
+    "lon": 14.38628258,
+    "lat": 50.07190676,
+    "type": "stožár elektrického osvětlení",
+    "description": "Holečkova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "500235",
+    "lon": 14.3858776,
+    "lat": 50.07182965,
+    "type": "stožár elektrického osvětlení",
+    "description": "Holečkova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "500236",
+    "lon": 14.38543636,
+    "lat": 50.07175984,
+    "type": "stožár elektrického osvětlení",
+    "description": "Holečkova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "500237",
+    "lon": 14.38503766,
+    "lat": 50.07169554,
+    "type": "stožár elektrického osvětlení",
+    "description": "Holečkova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "500238",
+    "lon": 14.38423941,
+    "lat": 50.07155969,
+    "type": "stožár elektrického osvětlení",
+    "description": "Holečkova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "500239",
+    "lon": 14.38390196,
+    "lat": 50.07145381,
+    "type": "stožár elektrického osvětlení",
+    "description": "Holečkova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501248",
+    "lon": 14.38968211,
+    "lat": 50.07199427,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "501249",
+    "lon": 14.3897149,
+    "lat": 50.07187165,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "501250",
+    "lon": 14.38934541,
+    "lat": 50.07195056,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501251",
+    "lon": 14.38938949,
+    "lat": 50.07182459,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501252",
+    "lon": 14.38897635,
+    "lat": 50.07190451,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501253",
+    "lon": 14.38902399,
+    "lat": 50.07177841,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501254",
+    "lon": 14.38860865,
+    "lat": 50.07185678,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501255",
+    "lon": 14.38864932,
+    "lat": 50.07173423,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501256",
+    "lon": 14.38822975,
+    "lat": 50.07180795,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501257",
+    "lon": 14.38826333,
+    "lat": 50.07168032,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501258",
+    "lon": 14.38783024,
+    "lat": 50.07175793,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501259",
+    "lon": 14.38789982,
+    "lat": 50.07163341,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501260",
+    "lon": 14.3874888,
+    "lat": 50.07171334,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501261",
+    "lon": 14.38751064,
+    "lat": 50.07157931,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501262",
+    "lon": 14.38712426,
+    "lat": 50.07166923,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501263",
+    "lon": 14.38715952,
+    "lat": 50.0715325,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501264",
+    "lon": 14.38675839,
+    "lat": 50.07162283,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501265",
+    "lon": 14.3868002,
+    "lat": 50.07148777,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501266",
+    "lon": 14.38640994,
+    "lat": 50.07157408,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501267",
+    "lon": 14.38645693,
+    "lat": 50.07144247,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501268",
+    "lon": 14.38605328,
+    "lat": 50.07152613,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501269",
+    "lon": 14.38608919,
+    "lat": 50.07139753,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501270",
+    "lon": 14.38560545,
+    "lat": 50.07146736,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501272",
+    "lon": 14.3853295,
+    "lat": 50.0714304,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501273",
+    "lon": 14.38536931,
+    "lat": 50.07130269,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501274",
+    "lon": 14.38497931,
+    "lat": 50.07138384,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501275",
+    "lon": 14.38499941,
+    "lat": 50.07125075,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501276",
+    "lon": 14.38462729,
+    "lat": 50.07133794,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501277",
+    "lon": 14.3846643,
+    "lat": 50.07120753,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501278",
+    "lon": 14.38422733,
+    "lat": 50.07129331,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501279",
+    "lon": 14.38431555,
+    "lat": 50.07116546,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501280",
+    "lon": 14.38392259,
+    "lat": 50.07126631,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501281",
+    "lon": 14.38396508,
+    "lat": 50.07113339,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501282",
+    "lon": 14.3835545,
+    "lat": 50.07123286,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501283",
+    "lon": 14.3836365,
+    "lat": 50.07111562,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501284",
+    "lon": 14.38316949,
+    "lat": 50.07123557,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501285",
+    "lon": 14.38324625,
+    "lat": 50.07105333,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501286",
+    "lon": 14.38282788,
+    "lat": 50.07117008,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "501287",
+    "lon": 14.38287225,
+    "lat": 50.07100475,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501288",
+    "lon": 14.38247838,
+    "lat": 50.0711164,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "501289",
+    "lon": 14.38250984,
+    "lat": 50.0709521,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501290",
+    "lon": 14.38210281,
+    "lat": 50.07106595,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "501291",
+    "lon": 14.3821596,
+    "lat": 50.07090517,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501292",
+    "lon": 14.38174712,
+    "lat": 50.0710227,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "501293",
+    "lon": 14.38180795,
+    "lat": 50.0708602,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501294",
+    "lon": 14.38137015,
+    "lat": 50.07096296,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "501295",
+    "lon": 14.38142274,
+    "lat": 50.07081061,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501296",
+    "lon": 14.38102251,
+    "lat": 50.07089338,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "501297",
+    "lon": 14.38106368,
+    "lat": 50.07076007,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501298",
+    "lon": 14.38069054,
+    "lat": 50.07087502,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "501299",
+    "lon": 14.38074353,
+    "lat": 50.07072207,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501300",
+    "lon": 14.38032511,
+    "lat": 50.07084561,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501301",
+    "lon": 14.38042256,
+    "lat": 50.070682,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501302",
+    "lon": 14.38003694,
+    "lat": 50.07079793,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "501303",
+    "lon": 14.38009079,
+    "lat": 50.07063643,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503037",
+    "lon": 14.38480806,
+    "lat": 50.07010444,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Popelce *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503248",
+    "lon": 14.38986757,
+    "lat": 50.07072978,
+    "type": "stožár elektrického osvětlení",
+    "description": "Duškova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503251",
+    "lon": 14.38980886,
+    "lat": 50.07109098,
+    "type": "stožár elektrického osvětlení",
+    "description": "Duškova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503254",
+    "lon": 14.38948512,
+    "lat": 50.07097109,
+    "type": "stožár elektrického osvětlení",
+    "description": "Duškova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503255",
+    "lon": 14.38939424,
+    "lat": 50.07110025,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503256",
+    "lon": 14.38965222,
+    "lat": 50.07122692,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503257",
+    "lon": 14.38902954,
+    "lat": 50.07097082,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503258",
+    "lon": 14.38917982,
+    "lat": 50.07114329,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503259",
+    "lon": 14.38858067,
+    "lat": 50.0709215,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503260",
+    "lon": 14.38833192,
+    "lat": 50.07099506,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503261",
+    "lon": 14.38810739,
+    "lat": 50.07085249,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503262",
+    "lon": 14.38784398,
+    "lat": 50.07090632,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503263",
+    "lon": 14.38754957,
+    "lat": 50.07075227,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503264",
+    "lon": 14.38730387,
+    "lat": 50.07081621,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503265",
+    "lon": 14.38727328,
+    "lat": 50.0706906,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503266",
+    "lon": 14.38691126,
+    "lat": 50.07074592,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503267",
+    "lon": 14.3867626,
+    "lat": 50.07059811,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503268",
+    "lon": 14.38639105,
+    "lat": 50.07066103,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503269",
+    "lon": 14.38624541,
+    "lat": 50.07051166,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503270",
+    "lon": 14.38596011,
+    "lat": 50.07058733,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503271",
+    "lon": 14.38580478,
+    "lat": 50.07043383,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503272",
+    "lon": 14.38546884,
+    "lat": 50.07050164,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503273",
+    "lon": 14.38529831,
+    "lat": 50.0703467,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503274",
+    "lon": 14.38495777,
+    "lat": 50.07041228,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503275",
+    "lon": 14.38474378,
+    "lat": 50.07025421,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503276",
+    "lon": 14.38443728,
+    "lat": 50.07030638,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503277",
+    "lon": 14.38431117,
+    "lat": 50.07009957,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503278",
+    "lon": 14.38399415,
+    "lat": 50.07016597,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503280",
+    "lon": 14.38354353,
+    "lat": 50.07000982,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503327",
+    "lon": 14.38896484,
+    "lat": 50.07066365,
+    "type": "stožár elektrického osvětlení",
+    "description": "Husovy sady *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503328",
+    "lon": 14.38849634,
+    "lat": 50.07061249,
+    "type": "stožár elektrického osvětlení",
+    "description": "Husovy sady *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503329",
+    "lon": 14.38893197,
+    "lat": 50.07037836,
+    "type": "stožár elektrického osvětlení",
+    "description": "Husovy sady *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503330",
+    "lon": 14.38870005,
+    "lat": 50.07034913,
+    "type": "stožár elektrického osvětlení",
+    "description": "Husovy sady *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503331",
+    "lon": 14.38818391,
+    "lat": 50.07021441,
+    "type": "stožár elektrického osvětlení",
+    "description": "Husovy sady *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503332",
+    "lon": 14.3876544,
+    "lat": 50.07011634,
+    "type": "stožár elektrického osvětlení",
+    "description": "Husovy sady *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503340",
+    "lon": 14.38758377,
+    "lat": 50.07058958,
+    "type": "stožár elektrického osvětlení",
+    "description": "Husovy sady *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503341",
+    "lon": 14.38759515,
+    "lat": 50.07038991,
+    "type": "stožár elektrického osvětlení",
+    "description": "Husovy sady *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503342",
+    "lon": 14.3872317,
+    "lat": 50.07031976,
+    "type": "stožár elektrického osvětlení",
+    "description": "Husovy sady *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503343",
+    "lon": 14.38678936,
+    "lat": 50.07024006,
+    "type": "stožár elektrického osvětlení",
+    "description": "Husovy sady *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503346",
+    "lon": 14.38961908,
+    "lat": 50.07143273,
+    "type": "stožár elektrického osvětlení",
+    "description": "Erbenova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503347",
+    "lon": 14.38953589,
+    "lat": 50.07167658,
+    "type": "stožár elektrického osvětlení",
+    "description": "Erbenova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503348",
+    "lon": 14.38958362,
+    "lat": 50.07210106,
+    "type": "stožár elektrického osvětlení",
+    "description": "Erbenova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503349",
+    "lon": 14.38950165,
+    "lat": 50.07236289,
+    "type": "stožár elektrického osvětlení",
+    "description": "Erbenova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503350",
+    "lon": 14.38914817,
+    "lat": 50.07288987,
+    "type": "stožár elektrického osvětlení",
+    "description": "Erbenova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503351",
+    "lon": 14.38916848,
+    "lat": 50.07318702,
+    "type": "stožár elektrického osvětlení",
+    "description": "Erbenova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503352",
+    "lon": 14.38894169,
+    "lat": 50.07338171,
+    "type": "stožár elektrického osvětlení",
+    "description": "Erbenova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503353",
+    "lon": 14.38896149,
+    "lat": 50.07357081,
+    "type": "stožár elektrického osvětlení",
+    "description": "Erbenova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503354",
+    "lon": 14.38904638,
+    "lat": 50.07375562,
+    "type": "stožár elektrického osvětlení",
+    "description": "Erbenova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503355",
+    "lon": 14.38848437,
+    "lat": 50.07120475,
+    "type": "stožár elektrického osvětlení",
+    "description": "Brožíkova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503356",
+    "lon": 14.38857491,
+    "lat": 50.07146576,
+    "type": "stožár elektrického osvětlení",
+    "description": "Brožíkova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503357",
+    "lon": 14.38746429,
+    "lat": 50.07100719,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mahenova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503358",
+    "lon": 14.3873974,
+    "lat": 50.07133145,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mahenova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503359",
+    "lon": 14.38725342,
+    "lat": 50.07191189,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mahenova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503360",
+    "lon": 14.38697797,
+    "lat": 50.07136579,
+    "type": "stožár elektrického osvětlení",
+    "description": "Starokošířská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503361",
+    "lon": 14.38605204,
+    "lat": 50.07122695,
+    "type": "stožár elektrického osvětlení",
+    "description": "Starokošířská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503362",
+    "lon": 14.38523417,
+    "lat": 50.07095058,
+    "type": "stožár elektrického osvětlení",
+    "description": "Starokošířská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503363",
+    "lon": 14.38470951,
+    "lat": 50.07051837,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503364",
+    "lon": 14.38498133,
+    "lat": 50.07112207,
+    "type": "stožár elektrického osvětlení",
+    "description": "Plzeňská *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "503365",
+    "lon": 14.38355018,
+    "lat": 50.07138705,
+    "type": "stožár elektrického osvětlení",
+    "description": "Holečkova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503367",
+    "lon": 14.38383961,
+    "lat": 50.07165167,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mlynářka *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503368",
+    "lon": 14.38318829,
+    "lat": 50.07157117,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mlynářka *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503369",
+    "lon": 14.38291145,
+    "lat": 50.07146342,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mlynářka *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503370",
+    "lon": 14.38262251,
+    "lat": 50.0714548,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mlynářka *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503371",
+    "lon": 14.38241474,
+    "lat": 50.07140637,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mlynářka *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503372",
+    "lon": 14.383819,
+    "lat": 50.07178844,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mlynářka *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503373",
+    "lon": 14.38360379,
+    "lat": 50.07177993,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mlynářka *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503374",
+    "lon": 14.38329494,
+    "lat": 50.07170963,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mlynářka *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503375",
+    "lon": 14.38288223,
+    "lat": 50.07161467,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mlynářka *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503438",
+    "lon": 14.38004131,
+    "lat": 50.07201912,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podbělohorská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503439",
+    "lon": 14.38019575,
+    "lat": 50.07229499,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podbělohorská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503440",
+    "lon": 14.38062903,
+    "lat": 50.07245242,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podbělohorská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503442",
+    "lon": 14.38083748,
+    "lat": 50.07276249,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podbělohorská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503443",
+    "lon": 14.38131914,
+    "lat": 50.07300074,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podbělohorská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503444",
+    "lon": 14.38134521,
+    "lat": 50.073217,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podbělohorská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503445",
+    "lon": 14.38124307,
+    "lat": 50.07340832,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podbělohorská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503446",
+    "lon": 14.38076592,
+    "lat": 50.0735222,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podbělohorská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503447",
+    "lon": 14.38037615,
+    "lat": 50.07351804,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podbělohorská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503525",
+    "lon": 14.38125066,
+    "lat": 50.07353725,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503526",
+    "lon": 14.38160936,
+    "lat": 50.07352712,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503527",
+    "lon": 14.38202059,
+    "lat": 50.07351603,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503528",
+    "lon": 14.38161982,
+    "lat": 50.07320374,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503529",
+    "lon": 14.38190382,
+    "lat": 50.0733951,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503530",
+    "lon": 14.38242734,
+    "lat": 50.07359676,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503531",
+    "lon": 14.38281839,
+    "lat": 50.07367972,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503532",
+    "lon": 14.38329929,
+    "lat": 50.07378819,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503533",
+    "lon": 14.38375837,
+    "lat": 50.07389062,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503534",
+    "lon": 14.38420595,
+    "lat": 50.07399077,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503535",
+    "lon": 14.38297555,
+    "lat": 50.07333644,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503536",
+    "lon": 14.38334014,
+    "lat": 50.07347368,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503537",
+    "lon": 14.38379577,
+    "lat": 50.07364407,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503538",
+    "lon": 14.38418161,
+    "lat": 50.07378938,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503539",
+    "lon": 14.38456137,
+    "lat": 50.07395783,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503540",
+    "lon": 14.3848889,
+    "lat": 50.07406073,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503541",
+    "lon": 14.38528789,
+    "lat": 50.07418033,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503542",
+    "lon": 14.38564497,
+    "lat": 50.07428359,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503543",
+    "lon": 14.38600308,
+    "lat": 50.0743873,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503544",
+    "lon": 14.38633923,
+    "lat": 50.07448425,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503545",
+    "lon": 14.38671346,
+    "lat": 50.07459303,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503546",
+    "lon": 14.38708794,
+    "lat": 50.0747,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503547",
+    "lon": 14.38744991,
+    "lat": 50.07480351,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503548",
+    "lon": 14.38791124,
+    "lat": 50.07493036,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503549",
+    "lon": 14.38805755,
+    "lat": 50.07511219,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503550",
+    "lon": 14.38825326,
+    "lat": 50.07499406,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503551",
+    "lon": 14.38854822,
+    "lat": 50.07529306,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503552",
+    "lon": 14.38874695,
+    "lat": 50.07505163,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503553",
+    "lon": 14.38890712,
+    "lat": 50.07543746,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503554",
+    "lon": 14.38851027,
+    "lat": 50.07514307,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503555",
+    "lon": 14.38883364,
+    "lat": 50.07520311,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503556",
+    "lon": 14.38922273,
+    "lat": 50.07541886,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503557",
+    "lon": 14.38936656,
+    "lat": 50.07559941,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503558",
+    "lon": 14.3897179,
+    "lat": 50.07560692,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503559",
+    "lon": 14.38982408,
+    "lat": 50.0757707,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503579",
+    "lon": 14.38976434,
+    "lat": 50.0770085,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503581",
+    "lon": 14.38914124,
+    "lat": 50.07704264,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503582",
+    "lon": 14.38946631,
+    "lat": 50.07713351,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503583",
+    "lon": 14.38852857,
+    "lat": 50.07707616,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503584",
+    "lon": 14.38887533,
+    "lat": 50.07716714,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503585",
+    "lon": 14.38791966,
+    "lat": 50.07710393,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503586",
+    "lon": 14.38823448,
+    "lat": 50.07720052,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503587",
+    "lon": 14.38735223,
+    "lat": 50.07714682,
+    "type": "stožár elektrického osvětlení",
+    "description": "Turistická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503588",
+    "lon": 14.38766038,
+    "lat": 50.07725471,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503589",
+    "lon": 14.38751342,
+    "lat": 50.07698388,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503590",
+    "lon": 14.38705169,
+    "lat": 50.0768647,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503591",
+    "lon": 14.38669309,
+    "lat": 50.07687559,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503592",
+    "lon": 14.38632889,
+    "lat": 50.07690204,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503593",
+    "lon": 14.38596578,
+    "lat": 50.07692868,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503594",
+    "lon": 14.38561425,
+    "lat": 50.07694736,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503595",
+    "lon": 14.38523966,
+    "lat": 50.07695909,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503596",
+    "lon": 14.38489102,
+    "lat": 50.07696495,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503597",
+    "lon": 14.38453148,
+    "lat": 50.07696576,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503598",
+    "lon": 14.38418161,
+    "lat": 50.07695827,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503599",
+    "lon": 14.38380444,
+    "lat": 50.07693146,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503600",
+    "lon": 14.38326653,
+    "lat": 50.07692413,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503601",
+    "lon": 14.38266549,
+    "lat": 50.07685808,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503602",
+    "lon": 14.38236757,
+    "lat": 50.0769082,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503603",
+    "lon": 14.38205651,
+    "lat": 50.07672389,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503604",
+    "lon": 14.38178741,
+    "lat": 50.07681914,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503605",
+    "lon": 14.3818171,
+    "lat": 50.07668146,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503606",
+    "lon": 14.38130706,
+    "lat": 50.07673223,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503607",
+    "lon": 14.38151477,
+    "lat": 50.07665621,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503608",
+    "lon": 14.3807997,
+    "lat": 50.07661415,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503609",
+    "lon": 14.38102969,
+    "lat": 50.07654737,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503610",
+    "lon": 14.38041963,
+    "lat": 50.07652399,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503611",
+    "lon": 14.38060116,
+    "lat": 50.07644509,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503613",
+    "lon": 14.38010685,
+    "lat": 50.07632535,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503645",
+    "lon": 14.38081252,
+    "lat": 50.07434115,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod lipkami *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503646",
+    "lon": 14.38055823,
+    "lat": 50.07450542,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod lipkami *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503647",
+    "lon": 14.38012492,
+    "lat": 50.07459496,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod lipkami *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503717",
+    "lon": 14.38036612,
+    "lat": 50.07795242,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod stadiony *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503718",
+    "lon": 14.38080013,
+    "lat": 50.07792212,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod stadiony *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503719",
+    "lon": 14.38122699,
+    "lat": 50.07789163,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod stadiony *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503720",
+    "lon": 14.38163813,
+    "lat": 50.07786274,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod stadiony *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503721",
+    "lon": 14.38204573,
+    "lat": 50.0778339,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod stadiony *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503722",
+    "lon": 14.38245995,
+    "lat": 50.07781626,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod stadiony *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503723",
+    "lon": 14.38286156,
+    "lat": 50.07783045,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod stadiony *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503724",
+    "lon": 14.38329915,
+    "lat": 50.07786953,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod stadiony *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503725",
+    "lon": 14.38369144,
+    "lat": 50.07785158,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod stadiony *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503726",
+    "lon": 14.38414281,
+    "lat": 50.07778968,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod stadiony *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503727",
+    "lon": 14.38367836,
+    "lat": 50.07804529,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod stadiony *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503728",
+    "lon": 14.38409725,
+    "lat": 50.07811565,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod stadiony *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503729",
+    "lon": 14.38410313,
+    "lat": 50.07794499,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod stadiony *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503730",
+    "lon": 14.38447665,
+    "lat": 50.07785738,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503731",
+    "lon": 14.38444857,
+    "lat": 50.07805131,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503830",
+    "lon": 14.38906469,
+    "lat": 50.0738491,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mošnova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503831",
+    "lon": 14.38883204,
+    "lat": 50.07362992,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mošnova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503832",
+    "lon": 14.38840743,
+    "lat": 50.07330565,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mošnova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503833",
+    "lon": 14.38808432,
+    "lat": 50.07311965,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mošnova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503834",
+    "lon": 14.38765896,
+    "lat": 50.07302903,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mošnova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503835",
+    "lon": 14.38728902,
+    "lat": 50.07297128,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mošnova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503836",
+    "lon": 14.38699145,
+    "lat": 50.07289637,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mošnova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503837",
+    "lon": 14.38660429,
+    "lat": 50.07283937,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mošnova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503838",
+    "lon": 14.38612936,
+    "lat": 50.07277138,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mošnova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503839",
+    "lon": 14.38560527,
+    "lat": 50.07269594,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mošnova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503840",
+    "lon": 14.38520166,
+    "lat": 50.07263937,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mošnova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503841",
+    "lon": 14.38478738,
+    "lat": 50.07257732,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mošnova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503843",
+    "lon": 14.3844052,
+    "lat": 50.07251684,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mošnova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503844",
+    "lon": 14.38402185,
+    "lat": 50.07244864,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mošnova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503845",
+    "lon": 14.38336476,
+    "lat": 50.07233913,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mošnova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503846",
+    "lon": 14.38296978,
+    "lat": 50.0721832,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mošnova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503847",
+    "lon": 14.38260475,
+    "lat": 50.07203757,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mošnova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503848",
+    "lon": 14.38223952,
+    "lat": 50.07188238,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mošnova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503849",
+    "lon": 14.3817822,
+    "lat": 50.07172127,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mošnova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503850",
+    "lon": 14.38135045,
+    "lat": 50.07160464,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mošnova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503851",
+    "lon": 14.38086096,
+    "lat": 50.07155268,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mošnova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503852",
+    "lon": 14.38045686,
+    "lat": 50.07151947,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mošnova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503853",
+    "lon": 14.38004983,
+    "lat": 50.071651,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mošnova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503854",
+    "lon": 14.3800894,
+    "lat": 50.07193635,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mošnova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503862",
+    "lon": 14.38992859,
+    "lat": 50.07347476,
+    "type": "stožár elektrického osvětlení",
+    "description": "Zapova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503863",
+    "lon": 14.38990907,
+    "lat": 50.07333069,
+    "type": "stožár elektrického osvětlení",
+    "description": "Zapova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503864",
+    "lon": 14.38966726,
+    "lat": 50.07356856,
+    "type": "stožár elektrického osvětlení",
+    "description": "Zapova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503865",
+    "lon": 14.38937967,
+    "lat": 50.07390279,
+    "type": "stožár elektrického osvětlení",
+    "description": "Zapova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503866",
+    "lon": 14.38920545,
+    "lat": 50.07424032,
+    "type": "stožár elektrického osvětlení",
+    "description": "Zapova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503867",
+    "lon": 14.38937994,
+    "lat": 50.07442987,
+    "type": "stožár elektrického osvětlení",
+    "description": "Zapova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503868",
+    "lon": 14.38966983,
+    "lat": 50.07379055,
+    "type": "stožár elektrického osvětlení",
+    "description": "Zapova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503869",
+    "lon": 14.38993019,
+    "lat": 50.07376157,
+    "type": "stožár elektrického osvětlení",
+    "description": "Zapova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503870",
+    "lon": 14.38972917,
+    "lat": 50.07404221,
+    "type": "stožár elektrického osvětlení",
+    "description": "Zapova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503871",
+    "lon": 14.38941685,
+    "lat": 50.07412516,
+    "type": "stožár elektrického osvětlení",
+    "description": "Zapova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503872",
+    "lon": 14.38964841,
+    "lat": 50.07437848,
+    "type": "stožár elektrického osvětlení",
+    "description": "Zapova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503896",
+    "lon": 14.38988734,
+    "lat": 50.07516526,
+    "type": "stožár elektrického osvětlení",
+    "description": "Švédská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503897",
+    "lon": 14.38960079,
+    "lat": 50.07506469,
+    "type": "stožár elektrického osvětlení",
+    "description": "Švédská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503898",
+    "lon": 14.38933786,
+    "lat": 50.07517991,
+    "type": "stožár elektrického osvětlení",
+    "description": "Švédská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503899",
+    "lon": 14.38916086,
+    "lat": 50.0750636,
+    "type": "stožár elektrického osvětlení",
+    "description": "Švédská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503900",
+    "lon": 14.38900723,
+    "lat": 50.07490857,
+    "type": "stožár elektrického osvětlení",
+    "description": "Zapova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503901",
+    "lon": 14.38900841,
+    "lat": 50.0747236,
+    "type": "stožár elektrického osvětlení",
+    "description": "Zapova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503902",
+    "lon": 14.38909787,
+    "lat": 50.07454784,
+    "type": "stožár elektrického osvětlení",
+    "description": "Zapova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503903",
+    "lon": 14.38694787,
+    "lat": 50.07218971,
+    "type": "stožár elektrického osvětlení",
+    "description": "Holečkova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503904",
+    "lon": 14.38676206,
+    "lat": 50.07249051,
+    "type": "stožár elektrického osvětlení",
+    "description": "Holečkova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503908",
+    "lon": 14.38335186,
+    "lat": 50.07220337,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mošnova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503918",
+    "lon": 14.38943567,
+    "lat": 50.07603036,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Nesypky *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503919",
+    "lon": 14.38894552,
+    "lat": 50.07602993,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Nesypky *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503920",
+    "lon": 14.38785733,
+    "lat": 50.07594886,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Plátenice *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503921",
+    "lon": 14.38728808,
+    "lat": 50.07500497,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Plátenice *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503922",
+    "lon": 14.38689618,
+    "lat": 50.07477999,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Plátenice *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503923",
+    "lon": 14.38694634,
+    "lat": 50.0751043,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Plátenice *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503924",
+    "lon": 14.3869501,
+    "lat": 50.07540952,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Plátenice *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503925",
+    "lon": 14.38710281,
+    "lat": 50.07562531,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Plátenice *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503926",
+    "lon": 14.38748542,
+    "lat": 50.07584102,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Plátenice *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503927",
+    "lon": 14.3869204,
+    "lat": 50.07573663,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Plátenice *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503928",
+    "lon": 14.38690843,
+    "lat": 50.07601131,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Plátenice *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503929",
+    "lon": 14.38738936,
+    "lat": 50.0760692,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Nesypky *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503930",
+    "lon": 14.38784747,
+    "lat": 50.07612561,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Plátenice *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503931",
+    "lon": 14.38819592,
+    "lat": 50.07618634,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Plátenice *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503932",
+    "lon": 14.38856568,
+    "lat": 50.07636078,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Plátenice *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503933",
+    "lon": 14.3889035,
+    "lat": 50.07652104,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Plátenice *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503934",
+    "lon": 14.38933662,
+    "lat": 50.07666308,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Plátenice *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503935",
+    "lon": 14.38981193,
+    "lat": 50.07681758,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Plátenice *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503936",
+    "lon": 14.38682651,
+    "lat": 50.07620117,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pěší *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503937",
+    "lon": 14.38688428,
+    "lat": 50.0763822,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pěší *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503938",
+    "lon": 14.3869573,
+    "lat": 50.0766039,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pěší *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503939",
+    "lon": 14.38650335,
+    "lat": 50.07621321,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pěší *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503940",
+    "lon": 14.38626155,
+    "lat": 50.07641854,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pěší *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503941",
+    "lon": 14.3862029,
+    "lat": 50.07670831,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pěší *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503942",
+    "lon": 14.38598154,
+    "lat": 50.07685982,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pěší *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503943",
+    "lon": 14.38556446,
+    "lat": 50.07684482,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pěší *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503949",
+    "lon": 14.38358057,
+    "lat": 50.07250254,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Výšinkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503950",
+    "lon": 14.38398134,
+    "lat": 50.07265189,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Výšinkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503951",
+    "lon": 14.38431226,
+    "lat": 50.07278496,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Výšinkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503952",
+    "lon": 14.38474498,
+    "lat": 50.07295694,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Výšinkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503953",
+    "lon": 14.3852347,
+    "lat": 50.07311501,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Výšinkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503954",
+    "lon": 14.38565814,
+    "lat": 50.07321328,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Výšinkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503955",
+    "lon": 14.38604386,
+    "lat": 50.07330202,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Výšinkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503956",
+    "lon": 14.38642483,
+    "lat": 50.07338789,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Výšinkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503957",
+    "lon": 14.38687516,
+    "lat": 50.07349099,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Výšinkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503958",
+    "lon": 14.38733194,
+    "lat": 50.0735982,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Výšinkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503959",
+    "lon": 14.38758532,
+    "lat": 50.07377855,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Výšinkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503960",
+    "lon": 14.38761623,
+    "lat": 50.07409399,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Výšinkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503961",
+    "lon": 14.38763378,
+    "lat": 50.0743889,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Výšinkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503962",
+    "lon": 14.38765133,
+    "lat": 50.07466865,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Výšinkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503963",
+    "lon": 14.38495841,
+    "lat": 50.07314138,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Výšinkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503964",
+    "lon": 14.38454887,
+    "lat": 50.07324648,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Výšinkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503965",
+    "lon": 14.38325705,
+    "lat": 50.07287514,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Mlynářkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503966",
+    "lon": 14.38371181,
+    "lat": 50.07307586,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Mlynářkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503967",
+    "lon": 14.38412351,
+    "lat": 50.07337404,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Mlynářkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503968",
+    "lon": 14.38435751,
+    "lat": 50.0737334,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Mlynářkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503969",
+    "lon": 14.38347796,
+    "lat": 50.07321791,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Mlynářkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503970",
+    "lon": 14.38252885,
+    "lat": 50.07191945,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mlynářka *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503971",
+    "lon": 14.38221253,
+    "lat": 50.07175581,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mlynářka *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503972",
+    "lon": 14.38199905,
+    "lat": 50.07167157,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mlynářka *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503973",
+    "lon": 14.38176149,
+    "lat": 50.07162458,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mlynářka *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503974",
+    "lon": 14.38190868,
+    "lat": 50.0714211,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mlynářka *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503975",
+    "lon": 14.38165405,
+    "lat": 50.07134064,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mlynářka *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503976",
+    "lon": 14.38137136,
+    "lat": 50.07129436,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mlynářka *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503977",
+    "lon": 14.38108493,
+    "lat": 50.07125827,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mlynářka *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503978",
+    "lon": 14.38079517,
+    "lat": 50.07123241,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mlynářka *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503979",
+    "lon": 14.38052213,
+    "lat": 50.07120096,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mlynářka *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503980",
+    "lon": 14.38055561,
+    "lat": 50.07100689,
+    "type": "stožár elektrického osvětlení",
+    "description": "Mlynářka *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503981",
+    "lon": 14.38393178,
+    "lat": 50.07179456,
+    "type": "stožár elektrického osvětlení",
+    "description": "Holečkova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503982",
+    "lon": 14.38382328,
+    "lat": 50.07197879,
+    "type": "stožár elektrického osvětlení",
+    "description": "Holečkova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503983",
+    "lon": 14.38366377,
+    "lat": 50.07225089,
+    "type": "stožár elektrického osvětlení",
+    "description": "Holečkova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503984",
+    "lon": 14.38680633,
+    "lat": 50.07698476,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Palaty *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503985",
+    "lon": 14.38658292,
+    "lat": 50.07720762,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Palaty *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503986",
+    "lon": 14.38631831,
+    "lat": 50.07737072,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Palaty *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503987",
+    "lon": 14.38594933,
+    "lat": 50.07749368,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Palaty *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503988",
+    "lon": 14.38557214,
+    "lat": 50.07752941,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Palaty *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503989",
+    "lon": 14.38520165,
+    "lat": 50.07752136,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Palaty *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503990",
+    "lon": 14.38490687,
+    "lat": 50.07745631,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Palaty *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503991",
+    "lon": 14.38466543,
+    "lat": 50.07738457,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Palaty *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503992",
+    "lon": 14.38447023,
+    "lat": 50.07728662,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Palaty *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503993",
+    "lon": 14.38424825,
+    "lat": 50.07712357,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Palaty *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503994",
+    "lon": 14.38406027,
+    "lat": 50.07728903,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503995",
+    "lon": 14.38412421,
+    "lat": 50.07757536,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503996",
+    "lon": 14.38440967,
+    "lat": 50.07764176,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503997",
+    "lon": 14.38709515,
+    "lat": 50.07727482,
+    "type": "stožár elektrického osvětlení",
+    "description": "Turistická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503998",
+    "lon": 14.38685944,
+    "lat": 50.0771849,
+    "type": "stožár elektrického osvětlení",
+    "description": "Turistická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "503999",
+    "lon": 14.38683767,
+    "lat": 50.07740207,
+    "type": "stožár elektrického osvětlení",
+    "description": "Turistická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504000",
+    "lon": 14.38635699,
+    "lat": 50.07745929,
+    "type": "stožár elektrického osvětlení",
+    "description": "Turistická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504001",
+    "lon": 14.38654502,
+    "lat": 50.07759,
+    "type": "stožár elektrického osvětlení",
+    "description": "Turistická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504002",
+    "lon": 14.38601511,
+    "lat": 50.07762424,
+    "type": "stožár elektrického osvětlení",
+    "description": "Turistická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504003",
+    "lon": 14.3861237,
+    "lat": 50.07778401,
+    "type": "stožár elektrického osvětlení",
+    "description": "Turistická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504004",
+    "lon": 14.38559638,
+    "lat": 50.07768133,
+    "type": "stožár elektrického osvětlení",
+    "description": "Turistická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504005",
+    "lon": 14.38561606,
+    "lat": 50.07785644,
+    "type": "stožár elektrického osvětlení",
+    "description": "Turistická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504006",
+    "lon": 14.3852395,
+    "lat": 50.07768873,
+    "type": "stožár elektrického osvětlení",
+    "description": "Turistická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504007",
+    "lon": 14.38492571,
+    "lat": 50.07783711,
+    "type": "stožár elektrického osvětlení",
+    "description": "Turistická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504008",
+    "lon": 14.38475278,
+    "lat": 50.07769984,
+    "type": "stožár elektrického osvětlení",
+    "description": "Turistická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504009",
+    "lon": 14.38473698,
+    "lat": 50.07796139,
+    "type": "stožár elektrického osvětlení",
+    "description": "Turistická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504010",
+    "lon": 14.38469039,
+    "lat": 50.07823698,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504011",
+    "lon": 14.38496757,
+    "lat": 50.07808109,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504012",
+    "lon": 14.38503851,
+    "lat": 50.07828027,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504013",
+    "lon": 14.38526403,
+    "lat": 50.07805815,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504014",
+    "lon": 14.38531238,
+    "lat": 50.07822917,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504015",
+    "lon": 14.38556766,
+    "lat": 50.0780235,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504016",
+    "lon": 14.38562414,
+    "lat": 50.07820134,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504017",
+    "lon": 14.3858781,
+    "lat": 50.07799654,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504018",
+    "lon": 14.38620247,
+    "lat": 50.07794803,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504019",
+    "lon": 14.38647654,
+    "lat": 50.07797094,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504020",
+    "lon": 14.38680093,
+    "lat": 50.0779532,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504021",
+    "lon": 14.38734642,
+    "lat": 50.07791671,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504022",
+    "lon": 14.38772938,
+    "lat": 50.07791262,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504023",
+    "lon": 14.38692811,
+    "lat": 50.07787845,
+    "type": "stožár elektrického osvětlení",
+    "description": "Turistická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504024",
+    "lon": 14.38708288,
+    "lat": 50.07786906,
+    "type": "stožár elektrického osvětlení",
+    "description": "Turistická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504025",
+    "lon": 14.38698358,
+    "lat": 50.07794601,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod stadiony *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504026",
+    "lon": 14.38704637,
+    "lat": 50.0779426,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod stadiony *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504027",
+    "lon": 14.38700571,
+    "lat": 50.07809002,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod stadiony *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504028",
+    "lon": 14.38706617,
+    "lat": 50.07808496,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod stadiony *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504029",
+    "lon": 14.38701752,
+    "lat": 50.07822758,
+    "type": "stožár elektrického osvětlení",
+    "description": "Motoristická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504030",
+    "lon": 14.3871034,
+    "lat": 50.07822106,
+    "type": "stožár elektrického osvětlení",
+    "description": "Motoristická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504031",
+    "lon": 14.38683527,
+    "lat": 50.07814813,
+    "type": "stožár elektrického osvětlení",
+    "description": "Motoristická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504032",
+    "lon": 14.38688361,
+    "lat": 50.07841455,
+    "type": "stožár elektrického osvětlení",
+    "description": "Motoristická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504033",
+    "lon": 14.38632278,
+    "lat": 50.07846991,
+    "type": "stožár elektrického osvětlení",
+    "description": "Motoristická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504034",
+    "lon": 14.38593194,
+    "lat": 50.07850743,
+    "type": "stožár elektrického osvětlení",
+    "description": "Motoristická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504035",
+    "lon": 14.3855496,
+    "lat": 50.07857366,
+    "type": "stožár elektrického osvětlení",
+    "description": "Motoristická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504036",
+    "lon": 14.3850803,
+    "lat": 50.07865929,
+    "type": "stožár elektrického osvětlení",
+    "description": "Motoristická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504037",
+    "lon": 14.38287966,
+    "lat": 50.07700955,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504038",
+    "lon": 14.38297591,
+    "lat": 50.07723004,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Fialkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504039",
+    "lon": 14.38268908,
+    "lat": 50.07724294,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Fialkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504040",
+    "lon": 14.38258923,
+    "lat": 50.07733753,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Fialkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504041",
+    "lon": 14.3821445,
+    "lat": 50.0773245,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Fialkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504042",
+    "lon": 14.38197266,
+    "lat": 50.07745418,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Fialkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504043",
+    "lon": 14.38170635,
+    "lat": 50.07748251,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Fialkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504044",
+    "lon": 14.38145422,
+    "lat": 50.07768528,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Fialkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504045",
+    "lon": 14.38115408,
+    "lat": 50.07774573,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Fialkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504046",
+    "lon": 14.38118702,
+    "lat": 50.07783671,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Fialkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504047",
+    "lon": 14.38211213,
+    "lat": 50.07654031,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Palatou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504048",
+    "lon": 14.38247567,
+    "lat": 50.07637177,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Palatou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504049",
+    "lon": 14.38314056,
+    "lat": 50.07609431,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Palatou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504050",
+    "lon": 14.38347455,
+    "lat": 50.07593784,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Palatou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504051",
+    "lon": 14.38332337,
+    "lat": 50.07559547,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Palatou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504052",
+    "lon": 14.38322873,
+    "lat": 50.07539899,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Palatou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504053",
+    "lon": 14.38325168,
+    "lat": 50.07519154,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Palatou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504054",
+    "lon": 14.38317422,
+    "lat": 50.07489267,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Palatou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504055",
+    "lon": 14.38305197,
+    "lat": 50.07472959,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Palatou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504056",
+    "lon": 14.38290298,
+    "lat": 50.07451893,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Okrouhlíku *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504057",
+    "lon": 14.38277051,
+    "lat": 50.07427996,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Okrouhlíku *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504058",
+    "lon": 14.38270175,
+    "lat": 50.07410094,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Okrouhlíku *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504059",
+    "lon": 14.38225051,
+    "lat": 50.07390943,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Okrouhlíku *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504060",
+    "lon": 14.38176162,
+    "lat": 50.07391107,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Okrouhlíku *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504061",
+    "lon": 14.3813454,
+    "lat": 50.07390729,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Okrouhlíku *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504062",
+    "lon": 14.38076122,
+    "lat": 50.07379571,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Okrouhlíku *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504063",
+    "lon": 14.38104442,
+    "lat": 50.07401577,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Okrouhlíku *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504064",
+    "lon": 14.38284489,
+    "lat": 50.07462468,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Pernikářky *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504065",
+    "lon": 14.38236546,
+    "lat": 50.07462753,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Pernikářky *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504066",
+    "lon": 14.38189556,
+    "lat": 50.07462805,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Pernikářky *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504067",
+    "lon": 14.38144747,
+    "lat": 50.07465184,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Pernikářky *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504068",
+    "lon": 14.38102339,
+    "lat": 50.07479367,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Pernikářky *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504069",
+    "lon": 14.38063451,
+    "lat": 50.07491148,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Pernikářky *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504070",
+    "lon": 14.38020745,
+    "lat": 50.07493251,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Pernikářky *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504073",
+    "lon": 14.38093369,
+    "lat": 50.07462158,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Pernikářky *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504074",
+    "lon": 14.3827645,
+    "lat": 50.07538423,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod hájem *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504075",
+    "lon": 14.3823153,
+    "lat": 50.07528502,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod hájem *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504076",
+    "lon": 14.38189831,
+    "lat": 50.07523942,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod hájem *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504077",
+    "lon": 14.3813914,
+    "lat": 50.07512718,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod hájem *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504078",
+    "lon": 14.38097739,
+    "lat": 50.07500006,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod hájem *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504079",
+    "lon": 14.3827788,
+    "lat": 50.07612714,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Palatou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504080",
+    "lon": 14.38240704,
+    "lat": 50.07620919,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Šumavě *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504081",
+    "lon": 14.38195676,
+    "lat": 50.07610644,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Šumavě *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504082",
+    "lon": 14.3814613,
+    "lat": 50.07597434,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Šumavě *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504083",
+    "lon": 14.38872602,
+    "lat": 50.07737534,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504084",
+    "lon": 14.3887435,
+    "lat": 50.07752593,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504085",
+    "lon": 14.3887823,
+    "lat": 50.07773886,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504423",
+    "lon": 14.38097036,
+    "lat": 50.07694328,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Palatou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504538",
+    "lon": 14.38025066,
+    "lat": 50.07687348,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Hybšmankou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504540",
+    "lon": 14.38056924,
+    "lat": 50.07665619,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Hybšmankou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504541",
+    "lon": 14.38031775,
+    "lat": 50.0767147,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Hybšmankou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504564",
+    "lon": 14.38040904,
+    "lat": 50.07733731,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Palatou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504566",
+    "lon": 14.38082086,
+    "lat": 50.0772159,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Palatou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504567",
+    "lon": 14.38045951,
+    "lat": 50.0772218,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Palatou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504568",
+    "lon": 14.38131815,
+    "lat": 50.07703011,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Palatou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504569",
+    "lon": 14.38096419,
+    "lat": 50.07706989,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Palatou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504570",
+    "lon": 14.38145215,
+    "lat": 50.07685859,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Palatou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "504829",
+    "lon": 14.38028929,
+    "lat": 50.07002444,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prachnerova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "504830",
+    "lon": 14.38042914,
+    "lat": 50.07016785,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prachnerova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "504831",
+    "lon": 14.38021615,
+    "lat": 50.07030603,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prachnerova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "504832",
+    "lon": 14.38035263,
+    "lat": 50.07046648,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prachnerova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "504833",
+    "lon": 14.38014032,
+    "lat": 50.07059754,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prachnerova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "504835",
+    "lon": 14.3806379,
+    "lat": 50.0700185,
+    "type": "stožár elektrického osvětlení",
+    "description": "Hlaváčkova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "504836",
+    "lon": 14.38100143,
+    "lat": 50.07002387,
+    "type": "stožár elektrického osvětlení",
+    "description": "Hlaváčkova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "504837",
+    "lon": 14.38142701,
+    "lat": 50.07001479,
+    "type": "stožár elektrického osvětlení",
+    "description": "Hlaváčkova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "504838",
+    "lon": 14.38185379,
+    "lat": 50.07002242,
+    "type": "stožár elektrického osvětlení",
+    "description": "Hlaváčkova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "504839",
+    "lon": 14.38229829,
+    "lat": 50.07002636,
+    "type": "stožár elektrického osvětlení",
+    "description": "Hlaváčkova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "504840",
+    "lon": 14.38269014,
+    "lat": 50.07003252,
+    "type": "stožár elektrického osvětlení",
+    "description": "Hlaváčkova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "504844",
+    "lon": 14.38234611,
+    "lat": 50.07045603,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod radnicí *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "504845",
+    "lon": 14.3821467,
+    "lat": 50.07067484,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod radnicí *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "519265",
+    "lon": 14.38761399,
+    "lat": 50.07825126,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod stadiony *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "519266",
+    "lon": 14.38719359,
+    "lat": 50.07823724,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod stadiony *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "519268",
+    "lon": 14.38650335,
+    "lat": 50.07818317,
+    "type": "stožár elektrického osvětlení",
+    "description": "Motoristická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "519776",
+    "lon": 14.38335965,
+    "lat": 50.07263693,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Mlynářkou *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "519929",
+    "lon": 14.38841179,
+    "lat": 50.07599467,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Nesypky *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "519943",
+    "lon": 14.38881654,
+    "lat": 50.07108087,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vrchlického *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "520525",
+    "lon": 14.38697458,
+    "lat": 50.07763298,
+    "type": "stožár elektrického osvětlení",
+    "description": "Turistická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "520546",
+    "lon": 14.38465009,
+    "lat": 50.07163323,
+    "type": "stožár elektrického osvětlení",
+    "description": "Holečkova *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "520604",
+    "lon": 14.3825974,
+    "lat": 50.07322168,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "520605",
+    "lon": 14.3822728,
+    "lat": 50.07318202,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "520606",
+    "lon": 14.38192698,
+    "lat": 50.07308946,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "520607",
+    "lon": 14.38156682,
+    "lat": 50.07300652,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "520608",
+    "lon": 14.3816377,
+    "lat": 50.07285107,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "520609",
+    "lon": 14.38238744,
+    "lat": 50.0729574,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Hřebenkách *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "520704",
+    "lon": 14.38715989,
+    "lat": 50.07745358,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "520954",
+    "lon": 14.38252962,
+    "lat": 50.07445605,
+    "type": "stožár elektrického osvětlení",
+    "description": "U Pernikářky *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "521239",
+    "lon": 14.38702352,
+    "lat": 50.07803197,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "521240",
+    "lon": 14.38701882,
+    "lat": 50.07798354,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "521606",
+    "lon": 14.38803374,
+    "lat": 50.0772651,
+    "type": "stožár elektrického osvětlení",
+    "description": "Turistická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "521607",
+    "lon": 14.38805265,
+    "lat": 50.07740837,
+    "type": "stožár elektrického osvětlení",
+    "description": "Turistická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "521608",
+    "lon": 14.38806766,
+    "lat": 50.07751463,
+    "type": "stožár elektrického osvětlení",
+    "description": "Turistická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "521609",
+    "lon": 14.38807967,
+    "lat": 50.07762298,
+    "type": "stožár elektrického osvětlení",
+    "description": "Turistická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "521610",
+    "lon": 14.38809841,
+    "lat": 50.07775852,
+    "type": "stožár elektrického osvětlení",
+    "description": "Turistická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "521611",
+    "lon": 14.38776428,
+    "lat": 50.0776967,
+    "type": "stožár elektrického osvětlení",
+    "description": "Turistická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "527232",
+    "lon": 14.38259267,
+    "lat": 50.0702514,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod Radnicí *******",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "528063",
+    "lon": 14.38024479,
+    "lat": 50.07345525,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podbělohorská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "528064",
+    "lon": 14.38038902,
+    "lat": 50.07327021,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podbělohorská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "528065",
+    "lon": 14.38076546,
+    "lat": 50.07318532,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podbělohorská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "528066",
+    "lon": 14.3805203,
+    "lat": 50.07308574,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podbělohorská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "528067",
+    "lon": 14.3806254,
+    "lat": 50.07282478,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podbělohorská *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "591301",
+    "lon": 14.38366617,
+    "lat": 50.07111535,
+    "type": "osvětlení přechodu",
+    "description": "Plzeňská *********",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "591302",
+    "lon": 14.38370492,
+    "lat": 50.07125286,
+    "type": "osvětlení přechodu",
+    "description": "Plzeňská *********",
+    "cadastre": "Košíře"
+  },
+  {
+    "id": "601664",
+    "lon": 14.38985838,
+    "lat": 50.07840264,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601665",
+    "lon": 14.38926615,
+    "lat": 50.07839469,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601666",
+    "lon": 14.38867392,
+    "lat": 50.07838673,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601667",
+    "lon": 14.3880959,
+    "lat": 50.07837895,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601668",
+    "lon": 14.38780396,
+    "lat": 50.07816258,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pod stadiony *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601669",
+    "lon": 14.38811461,
+    "lat": 50.07799195,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601670",
+    "lon": 14.388686,
+    "lat": 50.07800433,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601671",
+    "lon": 14.38927996,
+    "lat": 50.07801343,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601672",
+    "lon": 14.38987639,
+    "lat": 50.07802412,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601673",
+    "lon": 14.38816917,
+    "lat": 50.07787835,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601674",
+    "lon": 14.38854047,
+    "lat": 50.07787667,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601675",
+    "lon": 14.38878073,
+    "lat": 50.07786915,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601676",
+    "lon": 14.38901738,
+    "lat": 50.07786267,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601677",
+    "lon": 14.3892555,
+    "lat": 50.07785587,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601678",
+    "lon": 14.38949246,
+    "lat": 50.0778585,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601679",
+    "lon": 14.38972907,
+    "lat": 50.077864,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601680",
+    "lon": 14.38992845,
+    "lat": 50.07787018,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vaníčkova *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "601859",
+    "lon": 14.38496312,
+    "lat": 50.07994601,
+    "type": "stožár elektrického osvětlení",
+    "description": "Zátopkova *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601860",
+    "lon": 14.3854515,
+    "lat": 50.07962889,
+    "type": "stožár elektrického osvětlení",
+    "description": "Zátopkova *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601861",
+    "lon": 14.38497087,
+    "lat": 50.07962793,
+    "type": "stožár elektrického osvětlení",
+    "description": "Zátopkova *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601862",
+    "lon": 14.38546391,
+    "lat": 50.07930487,
+    "type": "stožár elektrického osvětlení",
+    "description": "Zátopkova *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601863",
+    "lon": 14.38498247,
+    "lat": 50.07930311,
+    "type": "stožár elektrického osvětlení",
+    "description": "Zátopkova *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601885",
+    "lon": 14.38243667,
+    "lat": 50.07995109,
+    "type": "stožár elektrického osvětlení",
+    "description": "Diskařská *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601886",
+    "lon": 14.38245089,
+    "lat": 50.07960563,
+    "type": "stožár elektrického osvětlení",
+    "description": "Diskařská *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601887",
+    "lon": 14.38245985,
+    "lat": 50.07945085,
+    "type": "stožár elektrického osvětlení",
+    "description": "Diskařská *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601888",
+    "lon": 14.38246767,
+    "lat": 50.07929879,
+    "type": "stožár elektrického osvětlení",
+    "description": "Diskařská *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601985",
+    "lon": 14.3800929,
+    "lat": 50.07955338,
+    "type": "stožár elektrického osvětlení",
+    "description": "Běžecká *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "601986",
+    "lon": 14.3800547,
+    "lat": 50.07984888,
+    "type": "stožár elektrického osvětlení",
+    "description": "Běžecká *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "602021",
+    "lon": 14.38026738,
+    "lat": 50.07932673,
+    "type": "stožár elektrického osvětlení",
+    "description": "Atletická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "602022",
+    "lon": 14.38067099,
+    "lat": 50.07925415,
+    "type": "stožár elektrického osvětlení",
+    "description": "Atletická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "602023",
+    "lon": 14.38110131,
+    "lat": 50.07919248,
+    "type": "stožár elektrického osvětlení",
+    "description": "Atletická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "602024",
+    "lon": 14.38148496,
+    "lat": 50.07914844,
+    "type": "stožár elektrického osvětlení",
+    "description": "Atletická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "602025",
+    "lon": 14.38191733,
+    "lat": 50.07908249,
+    "type": "stožár elektrického osvětlení",
+    "description": "Atletická *******",
+    "cadastre": "Smíchov"
+  },
+  {
+    "id": "602026",
+    "lon": 14.38230845,
+    "lat": 50.07903784,
+    "type": "stožár elektrického osvětlení",
+    "description": "Atletická *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "602027",
+    "lon": 14.38266772,
+    "lat": 50.07899762,
+    "type": "stožár elektrického osvětlení",
+    "description": "Atletická *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "602028",
+    "lon": 14.38313126,
+    "lat": 50.07894216,
+    "type": "stožár elektrického osvětlení",
+    "description": "Atletická *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "602029",
+    "lon": 14.3836079,
+    "lat": 50.07888478,
+    "type": "stožár elektrického osvětlení",
+    "description": "Atletická *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "602030",
+    "lon": 14.38408439,
+    "lat": 50.0788281,
+    "type": "stožár elektrického osvětlení",
+    "description": "Atletická *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "602031",
+    "lon": 14.38456233,
+    "lat": 50.07877192,
+    "type": "stožár elektrického osvětlení",
+    "description": "Atletická *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "602032",
+    "lon": 14.38501,
+    "lat": 50.07871804,
+    "type": "stožár elektrického osvětlení",
+    "description": "Atletická *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "602033",
+    "lon": 14.38546241,
+    "lat": 50.07866448,
+    "type": "stožár elektrického osvětlení",
+    "description": "Atletická *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "602034",
+    "lon": 14.38591575,
+    "lat": 50.07860983,
+    "type": "stožár elektrického osvětlení",
+    "description": "Atletická *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "602035",
+    "lon": 14.38636947,
+    "lat": 50.07855666,
+    "type": "stožár elektrického osvětlení",
+    "description": "Atletická *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "602036",
+    "lon": 14.38681652,
+    "lat": 50.07850371,
+    "type": "stožár elektrického osvětlení",
+    "description": "Atletická *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "602037",
+    "lon": 14.38727937,
+    "lat": 50.0784685,
+    "type": "stožár elektrického osvětlení",
+    "description": "Atletická *******",
+    "cadastre": "Břevnov"
+  },
+  {
+    "id": "602038",
+    "lon": 14.38776222,
+    "lat": 50.07839795,
+    "type": "stožár elektrického osvětlení",
+    "description": "Atletická *******",
+    "cadastre": "Břevnov"
+  }
+]

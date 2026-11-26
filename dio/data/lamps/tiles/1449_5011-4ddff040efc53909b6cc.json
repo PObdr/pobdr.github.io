@@ -1,0 +1,4482 @@
+[
+  {
+    "id": "290393",
+    "lon": 14.49907684,
+    "lat": 50.11825582,
+    "type": "veřejné hodiny",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "290480",
+    "lon": 14.49438187,
+    "lat": 50.11714349,
+    "type": "veřejné hodiny",
+    "description": "Na vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "490099",
+    "lon": 14.49681671,
+    "lat": 50.11743684,
+    "type": "připojení městského mobiliáře",
+    "description": "Prosecká ZM PRE",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "490878",
+    "lon": 14.49909847,
+    "lat": 50.11032949,
+    "type": "připojení městského mobiliáře",
+    "description": "Sokolovská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "491508",
+    "lon": 14.49922875,
+    "lat": 50.11019574,
+    "type": "připojení městského mobiliáře",
+    "description": "Sokolovská ZM <>",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "491509",
+    "lon": 14.4981244,
+    "lat": 50.11009623,
+    "type": "připojení městského mobiliáře",
+    "description": "Sokolovská ZM <>",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "493111",
+    "lon": 14.49899284,
+    "lat": 50.11873576,
+    "type": "připojení městského mobiliáře",
+    "description": "Vysočanská ZM <>",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "590683",
+    "lon": 14.49683879,
+    "lat": 50.11990878,
+    "type": "osvětlení přechodu",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "815817",
+    "lon": 14.49295439,
+    "lat": 50.11589665,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "815820",
+    "lon": 14.49166985,
+    "lat": 50.11577517,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "815821",
+    "lon": 14.49127412,
+    "lat": 50.1155873,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "900888",
+    "lon": 14.49971531,
+    "lat": 50.11012385,
+    "type": "stožár elektrického osvětlení",
+    "description": "Sokolovská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901165",
+    "lon": 14.49279788,
+    "lat": 50.11230096,
+    "type": "stožár elektrického osvětlení",
+    "description": "U vinných sklepů *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901166",
+    "lon": 14.49330317,
+    "lat": 50.11231178,
+    "type": "stožár elektrického osvětlení",
+    "description": "U vinných sklepů *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901167",
+    "lon": 14.49379131,
+    "lat": 50.11234224,
+    "type": "stožár elektrického osvětlení",
+    "description": "U vinných sklepů *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901168",
+    "lon": 14.49427187,
+    "lat": 50.11244226,
+    "type": "stožár elektrického osvětlení",
+    "description": "U vinných sklepů *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901172",
+    "lon": 14.49628209,
+    "lat": 50.11259099,
+    "type": "stožár elektrického osvětlení",
+    "description": "U vinných sklepů *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901173",
+    "lon": 14.49676777,
+    "lat": 50.11260243,
+    "type": "stožár elektrického osvětlení",
+    "description": "U vinných sklepů *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901174",
+    "lon": 14.49721667,
+    "lat": 50.11264294,
+    "type": "stožár elektrického osvětlení",
+    "description": "U vinných sklepů *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901175",
+    "lon": 14.49757679,
+    "lat": 50.11265624,
+    "type": "stožár elektrického osvětlení",
+    "description": "U vinných sklepů *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901176",
+    "lon": 14.49795258,
+    "lat": 50.11265694,
+    "type": "stožár elektrického osvětlení",
+    "description": "U vinných sklepů *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901177",
+    "lon": 14.49835268,
+    "lat": 50.11268599,
+    "type": "stožár elektrického osvětlení",
+    "description": "U vinných sklepů *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901178",
+    "lon": 14.49884118,
+    "lat": 50.11270811,
+    "type": "stožár elektrického osvětlení",
+    "description": "U vinných sklepů *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901179",
+    "lon": 14.49931696,
+    "lat": 50.11262865,
+    "type": "stožár elektrického osvětlení",
+    "description": "U vinných sklepů *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901180",
+    "lon": 14.49962729,
+    "lat": 50.11252423,
+    "type": "stožár elektrického osvětlení",
+    "description": "U vinných sklepů *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901181",
+    "lon": 14.49998118,
+    "lat": 50.11252301,
+    "type": "stožár elektrického osvětlení",
+    "description": "U vinných sklepů *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901493",
+    "lon": 14.49975419,
+    "lat": 50.11613814,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Krocínkou *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901494",
+    "lon": 14.49921492,
+    "lat": 50.11613897,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Krocínkou *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901495",
+    "lon": 14.49876544,
+    "lat": 50.11614025,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Krocínkou *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901496",
+    "lon": 14.49830484,
+    "lat": 50.1161401,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Krocínkou *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901497",
+    "lon": 14.49782185,
+    "lat": 50.1161417,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Krocínkou *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901498",
+    "lon": 14.49738617,
+    "lat": 50.11614246,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Krocínkou *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901499",
+    "lon": 14.49695869,
+    "lat": 50.11614185,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Krocínkou *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901500",
+    "lon": 14.49656069,
+    "lat": 50.11614528,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Krocínkou *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901501",
+    "lon": 14.49617315,
+    "lat": 50.11622041,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Krocínkou *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901502",
+    "lon": 14.49585916,
+    "lat": 50.11636117,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Krocínkou *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901528",
+    "lon": 14.49996909,
+    "lat": 50.11346723,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901529",
+    "lon": 14.4997455,
+    "lat": 50.11330404,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901547",
+    "lon": 14.49462136,
+    "lat": 50.11370266,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901548",
+    "lon": 14.4947192,
+    "lat": 50.11391036,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901549",
+    "lon": 14.4944484,
+    "lat": 50.11405644,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901550",
+    "lon": 14.49464436,
+    "lat": 50.11423936,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901551",
+    "lon": 14.49446445,
+    "lat": 50.11446712,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901552",
+    "lon": 14.49473667,
+    "lat": 50.1145708,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901553",
+    "lon": 14.49460801,
+    "lat": 50.11472801,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901554",
+    "lon": 14.49491376,
+    "lat": 50.11480006,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901555",
+    "lon": 14.4948522,
+    "lat": 50.11497288,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901556",
+    "lon": 14.49517894,
+    "lat": 50.11499132,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901557",
+    "lon": 14.49513332,
+    "lat": 50.11514494,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901558",
+    "lon": 14.49519006,
+    "lat": 50.11518876,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901559",
+    "lon": 14.49528944,
+    "lat": 50.11514341,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901563",
+    "lon": 14.49544795,
+    "lat": 50.11527086,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901564",
+    "lon": 14.49575116,
+    "lat": 50.1153582,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901565",
+    "lon": 14.49613051,
+    "lat": 50.11537609,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901566",
+    "lon": 14.49649352,
+    "lat": 50.11537921,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901567",
+    "lon": 14.49686407,
+    "lat": 50.11539006,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901568",
+    "lon": 14.49725544,
+    "lat": 50.11539984,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901569",
+    "lon": 14.49763252,
+    "lat": 50.11541181,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901570",
+    "lon": 14.49800554,
+    "lat": 50.11542497,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901571",
+    "lon": 14.49838443,
+    "lat": 50.11543374,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901572",
+    "lon": 14.49875189,
+    "lat": 50.1154445,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901573",
+    "lon": 14.49910484,
+    "lat": 50.11546641,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901574",
+    "lon": 14.49945582,
+    "lat": 50.11550894,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901575",
+    "lon": 14.49978506,
+    "lat": 50.1155628,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901594",
+    "lon": 14.49978322,
+    "lat": 50.11776992,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901595",
+    "lon": 14.49985349,
+    "lat": 50.11798535,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901596",
+    "lon": 14.4995171,
+    "lat": 50.11797306,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901597",
+    "lon": 14.49963446,
+    "lat": 50.11815015,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901598",
+    "lon": 14.49931937,
+    "lat": 50.11812394,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901599",
+    "lon": 14.49907684,
+    "lat": 50.11825582,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901600",
+    "lon": 14.49936977,
+    "lat": 50.11840631,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901601",
+    "lon": 14.49876686,
+    "lat": 50.11848805,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901602",
+    "lon": 14.49910149,
+    "lat": 50.11865681,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901603",
+    "lon": 14.49877016,
+    "lat": 50.11867718,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901604",
+    "lon": 14.49849853,
+    "lat": 50.11888491,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901605",
+    "lon": 14.49823192,
+    "lat": 50.11908963,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901606",
+    "lon": 14.49795004,
+    "lat": 50.11930508,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901607",
+    "lon": 14.49770986,
+    "lat": 50.11948962,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901608",
+    "lon": 14.49746118,
+    "lat": 50.11967968,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901609",
+    "lon": 14.49721953,
+    "lat": 50.11986518,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901610",
+    "lon": 14.49692026,
+    "lat": 50.11991594,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901770",
+    "lon": 14.49560814,
+    "lat": 50.1100292,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na břehu *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901771",
+    "lon": 14.49601582,
+    "lat": 50.11020784,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na břehu *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901772",
+    "lon": 14.49645412,
+    "lat": 50.11039843,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na břehu *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901775",
+    "lon": 14.49535479,
+    "lat": 50.11008199,
+    "type": "stožár elektrického osvětlení",
+    "description": "Rubeška *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901776",
+    "lon": 14.49529455,
+    "lat": 50.11039014,
+    "type": "stožár elektrického osvětlení",
+    "description": "Rubeška *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901777",
+    "lon": 14.4953602,
+    "lat": 50.11069028,
+    "type": "stožár elektrického osvětlení",
+    "description": "Rubeška *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901778",
+    "lon": 14.4955436,
+    "lat": 50.11093961,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podvinný mlýn *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901779",
+    "lon": 14.49548894,
+    "lat": 50.11103481,
+    "type": "stožár elektrického osvětlení",
+    "description": "Rubeška *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901780",
+    "lon": 14.49576905,
+    "lat": 50.11124209,
+    "type": "stožár elektrického osvětlení",
+    "description": "Rubeška *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901781",
+    "lon": 14.49579981,
+    "lat": 50.11151848,
+    "type": "stožár elektrického osvětlení",
+    "description": "Rubeška *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901782",
+    "lon": 14.49567899,
+    "lat": 50.11174444,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podnádražní *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901783",
+    "lon": 14.49606681,
+    "lat": 50.11175491,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podnádražní *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901784",
+    "lon": 14.49626141,
+    "lat": 50.11163062,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podnádražní *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901785",
+    "lon": 14.49650953,
+    "lat": 50.11176267,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podnádražní *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901786",
+    "lon": 14.49666671,
+    "lat": 50.1116458,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podnádražní *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901787",
+    "lon": 14.4968751,
+    "lat": 50.11176493,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podnádražní *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901788",
+    "lon": 14.497177,
+    "lat": 50.11166494,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podnádražní *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901789",
+    "lon": 14.49732999,
+    "lat": 50.11177248,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podnádražní *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901793",
+    "lon": 14.49758938,
+    "lat": 50.11160361,
+    "type": "stožár elektrického osvětlení",
+    "description": "Paříkova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901794",
+    "lon": 14.49783476,
+    "lat": 50.11139902,
+    "type": "stožár elektrického osvětlení",
+    "description": "Paříkova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901795",
+    "lon": 14.49856024,
+    "lat": 50.11146736,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pešlova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901796",
+    "lon": 14.49916966,
+    "lat": 50.11161244,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pešlova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901801",
+    "lon": 14.49998968,
+    "lat": 50.11072508,
+    "type": "stožár elektrického osvětlení",
+    "description": "Bratří Dohalských *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901802",
+    "lon": 14.49972703,
+    "lat": 50.11106691,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pešlova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901803",
+    "lon": 14.49952249,
+    "lat": 50.11141683,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pešlova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901808",
+    "lon": 14.49721038,
+    "lat": 50.11279947,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901809",
+    "lon": 14.49717303,
+    "lat": 50.11296933,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901810",
+    "lon": 14.49712855,
+    "lat": 50.11320799,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901811",
+    "lon": 14.4971828,
+    "lat": 50.11342102,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901812",
+    "lon": 14.49743548,
+    "lat": 50.11355682,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901813",
+    "lon": 14.49690666,
+    "lat": 50.11321555,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901814",
+    "lon": 14.49679966,
+    "lat": 50.11339708,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901815",
+    "lon": 14.49666042,
+    "lat": 50.11363476,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901816",
+    "lon": 14.49652355,
+    "lat": 50.11385859,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901817",
+    "lon": 14.49656218,
+    "lat": 50.11397169,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901818",
+    "lon": 14.49678685,
+    "lat": 50.11397963,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901819",
+    "lon": 14.49709742,
+    "lat": 50.11395854,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901820",
+    "lon": 14.49753007,
+    "lat": 50.11395933,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901821",
+    "lon": 14.49795645,
+    "lat": 50.11393379,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901822",
+    "lon": 14.49829582,
+    "lat": 50.11387476,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901823",
+    "lon": 14.49867002,
+    "lat": 50.11381251,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901824",
+    "lon": 14.49898115,
+    "lat": 50.11387513,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901825",
+    "lon": 14.49927595,
+    "lat": 50.11388777,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901826",
+    "lon": 14.49888664,
+    "lat": 50.11396067,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901827",
+    "lon": 14.49857502,
+    "lat": 50.11394755,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901828",
+    "lon": 14.49831652,
+    "lat": 50.11404373,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901829",
+    "lon": 14.49796241,
+    "lat": 50.11413432,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901830",
+    "lon": 14.49766855,
+    "lat": 50.11427939,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901831",
+    "lon": 14.49732158,
+    "lat": 50.11443331,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901832",
+    "lon": 14.49699892,
+    "lat": 50.11456514,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901833",
+    "lon": 14.49672291,
+    "lat": 50.11463745,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901834",
+    "lon": 14.49648568,
+    "lat": 50.11471852,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901835",
+    "lon": 14.49620749,
+    "lat": 50.11477386,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901836",
+    "lon": 14.49630468,
+    "lat": 50.11493548,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901837",
+    "lon": 14.49638108,
+    "lat": 50.11510535,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901838",
+    "lon": 14.49581,
+    "lat": 50.11482942,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901839",
+    "lon": 14.49703015,
+    "lat": 50.1143304,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901840",
+    "lon": 14.49660279,
+    "lat": 50.11416719,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901841",
+    "lon": 14.49639332,
+    "lat": 50.11405314,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901842",
+    "lon": 14.49623259,
+    "lat": 50.11426571,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901843",
+    "lon": 14.4960732,
+    "lat": 50.11448792,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901844",
+    "lon": 14.49586335,
+    "lat": 50.11469916,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901845",
+    "lon": 14.49553317,
+    "lat": 50.11497598,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901846",
+    "lon": 14.49514463,
+    "lat": 50.11526772,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901847",
+    "lon": 14.49498217,
+    "lat": 50.11544855,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901848",
+    "lon": 14.49463221,
+    "lat": 50.11558923,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901849",
+    "lon": 14.49434171,
+    "lat": 50.11570845,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901850",
+    "lon": 14.49454789,
+    "lat": 50.11569916,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Jetelkou *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901851",
+    "lon": 14.49484574,
+    "lat": 50.11567822,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Jetelkou *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901852",
+    "lon": 14.49515632,
+    "lat": 50.11571957,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Jetelkou *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901853",
+    "lon": 14.49549824,
+    "lat": 50.11573363,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Jetelkou *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901854",
+    "lon": 14.49587906,
+    "lat": 50.1157061,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Jetelkou *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901855",
+    "lon": 14.49327455,
+    "lat": 50.11566379,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Kelerkou *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901856",
+    "lon": 14.49360294,
+    "lat": 50.11561732,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Kelerkou *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901857",
+    "lon": 14.49399374,
+    "lat": 50.11558668,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Kelerkou *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901858",
+    "lon": 14.49423992,
+    "lat": 50.11545821,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Kelerkou *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901859",
+    "lon": 14.49452667,
+    "lat": 50.11529819,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Kelerkou *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "901860",
+    "lon": 14.49489245,
+    "lat": 50.11519729,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Kelerkou *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901861",
+    "lon": 14.49760598,
+    "lat": 50.1152338,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901862",
+    "lon": 14.4973374,
+    "lat": 50.11512827,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901863",
+    "lon": 14.49697961,
+    "lat": 50.11504675,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "901864",
+    "lon": 14.49671904,
+    "lat": 50.11484637,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "902124",
+    "lon": 14.49943499,
+    "lat": 50.11863618,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902125",
+    "lon": 14.49978253,
+    "lat": 50.11882259,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902212",
+    "lon": 14.49028201,
+    "lat": 50.11755,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902213",
+    "lon": 14.4906362,
+    "lat": 50.1175097,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902214",
+    "lon": 14.49103846,
+    "lat": 50.11746374,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902215",
+    "lon": 14.49146707,
+    "lat": 50.11754215,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Prosecké vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902216",
+    "lon": 14.49145471,
+    "lat": 50.11771384,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Prosecké vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902217",
+    "lon": 14.49150891,
+    "lat": 50.11792832,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Prosecké vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902218",
+    "lon": 14.49174465,
+    "lat": 50.11805094,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Prosecké vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902219",
+    "lon": 14.49141219,
+    "lat": 50.11730366,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902220",
+    "lon": 14.49175337,
+    "lat": 50.11726748,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902221",
+    "lon": 14.49210293,
+    "lat": 50.11722442,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902222",
+    "lon": 14.49253528,
+    "lat": 50.11717892,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902223",
+    "lon": 14.4929528,
+    "lat": 50.11710825,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902224",
+    "lon": 14.49333202,
+    "lat": 50.11706706,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902225",
+    "lon": 14.49372156,
+    "lat": 50.11702841,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902226",
+    "lon": 14.49411068,
+    "lat": 50.11704227,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902227",
+    "lon": 14.49457025,
+    "lat": 50.11696294,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902228",
+    "lon": 14.49490553,
+    "lat": 50.11696317,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902297",
+    "lon": 14.49004423,
+    "lat": 50.11874565,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902298",
+    "lon": 14.49041174,
+    "lat": 50.11861687,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902299",
+    "lon": 14.49079301,
+    "lat": 50.11850173,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902300",
+    "lon": 14.49114944,
+    "lat": 50.11842307,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902301",
+    "lon": 14.49160847,
+    "lat": 50.11835568,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902302",
+    "lon": 14.49181895,
+    "lat": 50.11818279,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902303",
+    "lon": 14.49222254,
+    "lat": 50.11800836,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902304",
+    "lon": 14.492561,
+    "lat": 50.11799698,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902305",
+    "lon": 14.49293093,
+    "lat": 50.11798293,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902306",
+    "lon": 14.49323612,
+    "lat": 50.11808161,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902307",
+    "lon": 14.4934571,
+    "lat": 50.11827571,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902308",
+    "lon": 14.49199594,
+    "lat": 50.11832884,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902309",
+    "lon": 14.49241677,
+    "lat": 50.11833033,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902310",
+    "lon": 14.49286517,
+    "lat": 50.1183641,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902311",
+    "lon": 14.49277855,
+    "lat": 50.1185054,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902312",
+    "lon": 14.4929168,
+    "lat": 50.11866973,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902313",
+    "lon": 14.49322381,
+    "lat": 50.11841983,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902314",
+    "lon": 14.49355482,
+    "lat": 50.11849329,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902315",
+    "lon": 14.49389645,
+    "lat": 50.11859317,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902316",
+    "lon": 14.49420741,
+    "lat": 50.11868664,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902317",
+    "lon": 14.49440092,
+    "lat": 50.11891508,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902318",
+    "lon": 14.49477965,
+    "lat": 50.11911205,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902319",
+    "lon": 14.49518179,
+    "lat": 50.11919755,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902320",
+    "lon": 14.49546041,
+    "lat": 50.11935224,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902321",
+    "lon": 14.49575031,
+    "lat": 50.11951165,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902322",
+    "lon": 14.4954347,
+    "lat": 50.11953901,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902323",
+    "lon": 14.49528861,
+    "lat": 50.11947799,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902324",
+    "lon": 14.49522023,
+    "lat": 50.11970085,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902325",
+    "lon": 14.49501905,
+    "lat": 50.11950849,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902326",
+    "lon": 14.49472547,
+    "lat": 50.11937372,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902327",
+    "lon": 14.49446033,
+    "lat": 50.11925524,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902328",
+    "lon": 14.49419957,
+    "lat": 50.11913406,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902329",
+    "lon": 14.49393834,
+    "lat": 50.1190151,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902330",
+    "lon": 14.49367823,
+    "lat": 50.11889688,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902331",
+    "lon": 14.49339668,
+    "lat": 50.11876661,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902332",
+    "lon": 14.49315128,
+    "lat": 50.11865421,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902333",
+    "lon": 14.49482989,
+    "lat": 50.11967673,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902334",
+    "lon": 14.49463106,
+    "lat": 50.11985128,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902335",
+    "lon": 14.49440556,
+    "lat": 50.11987304,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902336",
+    "lon": 14.4943226,
+    "lat": 50.11968489,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902337",
+    "lon": 14.49418961,
+    "lat": 50.11950642,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902338",
+    "lon": 14.49400148,
+    "lat": 50.11935096,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902339",
+    "lon": 14.49375618,
+    "lat": 50.11921017,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902340",
+    "lon": 14.49353389,
+    "lat": 50.11908066,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902341",
+    "lon": 14.49332766,
+    "lat": 50.11896454,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902342",
+    "lon": 14.49311476,
+    "lat": 50.11884202,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902346",
+    "lon": 14.49507866,
+    "lat": 50.11981183,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902347",
+    "lon": 14.49490347,
+    "lat": 50.11994817,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902348",
+    "lon": 14.49583375,
+    "lat": 50.11977261,
+    "type": "stožár elektrického osvětlení",
+    "description": "Bohušovická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902349",
+    "lon": 14.49565836,
+    "lat": 50.11990993,
+    "type": "stožár elektrického osvětlení",
+    "description": "Bohušovická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902361",
+    "lon": 14.49640441,
+    "lat": 50.11986211,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902362",
+    "lon": 14.49609407,
+    "lat": 50.11969792,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litoměřická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902365",
+    "lon": 14.49002401,
+    "lat": 50.11703747,
+    "type": "stožár elektrického osvětlení",
+    "description": "U prosecké školy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902366",
+    "lon": 14.4901834,
+    "lat": 50.11682407,
+    "type": "stožár elektrického osvětlení",
+    "description": "U prosecké školy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902367",
+    "lon": 14.49057573,
+    "lat": 50.11678295,
+    "type": "stožár elektrického osvětlení",
+    "description": "U prosecké školy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902368",
+    "lon": 14.49098769,
+    "lat": 50.11674111,
+    "type": "stožár elektrického osvětlení",
+    "description": "U prosecké školy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902369",
+    "lon": 14.49132691,
+    "lat": 50.11670486,
+    "type": "stožár elektrického osvětlení",
+    "description": "U prosecké školy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902370",
+    "lon": 14.49166171,
+    "lat": 50.11667012,
+    "type": "stožár elektrického osvětlení",
+    "description": "U prosecké školy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902371",
+    "lon": 14.49200858,
+    "lat": 50.11663435,
+    "type": "stožár elektrického osvětlení",
+    "description": "U prosecké školy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902377",
+    "lon": 14.49119113,
+    "lat": 50.11684103,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Prosecké vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902378",
+    "lon": 14.49124456,
+    "lat": 50.11704582,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Prosecké vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902379",
+    "lon": 14.491274,
+    "lat": 50.11716429,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Prosecké vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902380",
+    "lon": 14.49219048,
+    "lat": 50.11672211,
+    "type": "stožár elektrického osvětlení",
+    "description": "U mateřské školy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902381",
+    "lon": 14.49239179,
+    "lat": 50.11688654,
+    "type": "stožár elektrického osvětlení",
+    "description": "U mateřské školy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902382",
+    "lon": 14.49255727,
+    "lat": 50.1170323,
+    "type": "stožár elektrického osvětlení",
+    "description": "U mateřské školy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902383",
+    "lon": 14.49312501,
+    "lat": 50.11737048,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902384",
+    "lon": 14.49301038,
+    "lat": 50.11755524,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902385",
+    "lon": 14.49303823,
+    "lat": 50.11776359,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902386",
+    "lon": 14.49432919,
+    "lat": 50.11616126,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902388",
+    "lon": 14.49410856,
+    "lat": 50.11624252,
+    "type": "stožár elektrického osvětlení",
+    "description": "U prosecké školy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902389",
+    "lon": 14.49442259,
+    "lat": 50.11625105,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902390",
+    "lon": 14.49442772,
+    "lat": 50.11642954,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902391",
+    "lon": 14.49414042,
+    "lat": 50.11642735,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902392",
+    "lon": 14.49391218,
+    "lat": 50.11647736,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902393",
+    "lon": 14.49425081,
+    "lat": 50.11666636,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902394",
+    "lon": 14.49451436,
+    "lat": 50.11668198,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902395",
+    "lon": 14.49432515,
+    "lat": 50.11688107,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902396",
+    "lon": 14.49458342,
+    "lat": 50.1168837,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902424",
+    "lon": 14.49997845,
+    "lat": 50.11626173,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902425",
+    "lon": 14.49974846,
+    "lat": 50.11644825,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902427",
+    "lon": 14.49977342,
+    "lat": 50.11685244,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902428",
+    "lon": 14.49948467,
+    "lat": 50.11671684,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902429",
+    "lon": 14.49993508,
+    "lat": 50.11732399,
+    "type": "stožár elektrického osvětlení",
+    "description": "Cihlářská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902430",
+    "lon": 14.49966794,
+    "lat": 50.11720027,
+    "type": "stožár elektrického osvětlení",
+    "description": "Cihlářská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902431",
+    "lon": 14.49943199,
+    "lat": 50.11708989,
+    "type": "stožár elektrického osvětlení",
+    "description": "Cihlářská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902432",
+    "lon": 14.49927615,
+    "lat": 50.11701759,
+    "type": "stožár elektrického osvětlení",
+    "description": "Cihlářská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902433",
+    "lon": 14.49907723,
+    "lat": 50.1169249,
+    "type": "stožár elektrického osvětlení",
+    "description": "Cihlářská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902434",
+    "lon": 14.49907229,
+    "lat": 50.11712891,
+    "type": "stožár elektrického osvětlení",
+    "description": "Cihlářská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902435",
+    "lon": 14.49957961,
+    "lat": 50.1173338,
+    "type": "stožár elektrického osvětlení",
+    "description": "Cihlářská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902436",
+    "lon": 14.49967523,
+    "lat": 50.11755472,
+    "type": "stožár elektrického osvětlení",
+    "description": "Cihlářská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902437",
+    "lon": 14.49940195,
+    "lat": 50.11742937,
+    "type": "stožár elektrického osvětlení",
+    "description": "Cihlářská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902438",
+    "lon": 14.49916558,
+    "lat": 50.11731896,
+    "type": "stožár elektrického osvětlení",
+    "description": "Cihlářská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902439",
+    "lon": 14.49900354,
+    "lat": 50.11724329,
+    "type": "stožár elektrického osvětlení",
+    "description": "Cihlářská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902440",
+    "lon": 14.49880883,
+    "lat": 50.11715206,
+    "type": "stožár elektrického osvětlení",
+    "description": "Cihlářská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902441",
+    "lon": 14.4994537,
+    "lat": 50.11780043,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902442",
+    "lon": 14.49924718,
+    "lat": 50.11770562,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902443",
+    "lon": 14.49906116,
+    "lat": 50.11761397,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902444",
+    "lon": 14.4988608,
+    "lat": 50.11752069,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902445",
+    "lon": 14.49864683,
+    "lat": 50.11741978,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902446",
+    "lon": 14.49844733,
+    "lat": 50.11732513,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902447",
+    "lon": 14.49936308,
+    "lat": 50.11794737,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902448",
+    "lon": 14.49917513,
+    "lat": 50.11785946,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902449",
+    "lon": 14.49895932,
+    "lat": 50.11775657,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902450",
+    "lon": 14.49876331,
+    "lat": 50.11766477,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902451",
+    "lon": 14.49857027,
+    "lat": 50.11757295,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902452",
+    "lon": 14.49837404,
+    "lat": 50.11748086,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902453",
+    "lon": 14.49850085,
+    "lat": 50.11681666,
+    "type": "stožár elektrického osvětlení",
+    "description": "Cihlářská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902454",
+    "lon": 14.49819965,
+    "lat": 50.11667724,
+    "type": "stožár elektrického osvětlení",
+    "description": "Cihlářská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902455",
+    "lon": 14.49790777,
+    "lat": 50.11653918,
+    "type": "stožár elektrického osvětlení",
+    "description": "Cihlářská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902456",
+    "lon": 14.49762523,
+    "lat": 50.11640765,
+    "type": "stožár elektrického osvětlení",
+    "description": "Cihlářská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902457",
+    "lon": 14.49732873,
+    "lat": 50.11626872,
+    "type": "stožár elektrického osvětlení",
+    "description": "Cihlářská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902458",
+    "lon": 14.4995344,
+    "lat": 50.11624606,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902459",
+    "lon": 14.49944525,
+    "lat": 50.11650176,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902461",
+    "lon": 14.49883306,
+    "lat": 50.11677478,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902462",
+    "lon": 14.49851175,
+    "lat": 50.11696399,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902463",
+    "lon": 14.49825207,
+    "lat": 50.11717668,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902464",
+    "lon": 14.49810287,
+    "lat": 50.11744262,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902465",
+    "lon": 14.49830863,
+    "lat": 50.1176606,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902466",
+    "lon": 14.49857877,
+    "lat": 50.11778677,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902467",
+    "lon": 14.49880485,
+    "lat": 50.11789246,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902468",
+    "lon": 14.49905111,
+    "lat": 50.11800819,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pískovcová *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902469",
+    "lon": 14.49794174,
+    "lat": 50.11757729,
+    "type": "stožár elektrického osvětlení",
+    "description": "Kopečná *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902470",
+    "lon": 14.4975605,
+    "lat": 50.11736223,
+    "type": "stožár elektrického osvětlení",
+    "description": "Kopečná *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902471",
+    "lon": 14.49730859,
+    "lat": 50.11724991,
+    "type": "stožár elektrického osvětlení",
+    "description": "Kopečná *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902472",
+    "lon": 14.49745557,
+    "lat": 50.1171061,
+    "type": "stožár elektrického osvětlení",
+    "description": "Kopečná *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902473",
+    "lon": 14.4977329,
+    "lat": 50.11714724,
+    "type": "stožár elektrického osvětlení",
+    "description": "Kopečná *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902474",
+    "lon": 14.49793169,
+    "lat": 50.11700798,
+    "type": "stožár elektrického osvětlení",
+    "description": "Kopečná *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902475",
+    "lon": 14.49755974,
+    "lat": 50.11688475,
+    "type": "stožár elektrického osvětlení",
+    "description": "Kopečná *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902476",
+    "lon": 14.49727638,
+    "lat": 50.11674907,
+    "type": "stožár elektrického osvětlení",
+    "description": "Kopečná *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902477",
+    "lon": 14.49699436,
+    "lat": 50.1165606,
+    "type": "stožár elektrického osvětlení",
+    "description": "Kopečná *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902478",
+    "lon": 14.49663701,
+    "lat": 50.11644772,
+    "type": "stožár elektrického osvětlení",
+    "description": "Kopečná *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902479",
+    "lon": 14.49629824,
+    "lat": 50.11628594,
+    "type": "stožár elektrického osvětlení",
+    "description": "Kopečná *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902480",
+    "lon": 14.49743089,
+    "lat": 50.11694985,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad šestikopy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902481",
+    "lon": 14.49690889,
+    "lat": 50.1171404,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad šestikopy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902485",
+    "lon": 14.4954374,
+    "lat": 50.11772932,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad šestikopy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902488",
+    "lon": 14.49871678,
+    "lat": 50.11553143,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Flajšnerkou *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902489",
+    "lon": 14.4987174,
+    "lat": 50.11575109,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Flajšnerkou *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902490",
+    "lon": 14.49871726,
+    "lat": 50.11597241,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad Flajšnerkou *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902586",
+    "lon": 14.49347287,
+    "lat": 50.11921505,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litvínovská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902587",
+    "lon": 14.49313676,
+    "lat": 50.11933489,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litvínovská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902588",
+    "lon": 14.49269647,
+    "lat": 50.11949005,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litvínovská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902589",
+    "lon": 14.49238842,
+    "lat": 50.11960137,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litvínovská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902590",
+    "lon": 14.49199172,
+    "lat": 50.11974066,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litvínovská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902591",
+    "lon": 14.49162704,
+    "lat": 50.11987006,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litvínovská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902596",
+    "lon": 14.49210928,
+    "lat": 50.11999038,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litvínovská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902597",
+    "lon": 14.49240264,
+    "lat": 50.11988711,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litvínovská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902598",
+    "lon": 14.4926689,
+    "lat": 50.11979044,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litvínovská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902599",
+    "lon": 14.49293935,
+    "lat": 50.11969533,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litvínovská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902600",
+    "lon": 14.4932102,
+    "lat": 50.1195997,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litvínovská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902601",
+    "lon": 14.49348132,
+    "lat": 50.11950473,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litvínovská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902602",
+    "lon": 14.49375035,
+    "lat": 50.1194083,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litvínovská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902608",
+    "lon": 14.49289409,
+    "lat": 50.1199223,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litvínovská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902609",
+    "lon": 14.4931797,
+    "lat": 50.11999558,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litvínovská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902611",
+    "lon": 14.4936876,
+    "lat": 50.11995798,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litvínovská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902612",
+    "lon": 14.49390721,
+    "lat": 50.11988425,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litvínovská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902613",
+    "lon": 14.49416562,
+    "lat": 50.11996603,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litvínovská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902722",
+    "lon": 14.49190961,
+    "lat": 50.11935866,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litvínovská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902723",
+    "lon": 14.49166366,
+    "lat": 50.11938034,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litvínovská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902724",
+    "lon": 14.49139516,
+    "lat": 50.11934341,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litvínovská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902725",
+    "lon": 14.49211431,
+    "lat": 50.119383,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litvínovská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902726",
+    "lon": 14.49233145,
+    "lat": 50.11930825,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litvínovská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902727",
+    "lon": 14.49257393,
+    "lat": 50.11922256,
+    "type": "stožár elektrického osvětlení",
+    "description": "Litvínovská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "902999",
+    "lon": 14.4998591,
+    "lat": 50.11930673,
+    "type": "stožár elektrického osvětlení",
+    "description": "Jablonecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "903000",
+    "lon": 14.49959472,
+    "lat": 50.119168,
+    "type": "stožár elektrického osvětlení",
+    "description": "Jablonecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "909057",
+    "lon": 14.49777145,
+    "lat": 50.11359222,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Jetelce *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "916651",
+    "lon": 14.49975628,
+    "lat": 50.11035295,
+    "type": "stožár elektrického osvětlení",
+    "description": "Sokolovská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "916772",
+    "lon": 14.49531568,
+    "lat": 50.1109862,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podvinný mlýn *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "916773",
+    "lon": 14.49507414,
+    "lat": 50.11104846,
+    "type": "stožár elektrického osvětlení",
+    "description": "Rubeška *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "916774",
+    "lon": 14.49482132,
+    "lat": 50.11107081,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podvinný mlýn *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "916775",
+    "lon": 14.49448073,
+    "lat": 50.11112964,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podvinný mlýn *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "918021",
+    "lon": 14.49982581,
+    "lat": 50.11171089,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pešlova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "918048",
+    "lon": 14.49821755,
+    "lat": 50.11026892,
+    "type": "stožár elektrického osvětlení",
+    "description": "Paříkova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "918049",
+    "lon": 14.49801754,
+    "lat": 50.11050245,
+    "type": "stožár elektrického osvětlení",
+    "description": "Paříkova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "918050",
+    "lon": 14.49793375,
+    "lat": 50.11087041,
+    "type": "stožár elektrického osvětlení",
+    "description": "Paříkova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "918051",
+    "lon": 14.49780768,
+    "lat": 50.11114646,
+    "type": "stožár elektrického osvětlení",
+    "description": "Paříkova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "918347",
+    "lon": 14.49777815,
+    "lat": 50.11074731,
+    "type": "stožár elektrického osvětlení",
+    "description": "Paříkova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "918348",
+    "lon": 14.49743596,
+    "lat": 50.11071072,
+    "type": "stožár elektrického osvětlení",
+    "description": "Paříkova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "918349",
+    "lon": 14.49716227,
+    "lat": 50.11061808,
+    "type": "stožár elektrického osvětlení",
+    "description": "Paříkova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "918350",
+    "lon": 14.49681354,
+    "lat": 50.1104987,
+    "type": "stožár elektrického osvětlení",
+    "description": "Paříkova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "919193",
+    "lon": 14.49229874,
+    "lat": 50.11228043,
+    "type": "stožár elektrického osvětlení",
+    "description": "U vinných sklepů *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "919196",
+    "lon": 14.49708857,
+    "lat": 50.11038637,
+    "type": "stožár elektrického osvětlení",
+    "description": "Paříkova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "919197",
+    "lon": 14.49740887,
+    "lat": 50.11031668,
+    "type": "stožár elektrického osvětlení",
+    "description": "Paříkova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "919509",
+    "lon": 14.49951797,
+    "lat": 50.11016143,
+    "type": "stožár elektrického osvětlení",
+    "description": "Bassova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "919714",
+    "lon": 14.49781176,
+    "lat": 50.11179837,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podnádražní *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "919715",
+    "lon": 14.49830695,
+    "lat": 50.11184276,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podnádražní *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "919716",
+    "lon": 14.49870608,
+    "lat": 50.11186638,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podnádražní *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "919717",
+    "lon": 14.49910711,
+    "lat": 50.11182591,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podnádražní *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "919718",
+    "lon": 14.49882693,
+    "lat": 50.11167009,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pešlova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "919719",
+    "lon": 14.49854354,
+    "lat": 50.11160047,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pešlova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "919720",
+    "lon": 14.49826108,
+    "lat": 50.11153183,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pešlova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "919721",
+    "lon": 14.49809006,
+    "lat": 50.11163878,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pešlova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "919935",
+    "lon": 14.49982848,
+    "lat": 50.11110948,
+    "type": "stožár elektrického osvětlení",
+    "description": "Bratří Dohalských *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "919936",
+    "lon": 14.49989423,
+    "lat": 50.11112478,
+    "type": "stožár elektrického osvětlení",
+    "description": "Bratří Dohalských *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "919937",
+    "lon": 14.49995076,
+    "lat": 50.11113038,
+    "type": "stožár elektrického osvětlení",
+    "description": "Bratří Dohalských *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "919939",
+    "lon": 14.49979582,
+    "lat": 50.1111656,
+    "type": "stožár elektrického osvětlení",
+    "description": "Bratří Dohalských *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "919940",
+    "lon": 14.49986044,
+    "lat": 50.11118026,
+    "type": "stožár elektrického osvětlení",
+    "description": "Bratří Dohalských *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "919941",
+    "lon": 14.49990729,
+    "lat": 50.11120152,
+    "type": "stožár elektrického osvětlení",
+    "description": "Bratří Dohalských *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "919942",
+    "lon": 14.49997274,
+    "lat": 50.11121825,
+    "type": "stožár elektrického osvětlení",
+    "description": "Bratří Dohalských *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "920356",
+    "lon": 14.49303206,
+    "lat": 50.11100617,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podvinný mlýn *******",
+    "cadastre": "Libeň"
+  },
+  {
+    "id": "920357",
+    "lon": 14.49309426,
+    "lat": 50.11056135,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podvinný mlýn *******",
+    "cadastre": "Libeň"
+  },
+  {
+    "id": "920358",
+    "lon": 14.49304077,
+    "lat": 50.11011372,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podvinný mlýn *******",
+    "cadastre": "Libeň"
+  },
+  {
+    "id": "920359",
+    "lon": 14.49238779,
+    "lat": 50.11007222,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podvinný mlýn *******",
+    "cadastre": "Libeň"
+  },
+  {
+    "id": "920360",
+    "lon": 14.49243275,
+    "lat": 50.11042047,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podvinný mlýn *******",
+    "cadastre": "Libeň"
+  },
+  {
+    "id": "920361",
+    "lon": 14.49252357,
+    "lat": 50.11077401,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podvinný mlýn *******",
+    "cadastre": "Libeň"
+  },
+  {
+    "id": "920362",
+    "lon": 14.49255995,
+    "lat": 50.11100062,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podvinný mlýn *******",
+    "cadastre": "Libeň"
+  },
+  {
+    "id": "920363",
+    "lon": 14.4926789,
+    "lat": 50.11123576,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podvinný mlýn *******",
+    "cadastre": "Libeň"
+  },
+  {
+    "id": "920364",
+    "lon": 14.49325628,
+    "lat": 50.11115364,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podvinný mlýn *******",
+    "cadastre": "Libeň"
+  },
+  {
+    "id": "920365",
+    "lon": 14.49362534,
+    "lat": 50.11106111,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podvinný mlýn *******",
+    "cadastre": "Libeň"
+  },
+  {
+    "id": "920366",
+    "lon": 14.49364775,
+    "lat": 50.11075636,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podvinný mlýn *******",
+    "cadastre": "Libeň"
+  },
+  {
+    "id": "920367",
+    "lon": 14.49362112,
+    "lat": 50.11045991,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podvinný mlýn *******",
+    "cadastre": "Libeň"
+  },
+  {
+    "id": "920368",
+    "lon": 14.49350878,
+    "lat": 50.11018107,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podvinný mlýn *******",
+    "cadastre": "Libeň"
+  },
+  {
+    "id": "921138",
+    "lon": 14.49934828,
+    "lat": 50.11339893,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921139",
+    "lon": 14.49906411,
+    "lat": 50.11324257,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921140",
+    "lon": 14.49871824,
+    "lat": 50.11333888,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921141",
+    "lon": 14.49875073,
+    "lat": 50.11321179,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921142",
+    "lon": 14.49844158,
+    "lat": 50.11331731,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921143",
+    "lon": 14.49847451,
+    "lat": 50.11317882,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921144",
+    "lon": 14.49817451,
+    "lat": 50.11329105,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921145",
+    "lon": 14.49820763,
+    "lat": 50.11315239,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921146",
+    "lon": 14.49790425,
+    "lat": 50.11326459,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921147",
+    "lon": 14.49793754,
+    "lat": 50.11312577,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921148",
+    "lon": 14.49763313,
+    "lat": 50.11323815,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921149",
+    "lon": 14.49766694,
+    "lat": 50.11309955,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921150",
+    "lon": 14.49736386,
+    "lat": 50.11321169,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921151",
+    "lon": 14.49739632,
+    "lat": 50.11307279,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921152",
+    "lon": 14.49709568,
+    "lat": 50.11318668,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921153",
+    "lon": 14.49711946,
+    "lat": 50.11304748,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921154",
+    "lon": 14.49683144,
+    "lat": 50.11317373,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921155",
+    "lon": 14.49684052,
+    "lat": 50.11303396,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921156",
+    "lon": 14.49656859,
+    "lat": 50.11317415,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921157",
+    "lon": 14.49655899,
+    "lat": 50.11303464,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921158",
+    "lon": 14.49630462,
+    "lat": 50.1131878,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921159",
+    "lon": 14.49627834,
+    "lat": 50.11304911,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921160",
+    "lon": 14.4960446,
+    "lat": 50.11321478,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921161",
+    "lon": 14.49600164,
+    "lat": 50.11307752,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921162",
+    "lon": 14.49578569,
+    "lat": 50.11325575,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921163",
+    "lon": 14.49572838,
+    "lat": 50.11312031,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921164",
+    "lon": 14.49555352,
+    "lat": 50.1133104,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921165",
+    "lon": 14.49546257,
+    "lat": 50.11318317,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921166",
+    "lon": 14.49533543,
+    "lat": 50.11338907,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921167",
+    "lon": 14.49521496,
+    "lat": 50.11327258,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921168",
+    "lon": 14.49514644,
+    "lat": 50.11348554,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921169",
+    "lon": 14.49500059,
+    "lat": 50.11338161,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921170",
+    "lon": 14.49494523,
+    "lat": 50.11362158,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921171",
+    "lon": 14.49478272,
+    "lat": 50.11354624,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921174",
+    "lon": 14.49842098,
+    "lat": 50.11121012,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pešlova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921175",
+    "lon": 14.49828295,
+    "lat": 50.11128529,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pešlova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921176",
+    "lon": 14.49826716,
+    "lat": 50.11131249,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pešlova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921177",
+    "lon": 14.49825152,
+    "lat": 50.11133961,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pešlova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921178",
+    "lon": 14.49836033,
+    "lat": 50.11130434,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pešlova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921179",
+    "lon": 14.49834598,
+    "lat": 50.11133203,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pešlova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921180",
+    "lon": 14.49833164,
+    "lat": 50.11135972,
+    "type": "stožár elektrického osvětlení",
+    "description": "Pešlova *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "921526",
+    "lon": 14.49018583,
+    "lat": 50.11146297,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podvinný mlýn *******",
+    "cadastre": "Libeň"
+  },
+  {
+    "id": "921527",
+    "lon": 14.49066976,
+    "lat": 50.11160151,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podvinný mlýn *******",
+    "cadastre": "Libeň"
+  },
+  {
+    "id": "921528",
+    "lon": 14.49104926,
+    "lat": 50.11170755,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podvinný mlýn *******",
+    "cadastre": "Libeň"
+  },
+  {
+    "id": "921529",
+    "lon": 14.49154543,
+    "lat": 50.11174335,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podvinný mlýn *******",
+    "cadastre": "Libeň"
+  },
+  {
+    "id": "921530",
+    "lon": 14.49203179,
+    "lat": 50.11174961,
+    "type": "stožár elektrického osvětlení",
+    "description": "Podvinný mlýn *******",
+    "cadastre": "Libeň"
+  },
+  {
+    "id": "922643",
+    "lon": 14.49539697,
+    "lat": 50.11780871,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "922644",
+    "lon": 14.49559578,
+    "lat": 50.11803943,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "922645",
+    "lon": 14.49579018,
+    "lat": 50.11826503,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "922646",
+    "lon": 14.49599788,
+    "lat": 50.11850642,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "922647",
+    "lon": 14.49617004,
+    "lat": 50.11828397,
+    "type": "stožár elektrického osvětlení",
+    "description": "Trmická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "922648",
+    "lon": 14.49653929,
+    "lat": 50.11815151,
+    "type": "stožár elektrického osvětlení",
+    "description": "Trmická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "922649",
+    "lon": 14.49622654,
+    "lat": 50.11877206,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "922650",
+    "lon": 14.49644136,
+    "lat": 50.11902378,
+    "type": "stožár elektrického osvětlení",
+    "description": "Libočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "922651",
+    "lon": 14.49659674,
+    "lat": 50.11920322,
+    "type": "stožár elektrického osvětlení",
+    "description": "Libočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "922652",
+    "lon": 14.49674215,
+    "lat": 50.1193698,
+    "type": "stožár elektrického osvětlení",
+    "description": "Libočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "922653",
+    "lon": 14.49671502,
+    "lat": 50.11908955,
+    "type": "stožár elektrického osvětlení",
+    "description": "Libočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "922654",
+    "lon": 14.49700561,
+    "lat": 50.11898594,
+    "type": "stožár elektrického osvětlení",
+    "description": "Libočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "922655",
+    "lon": 14.49740593,
+    "lat": 50.11882019,
+    "type": "stožár elektrického osvětlení",
+    "description": "Zubrnická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "922656",
+    "lon": 14.49701639,
+    "lat": 50.11798306,
+    "type": "stožár elektrického osvětlení",
+    "description": "Trmická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "922657",
+    "lon": 14.4973537,
+    "lat": 50.11786277,
+    "type": "stožár elektrického osvětlení",
+    "description": "Trmická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "922658",
+    "lon": 14.49575193,
+    "lat": 50.11761729,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad šestikopy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "922659",
+    "lon": 14.49615028,
+    "lat": 50.11747478,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad šestikopy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "922660",
+    "lon": 14.4963474,
+    "lat": 50.11762975,
+    "type": "stožár elektrického osvětlení",
+    "description": "Zubrnická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "922661",
+    "lon": 14.49655934,
+    "lat": 50.11787441,
+    "type": "stožár elektrického osvětlení",
+    "description": "Zubrnická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "922662",
+    "lon": 14.49678064,
+    "lat": 50.11813351,
+    "type": "stožár elektrického osvětlení",
+    "description": "Zubrnická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "922663",
+    "lon": 14.49698225,
+    "lat": 50.11836637,
+    "type": "stožár elektrického osvětlení",
+    "description": "Zubrnická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "922664",
+    "lon": 14.49717813,
+    "lat": 50.11859365,
+    "type": "stožár elektrického osvětlení",
+    "description": "Zubrnická *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "922665",
+    "lon": 14.49690242,
+    "lat": 50.11869766,
+    "type": "stožár elektrického osvětlení",
+    "description": "Libočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "922666",
+    "lon": 14.49646904,
+    "lat": 50.11885162,
+    "type": "stožár elektrického osvětlení",
+    "description": "Libočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923123",
+    "lon": 14.49743259,
+    "lat": 50.11850927,
+    "type": "stožár elektrického osvětlení",
+    "description": "Libočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923124",
+    "lon": 14.49773952,
+    "lat": 50.11839984,
+    "type": "stožár elektrického osvětlení",
+    "description": "Libočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923125",
+    "lon": 14.49803944,
+    "lat": 50.11829278,
+    "type": "stožár elektrického osvětlení",
+    "description": "Libočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923170",
+    "lon": 14.49966356,
+    "lat": 50.11053574,
+    "type": "stožár elektrického osvětlení",
+    "description": "Sokolovská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "923172",
+    "lon": 14.49924493,
+    "lat": 50.11043655,
+    "type": "stožár elektrického osvětlení",
+    "description": "Sokolovská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "923173",
+    "lon": 14.49936054,
+    "lat": 50.11025359,
+    "type": "stožár elektrického osvětlení",
+    "description": "Sokolovská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "923174",
+    "lon": 14.49891039,
+    "lat": 50.11033938,
+    "type": "stožár elektrického osvětlení",
+    "description": "Sokolovská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "923175",
+    "lon": 14.49901515,
+    "lat": 50.110169,
+    "type": "stožár elektrického osvětlení",
+    "description": "Sokolovská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "923176",
+    "lon": 14.49852596,
+    "lat": 50.11022268,
+    "type": "stožár elektrického osvětlení",
+    "description": "Sokolovská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "923177",
+    "lon": 14.49860116,
+    "lat": 50.1100732,
+    "type": "stožár elektrického osvětlení",
+    "description": "Sokolovská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "923178",
+    "lon": 14.49810033,
+    "lat": 50.11008929,
+    "type": "stožár elektrického osvětlení",
+    "description": "Sokolovská *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "923511",
+    "lon": 14.49224876,
+    "lat": 50.1166099,
+    "type": "stožár elektrického osvětlení",
+    "description": "U prosecké školy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923512",
+    "lon": 14.49250879,
+    "lat": 50.11657966,
+    "type": "stožár elektrického osvětlení",
+    "description": "U prosecké školy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923513",
+    "lon": 14.49277664,
+    "lat": 50.11654784,
+    "type": "stožár elektrického osvětlení",
+    "description": "U prosecké školy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923514",
+    "lon": 14.49301737,
+    "lat": 50.1165188,
+    "type": "stožár elektrického osvětlení",
+    "description": "U prosecké školy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923515",
+    "lon": 14.49316221,
+    "lat": 50.11650131,
+    "type": "stožár elektrického osvětlení",
+    "description": "U prosecké školy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923516",
+    "lon": 14.49340432,
+    "lat": 50.1164724,
+    "type": "stožár elektrického osvětlení",
+    "description": "U prosecké školy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923517",
+    "lon": 14.49365621,
+    "lat": 50.1164154,
+    "type": "stožár elektrického osvětlení",
+    "description": "U prosecké školy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923518",
+    "lon": 14.49391299,
+    "lat": 50.11638451,
+    "type": "stožár elektrického osvětlení",
+    "description": "U prosecké školy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923567",
+    "lon": 14.49781194,
+    "lat": 50.11997055,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923568",
+    "lon": 14.49805166,
+    "lat": 50.11977354,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923569",
+    "lon": 14.49764479,
+    "lat": 50.11986377,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923570",
+    "lon": 14.49790415,
+    "lat": 50.11970651,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923571",
+    "lon": 14.49771135,
+    "lat": 50.11972714,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923572",
+    "lon": 14.49792625,
+    "lat": 50.11956325,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923573",
+    "lon": 14.49827252,
+    "lat": 50.11932705,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923574",
+    "lon": 14.49839948,
+    "lat": 50.11918647,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923575",
+    "lon": 14.49875204,
+    "lat": 50.11892132,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923576",
+    "lon": 14.49893686,
+    "lat": 50.11877938,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923577",
+    "lon": 14.49923207,
+    "lat": 50.11872309,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923578",
+    "lon": 14.49951319,
+    "lat": 50.11883216,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923579",
+    "lon": 14.49956812,
+    "lat": 50.11897292,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923580",
+    "lon": 14.49942037,
+    "lat": 50.1190898,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923581",
+    "lon": 14.49930171,
+    "lat": 50.11918538,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923582",
+    "lon": 14.4992625,
+    "lat": 50.11912277,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923583",
+    "lon": 14.49912136,
+    "lat": 50.11905302,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923584",
+    "lon": 14.49917136,
+    "lat": 50.11896513,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923585",
+    "lon": 14.49943067,
+    "lat": 50.1189868,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923586",
+    "lon": 14.49905028,
+    "lat": 50.11912256,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923587",
+    "lon": 14.49875193,
+    "lat": 50.11937304,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923588",
+    "lon": 14.49856366,
+    "lat": 50.11937303,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923589",
+    "lon": 14.4984235,
+    "lat": 50.11938704,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923590",
+    "lon": 14.49854535,
+    "lat": 50.11929374,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923591",
+    "lon": 14.4984276,
+    "lat": 50.11929529,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923592",
+    "lon": 14.49859442,
+    "lat": 50.11949733,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923593",
+    "lon": 14.49843069,
+    "lat": 50.11962497,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923594",
+    "lon": 14.4983019,
+    "lat": 50.11963925,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923595",
+    "lon": 14.49808968,
+    "lat": 50.11954003,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923596",
+    "lon": 14.49824485,
+    "lat": 50.11942144,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923597",
+    "lon": 14.49842366,
+    "lat": 50.11953315,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923598",
+    "lon": 14.49826698,
+    "lat": 50.11975452,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "923599",
+    "lon": 14.49810303,
+    "lat": 50.1198845,
+    "type": "stožár elektrického osvětlení",
+    "description": "Vysočanská *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "924687",
+    "lon": 14.49610365,
+    "lat": 50.11738003,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad šestikopy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "924688",
+    "lon": 14.49589647,
+    "lat": 50.11745376,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad šestikopy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "924689",
+    "lon": 14.49571526,
+    "lat": 50.11751888,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad šestikopy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "924690",
+    "lon": 14.49551723,
+    "lat": 50.11759005,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad šestikopy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "924691",
+    "lon": 14.4952921,
+    "lat": 50.11765195,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad šestikopy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "924692",
+    "lon": 14.49516947,
+    "lat": 50.1174978,
+    "type": "stožár elektrického osvětlení",
+    "description": "Nad šestikopy *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "924736",
+    "lon": 14.49469889,
+    "lat": 50.11708686,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "924737",
+    "lon": 14.4944062,
+    "lat": 50.1171871,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "924738",
+    "lon": 14.49412783,
+    "lat": 50.1172651,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na vyhlídce *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "924739",
+    "lon": 14.49473062,
+    "lat": 50.11733475,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "924740",
+    "lon": 14.49489292,
+    "lat": 50.11751543,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "924741",
+    "lon": 14.49505925,
+    "lat": 50.11771498,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "924742",
+    "lon": 14.49521685,
+    "lat": 50.11789525,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "924743",
+    "lon": 14.49538729,
+    "lat": 50.11809008,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "924744",
+    "lon": 14.49555389,
+    "lat": 50.11827713,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "924745",
+    "lon": 14.49571054,
+    "lat": 50.11846186,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "924746",
+    "lon": 14.49538723,
+    "lat": 50.11845379,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "924747",
+    "lon": 14.49510663,
+    "lat": 50.11853559,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "924748",
+    "lon": 14.49473857,
+    "lat": 50.11850961,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "924749",
+    "lon": 14.49443486,
+    "lat": 50.118396,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "924750",
+    "lon": 14.49422769,
+    "lat": 50.11851746,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "924751",
+    "lon": 14.4941629,
+    "lat": 50.11829833,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "924752",
+    "lon": 14.49409173,
+    "lat": 50.11806204,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "924753",
+    "lon": 14.49410606,
+    "lat": 50.11781992,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "924754",
+    "lon": 14.49407693,
+    "lat": 50.11763087,
+    "type": "stožár elektrického osvětlení",
+    "description": "Na Proseku *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "927607",
+    "lon": 14.49039928,
+    "lat": 50.11539472,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Vysočany"
+  },
+  {
+    "id": "927609",
+    "lon": 14.49002215,
+    "lat": 50.1154281,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "927851",
+    "lon": 14.49872678,
+    "lat": 50.11827073,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "927852",
+    "lon": 14.49839701,
+    "lat": 50.11810566,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "927853",
+    "lon": 14.49806852,
+    "lat": 50.11793788,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "927854",
+    "lon": 14.49777012,
+    "lat": 50.11778663,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "927856",
+    "lon": 14.49693793,
+    "lat": 50.11737108,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "927857",
+    "lon": 14.49670507,
+    "lat": 50.11724419,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "927858",
+    "lon": 14.49638151,
+    "lat": 50.11707384,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "927859",
+    "lon": 14.49605771,
+    "lat": 50.11690402,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "927860",
+    "lon": 14.49574503,
+    "lat": 50.11673899,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "927861",
+    "lon": 14.4954178,
+    "lat": 50.11672214,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "927862",
+    "lon": 14.49565207,
+    "lat": 50.11654543,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "927863",
+    "lon": 14.49548765,
+    "lat": 50.11645712,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "927864",
+    "lon": 14.49516079,
+    "lat": 50.116505,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "927865",
+    "lon": 14.49501594,
+    "lat": 50.11628202,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "927866",
+    "lon": 14.4946423,
+    "lat": 50.11623722,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "927867",
+    "lon": 14.49449192,
+    "lat": 50.11597855,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "927868",
+    "lon": 14.49404429,
+    "lat": 50.1159904,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  },
+  {
+    "id": "927870",
+    "lon": 14.49336622,
+    "lat": 50.11591051,
+    "type": "stožár elektrického osvětlení",
+    "description": "Prosecká *******",
+    "cadastre": "Prosek"
+  }
+]
