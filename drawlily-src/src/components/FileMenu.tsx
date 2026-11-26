@@ -4,12 +4,10 @@
 import {
   CirclePlus,
   Code,
-  Copy,
   Download,
   FileText,
   FolderOpen,
   Import,
-  LogOut,
   Music,
   Save,
 } from "lucide-react";
@@ -25,24 +23,27 @@ import {
 import type { Auth } from "#/lib/auth";
 
 interface Props {
-  auth: Auth | null;
   canCreateNew: boolean;
   canExport: boolean;
-  canSave: boolean;
-  canSaveAs: boolean;
   songURL: string | null;
   onExportLy(): any;
   onExportMIDI(): any;
   onExportPDF(): any;
-  onDeleteSong(song: string): void;
-  onLoadSong(song: string): void;
   onShowAbout(): void;
-  onShowClone(): void;
   onShowOpen(): void;
   onShowNew(): void;
-  onShowPublish(): void;
-  onSignIn(): void;
-  onSignOut(): void;
+
+  // <Header /> still passes these. They are not used any more, and go away
+  // with the rest of the login code.
+  auth?: Auth | null;
+  canSave?: boolean;
+  canSaveAs?: boolean;
+  onDeleteSong?(song: string): void;
+  onLoadSong?(song: string): void;
+  onShowClone?(): void;
+  onShowPublish?(): void;
+  onSignIn?(): void;
+  onSignOut?(): void;
 }
 
 /**
@@ -51,32 +52,16 @@ interface Props {
  */
 const FileMenu: React.FC<Props> = React.memo(function FileMenu(props) {
   const {
-    auth,
     canCreateNew,
     canExport,
-    canSave,
-    canSaveAs,
-    onSignOut,
     onShowAbout,
-    onShowClone,
     onShowOpen,
     onExportLy,
     onExportMIDI,
     onExportPDF,
     onShowNew,
-    onShowPublish,
     songURL,
   } = props;
-
-  let signOut: React.ReactNode;
-  if (auth) {
-    signOut = (
-      <DropdownMenuItem onClick={onSignOut}>
-        <LogOut size="1em" className="inline" />
-        Sign out
-      </DropdownMenuItem>
-    );
-  }
 
   const tutorial: React.ReactNode = (
     <DropdownMenuItem
@@ -115,13 +100,9 @@ const FileMenu: React.FC<Props> = React.memo(function FileMenu(props) {
         <Import size="1em" className="inline" />
         Import MusicXML&hellip;
       </DropdownMenuItem>
-      <DropdownMenuItem onClick={onShowPublish} disabled={!canSave}>
+      <DropdownMenuItem onClick={onExportLy}>
         <Save size="1em" className="inline" />
-        Save
-      </DropdownMenuItem>
-      <DropdownMenuItem onClick={onShowClone} disabled={!canSaveAs}>
-        <Copy size="1em" className="inline" />
-        Save as&hellip;
+        Save (.ly file)
       </DropdownMenuItem>
       <DropdownMenuSub disabled={!canExport}>
         <DropdownMenuSubTrigger>
@@ -153,12 +134,6 @@ const FileMenu: React.FC<Props> = React.memo(function FileMenu(props) {
           )}
         </DropdownMenuSubContent>
       </DropdownMenuSub>
-      {signOut ? (
-        <>
-          <DropdownMenuSeparator />
-          {signOut}
-        </>
-      ) : null}
       <DropdownMenuSeparator />
       {tutorial}
       {about}
