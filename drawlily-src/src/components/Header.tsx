@@ -309,7 +309,7 @@ export default class Header extends React.PureComponent<Props> {
 
       player = await playerFromMIDIBuffer(
         this.props.midi,
-        "/hackmidi/samples/",
+        `${import.meta.env.BASE_URL}hackmidi/samples/`,
       );
       this.setState({
         player,
