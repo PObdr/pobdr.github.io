@@ -1,0 +1,46 @@
+name: Import Hacklily into drawlily/
+
+on:
+  push:
+    branches:
+      - drawlily-import
+    paths:
+      - .github/workflows/import-hacklily.yml
+
+permissions:
+  contents: write
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout this repository
+        uses: actions/checkout@v4
+        with:
+          ref: drawlily-import
+
+      - name: Clone Hacklily (GitHub mirror)
+        run: |
+          git clone --depth 1 https://github.com/jocelyn-stericker/hacklily.git /tmp/hacklily
+          rm -rf /tmp/hacklily/.git
+
+      - name: Copy files into drawlily/
+        run: |
+          mkdir -p drawlily/server
+          cp -r /tmp/hacklily/src drawlily/
+          cp -r /tmp/hacklily/static drawlily/
+          cp -r /tmp/hacklily/server/renderer drawlily/server/
+          cp -r /tmp/hacklily/server/renderer-unstable drawlily/server/
+          cp /tmp/hacklily/README.md drawlily/
+          cp /tmp/hacklily/LICENSE.txt drawlily/
+          cp /tmp/hacklily/package-lock.json drawlily/
+          cp /tmp/hacklily/.gitattributes drawlily/
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add drawlily
+          git diff --cached --quiet || git commit -m "Import Hacklily src, static, license and renderer Dockerfiles (verbatim copy)"
+          git push origin drawlily-import
