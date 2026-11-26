@@ -1,0 +1,4 @@
+# Zdrojové soubory editoru se nepublikují.
+# Na webu je jen zbuildovaná verze ve složce drawlily/.
+exclude:
+  - drawlily-src
