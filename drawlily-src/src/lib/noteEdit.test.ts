@@ -12,10 +12,31 @@ import {
 
 /**
  * Applies an action to the first occurrence of token and returns the new text.
+ * For chords, pitchToken selects the pitch inside the chord the action is for.
  */
-function run(text: string, token: string, action: NoteAction): string | null {
+function run(
+  text: string,
+  token: string,
+  action: NoteAction,
+  pitchToken?: string,
+): string | null {
   const start = text.indexOf(token);
-  const result = applyNoteAction(text, start, start + token.length, action);
+
+  let fullAction = action;
+  if (pitchToken) {
+    const pitchStart = text.indexOf(pitchToken, start + 1);
+    fullAction = {
+      ...action,
+      pitch: { start: pitchStart, end: pitchStart + pitchToken.length },
+    } as NoteAction;
+  }
+
+  const result = applyNoteAction(
+    text,
+    start,
+    start + token.length,
+    fullAction,
+  );
   if (!result) {
     return null;
   }
@@ -89,6 +110,64 @@ describe("applyNoteAction", () => {
   });
 });
 
+describe("applyNoteAction on chords", () => {
+  it("changes the duration of the whole chord", () => {
+    expect(
+      run("<c e g>4 d", "<c e g>4", { type: "duration", value: "8" }),
+    ).toBe("<c e g>8 d4");
+  });
+
+  it("pins the inherited duration on the next chord", () => {
+    expect(
+      run("c4 <c e g> d", "<c e g>", { type: "duration", value: "8" }),
+    ).toBe("c4 <c e g>8 d4");
+  });
+
+  it("adds dots to a chord", () => {
+    expect(run("<c e>4", "<c e>4", { type: "dots" })).toBe("<c e>4.");
+  });
+
+  it("changes the accidental of one pitch only", () => {
+    const sharp: NoteAction = { type: "accidental", value: "sharp" };
+    expect(run("<c e g>4", "<c e g>4", sharp, "e")).toBe("<c eis g>4");
+
+    const doubleFlat: NoteAction = { type: "accidental", value: "doubleFlat" };
+    expect(run("<c' e'>2", "<c' e'>2", doubleFlat, "e'")).toBe(
+      "<c' eeses'>2",
+    );
+  });
+
+  it("needs a selected pitch for an accidental", () => {
+    expect(
+      run("<c e>4", "<c e>4", { type: "accidental", value: "sharp" }),
+    ).toBeNull();
+  });
+
+  it("turns a chord into a rest", () => {
+    expect(run("<c e g>4~ d", "<c e g>4~", { type: "rest" })).toBe("r4~ d");
+  });
+
+  it("removes one pitch from a chord", () => {
+    expect(run("<c e g>4", "<c e g>4", { type: "delete" }, "e")).toBe(
+      "<c g>4",
+    );
+    expect(run("<c e g>4", "<c e g>4", { type: "delete" }, "g")).toBe(
+      "<c e>4",
+    );
+  });
+
+  it("deletes the whole chord when no pitch is selected", () => {
+    expect(run("<c e>4 d", "<c e>4", { type: "delete" })).toBe("d");
+    expect(run("<c>4 d", "<c>4", { type: "delete" }, "c")).toBe("d");
+  });
+
+  it("keeps the rhythm after a chord with an explicit duration", () => {
+    expect(run("<c e>8 d e", "d", { type: "duration", value: "16" })).toBe(
+      "<c e>8 d16 e8",
+    );
+  });
+});
+
 describe("parseNote", () => {
   it("rejects words and commands", () => {
     expect(parseNote("dynamic")).toBeNull();
@@ -111,6 +190,9 @@ describe("describeNote", () => {
       dots: "",
       accidental: "natural",
       isRest: false,
+      isChord: false,
+      pitch: null,
+      pitchCount: 1,
     });
   });
 
@@ -119,5 +201,25 @@ describe("describeNote", () => {
     expect(describeNote("ces4", 0, 3)?.accidental).toBe("flat");
     expect(describeNote("cisis4", 0, 3)?.accidental).toBe("doubleSharp");
     expect(describeNote("eeses4", 0, 3)?.accidental).toBe("doubleFlat");
+  });
+
+  it("describes a chord and the pitch that is selected", () => {
+    expect(describeNote("<c e g>8 d", 3, 4)).toEqual({
+      start: 0,
+      end: 8,
+      duration: "8",
+      dots: "",
+      accidental: "natural",
+      isRest: false,
+      isChord: true,
+      pitch: { start: 3, end: 4 },
+      pitchCount: 3,
+    });
+  });
+
+  it("describes a chord without a selected pitch", () => {
+    const info = describeNote("<c e g>8 d", 0, 1);
+    expect(info?.isChord).toBe(true);
+    expect(info?.pitch).toBeNull();
   });
 });
