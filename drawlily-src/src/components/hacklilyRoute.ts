@@ -6,14 +6,11 @@ import {
   useCallback,
   useEffect,
   useRef,
-  useState,
   useSyncExternalStore,
 } from "react";
 
 import type { QueryProps } from "#/components/App";
 import { useColourScheme } from "#/components/useColourScheme";
-import type { Auth } from "#/lib/auth";
-import { parseAuth } from "#/lib/auth";
 import {
   editSong,
   getDirtySongs,
@@ -38,29 +35,22 @@ export function validateHacklilySearch(
   const hash = window.location.hash.slice(1);
   const hashParams = hash ? parseQuery(hash) : {};
 
-  const rawState = search.state ?? hashParams.state;
-
   return {
     "404": search["404"] || hashParams["404"],
     about: search.about || hashParams.about,
-    code: search.code || hashParams.code,
     edit: search.edit || hashParams.edit,
-    saveAs: search.saveAs || hashParams.saveAs,
     src:
       search.src === "<url" || hashParams.src === "<url"
         ? undefined
         : search.src || hashParams.src,
-    // Normalized to string (TanStack uses JSON.parse, so this can be a number)
-    state: rawState == null ? undefined : String(rawState),
   };
 }
 
 /**
  * beforeLoad hook shared by every Hacklily route.
  *
- * Handles the return from the GitHub OAuth flow (merging back the query
- * context stashed before the redirect) and tidies the garbage
- * ?src=%3Curl URL that Google sometimes indexes. Should only act on `enter`.
+ * Tidies the garbage ?src=%3Curl URL that Google sometimes indexes. Should
+ * only act on `enter`.
  */
 export function hacklilyBeforeLoad({
   search,
@@ -69,7 +59,6 @@ export function hacklilyBeforeLoad({
   search: QueryProps;
   cause: string;
 }): void {
-  // Returning from the GitHub OAuth flow
   if (cause !== "enter") {
     return;
   }
@@ -80,29 +69,21 @@ export function hacklilyBeforeLoad({
   if (parseQuery(window.location.search).src === "<url") {
     throw redirect({ replace: true, search: { ...search } as any, to: "." });
   }
-
-  const savedParams: string | null = sessionStorage.csrfQueryParams;
-  if (!search.state || search.state !== sessionStorage.csrf || !savedParams) {
-    return;
-  }
-  let saved: QueryProps;
-  try {
-    saved = JSON.parse(savedParams);
-  } catch {
-    delete sessionStorage.csrfQueryParams;
-    return;
-  }
-  delete sessionStorage.csrfQueryParams;
-  throw redirect({
-    replace: true,
-    search: { ...search, ...saved } as any,
-    to: ".",
-  });
 }
 
 /**
- * Assemble the non-URL props for <App> from localStorage/sessionStorage and
- * router context. `search` (the validated URL params) is passed in because
+ * Earlier versions of Hacklily kept a GitHub access token in localStorage.
+ * There is no sign-in any more, so remove what is left of it.
+ */
+function clearLegacyLogin(): void {
+  localStorage.removeItem("auth");
+  sessionStorage.removeItem("csrf");
+  sessionStorage.removeItem("csrfQueryParams");
+}
+
+/**
+ * Assemble the non-URL props for <App> from localStorage and router context.
+ * `search` (the validated URL params) is passed in because
  * `Route.useSearch()` is bound to a specific route; the hook itself stays
  * route-agnostic so / and /wasm can share it.
  */
@@ -113,6 +94,10 @@ export function useHacklilyAppProps(search: QueryProps) {
   // Track the last hash value so we can detect hash changes (for the long-URL
   // fallback used by ?src=).
   const lastHashRef = useRef(window.location.hash);
+
+  useEffect(() => {
+    clearLegacyLogin();
+  }, []);
 
   // Listen for hashchange events (the long-URL fallback uses hash instead of
   // search params) and re-render by navigating in place.
@@ -169,56 +154,19 @@ export function useHacklilyAppProps(search: QueryProps) {
     getDirtySongs,
     () => ({}),
   );
-  const auth = getAuth();
-  const [csrf, setLatestCsrf] = useState(sessionStorage.csrf || null);
   const hideUnstableNotification = useSyncExternalStore(
     subscribeToLocalStorage,
     getHideUnstableNotification,
     () => false,
   );
 
-  const setAuth = useCallback((newAuth: Auth | null): void => {
-    if (!newAuth) {
-      delete localStorage.auth;
-    } else {
-      localStorage.auth = JSON.stringify(newAuth);
-    }
-  }, []);
-
-  const setCSRF = useCallback(
-    (newCSRF: string | null): void => {
-      if (!newCSRF) {
-        delete sessionStorage.csrf;
-        delete sessionStorage.csrfQueryParams;
-        setLatestCsrf(null);
-      } else {
-        sessionStorage.csrf = newCSRF;
-        // Stash the user's current query context for OAuth flow.
-        const context: QueryProps = { ...search };
-        delete context.code;
-        delete context.state;
-        sessionStorage.csrfQueryParams = JSON.stringify(context);
-        setLatestCsrf(newCSRF);
-      }
-    },
-    [search],
-  );
-
   return {
     dirtySongs,
-    auth,
-    csrf,
     colourScheme,
     hideUnstableNotification,
     setQuery,
     editSong,
     markSongClean,
-    setAuth,
-    setCSRF,
     setHideUnstableNotification,
   };
-}
-
-function getAuth(): Auth | null {
-  return parseAuth(localStorage.auth);
 }
