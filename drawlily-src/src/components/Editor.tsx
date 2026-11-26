@@ -1,11 +1,14 @@
 // SPDX-License-Identifier: AGPL-3.0-or-later
 // Copyright (C) 2017-present Jocelyn Stericker <jocelyn@nettek.ca>
 
+import { isEqual } from "lodash";
 import { Lock, TriangleAlert } from "lucide-react";
 import * as monacoEditor from "monaco-editor";
 import React from "react";
 import ReactMonacoEditor from "react-monaco-editor";
 
+import type { NoteAction, NoteInfo } from "#/lib/noteEdit";
+import { applyNoteAction, describeNote } from "#/lib/noteEdit";
 import { cn } from "#/lib/utils";
 import CodelensProvider from "#/monacoConfig/CodelensProvider";
 import Commands from "#/monacoConfig/Commands";
@@ -14,6 +17,7 @@ import LILYPOND_MONARCH_PROVIDER from "#/monacoConfig/LILYPOND_MONARCH_PROVIDER"
 
 import type { ViewMode } from "./Header";
 import { MODE_EDIT, MODE_VIEW } from "./Header";
+import NoteToolbar from "./NoteToolbar";
 import { APP_STYLE } from "./styles";
 
 let registeredMonacoComponents = false;
@@ -62,12 +66,24 @@ interface Props {
   showMakelily(tool?: string, cb?: (ly: string) => void): void;
 }
 
+interface State {
+  /**
+   * The note under the selection or cursor, if it is a simple note that the
+   * note toolbar can edit.
+   */
+  note: NoteInfo | null;
+}
+
 /**
  * Renders the left-hand side of the App UI. This is a small wrapper around monaco.
  *
  * It is a controlled component, and parses the passed logs to render errors.
  */
-export default class Editor extends React.PureComponent<Props> {
+export default class Editor extends React.PureComponent<Props, State> {
+  state: State = {
+    note: null,
+  };
+
   private commands: Commands = new Commands(
     (tool: string, cb?: (ly: string) => void): void => {
       this.props.showMakelily(tool, cb);
@@ -245,6 +261,7 @@ export default class Editor extends React.PureComponent<Props> {
       onHideUnstableNotification,
       hideUnstableNotification,
     } = this.props;
+    const { note } = this.state;
     const monacoOptions: monacoEditor.editor.IEditorOptions = {
       autoClosingBrackets: "always",
       minimap: {
@@ -326,6 +343,9 @@ export default class Editor extends React.PureComponent<Props> {
           value={code}
           width={width}
         />
+        {note && !readOnly && (
+          <NoteToolbar note={note} onAction={this.handleNoteAction} />
+        )}
       </div>
     );
   }
@@ -347,6 +367,8 @@ export default class Editor extends React.PureComponent<Props> {
     editor.updateOptions({
       wordBasedSuggestions: "off",
     });
+    editor.onDidChangeCursorSelection(this.updateNoteSelection);
+    editor.onDidChangeModelContent(this.updateNoteSelection);
   };
 
   private handleEditorWillMount = (monacoModule: typeof monacoEditor): void => {
@@ -371,9 +393,84 @@ export default class Editor extends React.PureComponent<Props> {
     );
   };
 
+  /**
+   * Rewrites the selected note in the source according to the toolbar action.
+   */
+  private handleNoteAction = (action: NoteAction): void => {
+    const editor = this.editor;
+    const note = this.state.note;
+    const model = editor ? editor.getModel() : null;
+    if (!editor || !model || !note) {
+      return;
+    }
+
+    const result = applyNoteAction(model.getValue(), note.start, note.end, action);
+    if (!result) {
+      return;
+    }
+
+    const ops: monacoEditor.editor.IIdentifiedSingleEditOperation[] =
+      result.edits.map((edit) => {
+        const from = model.getPositionAt(edit.start);
+        const to = model.getPositionAt(edit.end);
+
+        return {
+          forceMoveMarkers: true,
+          range: new monacoEditor.Range(
+            from.lineNumber,
+            from.column,
+            to.lineNumber,
+            to.column,
+          ),
+          text: edit.text,
+        };
+      });
+
+    editor.pushUndoStop();
+    editor.executeEdits("drawlily-note-toolbar", ops);
+    editor.pushUndoStop();
+
+    if (result.selection) {
+      const from = model.getPositionAt(result.selection.start);
+      const to = model.getPositionAt(result.selection.end);
+      editor.setSelection(
+        new monacoEditor.Range(
+          from.lineNumber,
+          from.column,
+          to.lineNumber,
+          to.column,
+        ),
+      );
+    }
+    editor.focus();
+  };
+
   private handleResize = (): void => {
     if (this.editor) {
       this.editor.layout();
+    }
+  };
+
+  /**
+   * Keeps state.note in sync with the selection, so the toolbar only shows up
+   * when a simple note (e.g. c'4. or ees8) is selected or under the cursor.
+   */
+  private updateNoteSelection = (): void => {
+    const editor = this.editor;
+    const model = editor ? editor.getModel() : null;
+    const selection = editor ? editor.getSelection() : null;
+
+    let note: NoteInfo | null = null;
+    if (model && selection && !this.props.readOnly) {
+      note = describeNote(
+        model.getValue(),
+        model.getOffsetAt(selection.getStartPosition()),
+        model.getOffsetAt(selection.getEndPosition()),
+      );
+    }
+
+    if (!isEqual(note, this.state.note)) {
+      this.setState({ note });
     }
   };
 }
