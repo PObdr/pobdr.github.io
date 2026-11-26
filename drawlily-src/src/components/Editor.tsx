@@ -369,6 +369,7 @@ export default class Editor extends React.PureComponent<Props, State> {
     });
     editor.onDidChangeCursorSelection(this.updateNoteSelection);
     editor.onDidChangeModelContent(this.updateNoteSelection);
+    editor.onKeyDown(this.handleKeyDown);
   };
 
   private handleEditorWillMount = (monacoModule: typeof monacoEditor): void => {
@@ -391,6 +392,32 @@ export default class Editor extends React.PureComponent<Props, State> {
       "lilypond",
       new CodelensProvider(this.commands),
     );
+  };
+
+  /**
+   * When a note is selected (e.g. by clicking it in the preview), pressing
+   * Space or Enter would replace it. Move the cursor behind the note first, so
+   * the key continues the music instead of deleting the note.
+   */
+  private handleKeyDown = (event: monacoEditor.IKeyboardEvent): void => {
+    const editor = this.editor;
+    const model = editor ? editor.getModel() : null;
+    const selection = editor ? editor.getSelection() : null;
+    const note = this.state.note;
+    if (!editor || !model || !selection || !note || selection.isEmpty()) {
+      return;
+    }
+    if (event.ctrlKey || event.altKey || event.metaKey) {
+      return;
+    }
+    if (
+      event.keyCode !== monacoEditor.KeyCode.Space &&
+      event.keyCode !== monacoEditor.KeyCode.Enter
+    ) {
+      return;
+    }
+
+    editor.setPosition(model.getPositionAt(note.end));
   };
 
   /**
@@ -430,17 +457,10 @@ export default class Editor extends React.PureComponent<Props, State> {
     editor.executeEdits("drawlily-note-toolbar", ops);
     editor.pushUndoStop();
 
+    // Leave the cursor right behind the note (not a selection), so the next
+    // keystroke does not replace it.
     if (result.selection) {
-      const from = model.getPositionAt(result.selection.start);
-      const to = model.getPositionAt(result.selection.end);
-      editor.setSelection(
-        new monacoEditor.Range(
-          from.lineNumber,
-          from.column,
-          to.lineNumber,
-          to.column,
-        ),
-      );
+      editor.setPosition(model.getPositionAt(result.selection.end));
     }
     editor.focus();
   };

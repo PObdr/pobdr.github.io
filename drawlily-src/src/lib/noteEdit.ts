@@ -7,7 +7,12 @@
  * tested without Monaco or a browser.
  */
 
-export type Accidental = "sharp" | "flat" | "natural";
+export type Accidental =
+  | "doubleFlat"
+  | "flat"
+  | "natural"
+  | "sharp"
+  | "doubleSharp";
 
 export type NoteAction =
   | { type: "duration"; value: string }
@@ -54,7 +59,7 @@ export interface NoteEditResult {
   /** Non-overlapping edits, expressed in offsets of the original text. */
   edits: TextEdit[];
 
-  /** Range to select after the edits are applied, or null to collapse. */
+  /** Range of the edited note after the edits are applied, or null if deleted. */
   selection: TextRange | null;
 }
 
@@ -66,6 +71,14 @@ export interface NoteInfo extends TextRange {
 }
 
 const DEFAULT_DURATION: DurationSpec = { duration: "4", dots: "" };
+
+const ACCIDENTAL_SUFFIX: Record<Accidental, string> = {
+  doubleFlat: "eses",
+  flat: "es",
+  natural: "",
+  sharp: "is",
+  doubleSharp: "isis",
+};
 
 const NOTE_RE =
   /^([a-g](?:isis|eses|is|es|s)?|r)([',]*)([!?]?)(\d+)?(\.*)((?:[~()\[\]\\^_|*-].*)?)$/;
@@ -100,6 +113,12 @@ export function formatNote(note: ParsedNote): string {
 export function accidentalOf(pitch: string): Accidental {
   if (pitch === "r") {
     return "natural";
+  }
+  if (pitch.endsWith("isis")) {
+    return "doubleSharp";
+  }
+  if (pitch.endsWith("eses")) {
+    return "doubleFlat";
   }
   if (pitch.endsWith("is")) {
     return "sharp";
@@ -193,17 +212,10 @@ function applyAccidental(note: ParsedNote, accidental: Accidental): ParsedNote {
     return note;
   }
 
-  const base = note.pitch[0];
   const current = accidentalOf(note.pitch);
   const target = current === accidental ? "natural" : accidental;
-  let suffix = "";
-  if (target === "sharp") {
-    suffix = "is";
-  } else if (target === "flat") {
-    suffix = "es";
-  }
 
-  return { ...note, pitch: base + suffix };
+  return { ...note, pitch: note.pitch[0] + ACCIDENTAL_SUFFIX[target] };
 }
 
 /**

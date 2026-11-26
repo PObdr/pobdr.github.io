@@ -55,6 +55,20 @@ describe("applyNoteAction", () => {
     expect(run("e4", "e4", flat)).toBe("ees4");
   });
 
+  it("sets and toggles double accidentals", () => {
+    const doubleSharp: NoteAction = {
+      type: "accidental",
+      value: "doubleSharp",
+    };
+    const doubleFlat: NoteAction = { type: "accidental", value: "doubleFlat" };
+    const flat: NoteAction = { type: "accidental", value: "flat" };
+    expect(run("c4 d", "c4", doubleSharp)).toBe("cisis4 d");
+    expect(run("cisis4", "cisis4", doubleSharp)).toBe("c4");
+    expect(run("e4", "e4", doubleFlat)).toBe("eeses4");
+    expect(run("d'8", "d'8", doubleFlat)).toBe("deses'8");
+    expect(run("deses4", "deses4", flat)).toBe("des4");
+  });
+
   it("turns a note into a rest", () => {
     expect(run("c'4 d", "c'4", { type: "rest" })).toBe("r4 d");
   });
@@ -98,5 +112,12 @@ describe("describeNote", () => {
       accidental: "natural",
       isRest: false,
     });
+  });
+
+  it("recognises sharps, flats and their doubles", () => {
+    expect(describeNote("fis4", 0, 3)?.accidental).toBe("sharp");
+    expect(describeNote("ces4", 0, 3)?.accidental).toBe("flat");
+    expect(describeNote("cisis4", 0, 3)?.accidental).toBe("doubleSharp");
+    expect(describeNote("eeses4", 0, 3)?.accidental).toBe("doubleFlat");
   });
 });
