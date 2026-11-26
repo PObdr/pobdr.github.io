@@ -1,0 +1,138 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2017-present Jocelyn Stericker <jocelyn@nettek.ca>
+
+// The module keeps process-wide state (queue, "initialized" latch), so each
+// test loads a fresh copy via vi.resetModules() + a fresh require().
+// eslint-disable-next-line @typescript-eslint/consistent-type-imports
+async function freshModule(): Promise<typeof import("./analytics")> {
+  vi.resetModules();
+  return import("./analytics");
+}
+
+// count.js is never actually loaded in tests; simulate it becoming ready by
+// assigning window.goatcounter.count and firing the script's load event.
+function simulateCountJsLoaded(count: (vars: unknown) => void): void {
+  window.goatcounter.count = count;
+  document.head
+    .querySelector("script[data-goatcounter]")
+    .dispatchEvent(new Event("load"));
+}
+
+describe("analytics", () => {
+  const originalNodeEnv = process.env.NODE_ENV;
+
+  beforeEach(() => {
+    document.head.innerHTML = "";
+    delete (window as { goatcounter?: unknown }).goatcounter;
+  });
+
+  afterEach(() => {
+    process.env.NODE_ENV = originalNodeEnv;
+  });
+
+  it("queues events fired before count.js loads, then flushes them", async () => {
+    process.env.NODE_ENV = "production";
+    const { initAnalytics, track } = await freshModule();
+    initAnalytics();
+
+    // count.js not ready yet -> the event must be buffered, not dropped.
+    track("render/stable");
+    const count = vi.fn();
+    simulateCountJsLoaded(count);
+
+    expect(count).toHaveBeenCalledWith({
+      path: "render/stable",
+      title: "render/stable",
+      event: true,
+      no_session: true,
+    });
+  });
+
+  it("sends straight through once count.js is ready", async () => {
+    process.env.NODE_ENV = "production";
+    const { initAnalytics, track, trackPageview } = await freshModule();
+    initAnalytics();
+    const count = vi.fn();
+    simulateCountJsLoaded(count);
+
+    track("midi-playback");
+    trackPageview("/", "Hacklily");
+
+    expect(count).toHaveBeenNthCalledWith(1, {
+      path: "midi-playback",
+      title: "midi-playback",
+      event: true,
+      no_session: true,
+    });
+    // Pageviews stay session-based (no no_session), so per-session visits are
+    // counted rather than every navigation.
+    expect(count).toHaveBeenNthCalledWith(2, {
+      path: "/",
+      title: "Hacklily",
+    });
+  });
+
+  it("strips a leading slash from event names (GoatCounter rejects it)", async () => {
+    process.env.NODE_ENV = "production";
+    const { initAnalytics, track } = await freshModule();
+    initAnalytics();
+    const count = vi.fn();
+    simulateCountJsLoaded(count);
+
+    track("/github/save");
+
+    expect(count).toHaveBeenCalledWith({
+      path: "github/save",
+      title: "/github/save",
+      event: true,
+      no_session: true,
+    });
+  });
+
+  it("strips the query string and same-origin referrer from every hit", async () => {
+    process.env.NODE_ENV = "production";
+    const { initAnalytics } = await freshModule();
+    initAnalytics();
+
+    // Simulate count.js installing its get_data, which unconditionally puts
+    // location.search in `q` and a referrer in `r`; echo the referrer we pass
+    // so we can exercise same-origin vs external.
+    window.goatcounter.get_data = (vars) => ({
+      p: "/",
+      q: "?edit=user/repo/song.ly",
+      r: vars?.referrer,
+      s: 1920,
+    });
+    window.goatcounter.count = vi.fn();
+    document.head
+      .querySelector("script[data-goatcounter]")
+      .dispatchEvent(new Event("load"));
+    // eslint-disable-next-line @typescript-eslint/unbound-method
+    const getData = window.goatcounter.get_data;
+
+    // The wrapper drops `q` (real, PII-bearing URL) and a same-origin referrer
+    // (which after a full reload is that same URL) but keeps everything else.
+    const sameOrigin = getData({
+      referrer: `${location.origin}/?edit=user/repo/song.ly`,
+    });
+    expect(sameOrigin).not.toHaveProperty("q");
+    expect(sameOrigin).not.toHaveProperty("r");
+    expect(sameOrigin).toHaveProperty("s", 1920);
+
+    // A genuine external referrer is analytics-relevant and not ours to
+    // scrub, so it survives.
+    const external = getData({ referrer: "https://example.com/" });
+    expect(external).toHaveProperty("r", "https://example.com/");
+  });
+
+  it("does nothing outside production builds", async () => {
+    process.env.NODE_ENV = "test";
+    const { initAnalytics, track } = await freshModule();
+    initAnalytics();
+    track("render/stable");
+
+    // No script injected and no global created -- fully inert.
+    expect(document.head.querySelector("script[data-goatcounter]")).toBeNull();
+    expect((window as { goatcounter?: unknown }).goatcounter).toBeUndefined();
+  });
+});

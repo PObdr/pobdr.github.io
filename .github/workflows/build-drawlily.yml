@@ -1,0 +1,64 @@
+name: Build drawlily
+
+on:
+  push:
+    branches:
+      - main
+      - drawlily-import
+    paths:
+      - .github/workflows/build-drawlily.yml
+      - drawlily-src/**
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Move sources to drawlily-src/ (one-time)
+        run: |
+          if [ -f drawlily/package.json ] && [ ! -d drawlily-src ]; then
+            git mv drawlily drawlily-src
+          fi
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: drawlily-src/package-lock.json
+
+      - name: Install dependencies
+        working-directory: drawlily-src
+        run: npm ci
+
+      - name: Build
+        working-directory: drawlily-src
+        env:
+          REACT_APP_BACKEND_WS_URL: wss://render.hacklily.org/rpc
+        run: npx vite build
+
+      - name: Add SPA fallback pages
+        working-directory: drawlily-src
+        run: |
+          cp dist/index.html dist/404.html
+          cp dist/index.html dist/wasm/index.html
+
+      - name: Replace drawlily/ with the build output
+        run: |
+          rm -rf drawlily
+          mkdir drawlily
+          cp -r drawlily-src/dist/. drawlily/
+
+      - name: Commit and push
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A drawlily drawlily-src
+          git diff --cached --quiet || git commit -m "Build drawlily from drawlily-src"
+          git push

@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-BX1tsrJU.js";import{a as t}from"./lazyRouteComponent-oJpe56HJ.js";import{t as n}from"./tests._id-C0rIPKTO.js";import{t as r}from"./tests-CGBYCh7e.js";var i=e();function a(){let{id:e}=t({from:n.id});return(0,i.jsx)(r,{testId:e})}export{a as component};

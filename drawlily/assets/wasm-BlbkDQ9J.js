@@ -1,0 +1,1 @@
+import{t as e}from"./jsx-runtime-BX1tsrJU.js";import{n as t}from"./hacklilyRoute-CKt2UHaJ.js";import{t as n}from"./App-Dr151AxJ.js";import{t as r}from"./wasm-LGvn0T91.js";var i=e();function a(){let e=r.useSearch();return(0,i.jsx)(n,{...e,...t(e),variant:`wasm`})}export{a as component};

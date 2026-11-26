@@ -1,0 +1,187 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2015-present Jocelyn Stericker <jocelyn@nettek.ca>
+
+/* eslint-disable @typescript-eslint/prefer-for-of */
+
+import { times, map } from "lodash";
+import * as React from "react";
+import type { FC } from "react";
+
+import type { Key, Clef, Accidental } from "#/musicxml-interfaces";
+import { MxmlAccidental } from "#/musicxml-interfaces";
+
+import AccidentalView from "./implAttributes_accidentalView";
+import { keyWidths } from "./implAttributes_attributesData";
+import { lineForClef_ } from "./private_chordUtil";
+
+// TODO: this almost looks like logic -- move.
+const sharps: { [key: string]: Array<number> } = {
+  // "FCGDAEB"
+  alto: [4.5, 3, 5, 3.5, 2, 4, 2.5],
+  bass: [4, 2.5, 4.5, 3, 1.5, 3.5, 2],
+  tenor: [2, 4, 2.5, 4.5, 3, 5, 3.5],
+  treble: [5, 3.5, 5.5, 4, 2.5, 4.5, 3],
+};
+
+const flats: { [key: string]: Array<number> } = {
+  // "BEADGCF"
+  alto: [2.5, 4, 2, 3.5, 1.5, 3, 1],
+  bass: [2, 3.5, 1.5, 3, 1, 2.5, 0.5],
+  tenor: [3.5, 5, 3, 4.5, 2.5, 4, 2],
+  treble: [3, 4.5, 2.5, 4, 2, 3.5, 1.5],
+};
+
+/**
+ * Renders a key signature.
+ */
+const KeyView: FC<{ spec: Key; clef: Clef }> = (props) => {
+  const { spec, clef } = props;
+
+  /**
+   * Returns an array representing the position and glyphName of each accidental.
+   */
+  function getAccidentals(): Accidental[] {
+    const widths = keyWidths(spec);
+    const positions: number[] = [];
+    let x = 0;
+
+    if (spec.fifths) {
+      const accCount = Math.min(7, Math.abs(spec.fifths));
+      const idxes = times(
+        accCount,
+        (i) => (i + Math.max(0, Math.abs(spec.fifths) - 7)) % 7,
+      );
+      for (let i = 0; i < idxes.length; ++i) {
+        positions.push(x);
+        x += widths[idxes[i]];
+      }
+      return map(idxes, (i) =>
+        makeAccidentalFromSharps(idxes, i, spec.fifths >= 0),
+      );
+    }
+
+    for (let i = 0; i < widths.length; ++i) {
+      positions.push(x);
+      x += widths[i];
+    }
+
+    if (spec.keySteps) {
+      return map(spec.keySteps, (keyStep, idx) => {
+        const keyAlters = spec.keyAlters[idx];
+        const hasOctave = spec.keyOctaves && spec.keyOctaves[idx];
+        let octave = hasOctave ? spec.keyOctaves[idx].octave : null;
+        if (octave === null) {
+          while (lineForClef_(keyStep, octave, clef) < 2) {
+            ++octave;
+          }
+        }
+        const line = lineForClef_(keyStep, octave, clef);
+        let accidental: MxmlAccidental = null;
+        switch (keyAlters) {
+          case "-2":
+            accidental = MxmlAccidental.DoubleFlat;
+            break;
+          case "-1.5":
+            accidental = MxmlAccidental.ThreeQuartersFlat;
+            break;
+          case "-1":
+            accidental = MxmlAccidental.Flat;
+            break;
+          case "-0.5":
+            accidental = MxmlAccidental.QuarterFlat;
+            break;
+          case "0":
+            accidental = MxmlAccidental.Natural;
+            break;
+          case "0.5":
+            accidental = MxmlAccidental.QuarterSharp;
+            break;
+          case "1":
+            accidental = MxmlAccidental.Sharp;
+            break;
+          case "1.5":
+            accidental = MxmlAccidental.ThreeQuartersSharp;
+            break;
+          case "2":
+            accidental = MxmlAccidental.DoubleSharp;
+            break;
+          default:
+            console.warn("Unknown accidental ", keyAlters);
+            accidental = MxmlAccidental.Natural;
+        }
+
+        return {
+          accidental: accidental,
+          color: spec.color,
+          defaultX: spec.defaultX + positions[idx],
+          defaultY: spec.defaultY + (line - 3) * 10,
+          relativeX: spec.relativeX,
+          relativeY: spec.relativeY || 0,
+        };
+      });
+    }
+
+    return [];
+
+    function makeAccidentalFromSharps(
+      idxes: number[],
+      i: number,
+      sharp: boolean,
+    ): Accidental {
+      let accidental: MxmlAccidental;
+      switch (true) {
+        case sharp && 7 + idxes[i] < spec.fifths:
+          accidental = MxmlAccidental.DoubleSharp;
+          break;
+        case sharp && 7 + idxes[i] >= spec.fifths:
+          accidental = MxmlAccidental.Sharp;
+          break;
+        case !sharp && 7 + idxes[i] < -spec.fifths:
+          accidental = MxmlAccidental.DoubleFlat;
+          break;
+        case !sharp && 7 + idxes[i] >= -spec.fifths:
+          accidental = MxmlAccidental.Flat;
+          break;
+        default:
+          throw new Error("Impossible!");
+      }
+
+      const line = (sharp ? sharps : flats)[standardClef(clef)][idxes[i]];
+
+      return {
+        accidental: accidental,
+        color: spec.color,
+        defaultX: spec.defaultX + positions[i],
+        defaultY: spec.defaultY + (line - 3) * 10,
+        relativeX: spec.relativeX,
+        relativeY: spec.relativeY || 0,
+      };
+    }
+  }
+
+  return (
+    <g>
+      {map(getAccidentals(), (accidental, idx) => (
+        <AccidentalView key={idx} spec={accidental} />
+      ))}
+    </g>
+  );
+};
+
+function standardClef(clef: Clef) {
+  switch (true) {
+    case clef.sign === "G":
+      return "treble";
+    case clef.sign === "F":
+      return "bass";
+    case clef.sign === "C" && clef.line === 3:
+      return "alto";
+    case clef.sign === "C" && clef.line === 4:
+      return "tenor";
+    default:
+      console.warn("Invalid clef?");
+      return "treble";
+  }
+}
+
+export default KeyView;
