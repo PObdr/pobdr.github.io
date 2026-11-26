@@ -1,0 +1,235 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2015-present Jocelyn Stericker <jocelyn@nettek.ca>
+
+/**
+ * @file part of Satie test suite
+ */
+
+import { parseScore, LeftCenterRight } from "#/musicxml-interfaces";
+
+import ScoreHeader from "../engine_scoreHeader";
+
+const headerTest = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.0 Partwise//EN"
+    "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="3.0">
+  <movement-title>Song Title</movement-title>
+  <identification>
+    <creator type="composer">Song Composer</creator>
+    <creator type="lyricist">Song Lyricist</creator>
+    <creator type="arranger">Song Arranger</creator>
+    <rights>Song Copyright</rights>
+    <encoding>
+      <software>Song Software 1</software>
+      <software>Song Software 2</software>
+      <encoding-date>2015-03-10</encoding-date>
+      <supports attribute="new-page" element="print" type="yes" value="yes"/>
+      <supports element="accidental" type="yes"/>
+    </encoding>
+  </identification>
+  <credit page="1">
+    <credit-type>title</credit-type>
+    <credit-words default-x="597" default-y="1440" font-size="24" justify="center" valign="top">
+        Song Title
+    </credit-words>
+  </credit>
+  <credit page="1">
+    <credit-type>composer</credit-type>
+    <credit-words default-x="1124" default-y="1362" font-size="12" justify="right" valign="top">
+        Song Composer
+    </credit-words>
+  </credit>
+  <credit page="1">
+    <credit-type>rights</credit-type>
+    <credit-words default-x="597" default-y="70" font-size="10" justify="center" valign="bottom">
+        Song Copyright
+    </credit-words>
+  </credit>
+  <credit page="1">
+    <credit-words default-x="70" default-y="1453" font-size="12" valign="top">Score</credit-words>
+  </credit>
+  <credit page="2">
+    <credit-type>rights</credit-type>
+    <credit-words default-x="597" default-y="70" font-size="10" justify="center" valign="bottom">
+        Song Copyright
+    </credit-words>
+  </credit>
+  <part-list>
+    <score-part id="P1">
+      <part-name print-object="no">MusicXML Part</part-name>
+      <score-instrument id="P1-I1">
+        <instrument-name>SmartMusic SoftSynth 1</instrument-name>
+      </score-instrument>
+      <midi-instrument id="P1-I1">
+        <midi-channel>1</midi-channel>
+        <midi-bank>15489</midi-bank>
+        <midi-program>1</midi-program>
+        <volume>80</volume>
+        <pan>0</pan>
+      </midi-instrument>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1" width="983">
+      <print>
+        <system-layout>
+          <system-margins>
+            <left-margin>70</left-margin>
+            <right-margin>0</right-margin>
+          </system-margins>
+          <top-system-distance>211</top-system-distance>
+        </system-layout>
+        <measure-numbering>system</measure-numbering>
+      </print>
+      <attributes>
+        <divisions>2</divisions>
+        <key>
+          <fifths>0</fifths>
+          <mode>major</mode>
+        </key>
+        <time>
+          <beats>4</beats>
+          <beat-type>4</beat-type>
+        </time>
+        <clef>
+          <sign>G</sign>
+          <line>2</line>
+        </clef>
+      </attributes>
+      <sound tempo="120"/>
+      <note>
+        <rest measure="yes"/>
+        <duration>8</duration>
+        <voice>1</voice>
+      </note>
+      <barline location="right">
+        <bar-style>light-heavy</bar-style>
+      </barline>
+    </measure>
+  </part>
+</score-partwise>
+`;
+
+const minimalTest = `<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE score-partwise PUBLIC "-//Recordare//DTD MusicXML 3.0 Partwise//EN"
+    "http://www.musicxml.org/dtds/partwise.dtd">
+<score-partwise version="3.0">
+  <part-list>
+    <score-part id="P1">
+      <part-name print-object="no">MusicXML Part</part-name>
+    </score-part>
+  </part-list>
+  <part id="P1">
+    <measure number="1">
+    </measure>
+  </part>
+</score-partwise>
+`;
+
+describe("[engine/scoreHeader.ts]", function () {
+  // NOTE: Some of the tests in mxmljson_test indirectly test ScoreHeader!
+  it("can correctly modify metadata", function () {
+    const mxmljson = parseScore(headerTest);
+    const scoreHeader = new ScoreHeader(mxmljson);
+    expect(scoreHeader.credits.length).toEqual(5);
+    expect(scoreHeader.identification.creators.length).toEqual(3);
+
+    // Changing the composer should change the credit words and identification
+    scoreHeader.composer = "New Composer";
+    expect(scoreHeader.credits.length).toEqual(5);
+    expect(scoreHeader.identification.creators.length).toEqual(3);
+    expect(scoreHeader.composer).toEqual("New Composer"); // Since get is not directly tied to set
+    expect(scoreHeader.identification.creators[0].creator).toEqual(
+      "New Composer",
+    );
+    expect(scoreHeader.identification.creators[1].creator).not.toEqual(
+      "New Composer",
+    );
+    expect(scoreHeader.identification.creators[2].creator).not.toEqual(
+      "New Composer",
+    );
+    expect(scoreHeader.credits[1].creditWords[0].words).toEqual("New Composer");
+
+    // Changing the title should change credit words and movementTitle
+    scoreHeader.title = "New Title";
+    expect(scoreHeader.credits.length).toEqual(5);
+    expect(scoreHeader.identification.creators.length).toEqual(3);
+    expect(scoreHeader.title).toEqual("New Title"); // Since get is not directly tied to set
+    expect(scoreHeader.movementTitle).toEqual("New Title");
+    expect(scoreHeader.credits[0].creditWords[0].words).toEqual("New Title");
+  });
+  it("can correctly add metadata", function () {
+    const mxmljson = parseScore(minimalTest);
+    const scoreHeader = new ScoreHeader(mxmljson);
+    expect(scoreHeader.credits.length).toEqual(0);
+    expect(scoreHeader.identification.creators.length).toEqual(0);
+
+    scoreHeader.title = "Orig Title";
+    scoreHeader.composer = "Orig Composer";
+    scoreHeader.arranger = "Orig Arranger";
+    scoreHeader.lyricist = "Orig Lyricist";
+
+    expect(scoreHeader.credits).toEqual([
+      {
+        creditImage: null,
+        creditTypes: ["title"],
+        creditWords: [
+          {
+            words: "Orig Title",
+
+            defaultX: 664.3076923076923,
+            defaultY: 1657.8461538461538,
+            fontSize: "18px",
+            justify: LeftCenterRight.Center,
+          },
+        ],
+        page: 1,
+      },
+      {
+        creditImage: null,
+        creditTypes: ["composer"],
+        creditWords: [
+          {
+            words: "Orig Composer",
+
+            defaultX: 1234.7692307692307,
+            defaultY: 1596.3076923076922,
+            fontSize: "12px",
+            justify: LeftCenterRight.Right,
+          },
+        ],
+        page: 1,
+      },
+      {
+        creditImage: null,
+        creditTypes: ["arranger"],
+        creditWords: [
+          {
+            words: "Orig Arranger",
+
+            defaultX: 1234.7692307692307,
+            defaultY: 1503.9999999999998,
+            fontSize: "12px",
+            justify: LeftCenterRight.Right,
+          },
+        ],
+        page: 1,
+      },
+      {
+        creditImage: null,
+        creditTypes: ["lyricist"],
+        creditWords: [
+          {
+            words: "Orig Lyricist",
+
+            defaultX: 1234.7692307692307,
+            defaultY: 1411.6923076923076,
+            fontSize: "12px",
+            justify: LeftCenterRight.Right,
+          },
+        ],
+        page: 1,
+      },
+    ]);
+  });
+});

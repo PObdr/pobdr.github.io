@@ -1,0 +1,151 @@
+/*
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ * Copyright (C) 2017-present Jocelyn Stericker <jocelyn@nettek.ca>
+ */
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  background-color: #1e1e1e;
+}
+
+body.modeView {
+  overflow-x: auto;
+  overflow-y: hidden;
+  background-color: #1e1e1e;
+}
+
+body.modeView #root {
+  height: 100%;
+  white-space: nowrap;
+}
+
+svg {
+  background-color: white;
+}
+
+body.modeView svg + svg {
+  margin-left: 2px;
+}
+
+body.modeView svg {
+  max-height: 100%;
+  max-width: 100vmin;
+  white-space: normal;
+}
+
+body.modeBoth svg {
+  width: 100%;
+}
+
+body.modeBoth svg + svg {
+  margin-top: 6px;
+}
+
+/* The Cairo backend emits point-and-click targets as transparent
+   <a><rect> overlays that appear *before* (i.e. painted behind) the note
+   glyphs. Make the glyph/line layer click-through so a click on a note
+   falls to its overlay rect (which sets pointer-events="all"); otherwise
+   the note ink, painted on top, would swallow the click and no textedit
+   link would fire. The overlay rects are <rect>, so this rule leaves
+   them clickable. */
+svg use,
+svg path {
+  pointer-events: none;
+}
+
+@font-face {
+  font-family: "emmentaler-11";
+  src: url("/emmentaler-11.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "emmentaler-13";
+  src: url("/emmentaler-13.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "emmentaler-14";
+  src: url("/emmentaler-14.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "emmentaler-16";
+  src: url("/emmentaler-16.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "emmentaler-18";
+  src: url("/emmentaler-18.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "emmentaler-20";
+  src: url("/emmentaler-20.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "emmentaler-23";
+  src: url("/emmentaler-23.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "emmentaler-26";
+  src: url("/emmentaler-26.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "emmentaler-brace";
+  src: url("/emmentaler-brace.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Century Schoolbook L";
+  src: url("/CenturySchL-Roma.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Century Schoolbook L";
+  font-weight: bold;
+  src: url("/CenturySchL-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Century Schoolbook L";
+  font-style: italic;
+  src: url("/CenturySchL-Ital.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Century Schoolbook L";
+  font-weight: bold;
+  font-style: italic;
+  src: url("/CenturySchL-BoldItal.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "LilyPond Serif";
+  src: url("/CenturySchL-Roma.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "LilyPond Serif";
+  font-weight: bold;
+  src: url("/CenturySchL-Bold.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "LilyPond Serif";
+  font-style: italic;
+  src: url("/CenturySchL-Ital.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "LilyPond Serif";
+  font-weight: bold;
+  font-style: italic;
+  src: url("/CenturySchL-BoldItal.otf") format("opentype");
+}

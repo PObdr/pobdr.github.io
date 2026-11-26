@@ -1,0 +1,93 @@
+// SPDX-License-Identifier: AGPL-3.0-or-later
+// Copyright (C) 2015-present Jocelyn Stericker <jocelyn@nettek.ca>
+
+import type { IModel, ILayout } from "./document";
+import { Type } from "./document";
+import type { IBoundingRect } from "./private_boundingRect";
+import type { IReadOnlyValidationCursor, LayoutCursor } from "./private_cursor";
+
+class SpacerModel implements ISpacerModel {
+  _class = "Spacer";
+
+  /*---- I.1 IModel ---------------------------------------------------------------------------*/
+
+  divCount: number;
+
+  divisions = 0;
+
+  staffIdx = 0;
+
+  /*---- Implementation -----------------------------------------------------------------------*/
+
+  constructor(target: IModel) {
+    if (target) {
+      this.divCount = target.divCount;
+    }
+  }
+
+  toJSON() {
+    const { _class, divCount } = this;
+    return {
+      _class,
+      divCount,
+    };
+  }
+
+  refresh(_cursor: IReadOnlyValidationCursor): void {
+    // Nothing to do
+  }
+
+  getLayout(cursor: LayoutCursor): ISpacerLayout {
+    return new SpacerModel.Layout(this, cursor);
+  }
+
+  toXML(): string {
+    return `<!-- spacer -->\n<forward><duration>${this.divCount}</duration></forward>\n`;
+  }
+
+  inspect() {
+    return this.toXML();
+  }
+
+  calcWidth(_shortest: number) {
+    return 0;
+  }
+
+  static Layout = class Layout implements ISpacerLayout {
+    constructor(model: SpacerModel, cursor: LayoutCursor) {
+      this.model = model;
+      this.x = cursor.segmentX;
+      this.division = cursor.segmentDivision;
+      this.renderedWidth = 0;
+    }
+
+    /*---- ILayout ------------------------------------------------------*/
+
+    // Constructed:
+
+    model: SpacerModel;
+    x: number;
+    division: number;
+    renderedWidth: number;
+
+    // Prototype:
+
+    boundingBoxes: IBoundingRect[] = [];
+    renderClass: Type = Type.Spacer;
+    expandPolicy = "none" as const;
+  };
+}
+
+/**
+ * Registers Spacer in the factory structure passed in.
+ */
+export default function Export(constructors: { [key: number]: any }) {
+  constructors[Type.Spacer] = SpacerModel;
+}
+
+export interface ISpacerModel extends IModel {}
+
+export interface ISpacerLayout extends ILayout {
+  model: ISpacerModel;
+  renderedWidth: number;
+}
