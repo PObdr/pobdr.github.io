@@ -7,14 +7,7 @@ import React from "react";
 
 import type Makelily from "#/components/Makelily";
 import { initAnalytics, track, trackPageview } from "#/lib/analytics";
-import type { Auth } from "#/lib/auth";
-import { checkLogin, revokeGitHubAuth } from "#/lib/auth";
-import {
-  cat,
-  FileNotFound,
-  getDefaultBranch,
-  getOrCreateRepo,
-} from "#/lib/gitfs";
+import { parseGitHubSongRef, rawGitHubUrl } from "#/lib/githubSongRef";
 import { renderVersionFor } from "#/lib/lilypondVersion";
 import type { Song } from "#/lib/localStorage";
 import RPCClient from "#/lib/RPCClient";
@@ -28,22 +21,14 @@ import type { ViewMode } from "./Header";
 import Header, { MIN_BOTH_WIDTH, MODE_BOTH, MODE_VIEW } from "./Header";
 import Modal404 from "./Modal404";
 import ModalAbout from "./ModalAbout";
-import ModalConflict from "./ModalConflict";
 import ModalLocked, {
   lock,
   setEditingNotificationHandler,
 } from "./ModalLocked";
-import ModalLogin from "./ModalLogin";
 import ModalOpen from "./ModalOpen";
-import ModalPublish, { doPublish, doUnpublish } from "./ModalPublish";
-import ModalSaving from "./ModalSaving";
 import ModalUnsavedChangesInterstitial from "./ModalUnsavedChangesInterstitial";
 import Preview from "./Preview";
 import { APP_STYLE } from "./styles";
-
-function last<T>(t: T[]): T {
-  return t[t.length - 1];
-}
 
 const INITIAL_WS_COOLOFF = 2;
 const BACKEND_WS_URL: string | undefined = process.env.REACT_APP_BACKEND_WS_URL;
@@ -71,16 +56,6 @@ export interface QueryProps {
   about?: string;
 
   /**
-   * When logging in from GitHub, code is the temporary code that will be exchanged via
-   * the backend for an access token.
-   *
-   * See also 'state'.
-   *
-   * See https://developer.github.com/v3/oauth/
-   */
-  code?: string;
-
-  /**
    * The song being edited, with the following format:
    *
    *   `${org}/${repo}/${song}.ly`
@@ -90,52 +65,24 @@ export interface QueryProps {
   edit?: string;
 
   /**
-   * If truthy, and we are authenticated, show a dialog to save a
-   * copy of this song.
-   */
-  saveAs?: string;
-
-  /**
    * When set, open a read-only sandbox with this code.
    * Takes precedence over "edit".
    */
   src?: string;
-
-  /**
-   * When logging in from GitHub, this is the CSRF, generated in ConnectToGitHub.
-   *
-   * See also 'code'.
-   *
-   * See https://developer.github.com/v3/oauth/.
-   */
-  state?: string;
 }
 
 export const QUERY_PROP_KEYS: Array<keyof QueryProps> = [
   "404",
   "about",
-  "code",
   "edit",
-  "saveAs",
   "src",
-  "state",
 ];
 
 interface Props extends QueryProps {
   /**
-   * From localStorage, information about the current GitHub user.
-   */
-  auth: Auth | null;
-
-  /**
    * Based on media query.
    */
   colourScheme: "dark" | "light";
-
-  /**
-   * From localStorage, used as part of the GitHub OAuth flow.
-   */
-  csrf: string;
 
   /**
    * From localStorage, all songs that have changes not pushed to GitHub.
@@ -159,16 +106,6 @@ interface Props extends QueryProps {
   markSongClean(song: string): void;
 
   /**
-   * Logs in or out of GitHub. Updates localStorage.
-   */
-  setAuth(auth: Auth | null): void;
-
-  /**
-   * Sets the CSRF ("state") as part of the GitHub OAuth flow.
-   */
-  setCSRF(csrf: string): void;
-
-  /**
    * Sets whether the warning that is shown when LilyPond 2.23 is used should be shown.
    */
   setHideUnstableNotification(hideUnstableNotification: boolean): void;
@@ -184,7 +121,7 @@ interface Props extends QueryProps {
   /**
    * Which renderer backs the SVG preview. "server" uses the JSON-RPC WebSocket
    * (the historical path); "wasm" engraves locally in a lilypond-wasm Web
-   * Worker, with the WebSocket still used for auth/publish/PDF.
+   * Worker, with the WebSocket still used for PDF.
    */
   variant: "server" | "wasm";
 }
@@ -198,7 +135,6 @@ interface State {
    * True if we started editing this song in another tab.
    */
   locked: boolean;
-  login: boolean;
   logs: string | null;
   makelilyClef: string;
   makelilyKey: string;
@@ -208,12 +144,10 @@ interface State {
   midi: ArrayBuffer | null;
   mode: ViewMode;
   pendingPreviews: number;
-  publish: boolean;
   reconnectCooloff: number;
   reconnectTimeout: number;
   rendererVersion: "stable" | "unstable";
   open: boolean;
-  saving: boolean;
   showMakelily: typeof Makelily | null;
   windowWidth: number;
   wsError: boolean;
@@ -268,7 +202,6 @@ export default class App extends React.PureComponent<Props, State> {
     defaultSelection: null,
     interstitialChanges: null,
     locked: false,
-    login: false,
     logs: "",
     makelilyClef: "treble",
     makelilyKey: "c \\major",
@@ -278,12 +211,10 @@ export default class App extends React.PureComponent<Props, State> {
     midi: null,
     mode: window.innerWidth >= MIN_BOTH_WIDTH ? MODE_BOTH : MODE_VIEW,
     pendingPreviews: 0,
-    publish: false,
     reconnectCooloff: INITIAL_WS_COOLOFF,
     reconnectTimeout: NaN,
     rendererVersion: "stable",
     open: false,
-    saving: false,
     showMakelily: null,
     windowWidth: window.innerWidth,
     wsError: false,
@@ -326,20 +257,6 @@ export default class App extends React.PureComponent<Props, State> {
       void this.fetchSong();
       lock(this.props.edit || "null");
     }
-    if (
-      !this.props.auth &&
-      !this.state.login &&
-      !this.props.state &&
-      this.props.saveAs
-    ) {
-      // We're not in a situation where we can save as, so remove that query.
-      this.props.setQuery(
-        {
-          saveAs: undefined,
-        },
-        true,
-      );
-    }
   }
 
   componentWillUnmount(): void {
@@ -373,7 +290,7 @@ export default class App extends React.PureComponent<Props, State> {
     const { logs, mode, midi, defaultSelection, rendererVersion, windowWidth } =
       this.state;
 
-    const { auth, edit, hideUnstableNotification } = this.props;
+    const { edit, hideUnstableNotification } = this.props;
 
     const online: boolean = this.isOnline();
     const preview: React.ReactNode = this.renderPreview();
@@ -392,32 +309,19 @@ export default class App extends React.PureComponent<Props, State> {
 
     const header: React.ReactNode = (
       <Header
-        onDeleteSong={this.handleDeleteSong}
-        onLoadSong={this.handleLoadSong}
         onShowAbout={this.handleShowHelp}
-        onSignIn={this.handleSignIn}
-        onSignOut={this.handleSignOut}
-        auth={auth}
         mode={mode}
         midi={midi}
-        online={online}
-        loggedIn={auth !== null}
         onModeChanged={this.handleModeChanged}
-        onShowClone={this.handleShowSaveAs}
         onShowMakelily={this.handleShowMakelily}
         onShowNew={this.handleShowNew}
         onShowOpen={this.handleShowOpen}
-        onShowPublish={this.handleShowPublish}
         sandboxIsDirty={sandboxIsDirty}
         song={this.props.src ? "untitled-import" : edit}
-        inSandbox={!this.props.edit && !this.props.src}
         isDirty={this.isDirty()}
-        readOnly={
-          Boolean(this.props.src) ||
-          (song ? song.baseSHA === PUBLIC_READONLY : false)
-        }
         windowWidth={windowWidth}
-        canExport={Boolean(
+        canExport={Boolean(logs && this.state.pendingPreviews === 0)}
+        canExportPdf={Boolean(
           online && this.rpc && logs && this.state.pendingPreviews === 0,
         )}
         onExportLy={this.handleExportLy}
@@ -510,84 +414,69 @@ export default class App extends React.PureComponent<Props, State> {
   }
 
   private async fetchSong(): Promise<void> {
-    const { auth, edit } = this.props;
+    const { edit } = this.props;
     if (edit === "null" || !edit) {
       return;
     }
-
-    const path: string[] = edit.split("/");
-    const requestedRepo = `${path[0]}/${path[1]}`;
-    const requestedFile: string = path.slice(2).join("/");
 
     this.setState({
       branch: null,
     });
 
-    // TODO(jocelyn): For logged in users, allow them to edit files in any
-    // repo they control.
-
-    if (!auth || auth.repo !== requestedRepo) {
-      const branch = await getDefaultBranch(null, requestedRepo);
-      const req: Response = await fetch(
-        `https://raw.githubusercontent.com/${requestedRepo}/${branch}/${requestedFile}`,
-      );
-
-      if (req.status >= 400) {
-        track("song-not-found");
-        alert("Could not fetch the requested song.");
-
-        return;
-      }
-      const content: string = await req.text();
-      const cleanSongs: { [key: string]: Song } = JSON.parse(
-        JSON.stringify(this.state.cleanSongs),
-      );
-      if (cleanSongs[edit]) {
-        // We have a better version.
-        return;
-      }
-      cleanSongs[edit] = {
-        baseSHA: PUBLIC_READONLY,
-        src: content,
-      };
-
-      this.setState({
-        cleanSongs,
-        branch,
+    const parsed = parseGitHubSongRef(edit);
+    if (!parsed.ok) {
+      track("song-not-found");
+      this.props.setQuery({
+        edit: undefined,
+        src: undefined,
+        404: "1",
       });
 
       return;
     }
 
+    let req: Response;
     try {
-      const branch = await getDefaultBranch(auth.accessToken, requestedRepo);
-      const { content, sha } = await cat(
-        auth.accessToken,
-        auth.repo,
-        requestedFile,
-      );
-      const cleanSongs: { [key: string]: Song } = JSON.parse(
-        JSON.stringify(this.state.cleanSongs),
-      );
-      cleanSongs[edit] = {
-        baseSHA: sha,
-        src: content,
-      };
+      req = await fetch(rawGitHubUrl(parsed.ref));
+    } catch (_err) {
+      alert("Could not fetch the requested song.");
 
-      this.setState({
-        cleanSongs,
-        branch,
-      });
-    } catch (err) {
-      if (err instanceof FileNotFound) {
-        track("song-not-found");
-        this.props.setQuery({
-          edit: undefined,
-          src: undefined,
-          404: "1",
-        });
-      }
+      return;
     }
+
+    if (req.status === 404) {
+      track("song-not-found");
+      this.props.setQuery({
+        edit: undefined,
+        src: undefined,
+        404: "1",
+      });
+
+      return;
+    }
+    if (req.status >= 400) {
+      alert("Could not fetch the requested song.");
+
+      return;
+    }
+
+    const content: string = await req.text();
+    const cleanSongs: { [key: string]: Song } = JSON.parse(
+      JSON.stringify(this.state.cleanSongs),
+    );
+    if (cleanSongs[edit]) {
+      // We have a better version.
+      return;
+    }
+    cleanSongs[edit] = {
+      baseSHA: PUBLIC_READONLY,
+      src: content,
+    };
+
+    this.setState({
+      cleanSongs,
+      branch: parsed.ref.branch || "HEAD",
+    });
   }
 
   private getSongName = (): string => {
@@ -598,11 +487,6 @@ export default class App extends React.PureComponent<Props, State> {
   };
 
   private handleBeforeUnload = (ev: BeforeUnloadEvent): void => {
-    // Don't bug users when going to GitHub OAuth
-    if (this.state.login) {
-      return;
-    }
-
     // Don't bug users when they have no choice
     if (this.state.locked) {
       return;
@@ -631,41 +515,6 @@ export default class App extends React.PureComponent<Props, State> {
       this.props.editSong(this.props.edit || "null", {
         baseSHA,
         src: newValue,
-      });
-    }
-  };
-
-  private handleDeleteSong = async (songID: string): Promise<void> => {
-    try {
-      this.setState({
-        saving: true,
-      });
-      const { auth } = this.props;
-      if (!auth || !this.rpc) {
-        throw new Error("Invariant violation: contract broken");
-      }
-      const path: string = last(songID.split("/"));
-
-      const ok: boolean = await doUnpublish(auth, path, this.rpc);
-
-      if (ok) {
-        track("github/delete");
-        const cleanSongs: { [key: string]: Song } = JSON.parse(
-          JSON.stringify(this.state.cleanSongs),
-        );
-        delete cleanSongs[songID];
-        this.setState({
-          cleanSongs,
-        });
-        this.props.markSongClean(songID);
-        this.props.setQuery({
-          edit: undefined,
-          src: undefined,
-        });
-      }
-    } finally {
-      this.setState({
-        saving: false,
       });
     }
   };
@@ -762,32 +611,11 @@ export default class App extends React.PureComponent<Props, State> {
     });
   };
 
-  private handleHideLogin = (): void => {
-    this.setState({
-      login: false,
-    });
-  };
-
   private handleHideMakelily = (): void => {
     this.setState({
       makelilyInsertCB: undefined,
       showMakelily: null,
     });
-  };
-
-  private handleHidePublish = (): void => {
-    if (this.props.saveAs) {
-      this.props.setQuery({
-        saveAs: undefined,
-      });
-    } else {
-      this.setState({
-        publish: false,
-      });
-    }
-    if (this.state.interstitialChanges) {
-      this.cancelInterstitial();
-    }
   };
 
   private handleHideUnstableNotification = (): void => {
@@ -805,16 +633,6 @@ export default class App extends React.PureComponent<Props, State> {
     this.setState({
       makelilyInsertCB: undefined,
       showMakelily: null,
-    });
-  };
-
-  private handleLoadSong = (edit: string): void => {
-    this.setQueryOrShowInterstitial({
-      edit,
-      src: undefined,
-    });
-    this.setState({
-      open: false,
     });
   };
 
@@ -844,50 +662,9 @@ export default class App extends React.PureComponent<Props, State> {
     });
   };
 
-  private handlePublished = (edit: string): void => {
-    this.props.markSongClean("null");
-    if (this.state.interstitialChanges) {
-      this.props.setQuery(this.state.interstitialChanges);
-      this.setState({
-        interstitialChanges: null,
-      });
-    } else {
-      this.props.setQuery({
-        edit,
-        saveAs: undefined,
-        src: undefined,
-      });
-    }
-
-    this.setState({
-      publish: false,
-    });
-
-    if (!this.rpc) {
-      throw new Error("Expected rpc to be defined");
-    }
-
-    void this.rpc.call("notifySaved", {});
-  };
-
-  private handleResolveGitHub = (): void => {
-    if (!this.props.edit) {
-      // The sandbox can't have conflicts.
-      throw new Error("Expected us to be editing a published song");
-    }
-    this.props.markSongClean(this.props.edit);
-  };
-
-  private handleResolveLocalStorage = (): void => {
-    if (!this.props.edit) {
-      // The sandbox can't have conflicts.
-      throw new Error("Expected us to be editing a published song");
-    }
-
-    this.props.editSong(this.props.edit, {
-      baseSHA: this.state.cleanSongs[this.props.edit].baseSHA,
-      src: this.song().src,
-    });
+  private handleSaveAndContinue = (): void => {
+    this.handleExportLy();
+    this.discardChanges();
   };
 
   private handleSelectionChanged = (
@@ -942,113 +719,6 @@ export default class App extends React.PureComponent<Props, State> {
     });
   };
 
-  private handleShowPublish = (): void => {
-    if (!this.props.auth) {
-      this.setState({
-        login: true,
-      });
-    } else if (this.props.edit) {
-      void this.handleUpdateGitHub();
-    } else {
-      this.setState({
-        publish: true,
-      });
-    }
-  };
-
-  private handleShowSaveAs = (): void => {
-    if (!this.props.auth) {
-      this.setState({
-        login: true,
-      });
-      this.props.setQuery(
-        {
-          saveAs: "1",
-        },
-        // HACK: replace because going back in history won't clear the login modal
-        true,
-      );
-    } else {
-      this.props.setQuery({
-        saveAs: "1",
-      });
-    }
-  };
-
-  private handleSignIn = (): void => {
-    this.setState({
-      login: true,
-      publish: false,
-    });
-  };
-
-  private handleSignOut = (): void => {
-    const { auth } = this.props;
-
-    if (!this.rpc) {
-      alert("Cannot sign out because you are not connected to the server.");
-
-      return;
-    }
-
-    this.props.setAuth(null);
-
-    if (!auth) {
-      throw new Error("Cannot sign out because we are not signed in.");
-    }
-    const token: string = auth.accessToken;
-    localStorage.clear();
-    void revokeGitHubAuth(this.rpc, token);
-  };
-
-  private handleUpdateGitHub = async (): Promise<void> => {
-    try {
-      this.setState({
-        saving: true,
-      });
-      const song: Song | undefined = this.song();
-      const { auth, edit } = this.props;
-      if (!auth || !edit || !song || !this.rpc) {
-        throw new Error("Invariant violation: contract broken");
-      }
-      const path: string = last(edit.split("/"));
-
-      try {
-        await doPublish(song.src, auth, path, this.rpc, true);
-        track("github/save");
-        const cleanSongs: { [key: string]: Song } = JSON.parse(
-          JSON.stringify(this.state.cleanSongs),
-        );
-        cleanSongs[edit] = {
-          baseSHA: song.baseSHA,
-          src: song.src,
-        };
-        this.setState({
-          cleanSongs,
-        });
-        this.props.markSongClean(edit);
-      } catch (err) {
-        alert(String(err));
-      }
-
-      if (!this.rpc) {
-        throw new Error("Expected rpc to be defined");
-      }
-
-      await this.rpc.call("notifySaved", {});
-    } finally {
-      this.setState({
-        saving: false,
-      });
-      if (this.state.interstitialChanges) {
-        this.props.setQuery(this.state.interstitialChanges);
-        this.setState({
-          interstitialChanges: null,
-        });
-      }
-    }
-  };
-
   private handleWindowResize = (): void => {
     this.setState({
       windowWidth: window.innerWidth,
@@ -1090,60 +760,11 @@ export default class App extends React.PureComponent<Props, State> {
     if (this.props.variant !== "wasm") {
       this.svgRenderer = new RpcSvgRenderer(this.rpc);
     }
-    if (this.props.code && this.props.state) {
-      try {
-        const auth: Auth = await checkLogin(
-          this.rpc,
-          this.props.code,
-          this.props.state,
-          this.props.csrf,
-        );
-        auth.repoDetails = await getOrCreateRepo(auth);
-        // Note: needs to be in this order, or saveAs will disappear.
-        this.props.setAuth(auth);
-        track("github/connect");
-        this.props.setQuery(
-          {
-            code: undefined,
-            state: undefined,
-          },
-          true,
-        );
-      } catch (err: any) {
-        alert(err.message || "Could not log you in");
-        this.props.setQuery(
-          {
-            code: undefined,
-            state: undefined,
-          },
-          true,
-        );
-      }
-    } else if (this.props.auth) {
-      try {
-        const auth: Auth = { ...this.props.auth };
-        auth.repoDetails = await getOrCreateRepo(auth);
-        this.props.setAuth(auth);
-      } catch (err: any) {
-        alert(err.message || "Could not get GitHub repo details.");
-      }
-    }
     this.setState({
       reconnectCooloff: INITIAL_WS_COOLOFF,
     });
     this.forceUpdate();
   };
-
-  private hasConflict(): boolean {
-    const { dirtySongs, edit } = this.props;
-    const { cleanSongs } = this.state;
-    const songName: string = edit || "null";
-
-    const dirtySong: Song | undefined = dirtySongs[songName];
-    const cleanSong: Song | undefined = cleanSongs[songName];
-
-    return dirtySong && cleanSong && dirtySong.baseSHA !== cleanSong.baseSHA;
-  }
 
   private isDirty(): boolean {
     const { edit, dirtySongs, src } = this.props;
@@ -1160,78 +781,27 @@ export default class App extends React.PureComponent<Props, State> {
   }
 
   private renderModal(): React.ReactNode {
-    const {
-      locked,
-      login,
-      publish,
-      interstitialChanges,
-      saving,
-      showMakelily,
-      open,
-    } = this.state;
+    const { locked, interstitialChanges, showMakelily, open } = this.state;
 
-    const { about, auth, csrf, setCSRF, "404": _404, saveAs } = this.props;
-
-    const song: Song | undefined = this.song();
-    const conflict: boolean = this.hasConflict();
+    const { about, "404": _404 } = this.props;
 
     switch (true) {
       case locked:
         return <ModalLocked />;
       case _404 !== undefined:
         return <Modal404 onHide={this.handleClear404} />;
-      case saving:
-        return <ModalSaving />;
-      case conflict:
-        return (
-          <ModalConflict
-            resolveGitHub={this.handleResolveGitHub}
-            resolveLocalStorage={this.handleResolveLocalStorage}
-          />
-        );
-      case login:
-        return (
-          <ModalLogin
-            key={location.href /* force new csrf on url change */}
-            onHide={this.handleHideLogin}
-            csrf={csrf}
-            setCSRF={setCSRF}
-          />
-        );
       case Boolean(about):
         return <ModalAbout onHide={this.handleHideHelp} />;
-      case publish || Boolean(saveAs):
-        if (song && auth && this.rpc) {
-          return (
-            <ModalPublish
-              onHide={this.handleHidePublish}
-              onPublished={this.handlePublished}
-              auth={auth}
-              code={song.src}
-              rpc={this.rpc}
-            />
-          );
-        }
-
-        return null;
       case interstitialChanges !== null:
         return (
           <ModalUnsavedChangesInterstitial
             discardChanges={this.discardChanges}
             cancel={this.cancelInterstitial}
-            save={this.handleShowPublish}
+            save={this.handleSaveAndContinue}
           />
         );
       case open:
-        return (
-          <ModalOpen
-            auth={auth}
-            onSignIn={this.handleSignIn}
-            onDeleteSong={this.handleDeleteSong}
-            onLoadSong={this.handleLoadSong}
-            onHide={this.handleHideOpen}
-          />
-        );
+        return <ModalOpen onHide={this.handleHideOpen} />;
       case showMakelily !== null:
         if (showMakelily === null) {
           throw new Error("(this will never happen");
@@ -1286,7 +856,7 @@ export default class App extends React.PureComponent<Props, State> {
 
     if (variant === "wasm") {
       // The wasm worker is the preview source and is independent of the
-      // WebSocket (used only for auth/publish/PDF on /wasm), so the WS
+      // WebSocket (used only for PDF on /wasm), so the WS
       // connect/reconnect state never blocks the preview here.
       if (wasmReady && this.svgRenderer) {
         return (
