@@ -105,6 +105,7 @@ function readLilyPondVersion(dockerfilePath: string): string {
 }
 
 export default defineConfig({
+  base: "/drawlily/",
   publicDir: "static",
   build: {
     rollupOptions: {

@@ -10,7 +10,7 @@ import { routeTree } from "./routeTree.gen";
 
 export function getRouter() {
   const router = createTanStackRouter({
-    basepath: "/",
+    basepath: import.meta.env.BASE_URL.replace(/\/$/, "") || "/",
     routeTree,
     defaultPreload: "intent",
     defaultPreloadStaleTime: 0,
