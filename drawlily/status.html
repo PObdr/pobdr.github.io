@@ -1,13 +1,52 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <script>self["MonacoEnvironment"] = (function (paths) {
+          return {
+            globalAPI: false,
+            getWorkerUrl : function (moduleId, label) {
+              var result =  paths[label];
+              if (/^((http:)|(https:)|(file:)|(\/\/))/.test(result)) {
+                var currentUrl = String(window.location);
+                var currentOrigin = currentUrl.substr(0, currentUrl.length - window.location.hash.length - window.location.search.length - window.location.pathname.length);
+                if (result.substring(0, currentOrigin.length) !== currentOrigin) {
+                  var js = '/*' + label + '*/importScripts("' + result + '");';
+                  var blob = new Blob([js], { type: 'application/javascript' });
+                  return URL.createObjectURL(blob);
+                }
+              }
+              return result;
+            }
+          };
+        })({
+  "editorWorkerService": "/drawlily/monacoeditorwork/editor.worker.bundle.js"
+});</script>
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="shortcut icon" href="/drawlily/favicon.ico" />
     <title>Hacklily status</title>
+    <script type="module" crossorigin src="/drawlily/assets/rolldown-runtime-QTnfLwEv.js"></script>
+    <script type="module" crossorigin src="/drawlily/assets/jsx-runtime-BX1tsrJU.js"></script>
+    <script type="module" crossorigin src="/drawlily/assets/react-dom-DUEk8ael.js"></script>
+    <script type="module" crossorigin src="/drawlily/assets/link-CbZAOCnJ.js"></script>
+    <script type="module" crossorigin src="/drawlily/assets/redirect-D3L17tzd.js"></script>
+    <script type="module" crossorigin src="/drawlily/assets/useMatch-DZLBSLzK.js"></script>
+    <script type="module" crossorigin src="/drawlily/assets/Match-D-SFdfjL.js"></script>
+    <script type="module" crossorigin src="/drawlily/assets/useSearch-BApCEmdn.js"></script>
+    <script type="module" crossorigin src="/drawlily/assets/lazyRouteComponent-oJpe56HJ.js"></script>
+    <script type="module" crossorigin src="/drawlily/assets/utils-B34Jl47y.js"></script>
+    <script type="module" crossorigin src="/drawlily/assets/useBaseUiId-Y6okKMtI.js"></script>
+    <script type="module" crossorigin src="/drawlily/assets/hacklilyRoute-CKt2UHaJ.js"></script>
+    <script type="module" crossorigin src="/drawlily/assets/preload-helper-B6fjS_BX.js"></script>
+    <script type="module" crossorigin src="/drawlily/assets/wasm-LGvn0T91.js"></script>
+    <script type="module" crossorigin src="/drawlily/assets/makelily-B5pLX1KS.js"></script>
+    <script type="module" crossorigin src="/drawlily/assets/routes-Dk8kZH-S.js"></script>
+    <script type="module" crossorigin src="/drawlily/assets/tests._id-C0rIPKTO.js"></script>
+    <script type="module" crossorigin src="/drawlily/assets/src-DcMD9cgC.js"></script>
+    <link rel="stylesheet" crossorigin href="/drawlily/assets/src-CYBIg-f1.css">
   </head>
   <body>
     <div id="root"></div>
-    <script type="module" src="/src/index.tsx"></script>
   </body>
 </html>
