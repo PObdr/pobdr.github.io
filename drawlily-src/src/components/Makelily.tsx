@@ -17,7 +17,7 @@ import type { MakelilyToolProps } from "./MakelilyToolProps";
 
 export const satieApplication: Application = new Application({
   preloadedFonts: ["Alegreya", "Alegreya (bold)"],
-  satieRoot: `${location.protocol}//${location.host}/vendor/`,
+  satieRoot: `${location.origin}${import.meta.env.BASE_URL}vendor/`,
 });
 
 requireFont("Bravura", "root://bravura/otf/Bravura.otf");
