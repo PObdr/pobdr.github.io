@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <meta
+      name="description"
+      content="Convert your MusicXML files to Lilypond."
+    />
+    <title>Hacklily &mdash; musicxml2ly</title>
+    <style type="text/css">
+      /*
+        NOTE: only styles needed for the inital render of Hacklily
+        should go here
+      */
+      .App {
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
+        position: absolute;
+        right: 0;
+        top: 0;
+        height: 100vh;
+      }
+
+      .content {
+        background-color: #1e1e1e;
+        height: calc(100% - 50px);
+        position: absolute;
+        width: 100%;
+      }
+
+      .monaco {
+        height: 100%;
+      }
+
+      .header {
+        background-color: #efefef;
+        border-bottom: 1px solid black;
+        display: flex;
+        height: 50px;
+        min-width: 321px;
+        width: 100%;
+        box-sizing: border-box;
+      }
+
+      @media (prefers-color-scheme: dark) {
+        .header {
+          background-color: #24343c;
+        }
+      }
+
+      .lilymonaco-inline-error {
+        background-color: red;
+        color: black !important;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root">
+      <div class="App" style="z-index: -2">
+        <div class="header"></div>
+        <div class="content" style="width: 50%">
+          <div class="monaco"></div>
+        </div>
+      </div>
+    </div>
+    <script type="module" src="/src/index.tsx"></script>
+  </body>
+</html>
