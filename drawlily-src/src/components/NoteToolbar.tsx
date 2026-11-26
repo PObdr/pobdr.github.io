@@ -21,9 +21,11 @@ const ACCIDENTALS: Array<{
   label: string;
   title: string;
 }> = [
-  { value: "flat", label: "\u266d", title: "Flat" },
+  { value: "doubleFlat", label: "\u266d\u266d", title: "Double flat (eses)" },
+  { value: "flat", label: "\u266d", title: "Flat (es)" },
   { value: "natural", label: "\u266e", title: "Natural" },
-  { value: "sharp", label: "\u266f", title: "Sharp" },
+  { value: "sharp", label: "\u266f", title: "Sharp (is)" },
+  { value: "doubleSharp", label: "\u266f\u266f", title: "Double sharp (isis)" },
 ];
 
 interface Props {
