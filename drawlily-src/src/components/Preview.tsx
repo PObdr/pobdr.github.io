@@ -9,6 +9,7 @@ import React from "react";
 import { track } from "#/lib/analytics";
 import { decodeArrayBuffer } from "#/lib/base64Binary";
 import { renderVersionFor } from "#/lib/lilypondVersion";
+import { enlargeNoteHitboxes } from "#/lib/noteHitbox";
 import { locationToSelection, parseTextEditLink } from "#/lib/sourceLocation";
 import type { SvgRenderer } from "#/lib/SvgRenderer";
 import { cn } from "#/lib/utils";
@@ -397,6 +398,10 @@ export default class Preview extends React.PureComponent<Props, State> {
         svg.removeAttribute("width");
         svg.removeAttribute("height");
       }
+
+      // Make the noteheads easier to click.
+      enlargeNoteHitboxes(root);
+
       this.setState({
         pendingPreviews: this.state.pendingPreviews - 1,
       });

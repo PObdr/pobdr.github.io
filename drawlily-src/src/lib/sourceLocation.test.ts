@@ -6,6 +6,8 @@ import { locationToSelection, parseTextEditLink } from "./sourceLocation";
 
 const CODE = ["\\relative c' {", "  c4 d e", "  fis8 g", "}"].join("\n");
 
+const CHORD_CODE = ["\\relative c' {", "  <c e g>4", "}"].join("\n");
+
 describe("parseTextEditLink", () => {
   it("reads line, start and end column", () => {
     expect(parseTextEditLink("textedit:///tmp/hacklily.ly:3:2:3")).toEqual({
@@ -61,5 +63,35 @@ describe("locationToSelection", () => {
     const selection = locationToSelection(CODE, location, 0);
     expect(selection.selectionStartLineNumber).toBe(3);
     expect(selection.positionColumn).toBe(7);
+  });
+
+  it("selects a pitch in the middle of a chord", () => {
+    const location = { line: 2, startColumn: 5, endColumn: 6 };
+    expect(locationToSelection(CHORD_CODE, location, 0)).toEqual({
+      selectionStartLineNumber: 2,
+      selectionStartColumn: 6,
+      positionLineNumber: 2,
+      positionColumn: 7,
+    });
+  });
+
+  it("selects the last pitch of a chord without the closing bracket", () => {
+    const location = { line: 2, startColumn: 7, endColumn: 8 };
+    expect(locationToSelection(CHORD_CODE, location, 0)).toEqual({
+      selectionStartLineNumber: 2,
+      selectionStartColumn: 8,
+      positionLineNumber: 2,
+      positionColumn: 9,
+    });
+  });
+
+  it("selects the first pitch of a chord without the opening bracket", () => {
+    const location = { line: 2, startColumn: 3, endColumn: 4 };
+    expect(locationToSelection(CHORD_CODE, location, 0)).toEqual({
+      selectionStartLineNumber: 2,
+      selectionStartColumn: 4,
+      positionLineNumber: 2,
+      positionColumn: 5,
+    });
   });
 });

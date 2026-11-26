@@ -34,14 +34,20 @@ interface Props {
 }
 
 /**
- * Floating toolbar for the note that is selected in the editor. Every button
- * rewrites that note's text in the LilyPond source.
+ * Floating toolbar for the note or chord that is selected in the editor.
+ * Every button rewrites that note's text in the LilyPond source.
+ *
+ * In a chord, the duration, dots and rest buttons change the whole chord. The
+ * accidental buttons and the delete button work on the selected pitch, so a
+ * pitch has to be selected (e.g. by clicking its notehead in the preview).
  */
 export default function NoteToolbar({ note, onAction }: Props): JSX.Element {
   // Keep the focus (and the selection) in the editor when clicking a button.
   const keepFocus = (ev: React.MouseEvent): void => {
     ev.preventDefault();
   };
+
+  const needsPitch = note.isChord && note.pitch === null;
 
   return (
     <div
@@ -51,6 +57,9 @@ export default function NoteToolbar({ note, onAction }: Props): JSX.Element {
       )}
       onMouseDown={keepFocus}
     >
+      {note.isChord && (
+        <span className="px-1 text-xs text-muted-foreground">Chord</span>
+      )}
       {DURATIONS.map((item) => (
         <Button
           key={item.value}
@@ -75,9 +84,19 @@ export default function NoteToolbar({ note, onAction }: Props): JSX.Element {
           key={item.value}
           variant={note.accidental === item.value ? "default" : "outline"}
           className="h-7 min-w-7 px-2"
-          title={item.title}
-          disabled={note.isRest}
-          onClick={() => onAction({ type: "accidental", value: item.value })}
+          title={
+            needsPitch
+              ? `${item.title} (click a notehead of the chord first)`
+              : item.title
+          }
+          disabled={note.isRest || needsPitch}
+          onClick={() =>
+            onAction({
+              type: "accidental",
+              value: item.value,
+              pitch: note.pitch,
+            })
+          }
         >
           {item.label}
         </Button>
@@ -85,7 +104,7 @@ export default function NoteToolbar({ note, onAction }: Props): JSX.Element {
       <Button
         variant={note.isRest ? "default" : "outline"}
         className="h-7 px-2"
-        title="Make this note a rest"
+        title={note.isChord ? "Make this chord a rest" : "Make this note a rest"}
         disabled={note.isRest}
         onClick={() => onAction({ type: "rest" })}
       >
@@ -94,8 +113,14 @@ export default function NoteToolbar({ note, onAction }: Props): JSX.Element {
       <Button
         variant="outline"
         className="h-7 min-w-7 px-2"
-        title="Delete note"
-        onClick={() => onAction({ type: "delete" })}
+        title={
+          note.isChord && note.pitch && note.pitchCount > 1
+            ? "Delete the selected pitch"
+            : note.isChord
+              ? "Delete the chord"
+              : "Delete note"
+        }
+        onClick={() => onAction({ type: "delete", pitch: note.pitch })}
       >
         <Trash2 size="1em" className="inline" />
       </Button>

@@ -41,21 +41,42 @@ export function parseTextEditLink(link: string): TextEditLocation | null {
 }
 
 /**
- * Finds the whitespace-delimited token that starts at a column of a line.
+ * Finds the note that starts at a column of a line. A pitch inside a chord
+ * (e.g. the e' in `<c' e' g'>4`) counts as a note, without the angle brackets
+ * and the duration of the chord.
  */
 function noteTokenAt(
   lineText: string,
   column: number,
 ): { start: number; end: number } | null {
   const range = findTokenRange(lineText, column, column);
-  if (!range || range.start !== column) {
-    return null;
-  }
-  if (!parseNote(lineText.slice(range.start, range.end))) {
+  if (!range) {
     return null;
   }
 
-  return range;
+  let start = range.start;
+  let end = range.end;
+
+  if (lineText[start] === "<" && lineText[start + 1] !== "<") {
+    if (column === start) {
+      return null;
+    }
+    start += 1;
+  }
+
+  const closing = lineText.indexOf(">", start);
+  if (closing >= 0 && closing < end) {
+    end = closing;
+  }
+
+  if (start !== column || end <= start) {
+    return null;
+  }
+  if (!parseNote(lineText.slice(start, end))) {
+    return null;
+  }
+
+  return { start, end };
 }
 
 /**
