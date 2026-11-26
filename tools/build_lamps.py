@@ -27,6 +27,15 @@ def write_json(path, value):
   temporary.write_text(text, encoding="utf-8")
   os.replace(temporary, path)
 
+def prune(out, manifest):
+  keep = set(manifest["tiles"].values())
+  tiles = out / "tiles"
+  if not tiles.is_dir():
+    return
+  for file in tiles.glob("*.json"):
+    if f"tiles/{file.name}" not in keep:
+      file.unlink()
+
 def build(raw, out, previous, headers=None):
   try:
     text = raw.decode("utf-8-sig")
@@ -150,6 +159,7 @@ def main():
         if file.name != "manifest.json":
           write_json(args.out / file.relative_to(stage), json.loads(file.read_text()))
       write_json(manifest_path, result)
+  prune(args.out, result)
   print(json.dumps({key: result[key] for key in ["total", "valid", "rejected"]}))
 
 if __name__ == "__main__":

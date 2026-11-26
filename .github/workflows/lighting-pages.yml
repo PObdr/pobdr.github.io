@@ -1,18 +1,12 @@
-name: Refresh lighting and deploy Pages
+name: Refresh lighting tiles and deploy Pages
 
 on:
   workflow_dispatch:
   schedule:
     - cron: '23 4 * * 1'
-  workflow_run:
-    workflows:
-      - pages-build-deployment
-      - pages build and deployment
-    types: [completed]
-    branches: [main]
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -22,10 +16,6 @@ concurrency:
 
 jobs:
   publish:
-    if: >-
-      github.event_name != 'workflow_run' ||
-      (github.event.workflow_run.conclusion == 'success' &&
-       github.event.workflow_run.head_repository.full_name == github.repository)
     runs-on: ubuntu-latest
     environment:
       name: github-pages
@@ -34,27 +24,45 @@ jobs:
       - uses: actions/checkout@v4
         with:
           ref: main
-          persist-credentials: false
+          persist-credentials: true
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - uses: actions/cache/restore@v4
-        with:
-          path: dio/data/lamps
-          key: lighting-v1-${{ github.run_id }}-${{ github.run_attempt }}
-          restore-keys: lighting-v1-
       - name: Install coordinate converter
         run: python -m pip install pyproj==3.7.1
-      - name: Check source and build tiles after the regular Pages workflow
+      - name: Check source and build tiles
         run: python tools/build_lamps.py
-      - uses: actions/cache/save@v4
-        with:
-          path: dio/data/lamps
-          key: lighting-v1-${{ github.run_id }}-${{ github.run_attempt }}
+      - name: Detect meaningful data changes
+        id: changes
+        run: |
+          git add -A dio/data/lamps
+          if git diff --cached --quiet; then
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          other=$(git diff --cached --name-only | grep -v '^dio/data/lamps/manifest.json$' || true)
+          manifest=$(git diff --cached -U0 -- dio/data/lamps/manifest.json | grep -E '^[+-] ' | grep -v '"checked"' || true)
+          if [ -z "$other" ] && [ -z "$manifest" ]; then
+            git restore --staged --worktree dio/data/lamps/manifest.json
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Commit updated tiles
+        if: steps.changes.outputs.changed == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Update Prague lighting tiles"
+          git pull --rebase origin main
+          git push origin HEAD:main
       - uses: actions/configure-pages@v5
+        if: steps.changes.outputs.changed == 'true'
       - uses: actions/upload-pages-artifact@v3
+        if: steps.changes.outputs.changed == 'true'
         with:
           path: '.'
-      - name: Deploy site including generated lamp tiles
+      - name: Deploy site including updated lamp tiles
+        if: steps.changes.outputs.changed == 'true'
         id: deploy
         uses: actions/deploy-pages@v4
